@@ -1,0 +1,5 @@
+
+--langdef=idris
+--langmap=idris:.idr
+--regex-idris=/^[ ]*data[ ]+([^ :]+)[ ]*:[ ]*/\1/t,datatype/
+--regex-idris=/^[ ]*([^ :]+)[ ]*:[ ]*/\1/d,definition/
