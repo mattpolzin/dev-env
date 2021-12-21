@@ -1,10 +1,12 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-:set nocompatible
-:set wildmenu
-:set hidden
-:set number
+set nocompatible
+set wildmenu
+set hidden
+set number
+set shiftwidth=2
+" let g:netrw_liststyle=3
 
 :command -bar Tags :execute ":silent :r !ctags -R >/dev/null"
 
@@ -22,9 +24,9 @@ map gC :call Uncomment()<CR>
 
 function! Comment()
 	let ft = &filetype
-	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl'
+	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl' || ft == 'elixir'
 		silent s/^/\#/
-	elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go'
+	elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift'
 		silent s:^:\/\/:g
 	elseif ft == 'tex'
 		silent s:^:%:g
@@ -37,9 +39,9 @@ endfunction
 
 function! Uncomment()
 	let ft = &filetype
-	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl'
+	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl' || ft == 'elixir'
 		silent s/^\#//
-	elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go'
+	elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift'
 		silent s:^\/\/::g
 	elseif ft == 'tex'
 		silent s:^%::g
