@@ -2,6 +2,7 @@
 --langdef=idris
 --langmap=idris:.idr
 --regex-idris=/^[ ]*data[ ]+([^ :=]+)[ ]*[:=][ ]*/\1/t,datatype/
+--regex-idris=/^[ ]*record[ ]+([^ :=]+)[ ]*where[ ]*/\1/t,datatype/
 --regex-idris=/^[ ]*data[ ]+[^ =]+[ ]*=[ ]*([^ ]+)/\1/c,constructor/
 --regex-idris=/^[^:]*[^|]\|[ ]*([^ ]+)[^=]*$/\1/c,constructor/
 --regex-idris=/^[ ]*([^ :]+)[ ]*:[ ]*/\1/d,definition/
