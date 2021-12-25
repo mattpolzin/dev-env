@@ -1,4 +1,6 @@
-execute pathogen#infect()
+if !has('nvim')
+  execute pathogen#infect()
+endif
 syntax on
 filetype plugin indent on
 set nocompatible
@@ -6,15 +8,25 @@ set wildmenu
 set hidden
 set number
 set shiftwidth=2
+highlight Pmenu ctermbg=darkgray guibg=darkgray
 " let g:netrw_liststyle=3
 
-:command -bar Tags :execute ":silent :r !ctags -R >/dev/null"
+command -bar Tags :execute ":silent :r !ctags -R >/dev/null"
 
 "
 " Idris
 "
-command! IdrisReload  let leader=get(g:,"mapleader","\\") | exec "normal " . (leader==' '?"1":leader)."r"
-noremap <Leader>rr :Tags<ENTER> <bar> :IdrisReload<ENTER>
+if !has('nvim')
+  " with nvim we are using the Idris 2 LSP
+  command! IdrisReload  let leader=get(g:,"mapleader","\\") | exec "normal " . (leader==' '?"1":leader)."r"
+  noremap <Leader>rr :Tags<ENTER> <bar> :IdrisReload<ENTER>
+endif
+
+"
+" psql
+"
+
+au BufRead /tmp/psql.edit.* set syntax=sql
 
 "
 " Commenting
@@ -32,7 +44,7 @@ function! Comment()
 		silent s:^:%:g
 	elseif ft == 'vim'
 		silent s:^:\":g
-	elseif ft == 'idris2' || ft == 'haskell'
+	elseif ft == 'idris2' || ft == 'haskell' || ft == 'lua'
 		silent s:^:-- :g
 	endif
 endfunction
@@ -47,7 +59,7 @@ function! Uncomment()
 		silent s:^%::g
 	elseif ft == 'vim'
 		silent s:^\"::g
-	elseif ft == 'idris2' || ft == 'haskell'
+	elseif ft == 'idris2' || ft == 'haskell' || ft == 'lua'
 		silent s:^-- ::g
 	endif
 endfunction
