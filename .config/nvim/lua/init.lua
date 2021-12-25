@@ -22,6 +22,7 @@ require('telescope').load_extension('fzf')
 -- 
 local custom_lsp_attach = function(client)
   vim.cmd [[nnoremap <Leader>t <Cmd>lua vim.lsp.buf.hover()<CR>]]
+  vim.cmd [[nnoremap <Leader>e <Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
   vim.cmd [[nnoremap <c-]> <Cmd>lua vim.lsp.buf.definition()<CR>]]
   vim.cmd [[nnoremap K <Cmd>lua vim.lsp.buf.code_action()<CR>]]
   vim.cmd [[nnoremap <Leader>d <Cmd>lua vim.lsp.buf.signature_help()<CR>]]
@@ -66,6 +67,7 @@ end
 local filters = require('idris2.code_action').filters
 
 local save_hook = function(err, result, ctx, config)
+  vim.cmd('sleep 10m')
   vim.cmd('write')
 end
 
