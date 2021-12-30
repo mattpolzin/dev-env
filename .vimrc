@@ -8,8 +8,9 @@ set wildmenu
 set hidden
 set number
 set shiftwidth=2
-highlight Pmenu ctermbg=darkgray guibg=darkgray ctermfg=white guifg=white
+highlight Pmenu ctermbg=black guibg=black ctermfg=white guifg=white
 highlight Visual ctermbg=darkblue guibg=darkblue
+highlight DiagnosticFloatingError ctermfg=red guifg=red
 " let g:netrw_liststyle=3
 
 command -bar Tags :execute ":silent :r !ctags -R >/dev/null"
