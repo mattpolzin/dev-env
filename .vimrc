@@ -8,6 +8,7 @@ set wildmenu
 set hidden
 set number
 set shiftwidth=2
+set guicursor=i:block
 highlight Pmenu ctermbg=black guibg=black ctermfg=white guifg=white
 highlight Visual ctermbg=darkblue guibg=darkblue
 highlight DiagnosticFloatingError ctermfg=red guifg=red

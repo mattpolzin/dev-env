@@ -15,6 +15,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'ShinKage/idris2-nvim'
 
+Plug 'elixir-editors/vim-elixir'
+
 call plug#end()
 
 lua require('init')

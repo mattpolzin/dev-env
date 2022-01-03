@@ -4,6 +4,10 @@
 --
 local function custom_lsp_attach(client)
   require('lsp.common').setup()
+
+  -- evaluate expression
+  vim.cmd [[nnoremap <Leader>e <Cmd>lua require('helpers.elixir').evaluate()<CR>]]
+
 end
 
 local path_to_elixirls = vim.fn.expand("~/.nix-profile/bin/elixir-ls")
