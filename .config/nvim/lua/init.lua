@@ -32,4 +32,5 @@ vim.lsp.handlers["textDocument/hover"] =
 
 require('lsp.elixir').setup()
 require('lsp.idris').setup()
+require('lsp.node').setup()
 
