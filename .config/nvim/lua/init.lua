@@ -33,4 +33,15 @@ vim.lsp.handlers["textDocument/hover"] =
 require('lsp.elixir').setup()
 require('lsp.idris').setup()
 require('lsp.node').setup()
+require('lsp.json').setup()
+
+-- LSP additional external setup:
+--
+-- npm i -g vscode-langservers-extracted
+--
+-- npm i -g typescript typescript-language-server
+--
+-- https://github.com/elixir-lsp/elixir-ls
+--
+-- https://github.com/idris-community/idris2-lsp
 
