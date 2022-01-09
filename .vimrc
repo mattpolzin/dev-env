@@ -7,7 +7,7 @@ set nocompatible
 set wildmenu
 set hidden
 set number
-set shiftwidth=2
+set shiftwidth=2 expandtab tabstop=2
 set guicursor=i:block
 highlight Pmenu ctermbg=black guibg=black ctermfg=white guifg=white
 highlight Visual ctermbg=darkblue guibg=darkblue
@@ -39,9 +39,9 @@ map gC :call Uncomment()<CR>
 
 function! Comment()
 	let ft = &filetype
-	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl' || ft == 'elixir'
+	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl' || ft == 'elixir' || ft == 'yaml'
 		silent s/^/\#/
-	elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift'
+	elseif ft == 'javascript' || ft == 'typescript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift'
 		silent s:^:\/\/:g
 	elseif ft == 'tex'
 		silent s:^:%:g
@@ -54,9 +54,9 @@ endfunction
 
 function! Uncomment()
 	let ft = &filetype
-	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl' || ft == 'elixir'
+	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl' || ft == 'elixir' || ft == 'yaml'
 		silent s/^\#//
-	elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift'
+	elseif ft == 'javascript' || ft == 'typescript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift'
 		silent s:^\/\/::g
 	elseif ft == 'tex'
 		silent s:^%::g
