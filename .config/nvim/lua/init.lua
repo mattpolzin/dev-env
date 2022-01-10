@@ -16,6 +16,9 @@ require('telescope').setup({
   }
 })
 
+vim.cmd [[nnoremap <c-p> <Cmd>Telescope find_files<CR>]]
+require('telescope').load_extension('fzf')
+
 --
 -- Git
 --
@@ -28,9 +31,6 @@ require('gitsigns').setup({
     ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'"}
   }
 })
-
-vim.cmd [[nnoremap <c-p> <Cmd>Telescope find_files<CR>]]
-require('telescope').load_extension('fzf')
 
 --
 -- LSP
