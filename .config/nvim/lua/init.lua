@@ -32,6 +32,9 @@ require('gitsigns').setup({
   }
 })
 
+vim.cmd [[command Blame lua require('commands.github').blame()]]
+vim.cmd [[command -range Show lua require('commands.github').show()]]
+
 --
 -- LSP
 -- 
