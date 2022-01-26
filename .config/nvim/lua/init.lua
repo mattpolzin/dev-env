@@ -3,21 +3,43 @@
 -- Telescope
 --
 
+local ignore_patterns = {
+  -- dependency and build folders
+  ".*node_modules/.*",
+  ".*build/.",
+  ".*bundle/.*",
+  ".*tmp/.*",
+  ".*icons/.*",
+  -- tags
+  ".*/?tags$",
+  -- hidden files and folders
+  ".*.git.*",
+  ".*.elixir_ls.*",
+  -- editor session
+  ".*~$",
+}
+
 require('telescope').setup({
   defaults = {
     layout_strategy = 'vertical',
-    file_ignore_patterns = {
-      ".*node_modules/.*",
-      ".*build/.",
-      ".*bundle/.*",
-      ".*/icons/.*",
-      ".*/tags$"
+    file_ignore_patterns = ignore_patterns,
+    extensions = {
+      frecency = {
+        ignore_patterns
+      }
+    },
+    mappings = {
+      i = {
+        ["<c-Down>"] = require('telescope.actions').cycle_history_next,
+        ["<c-Up>"] = require('telescope.actions').cycle_history_prev
+      }
     }
   }
 })
 
 vim.cmd [[nnoremap <c-p> <Cmd>Telescope find_files<CR>]]
 require('telescope').load_extension('fzf')
+require('telescope').load_extension("frecency")
 
 --
 -- Git

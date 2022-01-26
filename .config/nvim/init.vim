@@ -7,6 +7,8 @@ call plug#begin()
 " Util
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
+Plug 'tami5/sqlite.lua'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " Tab completion
 Plug 'ervandew/supertab'
@@ -14,6 +16,7 @@ Plug 'ervandew/supertab'
 " Browsing/Finding
 Plug 'BurntSushi/ripgrep'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " LSP
