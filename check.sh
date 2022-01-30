@@ -80,23 +80,33 @@ if [ -d "$HOME/.config" ]; then
   echo '- [x] ~/.config directory exists.'
   #
   # check ~/.config/nvim is the same
-  DIFF="$(diff -U3 --recursive "$HOME/.config/nvim" ./.config/nvim)"
-  if [ "$?" = '1' ]; then
-    echo '- [ ] ~/.config/nvim directory in sync.'
-    DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
-    EXIT_STATUS=1
+  if [ -d ~/.config/nvim ]; then
+    DIFF="$(diff -U3 --recursive "$HOME/.config/nvim" ./.config/nvim)"
+    if [ "$?" = '1' ]; then
+      echo '- [ ] ~/.config/nvim directory in sync.'
+      DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+      EXIT_STATUS=1
+    else
+      echo '- [x] ~/.config/nvim directory in sync.'
+    fi
   else
-    echo '- [x] ~/.config/nvim directory in sync.'
+    echo '- [ ] ~/.config/nvim directory in sync.'
+    echo '      ! No nvim directory found.'
   fi
   #
   # check ~/.config/kitty is the same
-  DIFF="$(diff -U3 --recursive "$HOME/.config/kitty" ./.config/kitty)"
-  if [ "$?" = '1' ]; then
-    echo '- [ ] ~/.config/kitty directory in sync.'
-    DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
-    EXIT_STATUS=1
+  if [ -d ~/.config/kitty ]; then
+    DIFF="$(diff -U3 --recursive "$HOME/.config/kitty" ./.config/kitty)"
+    if [ "$?" = '1' ]; then
+      echo '- [ ] ~/.config/kitty directory in sync.'
+      DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+      EXIT_STATUS=1
+    else
+      echo '- [x] ~/.config/kitty directory in sync.'
+    fi
   else
-    echo '- [x] ~/.config/kitty directory in sync.'
+    echo '- [ ] ~/.config/kitty directory in sync.'
+    echo '      ! No kitty directory found.'
   fi
 else
   echo '- [ ] ~/.config directory exists.'
