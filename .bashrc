@@ -14,4 +14,4 @@ function parse_git_branch {
 }
 export -f parse_git_branch
 
-export PS1="local:\w \$(parse_git_branch)$ "
+export PS1="\u:\w \$(parse_git_branch)$ "
