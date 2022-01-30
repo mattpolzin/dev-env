@@ -103,5 +103,65 @@ else
   EXIT_STATUS=1
 fi
 
+#
+# check for Neovim & LSP deps
+echo '- LSP'
+if [ "$(which rg)" != '' ] && [ "$(rg --version | head -n1 | awk '{ print $1 }')" = 'ripgrep' ]; then
+  echo '  * [x] ripgrep found in PATH (shell command: rg).'
+else
+  echo '  * [ ] ripgrep found in PATH (shell command: rg).'
+  EXIT_STATUS=1
+fi
+if [ "$(which idris2)" != '' ]; then
+  echo '  * [x] idris2 found in PATH.'
+else
+  echo '  * [ ] idris2 found in PATH.'
+  EXIT_STATUS=1
+fi
+if [ "$(which idris2-lsp)" != '' ]; then
+  echo '  * [x] idris2-lsp found in PATH.'
+else
+  echo '  * [ ] idris2-lsp found in PATH.'
+  EXIT_STATUS=1
+fi
+if [ "$(which elixir)" != '' ]; then
+  echo '  * [x] elixir found in PATH.'
+else
+  echo '  * [ ] elixir found in PATH.'
+  EXIT_STATUS=1
+fi
+if [ "$(which elixir-ls)" != '' ]; then
+  echo '  * [x] elixir-ls found in PATH.'
+else
+  echo '  * [ ] elixir-ls found in PATH.'
+  EXIT_STATUS=1
+fi
+if [ "$(which npm)" = '' ]; then
+  echo '  * [ ] npm package vscode-langservers-extracted found.'
+  echo '  * [ ] npm package typescript found.'
+  echo '  * [ ] npm package typescript-language-server found.'
+  EXIT_STATUS=1
+else
+  NPM="$(npm -g ls --parseable)"
+  if [ "$(echo "$NPM" | grep 'typescript$')" != '' ]; then
+    echo '  * [x] npm package typescript found.'
+  else
+    echo '  * [ ] npm package typescript found.'
+    EXIT_STATUS=1
+  fi
+  if [ "$(echo "$NPM" | grep 'typescript-language-server$')" != '' ]; then
+    echo '  * [x] npm package typescript-language-server found.'
+  else
+    echo '  * [ ] npm package typescript-language-server found.'
+    EXIT_STATUS=1
+  fi
+  if [ "$(echo "$NPM" | grep 'vscode-langservers-extracted')" != '' ]; then
+    echo '  * [x] npm package vscode-langservers-extracted found.'
+  else
+    echo '  * [ ] npm package vscode-langservers-extracted found.'
+    EXIT_STATUS=1
+  fi
+fi
+
 echo "$DIFF_OUT"
 exit $EXIT_STATUS
