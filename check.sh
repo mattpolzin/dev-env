@@ -75,12 +75,31 @@ else
 fi
 
 #
+# check ~/.ctags exists
+if [ -f "$HOME/.ctags" ]; then
+  #
+  # check ~/.ctags is the same
+  DIFF="$(diff -U3 "$HOME/.ctags" ./.ctags)"
+  if [ "$?" = '1' ]; then
+    echo '- [ ] ~/.ctags file in sync.'
+    DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+    EXIT_STATUS=1
+  else
+    echo '- [x] ~/.ctags file in sync.'
+  fi
+else
+  echo '- [ ] ~/.ctags file in sync.'
+  echo '      ! No .ctags file found.'
+  EXIT_STATUS=1
+fi
+
+#
 # check ~/.config exists
 if [ -d "$HOME/.config" ]; then
   echo '- [x] ~/.config directory exists.'
   #
   # check ~/.config/nvim is the same
-  if [ -d ~/.config/nvim ]; then
+  if [ -d "$HOME/.config/nvim" ]; then
     DIFF="$(diff -U3 --recursive "$HOME/.config/nvim" ./.config/nvim)"
     if [ "$?" = '1' ]; then
       echo '- [ ] ~/.config/nvim directory in sync.'
@@ -95,7 +114,7 @@ if [ -d "$HOME/.config" ]; then
   fi
   #
   # check ~/.config/kitty is the same
-  if [ -d ~/.config/kitty ]; then
+  if [ -d "$HOME/.config/kitty" ]; then
     DIFF="$(diff -U3 --recursive "$HOME/.config/kitty" ./.config/kitty)"
     if [ "$?" = '1' ]; then
       echo '- [ ] ~/.config/kitty directory in sync.'
