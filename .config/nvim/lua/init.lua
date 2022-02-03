@@ -6,15 +6,22 @@
 local ignore_patterns = {
   -- dependency and build folders
   ".*node_modules/.*",
-  ".*build/.",
+  ".*build/.*",
   ".*bundle/.*",
+  ".*.bundle/.*",
   ".*tmp/.*",
   ".*icons/.*",
+  -- images
+  ".*.png",
+  -- other non-editables
+  ".*.zip",
+  ".*.tar.gz",
+  ".*.tgz",
   -- tags
   ".*/?tags$",
   -- hidden files and folders
-  ".*.git.*",
-  ".*.elixir_ls.*",
+  ".*.git/.*",
+  ".*.elixir_ls/.*",
   -- editor session
   ".*~$",
 }

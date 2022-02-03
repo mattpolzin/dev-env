@@ -127,6 +127,21 @@ if [ -d "$HOME/.config" ]; then
     echo '- [ ] ~/.config/kitty directory in sync.'
     echo '      ! No kitty directory found.'
   fi
+  #
+  # check ~/.config/k9s is the same
+  if [ -d "$HOME/.config/k9s" ]; then
+    DIFF="$(diff -U3 --recursive "$HOME/.config/k9s" ./.config/k9s)"
+    if [ "$?" = '1' ]; then
+      echo '- [ ] ~/.config/k9s directory in sync.'
+      DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+      EXIT_STATUS=1
+    else
+      echo '- [x] ~/.config/k9s directory in sync.'
+    fi
+  else
+    echo '- [ ] ~/.config/k9s directory in sync.'
+    echo '      ! No k9s directory found.'
+  fi
 else
   echo '- [ ] ~/.config directory exists.'
   EXIT_STATUS=1
