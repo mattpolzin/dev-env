@@ -1,0 +1,7 @@
+
+k9s:
+  refreshRate: 2 # in seconds
+  logger:
+    tail: 300
+    buffer: 2000
+
