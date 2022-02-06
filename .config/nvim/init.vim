@@ -4,6 +4,10 @@ source ~/.vimrc
 
 call plug#begin()
 
+" Color
+"Plug 'cocopon/iceberg.vim' " -- syntax highlighting is too muted
+Plug 'joshdick/onedark.vim'
+
 " Util
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'

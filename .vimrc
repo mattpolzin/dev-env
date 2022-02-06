@@ -9,10 +9,25 @@ set hidden
 set number
 set shiftwidth=2 expandtab tabstop=2
 set guicursor=i:block
-highlight Pmenu ctermbg=black guibg=black ctermfg=white guifg=white
-highlight Visual ctermbg=darkblue guibg=darkblue
-highlight DiagnosticFloatingError ctermfg=red guifg=red
 " let g:netrw_liststyle=3
+
+"
+" Colors
+"
+hi Pmenu  ctermbg=black    guibg=black    ctermfg=white guifg=white
+hi Visual ctermbg=darkblue guibg=darkblue
+
+hi DiagnosticFloatingError ctermfg=red guifg=red
+
+" -- Letting color scheme set highlight colors
+"hi DiffAdd      gui=none    ctermbg=darkgreen     guibg=#e4f1da
+"hi DiffChange   gui=none    ctermbg=darkcyan      guibg=#c5d8ec
+"hi DiffDelete   gui=none    ctermbg=darkred       guibg=#ffb0b0
+"hi DiffText     gui=none    ctermbg=darkblue      guibg=#77a4d4
+
+"
+" Tags
+"
 
 command -bar Tags :execute ":silent :r !ctags -R >/dev/null"
 

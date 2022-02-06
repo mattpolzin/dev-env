@@ -1,5 +1,15 @@
 
 --
+-- Colorscheme
+--
+vim.cmd [[ set termguicolors ]]
+vim.cmd [[ colorscheme onedark    ]]
+-- make background slightly darker:
+vim.cmd [[ hi Normal       guibg=#16181d ]]
+-- make non-current window status bar more visible:
+vim.cmd [[ hi StatusLineNC guibg=#21252c ]]
+
+--
 -- Telescope
 --
 
