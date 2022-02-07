@@ -10,6 +10,11 @@ vim.cmd [[ hi Normal       guibg=#16181d ]]
 vim.cmd [[ hi StatusLineNC guibg=#21252c ]]
 
 --
+-- Search Highlight
+--
+vim.cmd [[ highlight link Searchlight DiffDelete ]]
+
+--
 -- Telescope
 --
 

@@ -8,6 +8,8 @@ call plug#begin()
 "Plug 'cocopon/iceberg.vim' " -- syntax highlighting is too muted
 Plug 'joshdick/onedark.vim'
 
+Plug 'PeterRincker/vim-searchlight' "highlight search term cursor is over differently
+
 " Util
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
