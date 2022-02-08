@@ -45,11 +45,6 @@ require('telescope').setup({
   defaults = {
     layout_strategy = 'vertical',
     file_ignore_patterns = ignore_patterns,
-    extensions = {
-      frecency = {
-        ignore_patterns
-      }
-    },
     mappings = {
       i = {
         ["<c-Down>"] = require('telescope.actions').cycle_history_next,
@@ -61,7 +56,6 @@ require('telescope').setup({
 
 vim.cmd [[nnoremap <c-p> <Cmd>Telescope find_files<CR>]]
 require('telescope').load_extension('fzf')
-require('telescope').load_extension("frecency")
 
 --
 -- Git
