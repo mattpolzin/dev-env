@@ -27,11 +27,11 @@ local ignore_patterns = {
   ".*tmp/.*",
   ".*icons/.*",
   -- images
-  ".*.png",
+  ".*.png$",
   -- other non-editables
-  ".*.zip",
-  ".*.tar.gz",
-  ".*.tgz",
+  ".*.zip$",
+  ".*.tar.gz$",
+  ".*.tgz$",
   -- tags
   ".*/?tags$",
   -- hidden files and folders
