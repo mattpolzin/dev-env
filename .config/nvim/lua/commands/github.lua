@@ -5,9 +5,23 @@ local function get_cursor_line()
   return vim.api.nvim_win_get_cursor(0)[1]
 end
 
+local function gitroot(relative_to)
+  if relative_to == '/' then
+    -- error case, really, but not worth handling.
+    return '/'
+  end
+  vim.fn.system('ls -a ' .. relative_to .. '/.git')
+  local found = vim.v.shell_error == 0
+  if found then
+    return vim.fn.simplify(relative_to)
+  else
+    return gitroot(vim.fn.simplify(relative_to .. '/..'))
+  end
+end
+
 local function get_fname()
-  return vim.api.nvim_buf_get_name(0):gsub(vim.loop.cwd(), '')
---   return vim.fn.expand('%')
+  local git_root = gitroot(vim.loop.cwd())
+  return vim.api.nvim_buf_get_name(0):gsub(git_root, '')
 end
 
 local function repo()

@@ -149,11 +149,17 @@ fi
 
 #
 # check for Neovim & LSP deps
-echo '- LSP'
+echo '- Neovim Telescope/LSP'
 if [ "$(which rg)" != '' ] && [ "$(rg --version | head -n1 | awk '{ print $1 }')" = 'ripgrep' ]; then
   echo '  * [x] ripgrep found in PATH (shell command: rg).'
 else
   echo '  * [ ] ripgrep found in PATH (shell command: rg).'
+  EXIT_STATUS=1
+fi
+if [ "$(which fd)" != '' ]; then
+  echo '  * [x] fd found in PATH.'
+else
+  echo '  * [ ] fd found in PATH.'
   EXIT_STATUS=1
 fi
 if [ "$(which idris2)" != '' ]; then
