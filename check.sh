@@ -13,7 +13,15 @@ if [ "$(which zsh)" = '' ]; then
   echo '- [ ] System has zsh.'
 else
   echo '- [x] System has zsh (preferring over bash).'
-  USE_ZSH=true
+  USE_ZSH='true'
+fi
+
+if [ "$USE_ZSH" = 'true' ] && [ "${SHELL/zsh/}" == "$SHELL" ]; then
+  echo "- [ ] SHELL env var points at zsh (actually found $SHELL)."
+  echo '      ! Falling back to bash.'
+  USE_ZSH='false'
+else
+  echo '- [x] SHELL env var points at zsh.'
 fi
 
 if [ "$USE_ZSH" = 'false' ] && [ "$(which bash)" = '' ]; then
