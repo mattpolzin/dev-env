@@ -7,9 +7,17 @@
 
 DIFF_OUT=''
 EXIT_STATUS=0
+USE_ZSH='false'
 
-if [ "$(which bash)" = '' ]; then
-  echo 'System does not have bash. These configs currently only contain a .bashrc file.'
+if [ "$(which zsh)" = '' ]; then
+  echo '- [ ] System has zsh.'
+else
+  echo '- [x] System has zsh (preferring over bash).'
+  USE_ZSH=true
+fi
+
+if [ "$USE_ZSH" = 'false' ] && [ "$(which bash)" = '' ]; then
+  echo 'System does not have bash. Only zsh and bash are supported by these configs, exiting.'
   exit 1
 else
   echo '- [x] System has bash.'
@@ -38,7 +46,7 @@ fi
 
 #
 # check ~/.bashrc exists
-if [ -f "$HOME/.bashrc" ]; then
+if [ "$USE_ZSH" = 'false' ] && [ -f "$HOME/.bashrc" ]; then
   #
   # check ~/.bashrc is the same
   DIFF="$(diff -U3 "$HOME/.bashrc" ./.bashrc)"
@@ -49,9 +57,28 @@ if [ -f "$HOME/.bashrc" ]; then
   else
     echo '- [x] ~/.bashrc file in sync.'
   fi
-else
+elif [ "$USE_ZSH" = 'false' ]; then
   echo '- [ ] ~/.bashrc file in sync.'
   echo '      ! No .bashrc file found.'
+  EXIT_STATUS=1
+fi
+
+#
+# check ~/.zshrc exists
+if [ "$USE_ZSH" = 'true' ] && [ -f "$HOME/.zshrc" ]; then
+  #
+  # check ~/.zshrc is the same
+  DIFF="$(diff -U3 "$HOME/.zshrc" ./.zshrc)"
+  if [ "$?" = '1' ]; then
+    echo '- [ ] ~/.zshrc file in sync.'
+    EXIT_STATUS=1
+    DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+  else
+    echo '- [x] ~/.zshrc file in sync.'
+  fi
+elif [ "$USE_ZSH" = 'true' ]; then
+  echo '- [ ] ~/.zshrc file in sync.'
+  echo '      ! No .zshrc file found.'
   EXIT_STATUS=1
 fi
 
