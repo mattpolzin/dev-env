@@ -58,6 +58,12 @@ else
   echo '- (x) harmony found in PATH.'
 fi
 
+if [ "$(which scheme)" = '' ] && [ "$(which chez)" = '' ]; then
+  echo '- ( ) scheme found in PATH.'
+else
+  echo '- (x) scheme found in PATH.'
+fi
+
 #
 # check ~/.bashrc exists
 if [ "$USE_ZSH" = 'false' ] && [ -f "$HOME/.bashrc" ]; then
