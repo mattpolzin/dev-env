@@ -8,6 +8,14 @@ export EDITOR=nvim
 #change input to vi style
 bindkey -v
 
+# autocompletion
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+test -f ~/bin/git-completion.zsh && . ~/bin/git-completion.zsh
+eval "$(harmony --bash-completion-script)"
+# note location for adding completion handlers: /usr/local/etc/bash_completion.d
+test -r "/usr/local/etc/profile.d/bash_completion.sh" && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 # Load version control information
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
@@ -23,7 +31,7 @@ if [ -n "$ncolors" ] && [ $ncolors -ge 8 ]; then
   normal="$(tput sgr0)"
   green="$(tput setaf 2)"
   yellow="$(tput setaf 3)"
-  PROMPT="%n: ${green}%~ ${yellow}\${vcs_info_msg_0_}${normal}$ "
+  PROMPT="%n: %{${green}%}%~ %{${yellow}%}\${vcs_info_msg_0_}%{${normal}%}$ "
 else
   PROMPT="%n:%~ \${vcs_info_msg_0_}$ "
 fi
