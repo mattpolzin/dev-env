@@ -12,7 +12,7 @@ bindkey -v
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 test -f ~/bin/git-completion.zsh && . ~/bin/git-completion.zsh
-eval "$(harmony --bash-completion-script)"
+eval "$(harmony --bash-completion-script)" || echo 'harmony not installed.'
 # note location for adding completion handlers: /usr/local/etc/bash_completion.d
 test -r "/usr/local/etc/profile.d/bash_completion.sh" && . "/usr/local/etc/profile.d/bash_completion.sh"
 
