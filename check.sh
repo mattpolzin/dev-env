@@ -52,6 +52,12 @@ else
   echo '- [x] neovim found in PATH.'
 fi
 
+if [ "$(which harmony)" = '' ]; then
+  echo '- ( ) harmony found in PATH.'
+else
+  echo '- (x) harmony found in PATH.'
+fi
+
 #
 # check ~/.bashrc exists
 if [ "$USE_ZSH" = 'false' ] && [ -f "$HOME/.bashrc" ]; then
