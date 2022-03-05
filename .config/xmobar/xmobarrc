@@ -1,4 +1,4 @@
-Config { font = "xft:iosevka-10"
+Config { font = "xft:JetBrains Mono:pixelsize=24"
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
@@ -11,9 +11,16 @@ Config { font = "xft:iosevka-10"
                     , Run Swap [] 10
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    ,	Run Battery [ "--template", "AC <acstatus> (<left>%)"
+                                  , "--Low", "25"
+                                  , "--High", "50"
+                                  , "--high", "green"
+                                  , "--normal", "yellow"
+                                  , "--low", "red"
+                                  ] 30
                     , Run StdinReader
                     ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %enp9s0u1% }{<fc=#ee9a00>%date%</fc> | %uname% "
+        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %enp9s0u1% }{<fc=#ee9a00>%date%</fc> | %battery% | %uname% "
         }
