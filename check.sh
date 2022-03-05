@@ -9,7 +9,7 @@ DIFF_OUT=''
 EXIT_STATUS=0
 USE_ZSH='false'
 
-if [ "$(which zsh)" = '' ]; then
+if [ "$(command -v zsh)" = '' ]; then
   echo '- [ ] System has zsh.'
 else
   echo '- [x] System has zsh (preferring over bash).'
@@ -24,41 +24,41 @@ else
   echo '- [x] SHELL env var points at zsh.'
 fi
 
-if [ "$USE_ZSH" = 'false' ] && [ "$(which bash)" = '' ]; then
+if [ "$USE_ZSH" = 'false' ] && [ "$(command -v bash)" = '' ]; then
   echo 'System does not have bash. Only zsh and bash are supported by these configs, exiting.'
   exit 1
 else
   echo '- [x] System has bash.'
 fi
 
-if [ "$(which diff)" = '' ]; then
+if [ "$(command -v diff)" = '' ]; then
   echo 'System does not have diff. This check script currently relies heavily on diff.'
   exit 1
 else
   echo '- [x] diff found in PATH.'
 fi
 
-if [ "$(which kitty)" = '' ]; then
+if [ "$(command -v kitty)" = '' ]; then
   echo '- [ ] kitty found in PATH.'
   EXIT_STATUS=1
 else
   echo '- [x] kitty found in PATH.'
 fi
 
-if [ "$(which nvim)" = '' ]; then
+if [ "$(command -v nvim)" = '' ]; then
   echo '- [ ] neovim found in PATH.'
   EXIT_STATUS=1
 else
   echo '- [x] neovim found in PATH.'
 fi
 
-if [ "$(which harmony)" = '' ]; then
+if [ "$(command -v harmony)" = '' ]; then
   echo '- ( ) harmony found in PATH.'
 else
   echo '- (x) harmony found in PATH.'
 fi
 
-if [ "$(which scheme)" = '' ] && [ "$(which chez)" = '' ]; then
+if [ "$(command -v scheme)" = '' ] && [ "$(command -v chez)" = '' ]; then
   echo '- ( ) scheme found in PATH.'
 else
   echo '- (x) scheme found in PATH.'
@@ -197,43 +197,43 @@ fi
 #
 # check for Neovim & LSP deps
 echo '- Neovim Telescope/LSP'
-if [ "$(which rg)" != '' ] && [ "$(rg --version | head -n1 | awk '{ print $1 }')" = 'ripgrep' ]; then
+if [ "$(command -v rg)" != '' ] && [ "$(rg --version | head -n1 | awk '{ print $1 }')" = 'ripgrep' ]; then
   echo '  * [x] ripgrep found in PATH (shell command: rg).'
 else
   echo '  * [ ] ripgrep found in PATH (shell command: rg).'
   EXIT_STATUS=1
 fi
-if [ "$(which fd)" != '' ]; then
+if [ "$(command -v fd)" != '' ]; then
   echo '  * [x] fd found in PATH.'
 else
   echo '  * [ ] fd found in PATH.'
   EXIT_STATUS=1
 fi
-if [ "$(which idris2)" != '' ]; then
+if [ "$(command -v idris2)" != '' ]; then
   echo '  * [x] idris2 found in PATH.'
 else
   echo '  * [ ] idris2 found in PATH.'
   EXIT_STATUS=1
 fi
-if [ "$(which idris2-lsp)" != '' ]; then
+if [ "$(command -v idris2-lsp)" != '' ]; then
   echo '  * [x] idris2-lsp found in PATH.'
 else
   echo '  * [ ] idris2-lsp found in PATH.'
   EXIT_STATUS=1
 fi
-if [ "$(which elixir)" != '' ]; then
+if [ "$(command -v elixir)" != '' ]; then
   echo '  * [x] elixir found in PATH.'
 else
   echo '  * [ ] elixir found in PATH.'
   EXIT_STATUS=1
 fi
-if [ "$(which elixir-ls)" != '' ]; then
+if [ "$(command -v elixir-ls)" != '' ]; then
   echo '  * [x] elixir-ls found in PATH.'
 else
   echo '  * [ ] elixir-ls found in PATH.'
   EXIT_STATUS=1
 fi
-if [ "$(which npm)" = '' ]; then
+if [ "$(command -v npm)" = '' ]; then
   echo '  * [ ] npm package vscode-langservers-extracted found.'
   echo '  * [ ] npm package typescript found.'
   echo '  * [ ] npm package typescript-language-server found.'
