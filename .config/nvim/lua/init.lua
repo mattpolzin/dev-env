@@ -83,11 +83,18 @@ vim.lsp.handlers["textDocument/hover"] =
       border = "single"
     }
 )
-
-require('lsp.elixir').setup()
-require('lsp.idris').setup()
-require('lsp.node').setup()
-require('lsp.json').setup()
+if vim.fn.executable('elixir') == 1 then
+  require('lsp.elixir').setup()
+end
+if vim.fn.executable('idris2') == 1 then
+  require('lsp.idris').setup()
+end
+if vim.fn.executable('node') == 1 then
+  require('lsp.node').setup()
+end
+if vim.fn.executable('node') == 1 then
+  require('lsp.json').setup()
+end
 
 -- LSP additional external setup:
 --

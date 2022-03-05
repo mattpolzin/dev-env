@@ -42,10 +42,10 @@ local function custom_lsp_attach(client)
   vim.cmd [[command! Browse lua require('idris2.browse').browse()<CR>]]
 end
 
-local introspect = require('idris2.code_action').introspect_filter
-local filters = require('idris2.code_action').filters
-
 local function save_hook(action)
+  local introspect = require('idris2.code_action').introspect_filter
+  local filters = require('idris2.code_action').filters
+
   if introspect(action) == filters.MAKE_CASE
     or introspect(action) == filters.MAKE_WITH then
       return

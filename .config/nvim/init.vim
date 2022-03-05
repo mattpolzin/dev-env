@@ -25,8 +25,12 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'ShinKage/idris2-nvim'
-Plug 'elixir-editors/vim-elixir'
+if executable('idris2')
+  Plug 'ShinKage/idris2-nvim'
+endif
+if executable('elixir')
+  Plug 'elixir-editors/vim-elixir'
+endif
 
 " Git
 Plug 'lewis6991/gitsigns.nvim'
