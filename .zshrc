@@ -39,6 +39,6 @@ fi
 # SSH agent for Linux
 if [ -z "$SSH_AUTH_SOCK" ] && [ "$(uname)" = 'Linux' ]; then
   eval `ssh-agent -s` >/dev/null
-  ssh-add >/dev/null
+  ssh-add >/dev/null 2>&1 
 fi
 
