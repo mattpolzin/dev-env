@@ -36,3 +36,9 @@ else
   PROMPT="%n:%~ \${vcs_info_msg_0_}$ "
 fi
 
+# SSH agent for Linux
+if [ -z "$SSH_AUTH_SOCK" ] && [ "$(uname)" = 'Linux' ]; then
+  eval `ssh-agent -s`
+  ssh-add
+fi
+
