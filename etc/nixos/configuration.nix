@@ -10,6 +10,10 @@
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelModules = [
+    "kvm-intel"
+    # "applesmc" # <- won't start up...
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.grub.enable = false;

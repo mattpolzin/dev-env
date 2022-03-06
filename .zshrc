@@ -2,6 +2,7 @@
 # output ls and others in color
 export CLICOLOR=1
 export LSCOLORS=Cxfxcxdxbxegedabagacad
+export LS_COLORS='di=1;32'
 
 export EDITOR=nvim
 
