@@ -52,6 +52,12 @@ else
   echo '- [x] neovim found in PATH.'
 fi
 
+if [ "$(command -v kubectl)" = '' ]; then
+  echo '- ( ) kubectl found in PATH.'
+else
+  echo '- (x) kubectl found in PATH.'
+fi
+
 if [ "$(command -v harmony)" = '' ]; then
   echo '- ( ) harmony found in PATH.'
 else
@@ -179,14 +185,14 @@ if [ -d "$HOME/.config" ]; then
   if [ -d "$HOME/.config/k9s" ]; then
     DIFF="$(diff -U3 --recursive "$HOME/.config/k9s" ./.config/k9s)"
     if [ "$?" = '1' ]; then
-      echo '- [ ] ~/.config/k9s directory in sync.'
+      echo '- ( ) ~/.config/k9s directory in sync.'
       DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
       EXIT_STATUS=1
     else
-      echo '- [x] ~/.config/k9s directory in sync.'
+      echo '- (x) ~/.config/k9s directory in sync.'
     fi
   else
-    echo '- [ ] ~/.config/k9s directory in sync.'
+    echo '- ( ) ~/.config/k9s directory in sync.'
     echo '      ! No k9s directory found.'
   fi
 else
@@ -198,64 +204,64 @@ fi
 # check for Neovim & LSP deps
 echo '- Neovim Telescope/LSP'
 if [ "$(command -v rg)" != '' ] && [ "$(rg --version | head -n1 | awk '{ print $1 }')" = 'ripgrep' ]; then
-  echo '  * [x] ripgrep found in PATH (shell command: rg).'
+  echo '  * (x) ripgrep found in PATH (shell command: rg).'
 else
-  echo '  * [ ] ripgrep found in PATH (shell command: rg).'
+  echo '  * ( ) ripgrep found in PATH (shell command: rg).'
   EXIT_STATUS=1
 fi
 if [ "$(command -v fd)" != '' ]; then
-  echo '  * [x] fd found in PATH.'
+  echo '  * (x) fd found in PATH.'
 else
-  echo '  * [ ] fd found in PATH.'
+  echo '  * ( ) fd found in PATH.'
   EXIT_STATUS=1
 fi
 if [ "$(command -v idris2)" != '' ]; then
-  echo '  * [x] idris2 found in PATH.'
+  echo '  * (x) idris2 found in PATH.'
 else
-  echo '  * [ ] idris2 found in PATH.'
+  echo '  * ( ) idris2 found in PATH.'
   EXIT_STATUS=1
 fi
 if [ "$(command -v idris2-lsp)" != '' ]; then
-  echo '  * [x] idris2-lsp found in PATH.'
+  echo '  * (x) idris2-lsp found in PATH.'
 else
-  echo '  * [ ] idris2-lsp found in PATH.'
+  echo '  * ( ) idris2-lsp found in PATH.'
   EXIT_STATUS=1
 fi
 if [ "$(command -v elixir)" != '' ]; then
-  echo '  * [x] elixir found in PATH.'
+  echo '  * (x) elixir found in PATH.'
 else
-  echo '  * [ ] elixir found in PATH.'
+  echo '  * ( ) elixir found in PATH.'
   EXIT_STATUS=1
 fi
 if [ "$(command -v elixir-ls)" != '' ]; then
-  echo '  * [x] elixir-ls found in PATH.'
+  echo '  * (x) elixir-ls found in PATH.'
 else
-  echo '  * [ ] elixir-ls found in PATH.'
+  echo '  * ( ) elixir-ls found in PATH.'
   EXIT_STATUS=1
 fi
 if [ "$(command -v npm)" = '' ]; then
-  echo '  * [ ] npm package vscode-langservers-extracted found.'
-  echo '  * [ ] npm package typescript found.'
-  echo '  * [ ] npm package typescript-language-server found.'
+  echo '  * ( ) npm package vscode-langservers-extracted found.'
+  echo '  * ( ) npm package typescript found.'
+  echo '  * ( ) npm package typescript-language-server found.'
   EXIT_STATUS=1
 else
   NPM="$(npm -g ls --parseable)"
   if [ "$(echo "$NPM" | grep 'typescript$')" != '' ]; then
-    echo '  * [x] npm package typescript found.'
+    echo '  * (x) npm package typescript found.'
   else
-    echo '  * [ ] npm package typescript found.'
+    echo '  * ( ) npm package typescript found.'
     EXIT_STATUS=1
   fi
   if [ "$(echo "$NPM" | grep 'typescript-language-server$')" != '' ]; then
-    echo '  * [x] npm package typescript-language-server found.'
+    echo '  * (x) npm package typescript-language-server found.'
   else
-    echo '  * [ ] npm package typescript-language-server found.'
+    echo '  * ( ) npm package typescript-language-server found.'
     EXIT_STATUS=1
   fi
   if [ "$(echo "$NPM" | grep 'vscode-langservers-extracted')" != '' ]; then
-    echo '  * [x] npm package vscode-langservers-extracted found.'
+    echo '  * (x) npm package vscode-langservers-extracted found.'
   else
-    echo '  * [ ] npm package vscode-langservers-extracted found.'
+    echo '  * ( ) npm package vscode-langservers-extracted found.'
     EXIT_STATUS=1
   fi
 fi
