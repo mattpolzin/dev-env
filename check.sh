@@ -58,6 +58,12 @@ else
   echo '- (x) kubectl found in PATH.'
 fi
 
+if [ "$(command -v k9s)" = '' ]; then
+  echo '- ( ) k9s found in PATH.'
+else
+  echo '- (x) k9s found in PATH.'
+fi
+
 if [ "$(command -v harmony)" = '' ]; then
   echo '- ( ) harmony found in PATH.'
 else
