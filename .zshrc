@@ -6,6 +6,9 @@ export LS_COLORS='di=1;32'
 
 export EDITOR=nvim
 
+# set a location to look for a ripgrep config file
+export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgreprc
+
 #change input to vi style
 bindkey -v
 

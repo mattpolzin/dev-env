@@ -201,6 +201,21 @@ if [ -d "$HOME/.config" ]; then
     echo '- ( ) ~/.config/k9s directory in sync.'
     echo '      ! No k9s directory found.'
   fi
+  #
+  # check ~/.config/ripgrep is the same
+  if [ -d "$HOME/.config/ripgrep" ]; then
+    DIFF="$(diff -U3 --recursive "$HOME/.config/ripgrep" ./.config/ripgrep)"
+    if [ "$?" = '1' ]; then
+      echo '- ( ) ~/.config/ripgrep directory in sync.'
+      DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+      EXIT_STATUS=1
+    else
+      echo '- (x) ~/.config/ripgrep directory in sync.'
+    fi
+  else
+    echo '- ( ) ~/.config/ripgrep directory in sync.'
+    echo '      ! No ripgrep directory found.'
+  fi
 else
   echo '- [ ] ~/.config directory exists.'
   EXIT_STATUS=1

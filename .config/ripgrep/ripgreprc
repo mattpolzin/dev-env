@@ -1,0 +1,2 @@
+# exclude tag files
+--glob=!tags
