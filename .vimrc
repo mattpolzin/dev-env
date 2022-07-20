@@ -26,10 +26,16 @@ hi DiagnosticFloatingError ctermfg=red guifg=red
 "hi DiffDelete   gui=none    ctermbg=darkred       guibg=#ffb0b0
 "hi DiffText     gui=none    ctermbg=darkblue      guibg=#77a4d4
 
+
+"
+" QuickFix
+"
+noremap [q :cp<ENTER>
+noremap ]q :cn<ENTER>
+
 "
 " Tags
 "
-
 command -bar Tags :execute ":silent :r !ctags -R >/dev/null"
 
 "
@@ -43,6 +49,11 @@ endif
 if &filetype == 'idris2'
   set foldmethod=indent
 endif
+
+"
+" Elixir
+"
+au FileType elixir set makeprg=mix
 
 "
 " JSON

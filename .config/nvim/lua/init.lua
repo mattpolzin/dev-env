@@ -55,6 +55,8 @@ require('telescope').setup({
 })
 
 vim.cmd [[nnoremap <c-p> <Cmd>Telescope find_files<CR>]]
+vim.cmd [[command Tl :exec 'Telescope live_grep']]
+vim.cmd [[command Tg :exec 'Telescope grep_string']]
 require('telescope').load_extension('fzf')
 
 --

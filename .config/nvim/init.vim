@@ -4,6 +4,9 @@ source ~/.vimrc
 
 call plug#begin()
 
+" Silly
+Plug 'seandewar/nvimesweeper'
+
 " Color
 "Plug 'cocopon/iceberg.vim' " -- syntax highlighting is too muted
 Plug 'joshdick/onedark.vim'
