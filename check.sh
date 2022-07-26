@@ -153,6 +153,22 @@ else
 fi
 
 #
+# check ~/.xmonad is the same
+if [ -f "$HOME/.xmonad/xmonad.hs" ]; then
+  DIFF="$(diff -U3 "$HOME/.xmonad/xmonad.hs" ./.xmonad/xmonad.hs)"
+  if [ "$?" = '1' ]; then
+    echo '- ( ) ~/.xmonad/xmonad.hs file in sync.'
+    DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+    EXIT_STATUS=1
+  else
+    echo '- (x) ~/.xmonad/xmonad.hs file in sync.'
+  fi
+else
+  echo '- ( ) ~/.xmonad/xmonad.hs file in sync.'
+  echo '      ! No xmonad.hs file found.'
+fi
+
+#
 # check ~/.config exists
 if [ -d "$HOME/.config" ]; then
   echo '- [x] ~/.config directory exists.'
