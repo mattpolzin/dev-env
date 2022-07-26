@@ -169,6 +169,21 @@ else
 fi
 
 #
+# check if /etc/nixos exists
+if [ -d '/etc/nixos' ]; then
+  #
+  # check if directory contents are the same
+  DIFF="$(diff -U3 --recursive "/etc/nixos" /etc/nixos)"
+  if [ "$?" = '1' ]; then
+    echo '- [ ] /etc/nixos directory in sync.'
+    DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+    EXIT_STATUS=1
+  else
+    echo '- [x] /etc/nixos directory in sync.'
+  fi
+fi
+
+#
 # check ~/.config exists
 if [ -d "$HOME/.config" ]; then
   echo '- [x] ~/.config directory exists.'
@@ -231,6 +246,21 @@ if [ -d "$HOME/.config" ]; then
   else
     echo '- ( ) ~/.config/ripgrep directory in sync.'
     echo '      ! No ripgrep directory found.'
+  fi
+  #
+  # check ~/.config/xmobar is the same
+  if [ -d "$HOME/.config/xmobar" ]; then
+    DIFF="$(diff -U3 --recursive "$HOME/.config/xmobar" ./.config/xmobar)"
+    if [ "$?" = '1' ]; then
+      echo '- ( ) ~/.config/xmobar directory in sync.'
+      DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+      EXIT_STATUS=1
+    else
+      echo '- (x) ~/.config/xmobar directory in sync.'
+    fi
+  else
+    echo '- ( ) ~/.config/xmobar directory in sync.'
+    echo '      ! No xmobar directory found.'
   fi
 else
   echo '- [ ] ~/.config directory exists.'
