@@ -173,10 +173,13 @@ fi
 if [ -d '/etc/nixos' ]; then
   #
   # check if directory contents are the same
-  DIFF="$(diff -U3 --recursive "/etc/nixos" /etc/nixos)"
-  if [ "$?" = '1' ]; then
+  DIFF1="$(diff -U3 /etc/nixos/configuration.nix ./etc/nixos/configuration.nix)"
+  E1="$?"
+  DIFF2="$(diff -U3 /etc/nixos/hardware-configuration.nix ./etc/nixos/hardware-configuration.nix)"
+  E2="$?"
+  if [ "$E1" = '1' ] || [ "$E2" = '1' ]; then
     echo '- [ ] /etc/nixos directory in sync.'
-    DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+    DIFF_OUT="$DIFF_OUT\n\n$DIFF1\n$DIFF2\n"
     EXIT_STATUS=1
   else
     echo '- [x] /etc/nixos directory in sync.'
@@ -323,5 +326,5 @@ else
   fi
 fi
 
-echo "$DIFF_OUT"
+echo -e "$DIFF_OUT"
 exit $EXIT_STATUS

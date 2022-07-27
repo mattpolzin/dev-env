@@ -4,16 +4,40 @@
 
 { config, pkgs, ... }:
 {
+  nixpkgs.overlays = [ (import ./nixos-overlay/overlay.nix) ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nixos-overlay/modules/wifi-fw-selection.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [
-    "kvm-intel"
-    # "applesmc" # <- won't start up...
-  ];
+  # Disable builtin audio
+  boot.kernelParams = [ "intel_iommu=on" "apple_bce.aaudio_enabled=0" ];
+
+  # Custom kernel
+  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux-mbp;
+  boot.extraModulePackages = with pkgs; [ apple-bce apple-ib-drv ];
+  #   boot.kernelModules = [
+  #     "kvm-intel"
+  #     # "applesmc" # <- won't start up...
+  #   ];
+
+  # Load Apple hardware modules early
+  boot.initrd.kernelModules = [ "apple_bce" "apple-ibridge" "apple-ib-tb" ];
+
+  # Include wiki firmware
+  hardware.appleWifiFirmware.model = "MacBookPro16,1";
+  hardware.firmware = [ (pkgs.apple-wifi-firmware.override { macModel = config.hardware.appleWifiFirmware.model; }) ];
+
+  # Binary cache for t2linux derivations
+  nix = {
+    binaryCaches = [
+      "https://t2linux.cachix.org"
+    ];
+    binaryCachePublicKeys = [
+      "t2linux.cachix.org-1:P733c5Gt1qTcxsm+Bae0renWnT8OLs0u9+yfaK2Bejw="
+    ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.grub.enable = false;
@@ -23,8 +47,12 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
+  networking.wireless.enable = false;  # wireless support via wpa_supplicant.
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.backend = "iwd";
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -45,6 +73,9 @@
       defaultSession = "none+xmonad";
        lightdm = {
          enable = true;
+         extraConfig = ''
+           logind-check-graphical = true
+         '';
        };
     };
     windowManager.xmonad = {
@@ -58,7 +89,7 @@
     };
   };
 
-  # Enable the GNOME Desktop Environment.
+  # Disable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
   services.xserver.desktopManager.gnome.enable = false;
 
@@ -149,6 +180,11 @@
   ];
 
   # List services that you want to enable:
+  
+  # suspend/resume is broken
+  services.logind.lidSwitch = "ignore";
+  services.logind.lidSwitchDocked = "ignore";
+  services.logind.lidSwitchExternalPower = "ignore";
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
