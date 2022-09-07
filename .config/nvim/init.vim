@@ -21,9 +21,16 @@ Plug 'kyazdani42/nvim-web-devicons'
 " Tab completion
 Plug 'ervandew/supertab'
 
+" Previewing Markdown (:MarkdownPreview)
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+" Note taking
+Plug 'phaazon/mind.nvim'
+Plug 'gaoDean/autolist.nvim'
+
 " Browsing/Finding
 Plug 'BurntSushi/ripgrep'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'nvim-telescope/telescope.nvim'
 
 " LSP

@@ -54,13 +54,17 @@ endif
 " Elixir
 "
 au FileType elixir set makeprg=mix
+au FileType elixir set foldmethod=syntax
 
 "
 " JSON
 "
-if &filetype == 'json'
-  set foldmethod=syntax
-endif
+au FileType json set foldmethod=syntax
+
+"
+" YAML
+"
+au FileType yaml set foldmethod=indent
 
 "
 " psql
@@ -83,7 +87,7 @@ function! Comment()
 		silent s:^:%:g
 	elseif ft == 'vim'
 		silent s:^:\":g
-	elseif ft == 'idris2' || ft == 'haskell' || ft == 'lua'
+	elseif ft == 'idris2' || ft == 'haskell' || ft == 'lua' || ft == 'sql'
 		silent s:^:-- :g
 	endif
 endfunction
@@ -98,7 +102,7 @@ function! Uncomment()
 		silent s:^%::g
 	elseif ft == 'vim'
 		silent s:^\"::g
-	elseif ft == 'idris2' || ft == 'haskell' || ft == 'lua'
+	elseif ft == 'idris2' || ft == 'haskell' || ft == 'lua' || ft == 'sql'
 		silent s:^-- ::g
 	endif
 endfunction

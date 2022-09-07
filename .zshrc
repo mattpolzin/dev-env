@@ -12,6 +12,9 @@ export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgreprc
 #change input to vi style
 bindkey -v
 
+#support ctrl+r command history search
+bindkey "^R" history-incremental-pattern-search-backward
+
 # autocompletion
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit

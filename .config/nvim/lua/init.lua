@@ -20,12 +20,13 @@ vim.cmd [[ highlight link Searchlight DiffDelete ]]
 
 local ignore_patterns = {
   -- dependency and build folders
-  ".*node_modules/.*",
+  ".*.bundle/.*",
   ".*build/.*",
   ".*bundle/.*",
-  ".*.bundle/.*",
-  ".*tmp/.*",
   ".*icons/.*",
+  ".*node_modules/.*",
+  ".*tmp/.*",
+  ".*vendor/.*",
   -- images
   ".*.png$",
   -- other non-editables
@@ -48,15 +49,23 @@ require('telescope').setup({
     mappings = {
       i = {
         ["<c-Down>"] = require('telescope.actions').cycle_history_next,
-        ["<c-Up>"] = require('telescope.actions').cycle_history_prev
+        ["<c-Up>"] = require('telescope.actions').cycle_history_prev,
+        ["<c-p>"] = require('telescope.actions.layout').toggle_preview
       }
     }
+  },
+  pickers = {
+    find_files = {
+      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
+    },
   }
 })
 
-vim.cmd [[nnoremap <c-p> <Cmd>Telescope find_files<CR>]]
+vim.cmd [[nnoremap <c-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>]] -- <Cmd>Telescope find_files<CR>]]
 vim.cmd [[command Tl :exec 'Telescope live_grep']]
 vim.cmd [[command Tg :exec 'Telescope grep_string']]
+
+-- Telescope extensions
 require('telescope').load_extension('fzf')
 
 --
@@ -74,6 +83,44 @@ require('gitsigns').setup({
 
 vim.cmd [[command Blame lua require('commands.github').blame()]]
 vim.cmd [[command -range Show lua require('commands.github').show()]]
+
+--
+-- Mind
+--
+require('mind').setup({
+  ui = {
+    root_marker   = "↪ ",
+    url_marker    = "🌎 ",
+    select_marker = "⦿ ",
+    icon_preset = {
+      { "↪ ", "Sub-project" },
+      { "📰 ", "Journal, newspaper, weekly and daily news" },
+      { "💡 ", "For when you have an idea" },
+      { " ", "Note taking?" },
+      { "陼", "Task management" },
+      { "⏹  ", "Uncheck, empty square or backlog" },
+      { " ", "Full square or on-going" },
+      { "✅ ", "Check or done" },
+      { "🗑️ ", "Trash bin, deleted, cancelled, etc." },
+      { "🐙 ", "GitHub" },
+      { " ", "Monitoring" },
+      { " ", "Internet, Earth, everyone!" },
+      { "⏸️ ", "Frozen, on-hold" },
+    }
+  }
+})
+
+--
+-- Autolist
+--
+require('autolist').setup({
+  invert = {
+    toggles_checkbox = true,
+    ul_marker = "*",
+    ol_incrementable = "1",
+    ol_delim = ".",
+  }
+})
 
 --
 -- LSP
