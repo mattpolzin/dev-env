@@ -32,6 +32,15 @@ Plug 'gaoDean/autolist.nvim'
 Plug 'BurntSushi/ripgrep'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'junegunn/fzf.vim' " <- faster file picker than telescope currently.
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " <- faster file picker than telescope currently.
+
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.85 } }
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-o': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'

@@ -9,6 +9,10 @@ export EDITOR=nvim
 # set a location to look for a ripgrep config file
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgreprc
 
+# use ripgrep in FZF
+export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_OPTS='-m --height 85% --border --preview-window up'
+
 #change input to vi style
 bindkey -v
 

@@ -15,6 +15,12 @@ vim.cmd [[ hi StatusLineNC guibg=#21252c ]]
 vim.cmd [[ highlight link Searchlight DiffDelete ]]
 
 --
+-- FZF
+--
+vim.cmd [[nnoremap <silent> <c-p> :Files<CR>]]
+
+
+--
 -- Telescope
 --
 
@@ -61,7 +67,8 @@ require('telescope').setup({
   }
 })
 
-vim.cmd [[nnoremap <c-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>]] -- <Cmd>Telescope find_files<CR>]]
+-- currently using FZF (above) for file finding:
+-- vim.cmd [[nnoremap <c-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>]] -- <Cmd>Telescope find_files<CR>]]
 vim.cmd [[command Tl :exec 'Telescope live_grep']]
 vim.cmd [[command Tg :exec 'Telescope grep_string']]
 
