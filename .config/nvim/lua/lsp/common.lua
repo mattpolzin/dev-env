@@ -24,9 +24,9 @@ function M.setup(options)
   -- format current buffer
   function M.format()
     if options and options.formatting_options then
-      vim.lsp.buf.formatting({options = options.formatting_options})
+      vim.lsp.buf.format { options = options.formatting_options, async = true }
     else
-      vim.lsp.buf.formatting()
+      vim.lsp.buf.format { async = true }
     end
   end
   vim.cmd [[command! Format lua require('lsp.common').format()<CR>]]

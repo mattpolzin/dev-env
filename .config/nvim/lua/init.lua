@@ -151,6 +151,9 @@ end
 if vim.fn.executable('node') == 1 then
   require('lsp.json').setup()
 end
+if vim.fn.executable('elm') == 1 then
+  require('lsp.elm').setup()
+end
 
 -- LSP additional external setup:
 --
@@ -161,4 +164,6 @@ end
 -- https://github.com/elixir-lsp/elixir-ls
 --
 -- https://github.com/idris-community/idris2-lsp
+--
+-- npm i -g elm elm-test elm-format @elm-tooling/elm-language-server
 
