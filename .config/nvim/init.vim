@@ -38,7 +38,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " <- faster file picker than
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.85 } }
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
-  \ 'ctrl-o': 'split',
+  \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
