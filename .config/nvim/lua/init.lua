@@ -168,3 +168,11 @@ end
 --
 -- npm i -g elm elm-test elm-format @elm-tooling/elm-language-server
 
+
+--
+-- DAP
+--
+if vim.fn.executable('elixir') == 1 then
+  require('dap.elixir').setup()
+end
+

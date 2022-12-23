@@ -51,6 +51,9 @@ if executable('elixir')
   Plug 'elixir-editors/vim-elixir'
 endif
 
+" DAP
+Plug 'mfussenegger/nvim-dap'
+
 " Git
 Plug 'lewis6991/gitsigns.nvim'
 

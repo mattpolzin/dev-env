@@ -10,6 +10,7 @@ set number
 set shiftwidth=2 expandtab tabstop=2
 set guicursor=i:block
 set foldlevel=99
+set mouse=
 " let g:netrw_liststyle=3
 
 "
@@ -46,9 +47,7 @@ if !has('nvim')
   command! IdrisReload  let leader=get(g:,"mapleader","\\") | exec "normal " . (leader==' '?"1":leader)."r"
   noremap <Leader>rr :Tags<ENTER> <bar> :IdrisReload<ENTER>
 endif
-if &filetype == 'idris2'
-  set foldmethod=indent
-endif
+au FileType idris2 set foldmethod=indent
 
 "
 " Elixir

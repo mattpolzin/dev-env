@@ -20,7 +20,7 @@ local function gitroot(relative_to)
 end
 
 local function get_fname()
-  local git_root = gitroot(vim.loop.cwd())
+  local git_root = gitroot(vim.loop.cwd()):gsub('[%-%+%%%*%^]','%%%1')
   return vim.api.nvim_buf_get_name(0):gsub(git_root, '')
 end
 
@@ -33,8 +33,12 @@ local function repo()
   end
 end
 
+local function branch()
+  return vim.fn.system('git rev-parse --abbrev-ref HEAD'):gsub('\n', '')
+end
+
 local function uri_prefix(fn)
-  return repo() .. '/' .. fn .. '/master/'
+  return repo() .. '/' .. fn .. '/' .. branch() .. '/'
 end
 
 local function open(description, uri)
