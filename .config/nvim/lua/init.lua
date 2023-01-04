@@ -158,7 +158,7 @@ end
 
 -- LSP additional external setup:
 --
--- npm i -g vscode-langservers-extracted
+-- npm i -g vscode-langservers-extracted diagnostic-languageserver
 --
 -- npm i -g typescript typescript-language-server
 --
