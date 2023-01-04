@@ -304,25 +304,31 @@ else
   echo '  * ( ) elixir-ls found in PATH.'
 fi
 if [ "$(command -v npm)" = '' ]; then
-  echo '  * ( ) npm package vscode-langservers-extracted found.'
-  echo '  * ( ) npm package typescript found.'
-  echo '  * ( ) npm package typescript-language-server found.'
+  echo '  * ( ) npm package vscode-langservers-extracted.'
+  echo '  * ( ) npm package typescript.'
+  echo '  * ( ) npm package typescript-language-server.'
+  echo '  * ( ) npm package diagnostic-languageserver.'
 else
   NPM="$(npm -g ls --parseable)"
   if [ "$(echo "$NPM" | grep 'typescript$')" != '' ]; then
-    echo '  * (x) npm package typescript found.'
+    echo '  * (x) npm package typescript.'
   else
-    echo '  * ( ) npm package typescript found.'
+    echo '  * ( ) npm package typescript.'
   fi
   if [ "$(echo "$NPM" | grep 'typescript-language-server$')" != '' ]; then
-    echo '  * (x) npm package typescript-language-server found.'
+    echo '  * (x) npm package typescript-language-server.'
   else
-    echo '  * ( ) npm package typescript-language-server found.'
+    echo '  * ( ) npm package typescript-language-server.'
   fi
   if [ "$(echo "$NPM" | grep 'vscode-langservers-extracted')" != '' ]; then
-    echo '  * (x) npm package vscode-langservers-extracted found.'
+    echo '  * (x) npm package vscode-langservers-extracted.'
   else
-    echo '  * ( ) npm package vscode-langservers-extracted found.'
+    echo '  * ( ) npm package vscode-langservers-extracted.'
+  fi
+  if [ "$(echo "$NPM" | grep 'diagnostic-languageserver')" != '' ]; then
+    echo '  * (x) npm package diagnostic-languageserver.'
+  else
+    echo '  * ( ) npm package diagnostic-languageserver.'
   fi
 fi
 
