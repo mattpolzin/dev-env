@@ -6,7 +6,7 @@ local function custom_lsp_attach(client)
   require('lsp.common').setup()
 
   -- evaluate expression
-  vim.cmd [[nnoremap <Leader>e <Cmd>lua require('helpers.elixir').evaluate()<CR>]]
+  vim.keymap.set('n', '<Leader>e', require('helpers.elixir').evaluate, { buffer=true })
 
 end
 

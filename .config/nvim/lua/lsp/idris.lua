@@ -5,38 +5,42 @@
 local function custom_lsp_attach(client)
   require('lsp.common').setup()
 
+  local nmap = function(key, fun)
+    vim.keymap.set('n', key, fun, { buffer=true })
+  end
+
   -- evaluate expression
-  vim.cmd [[nnoremap <Leader>e <Cmd>lua require('idris2.repl').evaluate()<CR>]]
+  nmap('<Leader>e', require('idris2.repl').evaluate)
 
   -- open window
-  vim.cmd [[nnoremap <Leader>i <Cmd>lua require('idris2.hover').open_split()<CR>]]
+  nmap('<Leader>i', require('idris2.hover').open_split)
 
   -- case split
-  vim.cmd [[nnoremap <Leader>c <Cmd>lua require('idris2.code_action').case_split()<CR>]]
+  nmap('<Leader>c', require('idris2.code_action').case_split)
 
   -- make case
-  vim.cmd [[nnoremap <Leader>mc <Cmd>lua require('idris2.code_action').make_case()<CR>]]
+  nmap('<Leader>mc', require('idris2.code_action').make_case)
 
   -- with block
-  vim.cmd [[nnoremap <Leader>w <Cmd>lua require('idris2.code_action').make_with()<CR>]]
+  nmap('<Leader>w', require('idris2.code_action').make_with)
 
   -- make lemma
-  vim.cmd [[nnoremap <Leader>l <Cmd>lua require('idris2.code_action').make_lemma()<CR>]]
+  nmap('<Leader>l', require('idris2.code_action').make_lemma)
 
   -- add clause
-  vim.cmd [[nnoremap <Leader>a <Cmd>lua require('idris2.code_action').add_clause()<CR>]]
+  nmap('<Leader>a', require('idris2.code_action').add_clause)
 
   -- expression search
-  vim.cmd [[nnoremap <Leader>s <Cmd>lua require('idris2.code_action').expr_search()<CR>]]
+  nmap('<Leader>s', require('idris2.code_action').expr_search)
 
   -- generate def
-  vim.cmd [[nnoremap <Leader>g <Cmd>lua require('idris2.code_action').generate_def()<CR>]]
+  nmap('<Leader>g', require('idris2.code_action').generate_def)
 
   -- refine hole
-  vim.cmd [[nnoremap <Leader>f <Cmd>lua require('idris2.code_action').refine_hole()<CR>]]
+  nmap('<Leader>f', require('idris2.code_action').refine_hole)
 
   -- list metavars (holes)
-  vim.cmd [[nnoremap <Leader>h <Cmd>lua require('idris2.metavars').request_all()<CR>]]
+  nmap('<Leader>h', require('idris2.metavars').request_all)
 
   -- browse a module
   vim.cmd [[command! Browse lua require('idris2.browse').browse()<CR>]]
