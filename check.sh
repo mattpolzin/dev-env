@@ -303,6 +303,16 @@ if [ "$(command -v elixir-ls)" != '' ]; then
 else
   echo '  * ( ) elixir-ls found in PATH.'
 fi
+if [ "$(command -v nix)" != '' ]; then
+  echo '  * (x) nix found in PATH.'
+else
+  echo '  * ( ) nix found in PATH.'
+fi
+if [ "$(command -v rnix-lsp)" != '' ]; then
+  echo '  * (x) rnix-lsp found in PATH.'
+else
+  echo '  * ( ) rnix-lsp found in PATH.'
+fi
 if [ "$(command -v npm)" = '' ]; then
   echo '  * ( ) npm package vscode-langservers-extracted.'
   echo '  * ( ) npm package typescript.'
