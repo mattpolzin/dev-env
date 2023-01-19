@@ -3,7 +3,7 @@
 -- Colorscheme
 --
 vim.cmd [[ set termguicolors ]]
-vim.cmd [[ colorscheme onedark    ]]
+vim.cmd [[ colorscheme onedark ]]
 -- make background slightly darker:
 vim.cmd [[ hi Normal       guibg=#16181d ]]
 -- make non-current window status bar more visible:
@@ -197,7 +197,7 @@ require'nvim-treesitter.configs'.setup {
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
---     disable = { "c", "rust" },
+    disable = { "markdown" },
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
