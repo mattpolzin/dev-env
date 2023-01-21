@@ -2,23 +2,22 @@
 --
 -- Colorscheme
 --
-vim.cmd [[ set termguicolors ]]
-vim.cmd [[ colorscheme onedark ]]
+vim.api.nvim_set_option('termguicolors', true)
+vim.cmd.colorscheme('onedark')
 -- make background slightly darker:
-vim.cmd [[ hi Normal       guibg=#16181d ]]
+vim.cmd.highlight('Normal       guibg=#16181d')
 -- make non-current window status bar more visible:
-vim.cmd [[ hi StatusLineNC guibg=#21252c ]]
+vim.cmd.highlight('StatusLineNC guibg=#21252c')
 
 --
 -- Search Highlight
 --
-vim.cmd [[ highlight link Searchlight DiffDelete ]]
+vim.cmd.highlight('link Searchlight DiffDelete')
 
 --
 -- FZF
 --
-vim.cmd [[nnoremap <silent> <c-p> :Files<CR>]]
-
+vim.keymap.set('n', '<c-p>', function() vim.cmd('Files') end, { silent=true })
 
 --
 -- Telescope
@@ -70,8 +69,8 @@ require('telescope').setup({
 
 -- currently using FZF (above) for file finding:
 -- vim.cmd [[nnoremap <c-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>]] -- <Cmd>Telescope find_files<CR>]]
-vim.cmd [[command Tl :exec 'Telescope live_grep']]
-vim.cmd [[command Tg :exec 'Telescope grep_string']]
+vim.cmd.command("Tl :exec 'Telescope live_grep'")
+vim.cmd.command("Tg :exec 'Telescope grep_string'")
 
 -- Telescope extensions
 require('telescope').load_extension('fzf')
@@ -89,8 +88,8 @@ require('gitsigns').setup({
   }
 })
 
-vim.cmd [[command Blame lua require('commands.github').blame()]]
-vim.cmd [[command -range Show lua require('commands.github').show()]]
+vim.cmd.command("Blame lua require('commands.github').blame()")
+vim.cmd.command("-range Show lua require('commands.github').show()")
 
 --
 -- Mind
@@ -197,7 +196,7 @@ require'nvim-treesitter.configs'.setup {
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
-    disable = { "markdown" },
+    disable = { "markdown", "lua" },
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
