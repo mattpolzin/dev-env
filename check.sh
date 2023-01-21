@@ -31,51 +31,59 @@ else
   echo '- [x] System has bash.'
 fi
 
+echo '- Programs'
 if [ "$(command -v diff)" = '' ]; then
   echo 'System does not have diff. This check script currently relies heavily on diff.'
   exit 1
 else
-  echo '- [x] diff found in PATH.'
+  echo '  * [x] diff found in PATH.'
 fi
 
 if [ "$(command -v kitty)" = '' ]; then
-  echo '- [ ] kitty found in PATH.'
+  echo '  * [ ] kitty found in PATH.'
   EXIT_STATUS=1
 else
-  echo '- [x] kitty found in PATH.'
+  echo '  * [x] kitty found in PATH.'
 fi
 
 if [ "$(command -v nvim)" = '' ]; then
-  echo '- [ ] neovim found in PATH.'
+  echo '  * [ ] neovim found in PATH.'
   EXIT_STATUS=1
 else
-  echo '- [x] neovim found in PATH.'
+  echo '  * [x] neovim found in PATH.'
 fi
 
 if [ "$(command -v kubectl)" = '' ]; then
-  echo '- ( ) kubectl found in PATH.'
+  echo '  * ( ) kubectl found in PATH.'
 else
-  echo '- (x) kubectl found in PATH.'
+  echo '  * (x) kubectl found in PATH.'
 fi
 
 if [ "$(command -v k9s)" = '' ]; then
-  echo '- ( ) k9s found in PATH.'
+  echo '  * ( ) k9s found in PATH.'
 else
-  echo '- (x) k9s found in PATH.'
+  echo '  * (x) k9s found in PATH.'
 fi
 
 if [ "$(command -v harmony)" = '' ]; then
-  echo '- ( ) harmony found in PATH.'
+  echo '  * ( ) harmony found in PATH.'
 else
-  echo '- (x) harmony found in PATH.'
+  echo '  * (x) harmony found in PATH.'
 fi
 
 if [ "$(command -v scheme)" = '' ] && [ "$(command -v chez)" = '' ]; then
-  echo '- ( ) scheme found in PATH.'
+  echo '  * ( ) scheme found in PATH.'
 else
-  echo '- (x) scheme found in PATH.'
+  echo '  * (x) scheme found in PATH.'
 fi
 
+if [ "$(command -v clx)" = '' ]; then
+  echo '  * ( ) circumflex found in PATH.'
+else
+  echo '  * (x) circumflex found in PATH.'
+fi
+
+echo '- Configs'
 #
 # check ~/.bashrc exists
 if [ "$USE_ZSH" = 'false' ] && [ -f "$HOME/.bashrc" ]; then
@@ -83,15 +91,15 @@ if [ "$USE_ZSH" = 'false' ] && [ -f "$HOME/.bashrc" ]; then
   # check ~/.bashrc is the same
   DIFF="$(diff -U3 "$HOME/.bashrc" ./.bashrc)"
   if [ "$?" = '1' ]; then
-    echo '- [ ] ~/.bashrc file in sync.'
+    echo '  * [ ] ~/.bashrc file in sync.'
     EXIT_STATUS=1
     DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
   else
-    echo '- [x] ~/.bashrc file in sync.'
+    echo '  * [x] ~/.bashrc file in sync.'
   fi
 elif [ "$USE_ZSH" = 'false' ]; then
-  echo '- [ ] ~/.bashrc file in sync.'
-  echo '      ! No .bashrc file found.'
+  echo '  * [ ] ~/.bashrc file in sync.'
+  echo '        ! No .bashrc file found.'
   EXIT_STATUS=1
 fi
 
@@ -102,15 +110,15 @@ if [ "$USE_ZSH" = 'true' ] && [ -f "$HOME/.zshrc" ]; then
   # check ~/.zshrc is the same
   DIFF="$(diff -U3 "$HOME/.zshrc" ./.zshrc)"
   if [ "$?" = '1' ]; then
-    echo '- [ ] ~/.zshrc file in sync.'
+    echo '  * [ ] ~/.zshrc file in sync.'
     EXIT_STATUS=1
     DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
   else
-    echo '- [x] ~/.zshrc file in sync.'
+    echo '  * [x] ~/.zshrc file in sync.'
   fi
 elif [ "$USE_ZSH" = 'true' ]; then
-  echo '- [ ] ~/.zshrc file in sync.'
-  echo '      ! No .zshrc file found.'
+  echo '  * [ ] ~/.zshrc file in sync.'
+  echo '        ! No .zshrc file found.'
   EXIT_STATUS=1
 fi
 
@@ -121,15 +129,15 @@ if [ -f "$HOME/.vimrc" ]; then
   # check ~/.vimrc is the same
   DIFF="$(diff -U3 "$HOME/.vimrc" ./.vimrc)"
   if [ "$?" = '1' ]; then
-    echo '- [ ] ~/.vimrc file in sync.'
+    echo '  * [ ] ~/.vimrc file in sync.'
     DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
     EXIT_STATUS=1
   else
-    echo '- [x] ~/.vimrc file in sync.'
+    echo '  * [x] ~/.vimrc file in sync.'
   fi
 else
-  echo '- [ ] ~/.vimrc file in sync.'
-  echo '      ! No .vimrc file found.'
+  echo '  * [ ] ~/.vimrc file in sync.'
+  echo '        ! No .vimrc file found.'
   EXIT_STATUS=1
 fi
 
@@ -140,15 +148,15 @@ if [ -f "$HOME/.ctags" ]; then
   # check ~/.ctags is the same
   DIFF="$(diff -U3 "$HOME/.ctags" ./.ctags)"
   if [ "$?" = '1' ]; then
-    echo '- [ ] ~/.ctags file in sync.'
+    echo '  * [ ] ~/.ctags file in sync.'
     DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
     EXIT_STATUS=1
   else
-    echo '- [x] ~/.ctags file in sync.'
+    echo '  * [x] ~/.ctags file in sync.'
   fi
 else
-  echo '- [ ] ~/.ctags file in sync.'
-  echo '      ! No .ctags file found.'
+  echo '  * [ ] ~/.ctags file in sync.'
+  echo '        ! No .ctags file found.'
   EXIT_STATUS=1
 fi
 
@@ -157,15 +165,15 @@ fi
 if [ -f "$HOME/.xmonad/xmonad.hs" ]; then
   DIFF="$(diff -U3 "$HOME/.xmonad/xmonad.hs" ./.xmonad/xmonad.hs)"
   if [ "$?" = '1' ]; then
-    echo '- ( ) ~/.xmonad/xmonad.hs file in sync.'
+    echo '  * ( ) ~/.xmonad/xmonad.hs file in sync.'
     DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
     EXIT_STATUS=1
   else
-    echo '- (x) ~/.xmonad/xmonad.hs file in sync.'
+    echo '  * (x) ~/.xmonad/xmonad.hs file in sync.'
   fi
 else
-  echo '- ( ) ~/.xmonad/xmonad.hs file in sync.'
-  echo '      ! No xmonad.hs file found.'
+  echo '  * ( ) ~/.xmonad/xmonad.hs file in sync.'
+  echo '        ! No xmonad.hs file found.'
 fi
 
 #
@@ -178,95 +186,95 @@ if [ -d '/etc/nixos' ]; then
   DIFF2="$(diff -U3 /etc/nixos/hardware-configuration.nix ./etc/nixos/hardware-configuration.nix)"
   E2="$?"
   if [ "$E1" = '1' ] || [ "$E2" = '1' ]; then
-    echo '- [ ] /etc/nixos directory in sync.'
+    echo '  * [ ] /etc/nixos directory in sync.'
     DIFF_OUT="$DIFF_OUT\n\n$DIFF1\n$DIFF2\n"
     EXIT_STATUS=1
   else
-    echo '- [x] /etc/nixos directory in sync.'
+    echo '  * [x] /etc/nixos directory in sync.'
   fi
 fi
 
 #
 # check ~/.config exists
 if [ -d "$HOME/.config" ]; then
-  echo '- [x] ~/.config directory exists.'
+  echo '  * [x] ~/.config directory exists.'
   #
   # check ~/.config/nvim is the same
   if [ -d "$HOME/.config/nvim" ]; then
     DIFF="$(diff -U3 --recursive "$HOME/.config/nvim" ./.config/nvim)"
     if [ "$?" = '1' ]; then
-      echo '- [ ] ~/.config/nvim directory in sync.'
+      echo '  * [ ] ~/.config/nvim directory in sync.'
       DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
       EXIT_STATUS=1
     else
-      echo '- [x] ~/.config/nvim directory in sync.'
+      echo '  * [x] ~/.config/nvim directory in sync.'
     fi
   else
-    echo '- [ ] ~/.config/nvim directory in sync.'
-    echo '      ! No nvim directory found.'
+    echo '  * [ ] ~/.config/nvim directory in sync.'
+    echo '        ! No nvim directory found.'
   fi
   #
   # check ~/.config/kitty is the same
   if [ -d "$HOME/.config/kitty" ]; then
     DIFF="$(diff -U3 --recursive "$HOME/.config/kitty" ./.config/kitty)"
     if [ "$?" = '1' ]; then
-      echo '- [ ] ~/.config/kitty directory in sync.'
+      echo '  * [ ] ~/.config/kitty directory in sync.'
       DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
       EXIT_STATUS=1
     else
-      echo '- [x] ~/.config/kitty directory in sync.'
+      echo '  * [x] ~/.config/kitty directory in sync.'
     fi
   else
-    echo '- [ ] ~/.config/kitty directory in sync.'
-    echo '      ! No kitty directory found.'
+    echo '  * [ ] ~/.config/kitty directory in sync.'
+    echo '        ! No kitty directory found.'
   fi
   #
   # check ~/.config/k9s is the same
   if [ -d "$HOME/.config/k9s" ]; then
     DIFF="$(diff -U3 --recursive "$HOME/.config/k9s" ./.config/k9s)"
     if [ "$?" = '1' ]; then
-      echo '- ( ) ~/.config/k9s directory in sync.'
+      echo '  * ( ) ~/.config/k9s directory in sync.'
       DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
       EXIT_STATUS=1
     else
-      echo '- (x) ~/.config/k9s directory in sync.'
+      echo '  * (x) ~/.config/k9s directory in sync.'
     fi
   else
-    echo '- ( ) ~/.config/k9s directory in sync.'
-    echo '      ! No k9s directory found.'
+    echo '  * ( ) ~/.config/k9s directory in sync.'
+    echo '        ! No k9s directory found.'
   fi
   #
   # check ~/.config/ripgrep is the same
   if [ -d "$HOME/.config/ripgrep" ]; then
     DIFF="$(diff -U3 --recursive "$HOME/.config/ripgrep" ./.config/ripgrep)"
     if [ "$?" = '1' ]; then
-      echo '- ( ) ~/.config/ripgrep directory in sync.'
+      echo '  * ( ) ~/.config/ripgrep directory in sync.'
       DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
       EXIT_STATUS=1
     else
-      echo '- (x) ~/.config/ripgrep directory in sync.'
+      echo '  * (x) ~/.config/ripgrep directory in sync.'
     fi
   else
-    echo '- ( ) ~/.config/ripgrep directory in sync.'
-    echo '      ! No ripgrep directory found.'
+    echo '  * ( ) ~/.config/ripgrep directory in sync.'
+    echo '        ! No ripgrep directory found.'
   fi
   #
   # check ~/.config/xmobar is the same
   if [ -d "$HOME/.config/xmobar" ]; then
     DIFF="$(diff -U3 --recursive "$HOME/.config/xmobar" ./.config/xmobar)"
     if [ "$?" = '1' ]; then
-      echo '- ( ) ~/.config/xmobar directory in sync.'
+      echo '  * ( ) ~/.config/xmobar directory in sync.'
       DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
       EXIT_STATUS=1
     else
-      echo '- (x) ~/.config/xmobar directory in sync.'
+      echo '  * (x) ~/.config/xmobar directory in sync.'
     fi
   else
-    echo '- ( ) ~/.config/xmobar directory in sync.'
-    echo '      ! No xmobar directory found.'
+    echo '  * ( ) ~/.config/xmobar directory in sync.'
+    echo '        ! No xmobar directory found.'
   fi
 else
-  echo '- [ ] ~/.config directory exists.'
+  echo '  * [ ] ~/.config directory exists.'
   EXIT_STATUS=1
 fi
 
