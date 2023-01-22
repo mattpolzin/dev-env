@@ -56,6 +56,7 @@ Plug 'mfussenegger/nvim-dap'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
 
 " Git
 Plug 'lewis6991/gitsigns.nvim'
