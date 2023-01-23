@@ -89,6 +89,26 @@ else
   echo '  * (x) duck duck go CLI found in PATH (shell command: ddgr).'
 fi
 
+echo '- Languages'
+if [ "$(command -v idris2)" != '' ]; then
+  echo '  * (x) idris2 found in PATH.'
+  echo "        > $(idris2 --version)"
+else
+  echo '  * ( ) idris2 found in PATH.'
+fi
+if [ "$(command -v elixir)" != '' ]; then
+  echo '  * (x) elixir found in PATH.'
+  echo "        > $(elixir --version | tail -n1)"
+else
+  echo '  * ( ) elixir found in PATH.'
+fi
+if [ "$(command -v nix)" != '' ]; then
+  echo '  * (x) nix found in PATH.'
+  echo "        > $(nix --version)"
+else
+  echo '  * ( ) nix found in PATH.'
+fi
+
 echo '- Configs'
 #
 # check ~/.bashrc exists
@@ -312,30 +332,15 @@ if [ "$(command -v fd)" != '' ]; then
 else
   echo '  * ( ) fd found in PATH.'
 fi
-if [ "$(command -v idris2)" != '' ]; then
-  echo '  * (x) idris2 found in PATH.'
-else
-  echo '  * ( ) idris2 found in PATH.'
-fi
 if [ "$(command -v idris2-lsp)" != '' ]; then
   echo '  * (x) idris2-lsp found in PATH.'
 else
   echo '  * ( ) idris2-lsp found in PATH.'
 fi
-if [ "$(command -v elixir)" != '' ]; then
-  echo '  * (x) elixir found in PATH.'
-else
-  echo '  * ( ) elixir found in PATH.'
-fi
 if [ "$(command -v elixir-ls)" != '' ]; then
   echo '  * (x) elixir-ls found in PATH.'
 else
   echo '  * ( ) elixir-ls found in PATH.'
-fi
-if [ "$(command -v nix)" != '' ]; then
-  echo '  * (x) nix found in PATH.'
-else
-  echo '  * ( ) nix found in PATH.'
 fi
 if [ "$(command -v rnix-lsp)" != '' ]; then
   echo '  * (x) rnix-lsp found in PATH.'
