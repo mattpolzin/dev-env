@@ -84,9 +84,9 @@ else
 fi
 
 if [ "$(command -v ddgr)" = '' ]; then
-  echo '  * ( ) duck duck go CLI (ddgr) found in PATH.'
+  echo '  * ( ) duck duck go CLI found in PATH (shell command: ddgr).'
 else
-  echo '  * (x) duck duck go CLI (ddgr) found in PATH.'
+  echo '  * (x) duck duck go CLI found in PATH (shell command: ddgr).'
 fi
 
 echo '- Configs'
