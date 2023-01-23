@@ -89,6 +89,12 @@ else
   echo '  * (x) duck duck go CLI found in PATH (shell command: ddgr).'
 fi
 
+if [ "$(command -v glow)" = '' ]; then
+  echo '  * ( ) glow found in PATH.'
+else
+  echo '  * (x) glow found in PATH.'
+fi
+
 echo '- Languages'
 if [ "$(command -v idris2)" != '' ]; then
   echo '  * (x) idris2 found in PATH.'
