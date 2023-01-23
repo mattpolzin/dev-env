@@ -83,6 +83,12 @@ else
   echo '  * (x) circumflex found in PATH.'
 fi
 
+if [ "$(command -v ddgr)" = '' ]; then
+  echo '  * ( ) duck duck go CLI (ddgr) found in PATH.'
+else
+  echo '  * (x) duck duck go CLI (ddgr) found in PATH.'
+fi
+
 echo '- Configs'
 #
 # check ~/.bashrc exists
