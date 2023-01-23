@@ -179,7 +179,7 @@ if [ -f "$HOME/.xmonad/xmonad.hs" ]; then
   fi
 else
   echo '  * ( ) ~/.xmonad/xmonad.hs file in sync.'
-  echo '        ! No xmonad.hs file found.'
+  echo '        > No xmonad.hs file found.'
 fi
 
 #
@@ -247,7 +247,7 @@ if [ -d "$HOME/.config" ]; then
     fi
   else
     echo '  * ( ) ~/.config/k9s directory in sync.'
-    echo '        ! No k9s directory found.'
+    echo '        > No k9s directory found.'
   fi
   #
   # check ~/.config/ripgrep is the same
@@ -277,7 +277,22 @@ if [ -d "$HOME/.config" ]; then
     fi
   else
     echo '  * ( ) ~/.config/xmobar directory in sync.'
-    echo '        ! No xmobar directory found.'
+    echo '        > No xmobar directory found.'
+  fi
+  #
+  # check ~/.config/nix is the same
+  if [ -d "$HOME/.config/nix" ]; then
+    DIFF="$(diff -U3 --recursive "$HOME/.config/nix" ./.config/nix)"
+    if [ "$?" = '1' ]; then
+      echo '  * ( ) ~/.config/nix directory in sync.'
+      DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+      EXIT_STATUS=1
+    else
+      echo '  * (x) ~/.config/nix directory in sync.'
+    fi
+  else
+    echo '  * ( ) ~/.config/nix directory in sync.'
+    echo '        > No nix directory found.'
   fi
 else
   echo '  * [ ] ~/.config directory exists.'
