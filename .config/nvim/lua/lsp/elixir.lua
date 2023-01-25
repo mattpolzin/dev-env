@@ -10,7 +10,7 @@ local function custom_lsp_attach(client)
 
 end
 
-local path_to_elixirls = vim.fn.expand("~/.nix-profile/bin/elixir-ls")
+local path_to_elixirls = vim.fn.expand("elixir-ls")
 
 local M = {}
 
