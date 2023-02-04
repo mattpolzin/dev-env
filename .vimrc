@@ -71,6 +71,14 @@ au FileType yaml set foldmethod=indent
 au BufRead /tmp/psql.edit.* set syntax=sql
 
 "
+" Ruby
+"
+augroup ruby_ft
+  autocmd!
+  au FileType ruby set foldmethod=syntax
+augroup END
+
+"
 " Commenting
 "
 map gc :call Comment()<CR>

@@ -2,7 +2,7 @@
 --
 -- Colorscheme
 --
-vim.api.nvim_set_option('termguicolors', true)
+vim.o.termguicolors = true
 vim.cmd.colorscheme('onedark')
 -- make background slightly darker:
 vim.cmd.highlight('Normal       guibg=#16181d')
@@ -196,7 +196,7 @@ require'nvim-treesitter.configs'.setup {
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
-    disable = { "markdown" },
+    disable = { "markdown", "yaml" },
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
@@ -208,6 +208,15 @@ require'nvim-treesitter.configs'.setup {
 require('treesitter-context').setup {
   mode = 'topline'
 }
+vim.api.nvim_create_augroup('ruby_ft', {})
+vim.api.nvim_create_autocmd("FileType", {
+  group = 'ruby_ft',
+  pattern = "ruby",
+  callback = function()
+    vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+  end
+})
 
 
 --
