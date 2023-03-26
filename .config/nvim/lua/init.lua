@@ -157,6 +157,11 @@ end
 if vim.fn.executable('nix') == 1 then
   require('lsp.nix').setup()
 end
+if vim.fn.executable('ghc') == 1
+  and vim.fn.executable('haskell-language-server-wrapper') == 1
+  then
+    require('lsp.haskell').setup()
+end
 
 -- LSP additional external setup:
 --

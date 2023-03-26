@@ -126,6 +126,12 @@ if [ "$(command -v node)" != '' ]; then
 else
   echo '  * ( ) nodejs found in PATH.'
 fi
+if [ "$(command -v ghc)" != '' ]; then
+  echo '  * (x) haskell found in PATH.'
+  echo "        > $(ghc --version)"
+else
+  echo '  * ( ) haskell found in PATH.'
+fi
 
 echo '- Configs'
 #
@@ -369,6 +375,11 @@ if [ "$(command -v elm-language-server)" != '' ]; then
   echo '  * (x) elm-language-server found in PATH.'
 else
   echo '  * ( ) elm-language-server found in PATH.'
+fi
+if [ "$(command -v haskell-language-server-wrapper)" != '' ]; then
+  echo '  * (x) haskell-language-server-wrapper found in PATH.'
+else
+  echo '  * ( ) haskell-language-server-wrapper found in PATH.'
 fi
 if [ "$(command -v npm)" = '' ]; then
   echo '  * ( ) npm package vscode-langservers-extracted.'
