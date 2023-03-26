@@ -8,6 +8,7 @@
 DIFF_OUT=''
 EXIT_STATUS=0
 USE_ZSH='false'
+MAC_OS='false'
 
 if [ "$(command -v zsh)" = '' ]; then
   echo '- [ ] System has zsh.'
@@ -29,6 +30,10 @@ if [ "$USE_ZSH" = 'false' ] && [ "$(command -v bash)" = '' ]; then
   exit 1
 else
   echo '- [x] System has bash.'
+fi
+
+if [[ "$(command -v uname && uname -v)" =~ 'Darwin' ]]; then
+  MAC_OS='true'
 fi
 
 echo '- Programs'
@@ -212,18 +217,20 @@ fi
 
 #
 # check ~/.xmonad is the same
-if [ -f "$HOME/.xmonad/xmonad.hs" ]; then
-  DIFF="$(diff -U3 "$HOME/.xmonad/xmonad.hs" ./.xmonad/xmonad.hs)"
-  if [ "$?" = '1' ]; then
-    echo '  * ( ) ~/.xmonad/xmonad.hs file in sync.'
-    DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
-    EXIT_STATUS=1
+if [ "$MAC_OS" == 'false' ]; then
+  if [ -f "$HOME/.xmonad/xmonad.hs" ]; then
+    DIFF="$(diff -U3 "$HOME/.xmonad/xmonad.hs" ./.xmonad/xmonad.hs)"
+    if [ "$?" = '1' ]; then
+      echo '  * ( ) ~/.xmonad/xmonad.hs file in sync.'
+      DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+      EXIT_STATUS=1
+    else
+      echo '  * (x) ~/.xmonad/xmonad.hs file in sync.'
+    fi
   else
-    echo '  * (x) ~/.xmonad/xmonad.hs file in sync.'
+    echo '  * ( ) ~/.xmonad/xmonad.hs file in sync.'
+    echo '        > No xmonad.hs file found.'
   fi
-else
-  echo '  * ( ) ~/.xmonad/xmonad.hs file in sync.'
-  echo '        > No xmonad.hs file found.'
 fi
 
 #
@@ -310,18 +317,20 @@ if [ -d "$HOME/.config" ]; then
   fi
   #
   # check ~/.config/xmobar is the same
-  if [ -d "$HOME/.config/xmobar" ]; then
-    DIFF="$(diff -U3 --recursive "$HOME/.config/xmobar" ./.config/xmobar)"
-    if [ "$?" = '1' ]; then
-      echo '  * ( ) ~/.config/xmobar directory in sync.'
-      DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
-      EXIT_STATUS=1
+  if [ "$MAC_OS" == 'false' ]; then
+    if [ -d "$HOME/.config/xmobar" ]; then
+      DIFF="$(diff -U3 --recursive "$HOME/.config/xmobar" ./.config/xmobar)"
+      if [ "$?" = '1' ]; then
+        echo '  * ( ) ~/.config/xmobar directory in sync.'
+        DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+        EXIT_STATUS=1
+      else
+        echo '  * (x) ~/.config/xmobar directory in sync.'
+      fi
     else
-      echo '  * (x) ~/.config/xmobar directory in sync.'
+      echo '  * ( ) ~/.config/xmobar directory in sync.'
+      echo '        > No xmobar directory found.'
     fi
-  else
-    echo '  * ( ) ~/.config/xmobar directory in sync.'
-    echo '        > No xmobar directory found.'
   fi
   #
   # check ~/.config/nix is the same
