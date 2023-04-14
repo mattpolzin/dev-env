@@ -79,6 +79,28 @@ augroup ruby_ft
 augroup END
 
 "
+" Shell
+"
+function! FoldShellPrompts()
+  let line = getline(v:lnum)
+  if line =~ '.*matt.*: .*\$ .*$'
+    " Folds end when the shell prompt is found.
+    return '0'
+  else
+    " Otherwise, within a level 1 fold
+    return '1'
+  endif
+endfunction
+function! SetShellFolding()
+  au CursorMoved <buffer> setlocal foldmethod=expr foldexpr=FoldShellPrompts()
+endfunction
+if has('nvim')
+  au TermOpen * call SetShellFolding()
+else
+  au TerminalOpen * call SetShellFolding()
+end
+
+"
 " Commenting
 "
 map gc :call Comment()<CR>
