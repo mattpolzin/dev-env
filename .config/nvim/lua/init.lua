@@ -118,18 +118,6 @@ require('mind').setup({
 })
 
 --
--- Autolist
---
-require('autolist').setup({
-  invert = {
-    toggles_checkbox = true,
-    ul_marker = "*",
-    ol_incrementable = "1",
-    ol_delim = ".",
-  }
-})
-
---
 -- LSP
 -- 
 vim.lsp.handlers["textDocument/hover"] =
@@ -230,4 +218,24 @@ vim.api.nvim_create_autocmd("FileType", {
 if vim.fn.executable('elixir') == 1 then
   require('dap.elixir').setup()
 end
+
+--
+-- Autolist
+--
+local autolist = require('autolist')
+autolist.setup({
+  invert = {
+    toggles_checkbox = true,
+    ul_marker = "*",
+    ol_incrementable = "1",
+    ol_delim = ".",
+  }
+})
+autolist.create_mapping_hook("i", "<CR>", autolist.new)
+autolist.create_mapping_hook("i", "<Tab>", autolist.indent)
+-- autolist.create_mapping_hook("i", "<S-Tab>", autolist.indent, "<C-D>")
+autolist.create_mapping_hook("n", "o", autolist.new)
+autolist.create_mapping_hook("n", "O", autolist.new_before)
+autolist.create_mapping_hook("n", ">>", autolist.indent)
+autolist.create_mapping_hook("n", "<<", autolist.indent)
 
