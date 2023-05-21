@@ -58,7 +58,11 @@ au FileType elixir set foldmethod=syntax
 "
 " JSON
 "
-au FileType json set foldmethod=syntax
+augroup json_ft
+  autocmd!
+  au FileType json set foldmethod=syntax
+augroup END
+
 
 "
 " YAML

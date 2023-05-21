@@ -150,6 +150,9 @@ if vim.fn.executable('ghc') == 1
   then
     require('lsp.haskell').setup()
 end
+if vim.fn.executable('ruby') == 1 then
+    require('lsp.ruby').setup()
+end
 
 -- LSP additional external setup:
 --
@@ -201,10 +204,20 @@ require'nvim-treesitter.configs'.setup {
 require('treesitter-context').setup {
   mode = 'topline'
 }
+-- Treesitter code folding where appropriate:
 vim.api.nvim_create_augroup('ruby_ft', {})
 vim.api.nvim_create_autocmd("FileType", {
   group = 'ruby_ft',
   pattern = "ruby",
+  callback = function()
+    vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+  end
+})
+vim.api.nvim_create_augroup('json_ft', {})
+vim.api.nvim_create_autocmd("FileType", {
+  group = 'json_ft',
+  pattern = "json",
   callback = function()
     vim.wo.foldmethod = 'expr'
     vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'

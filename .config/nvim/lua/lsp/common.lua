@@ -14,8 +14,10 @@ function M.setup(options)
   end
 
   nmap('<Leader>t' , vim.lsp.buf.hover)
-  nmap('<c-]>'     , vim.lsp.buf.definition)
-  nmap('<c-w>]'    , function() vim.cmd('vsplit'); vim.lsp.buf.definition() end)
+  if not options or not options.skip_go_to_def then
+    nmap('<c-]>'     , vim.lsp.buf.definition)
+    nmap('<c-w>]'    , function() vim.cmd('vsplit'); vim.lsp.buf.definition() end)
+  end
   nmap('K'         , vim.lsp.buf.code_action)
   nmap('<Leader>d' , vim.lsp.buf.signature_help)
   nmap('<Leader>ia', function() vim.diagnostic.open_float({scope="buffer"}) end)
@@ -35,6 +37,9 @@ function M.setup(options)
     end
   end
   vim.cmd [[command! Format lua require('lsp.common').format()<CR>]]
+
+  -- all-caps to not collide with :Re as shorthand for :Rexplore
+  vim.cmd [[command! REFS lua vim.lsp.buf.references()<CR>]]
 end
 
 return M
