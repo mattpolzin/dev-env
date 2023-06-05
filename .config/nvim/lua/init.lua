@@ -76,6 +76,35 @@ vim.cmd.command("Tg :exec 'Telescope grep_string'")
 require('telescope').load_extension('fzf')
 
 --
+-- Oil
+--
+require('oil').setup({
+  keymaps = {
+      ["g?"] = "actions.show_help",
+      ["<CR>"] = "actions.select",
+      ["<C-h>"] = "actions.select_vsplit",
+      ["<C-s>"] = "actions.select_split",
+      ["<C-t>"] = "actions.select_tab",
+      ["<C-q>"] = "actions.preview",
+      ["<C-p>"] = false,
+      ["<C-c>"] = "actions.close",
+      ["<C-l>"] = "actions.refresh",
+      ["-"] = "actions.parent",
+      ["_"] = "actions.open_cwd",
+      ["`"] = "actions.cd",
+      ["~"] = "actions.tcd",
+      ["g."] = "actions.toggle_hidden",
+    },
+})
+-- turn netrw off and use oil.nvim
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.cmd.command('Explore lua require("oil").open()')
+vim.cmd.command('Rexplore lua require("oil").open()')
+vim.cmd.command('Vexplore :vsplit | lua require("oil").open()<CR>')
+vim.cmd.command('Sexplore :split | lua require("oil").open()<CR>')
+
+--
 -- Git
 --
 require('gitsigns').setup({
@@ -92,30 +121,42 @@ vim.cmd.command("Blame lua require('commands.github').blame()")
 vim.cmd.command("-range Show lua require('commands.github').show()")
 
 --
--- Mind
+-- Neorg
 --
-require('mind').setup({
-  ui = {
-    root_marker   = "↪ ",
-    url_marker    = "🌎 ",
-    select_marker = "⦿ ",
-    icon_preset = {
-      { "↪ ", "Sub-project" },
-      { "📰 ", "Journal, newspaper, weekly and daily news" },
-      { "💡 ", "For when you have an idea" },
-      { " ", "Note taking?" },
-      { "陼", "Task management" },
-      { "⏹  ", "Uncheck, empty square or backlog" },
-      { " ", "Full square or on-going" },
-      { "✅ ", "Check or done" },
-      { "🗑️ ", "Trash bin, deleted, cancelled, etc." },
-      { "🐙 ", "GitHub" },
-      { " ", "Monitoring" },
-      { " ", "Internet, Earth, everyone!" },
-      { "⏸️ ", "Frozen, on-hold" },
-    }
-  }
-})
+require('neorg').setup {
+  load = {
+    ["core.defaults"] = {}, -- Loads default behaviour
+    ["core.concealer"] = {
+      config = {
+        icon_preset = 'diamond',
+        icons = {
+          todo = {
+            done = {
+              icon = "✓",
+            },
+            pending = {
+              icon = "◌",
+            },
+            undone = {
+              icon = " ",
+            },
+          },
+        },
+      }
+    }, -- Adds pretty icons to your documents
+    ["core.dirman"] = { -- Manages Neorg workspaces
+      config = {
+        workspaces = {
+          notes = "~/notes",
+        },
+        default_workspace = "notes",
+      },
+    },
+    ["core.summary"] = {},
+    ["core.export"] = {},
+  },
+}
+vim.cmd.command("Todo :edit ~/notes/Todos.norg")
 
 --
 -- LSP
@@ -173,7 +214,7 @@ end
 --
 -- Treesitter
 --
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all" (the four listed parsers should always be installed)
   ensure_installed = { "nix", "lua" },
 
