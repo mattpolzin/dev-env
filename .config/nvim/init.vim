@@ -5,7 +5,7 @@ source ~/.vimrc
 call plug#begin()
 
 " Silly
-Plug 'seandewar/nvimesweeper'
+"Plug 'seandewar/nvimesweeper'
 
 " Color
 "Plug 'cocopon/iceberg.vim' " -- syntax highlighting is too muted
@@ -17,6 +17,9 @@ Plug 'PeterRincker/vim-searchlight' "highlight search term cursor is over differ
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+
+" Open files with line number annotations
+Plug 'lewis6991/fileline.nvim'
 
 " Tab completion
 Plug 'ervandew/supertab'
