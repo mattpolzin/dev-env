@@ -2,8 +2,10 @@
 --
 -- Haskell LSP
 -- 
+local common = require('lsp.common')
+
 local function custom_lsp_attach(client)
-  require('lsp.common').setup()
+  common.setup()
 end
 
 local M = {}
@@ -11,7 +13,8 @@ local M = {}
 function M.setup()
   require('lspconfig').hls.setup({
     on_attach = custom_lsp_attach,
-    filetypes = { 'haskell', 'lhaskell', 'cabal' }
+    filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    capabilities = common.capabilities
   })
 end
 

@@ -4,6 +4,9 @@
 --
 local M = {}
 
+
+M.capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 -- options = {
 --   formatting_options = {} -- sent to LSP along with textDocument/format command.
 -- }

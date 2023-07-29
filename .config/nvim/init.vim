@@ -22,7 +22,17 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lewis6991/fileline.nvim'
 
 " Tab completion
-Plug 'ervandew/supertab'
+if !has('nvim')
+  Plug 'ervandew/supertab'   " -- used to use, but not compatible with nvim lsp completion
+else
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/cmp-vsnip'
+endif
 
 " Previewing Markdown (:MarkdownPreview)
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }

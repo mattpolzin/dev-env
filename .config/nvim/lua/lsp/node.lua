@@ -2,15 +2,19 @@
 --
 -- Typescript LS & ESLint via Diagnistic LS
 --
+local common = require('lsp.common')
 
 local function custom_lsp_attach(client)
-  require('lsp.common').setup()
+  common.setup()
 end
 
 local M = {}
 
 function M.setup()
-  require('lspconfig').tsserver.setup({on_attach = custom_lsp_attach})
+  require('lspconfig').tsserver.setup({
+    on_attach = custom_lsp_attach,
+    capabilities = common.capabilities
+  })
   require('lspconfig').diagnosticls.setup(
     {
       filetypes = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},

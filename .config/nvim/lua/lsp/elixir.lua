@@ -2,8 +2,10 @@
 --
 -- Elixir LSP
 --
+local common = require('lsp.common')
+
 local function custom_lsp_attach(client)
-  require('lsp.common').setup()
+  common.setup()
 
   -- evaluate expression
   vim.keymap.set('n', '<Leader>e', require('helpers.elixir').evaluate, { buffer=true })
@@ -17,13 +19,13 @@ local M = {}
 function M.setup()
   require('lspconfig').elixirls.setup({
     cmd = {path_to_elixirls},
---     capabilities = capabilities,
     on_attach = custom_lsp_attach,
+    capabilities = common.capabilities,
     settings = {
       elixirLS = {
-	-- Fetch Deps is often get's into a weird state that requires deleting
-	-- the .elixir_ls directory and restarting the editor.
-	fetchDeps = false
+        -- Fetch Deps is often get's into a weird state that requires deleting
+        -- the .elixir_ls directory and restarting the editor.
+        fetchDeps = false
       }
     }
   })

@@ -2,15 +2,19 @@
 --
 -- JSON LSP
 --
+local common = require('lsp.common')
 
 local function custom_lsp_attach(client)
-  require('lsp.common').setup()
+  common.setup()
 end
 
 local M = {}
 
 function M.setup()
-  require('lspconfig').jsonls.setup({on_attach = custom_lsp_attach})
+  require('lspconfig').jsonls.setup({
+    on_attach = custom_lsp_attach,
+    capabilities = common.capabilities
+  })
 end
 
 return M

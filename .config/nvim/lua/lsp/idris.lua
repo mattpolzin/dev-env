@@ -2,8 +2,10 @@
 --
 -- Idris LSP
 -- 
+local common = require('lsp.common')
+
 local function custom_lsp_attach(client)
-  require('lsp.common').setup()
+  common.setup()
 
   local nmap = function(key, fun)
     vim.keymap.set('n', key, fun, { buffer=true })
@@ -63,7 +65,8 @@ local M = {}
 function M.setup()
   require('idris2').setup({
     server = {on_attach = custom_lsp_attach},
-    code_action_post_hook = save_hook
+    code_action_post_hook = save_hook,
+    capabilities = common.capabilities
   })
 end
 
