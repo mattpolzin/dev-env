@@ -137,6 +137,11 @@ if [ "$(command -v ghc)" != '' ]; then
 else
   echo '  * ( ) haskell found in PATH.'
 fi
+if [ "$(command -v swift)" != '' ]; then
+  echo '  * (x) swift found in PATH.'
+else
+  echo '  * ( ) swift found in PATH.'
+fi
 
 echo '- Configs'
 #
