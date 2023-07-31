@@ -36,6 +36,15 @@ if [[ "$(command -v uname && uname -v)" =~ 'Darwin' ]]; then
   MAC_OS='true'
 fi
 
+function optionalProgramCheck() {
+  found="$(command -v $1)"
+  if [ "$found" = '' ]; then
+    echo "  * ( ) $2 found in PATH."
+  else
+    echo "  * (x) $2 found in PATH."
+  fi
+}
+
 echo '- Programs'
 if [ "$(command -v diff)" = '' ]; then
   echo 'System does not have diff. This check script currently relies heavily on diff.'
@@ -58,46 +67,17 @@ else
   echo '  * [x] neovim found in PATH.'
 fi
 
-if [ "$(command -v kubectl)" = '' ]; then
-  echo '  * ( ) kubectl found in PATH.'
-else
-  echo '  * (x) kubectl found in PATH.'
-fi
-
-if [ "$(command -v k9s)" = '' ]; then
-  echo '  * ( ) k9s found in PATH.'
-else
-  echo '  * (x) k9s found in PATH.'
-fi
-
-if [ "$(command -v harmony)" = '' ]; then
-  echo '  * ( ) harmony found in PATH.'
-else
-  echo '  * (x) harmony found in PATH.'
-fi
+optionalProgramCheck 'kubectl' 'kubectl'
+optionalProgramCheck 'k9s'     'k9s'
+optionalProgramCheck 'harmony' 'harmony'
+optionalProgramCheck 'clx'     'circumflex'
+optionalProgramCheck 'ddgr'    'duck duck go CLI'
+optionalProgramCheck 'glow'    'glow'
 
 if [ "$(command -v scheme)" = '' ] && [ "$(command -v chez)" = '' ]; then
   echo '  * ( ) scheme found in PATH.'
 else
   echo '  * (x) scheme found in PATH.'
-fi
-
-if [ "$(command -v clx)" = '' ]; then
-  echo '  * ( ) circumflex found in PATH.'
-else
-  echo '  * (x) circumflex found in PATH.'
-fi
-
-if [ "$(command -v ddgr)" = '' ]; then
-  echo '  * ( ) duck duck go CLI found in PATH (shell command: ddgr).'
-else
-  echo '  * (x) duck duck go CLI found in PATH (shell command: ddgr).'
-fi
-
-if [ "$(command -v glow)" = '' ]; then
-  echo '  * ( ) glow found in PATH.'
-else
-  echo '  * (x) glow found in PATH.'
 fi
 
 echo '- Languages'
@@ -359,42 +339,29 @@ fi
 
 #
 # check for Neovim & LSP deps
+function optionalLSPCheck() {
+  found="$(command -v $1)"
+  if [ "$found" != '' ]; then
+    echo "  * (x) $1 found in PATH."
+  else
+    echo "  * ( ) $1 found in PATH."
+  fi
+}
+
 echo '- Neovim Telescope/LSP'
 if [ "$(command -v rg)" != '' ] && [ "$(rg --version | head -n1 | awk '{ print $1 }')" = 'ripgrep' ]; then
   echo '  * (x) ripgrep found in PATH (shell command: rg).'
 else
   echo '  * ( ) ripgrep found in PATH (shell command: rg).'
 fi
-if [ "$(command -v fd)" != '' ]; then
-  echo '  * (x) fd found in PATH.'
-else
-  echo '  * ( ) fd found in PATH.'
-fi
-if [ "$(command -v idris2-lsp)" != '' ]; then
-  echo '  * (x) idris2-lsp found in PATH.'
-else
-  echo '  * ( ) idris2-lsp found in PATH.'
-fi
-if [ "$(command -v elixir-ls)" != '' ]; then
-  echo '  * (x) elixir-ls found in PATH.'
-else
-  echo '  * ( ) elixir-ls found in PATH.'
-fi
-if [ "$(command -v rnix-lsp)" != '' ]; then
-  echo '  * (x) rnix-lsp found in PATH.'
-else
-  echo '  * ( ) rnix-lsp found in PATH.'
-fi
-if [ "$(command -v elm-language-server)" != '' ]; then
-  echo '  * (x) elm-language-server found in PATH.'
-else
-  echo '  * ( ) elm-language-server found in PATH.'
-fi
-if [ "$(command -v haskell-language-server-wrapper)" != '' ]; then
-  echo '  * (x) haskell-language-server-wrapper found in PATH.'
-else
-  echo '  * ( ) haskell-language-server-wrapper found in PATH.'
-fi
+
+optionalLSPCheck 'fd'
+optionalLSPCheck 'idris2-lsp'
+optionalLSPCheck 'elixir-ls'
+optionalLSPCheck 'rnix-lsp'
+optionalLSPCheck 'elm-language-server'
+optionalLSPCheck 'haskell-language-server-wrapper'
+
 if [ "$(command -v npm)" = '' ]; then
   echo '  * ( ) npm package vscode-langservers-extracted.'
   echo '  * ( ) npm package typescript.'
