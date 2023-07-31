@@ -83,6 +83,11 @@ augroup ruby_ft
 augroup END
 
 "
+" Swift
+"
+au FileType swift set makeprg=swift
+
+"
 " Shell
 "
 function! FoldShellPrompts()
