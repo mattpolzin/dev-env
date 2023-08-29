@@ -88,6 +88,16 @@ augroup END
 au FileType swift set makeprg=swift
 
 "
+" AuthZed
+"
+augroup Authzed
+  au!
+  autocmd BufNewFile,BufRead *.authzed set ft=authzed
+  autocmd BufNewFile,BufRead *.zed set ft=authzed
+  autocmd BufNewFile,BufRead *.azd set ft=authzed
+augroup END
+
+"
 " Shell
 "
 function! FoldShellPrompts()
@@ -119,7 +129,7 @@ function! Comment()
 	let ft = &filetype
 	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl' || ft == 'elixir' || ft == 'yaml' || ft == 'dockerfile' || ft == 'nix'
 		silent s/^/\#/
-	elseif ft == 'javascript' || ft == 'typescript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift'
+	elseif ft == 'javascript' || ft == 'typescript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift' || ft == 'authzed'
 		silent s:^:\/\/:g
 	elseif ft == 'tex'
 		silent s:^:%:g
@@ -134,7 +144,7 @@ function! Uncomment()
 	let ft = &filetype
 	if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make' || ft == 'python' || ft == 'perl' || ft == 'elixir' || ft == 'yaml' || ft == 'dockerfile' || ft == 'nix'
 		silent s/^\#//
-	elseif ft == 'javascript' || ft == 'typescript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift'
+	elseif ft == 'javascript' || ft == 'typescript' || ft == 'c' || ft == 'cpp' || ft == 'java' || ft == 'objc' || ft == 'scala' || ft == 'go' || ft == 'swift' || ft == 'authzed'
 		silent s:^\/\/::g
 	elseif ft == 'tex'
 		silent s:^%::g

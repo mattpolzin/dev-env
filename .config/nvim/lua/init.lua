@@ -261,6 +261,14 @@ require('nvim-treesitter.configs').setup {
     additional_vim_regex_highlighting = false,
   },
 }
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.authzed = {
+  install_info = {
+    url = "https://github.com/mleonidas/tree-sitter-authzed",
+    files = { "src/parser.c" },
+    branch = "main",
+  },
+}
 require('treesitter-context').setup {
   mode = 'topline'
 }
@@ -290,6 +298,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
   end
 })
+
 
 --
 -- Tab Completion
@@ -394,6 +403,6 @@ vim.keymap.set("n", "o", "o<cmd>AutolistNewBullet<cr>")
 vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
 vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
 -- vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
-vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")
-vim.keymap.set("n", "<<", "<<<cmd>AutolistRecalculate<cr>")
+-- vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")
+-- vim.keymap.set("n", "<<", "<<<cmd>AutolistRecalculate<cr>")
 
