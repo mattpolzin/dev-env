@@ -3,7 +3,9 @@
 -- Colorscheme
 --
 vim.o.termguicolors = true
-vim.cmd.colorscheme('onedark')
+local onedark = require('onedark')
+onedark.setup({  })
+onedark.load()
 -- make background slightly darker:
 vim.cmd.highlight('Normal       guibg=#16181d')
 -- make non-current window status bar more visible:
@@ -264,9 +266,9 @@ require('nvim-treesitter.configs').setup {
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.authzed = {
   install_info = {
-    url = "https://github.com/mleonidas/tree-sitter-authzed",
+    url = "https://github.com/mattpolzin/tree-sitter-authzed",
     files = { "src/parser.c" },
-    branch = "main",
+    branch = "caveats",
   },
 }
 require('treesitter-context').setup {

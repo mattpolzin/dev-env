@@ -1,10 +1,12 @@
 ; highlights.scm
 ((identifier) @keyword
- (#match? @keyword "^(definition|permission|relation)$"))
+ (#match? @keyword "^(definition|caveat|permission|relation)$"))
 
 ((permission_literal) @variable.builtin)
 
 (permission (identifier) @type)
+(parameter (identifier) @property (cel_type) @type)
+(cel_expression (identifier) @property)
 (relation (identifier) @constant)
 (perm_expression (identifier) @property)
 ((block_start) @punctuation)

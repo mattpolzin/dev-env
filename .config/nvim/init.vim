@@ -8,8 +8,11 @@ call plug#begin()
 "Plug 'seandewar/nvimesweeper'
 
 " Color
-"Plug 'cocopon/iceberg.vim' " -- syntax highlighting is too muted
-Plug 'joshdick/onedark.vim'
+if !has('nvim')
+  Plug 'joshdick/onedark.vim'
+else
+  Plug 'navarasu/onedark.nvim'
+endif
 
 Plug 'PeterRincker/vim-searchlight' "highlight search term cursor is over differently
 
