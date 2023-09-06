@@ -81,6 +81,7 @@ Plug 'lewis6991/gitsigns.nvim'
 " Note taking
 Plug 'gaoDean/autolist.nvim'
 Plug 'nvim-neorg/neorg', { 'do': ':Neorg sync-parsers' }
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
