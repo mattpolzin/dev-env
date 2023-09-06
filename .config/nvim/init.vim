@@ -82,6 +82,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'gaoDean/autolist.nvim'
 Plug 'nvim-neorg/neorg', { 'do': ':Neorg sync-parsers' }
 Plug 'dhruvasagar/vim-table-mode'
+let g:table_mode_corner='|' " <- markdown compatible tables
 
 call plug#end()
 
