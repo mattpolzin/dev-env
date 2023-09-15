@@ -82,21 +82,25 @@ require('telescope').load_extension('fzf')
 --
 require('oil').setup({
   keymaps = {
-      ["g?"] = "actions.show_help",
-      ["<CR>"] = "actions.select",
-      ["<C-h>"] = "actions.select_vsplit",
-      ["<C-s>"] = "actions.select_split",
-      ["<C-t>"] = "actions.select_tab",
-      ["<C-q>"] = "actions.preview",
-      ["<C-p>"] = false,
-      ["<C-c>"] = "actions.close",
-      ["<C-l>"] = "actions.refresh",
-      ["-"] = "actions.parent",
-      ["_"] = "actions.open_cwd",
-      ["`"] = "actions.cd",
-      ["~"] = "actions.tcd",
-      ["g."] = "actions.toggle_hidden",
-    },
+    ["g?"] = "actions.show_help",
+    ["<CR>"] = "actions.select",
+    ["<C-h>"] = "actions.select_vsplit",
+    ["<C-s>"] = "actions.select_split",
+    ["<C-t>"] = "actions.select_tab",
+    ["<C-q>"] = "actions.preview",
+    ["<C-p>"] = false,
+    ["<C-c>"] = "actions.close",
+    ["<C-l>"] = "actions.refresh",
+    ["-"] = "actions.parent",
+    ["_"] = "actions.open_cwd",
+    ["`"] = "actions.cd",
+    ["~"] = "actions.tcd",
+    ["g."] = "actions.toggle_hidden",
+  },
+  view_options = {
+    -- Show files and directories that start with "."
+    show_hidden = true,
+  },
 })
 -- turn netrw off and use oil.nvim
 vim.g.loaded_netrw = 1
@@ -140,10 +144,33 @@ vim.cmd.command("-range Show lua require('commands.github').show()")
 --
 -- Neorg
 --
-require('neorg').setup {
+local neorg_core = require('neorg.core')
+local function get_timezone_offset()
+  -- http://lua-users.org/wiki/TimeZon
+  -- return the timezone offset in seconds, as it was on the time given by ts
+  -- Eric Feliksik
+  local utcdate = os.date("!*t", 0)
+  local localdate = os.date("*t", 0)
+  localdate.isdst = false -- this is the trick
+  return os.difftime(os.time(localdate), os.time(utcdate))
+end
+local function get_timestamp()
+  -- generate a ISO-8601 timestamp
+  -- example: 2023-09-05T09:09:11-0500
+  local tz_offset = get_timezone_offset()
+  local h, m = math.modf(tz_offset / 3600)
+  return os.date("%Y-%m-%dT%H:%M:%S") .. string.format("%+.4d", h * 100 + m * 60)
+end
+require("neorg").setup {
   load = {
     ["core.defaults"] = {}, -- Loads default behaviour
-    ["core.concealer"] = {
+    ["core.completion"] = { 
+      config = {
+        engine = "nvim-cmp",
+        name = "[Norg]" 
+      } 
+    },
+    ["core.concealer"] = { -- Adds pretty icons to your documents
       config = {
         icon_preset = 'diamond',
         icons = {
@@ -160,7 +187,7 @@ require('neorg').setup {
           },
         },
       }
-    }, -- Adds pretty icons to your documents
+    },
     ["core.dirman"] = { -- Manages Neorg workspaces
       config = {
         workspaces = {
@@ -171,10 +198,64 @@ require('neorg').setup {
     },
     ["core.summary"] = {},
     ["core.export"] = {},
+    ["core.esupports.metagen"] = {
+      config = {
+        type = "auto",
+        template = {
+          -- The title field generates a title for the file based on the filename.
+          {
+            "title",
+            function()
+              return vim.fn.expand("%:p:t:r")
+            end,
+          },
+
+          -- The description field is always kept empty for the user to fill in.
+          { "description", "" },
+
+          -- The authors field is autopopulated by querying the current user's system username.
+          {
+            "authors",
+            function()
+              return neorg_core.utils.get_username()
+            end,
+          },
+
+          -- The categories field is always kept empty for the user to fill in.
+          { "categories", "[]" },
+
+          -- The created field is populated with the current date as returned by `os.date`.
+          {
+            "created",
+            get_timestamp,
+          },
+
+          -- When creating fresh, new metadata, the updated field is populated the same way
+          -- as the `created` date.
+          {
+            "updated",
+            get_timestamp,
+          },
+
+          -- The version field determines which Norg version was used when
+          -- the file was created.
+          {
+            "version",
+            function()
+              return neorg_core.config.norg_version
+            end,
+          },
+        },
+      },
+    },
   },
 }
 vim.cmd.command("Todo :edit ~/notes/Todos.norg")
 vim.cmd.command("Index :Neorg index")
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  pattern = {"*.norg"},
+  command = "set conceallevel=3"
+})
 
 --
 -- LSP

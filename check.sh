@@ -67,12 +67,14 @@ else
   echo '  * [x] neovim found in PATH.'
 fi
 
-optionalProgramCheck 'kubectl' 'kubectl'
-optionalProgramCheck 'k9s'     'k9s'
-optionalProgramCheck 'harmony' 'harmony'
 optionalProgramCheck 'clx'     'circumflex'
 optionalProgramCheck 'ddgr'    'duck duck go CLI'
 optionalProgramCheck 'glow'    'glow'
+optionalProgramCheck 'harmony' 'harmony'
+optionalProgramCheck 'jq' 'jq'
+optionalProgramCheck 'k9s'     'k9s'
+optionalProgramCheck 'kubectl' 'kubectl'
+optionalProgramCheck 'yq' 'yq'
 
 if [ "$(command -v scheme)" = '' ] && [ "$(command -v chez)" = '' ]; then
   echo '  * ( ) scheme found in PATH.'
