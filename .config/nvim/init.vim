@@ -47,7 +47,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Browsing/Finding
 Plug 'stevearc/oil.nvim'
 Plug 'BurntSushi/ripgrep'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'junegunn/fzf.vim' " <- faster file picker than telescope currently.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " <- faster file picker than telescope currently.
