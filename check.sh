@@ -273,6 +273,21 @@ if [ -d "$HOME/.config" ]; then
     echo '        ! No kitty directory found.'
   fi
   #
+  # check ~/.config/ghostty is the same
+  if [ -d "$HOME/.config/ghostty" ]; then
+    DIFF="$(diff -U3 --recursive "$HOME/.config/ghostty" ./.config/ghostty)"
+    if [ "$?" = '1' ]; then
+      echo '  * [ ] ~/.config/ghostty directory in sync.'
+      DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+      EXIT_STATUS=1
+    else
+      echo '  * [x] ~/.config/ghostty directory in sync.'
+    fi
+  else
+    echo '  * [ ] ~/.config/ghostty directory in sync.'
+    echo '        ! No ghostty directory found.'
+  fi
+  #
   # check ~/.config/k9s is the same
   if [ -d "$HOME/.config/k9s" ]; then
     DIFF="$(diff -U3 --recursive "$HOME/.config/k9s" ./.config/k9s)"
