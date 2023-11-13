@@ -14,7 +14,7 @@ vim.cmd.highlight('StatusLineNC guibg=#21252c')
 --
 -- Search Highlight
 --
-vim.cmd.highlight('link Searchlight DiffDelete')
+vim.cmd.highlight('link Searchlight WildMenu')
 
 --
 -- FZF
