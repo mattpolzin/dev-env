@@ -1,7 +1,16 @@
 ##
-## Additional initial setup prior to using nix-darwin:
-## 1. Install Homebrew (https://brew.sh)
-## 2. Clone dev-env and awesome-opal git repos into same parent directory
+## Additional initial setup prior to using nix-darwin on new computer:
+## 1. Secret decryption preparation:
+##   * On new computer:
+##     - Create a new ssh key (`ssh-keygen`) on the new computer specifically for this, not the one used for GitHub
+##     - Add the new key to ssh-agent (GitHub has a good writeup on this):
+##       https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+##     - Get the computer's host ssh key (`ssh-keyscan`)
+##   * On old computer:
+##     - Add the new user & host ssh public keys to the list in secrets/secrets.nix
+##     - Rekey secret files (`nix run github:ryantm/agenix -- --rekey`)
+##     - Commit changes to repo
+## 2. Install Homebrew (https://brew.sh)
 ##
 
 { pkgs, inputs, config, ... }: {
