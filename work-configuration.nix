@@ -15,8 +15,10 @@
 ##
 
 { pkgs, inputs, config, ... }: {
+  home-manager.useGlobalPkgs = true;
+  home-manager.users.mattpolzin = import ./work-configuration.nix { inherit pkgs; };
+
   # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = [
     inputs.agenix.packages.${pkgs.system}.agenix
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
