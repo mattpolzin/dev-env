@@ -11,6 +11,7 @@
 ##     - Rekey secret files (`nix run github:ryantm/agenix -- --rekey`)
 ##     - Commit changes to repo
 ## 2. Install Homebrew (https://brew.sh)
+## 3. Install full Xcode from Apple (will also manage Swift install)
 ##
 
 { pkgs, inputs, config, ... }: {
@@ -21,10 +22,13 @@
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
     pkgs.circumflex
     pkgs.ddgr
+    pkgs.diffutils
     pkgs.elixir
     pkgs.elmPackages.elm
+    pkgs.fd
     pkgs.ghc
     pkgs.glow
+    pkgs.idris2
     pkgs.jq
     pkgs.k9s
     pkgs.kitty
@@ -32,6 +36,8 @@
     pkgs.kubectl-tree
     pkgs.neovim
     pkgs.nodejs
+    pkgs.patch
+    pkgs.ripgrep
     pkgs.yq
   ];
 
@@ -59,7 +65,7 @@
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
+  nix.package = pkgs.nix;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
