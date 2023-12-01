@@ -4,10 +4,11 @@
 ## 2. Clone dev-env and awesome-opal git repos into same parent directory
 ##
 
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, config, ... }: {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
+    inputs.agenix.packages.${pkgs.system}.agenix
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
     pkgs.circumflex
     pkgs.ddgr
@@ -60,10 +61,10 @@
     experimental-features = "nix-command flakes";
   };
 
-  environment.etc.hosts = if builtins.pathExists ../awesome-opal/mpolzin/etc-hosts then {
-    source = ../awesome-opal/mpolzin/etc-hosts;
-  } else {
-    enable = false;
+  age.secrets.etcHosts.file = ./secrets/etc-hosts.age;
+  environment.etc.hosts = {
+    copy = true;
+    source = config.age.secrets.etcHosts.path;
   };
 
   system.defaults = {
