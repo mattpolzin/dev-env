@@ -1,4 +1,10 @@
-{ pkgs, ... }: {
+##
+## Additional initial setup prior to using nix-darwin:
+## 1. Install Homebrew (https://brew.sh)
+## 2. Clone dev-env and awesome-opal git repos into same parent directory
+##
+
+{ pkgs, inputs, ... }: {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
@@ -54,6 +60,12 @@
     experimental-features = "nix-command flakes";
   };
 
+  environment.etc.hosts = if builtins.pathExists ../awesome-opal/mpolzin/etc-hosts then {
+    source = ../awesome-opal/mpolzin/etc-hosts;
+  } else {
+    enable = false;
+  };
+
   system.defaults = {
     # tap-to-click:
     NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
@@ -81,7 +93,7 @@
   time.timeZone = "America/Chicago";
 
   # Set Git commit hash for darwin-version.
-  system.configurationRevision = self.rev or self.dirtyRev or null;
+  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
@@ -89,7 +101,7 @@
 
   # The platform the configuration will be used on.
   nixpkgs = {
-    hostPlatform = "aarch64-darwin";
+    hostPlatform = "x86_64-darwin";
     config = {
 #      allowUnfree = true;
     };

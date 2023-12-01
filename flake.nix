@@ -2,7 +2,7 @@
   description = "Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/23.11";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -16,6 +16,7 @@
     # $ darwin-rebuild build --flake .#MattPolzin-MacBook-Pro
     darwinConfigurations."MattPolzin-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       modules = [ workConfiguration ];
+      specialArgs = { inherit inputs; };
     };
 
     # Expose the package set, including overlays, for convenience.
