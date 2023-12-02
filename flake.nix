@@ -9,9 +9,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    harmony.url = "github:mattpolzin/harmony";
+    harmony.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, agenix }:
+  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, agenix, harmony }:
   let
     workConfiguration = import ./work-configuration.nix;
   in

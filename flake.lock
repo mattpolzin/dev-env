@@ -44,6 +44,26 @@
         "type": "github"
       }
     },
+    "harmony": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1701495576,
+        "narHash": "sha256-snKmCpl3VxYiJ/bY0Ll3qeZe53Fq4hibzGSNdbq3g84=",
+        "owner": "mattpolzin",
+        "repo": "harmony",
+        "rev": "8c98a2a069d718464a3dc4f2c6425e85cf7657fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattpolzin",
+        "repo": "harmony",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -125,6 +145,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "harmony": "harmony",
         "home-manager": "home-manager_2",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs"

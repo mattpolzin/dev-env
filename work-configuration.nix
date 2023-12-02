@@ -23,6 +23,7 @@
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = [
     inputs.agenix.packages.${pkgs.system}.agenix
+    inputs.harmony.packages.${pkgs.system}.harmony
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
     pkgs.circumflex
     pkgs.ddgr
