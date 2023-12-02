@@ -15,8 +15,10 @@
 ##
 
 { pkgs, inputs, config, ... }: {
+  users.users.mattpolzin = { };
   home-manager.useGlobalPkgs = true;
-  home-manager.users.mattpolzin = import ./work-configuration.nix { inherit pkgs; };
+  home-manager.extraSpecialArgs = { inherit pkgs; };
+  home-manager.users.mattpolzin = import ./work-user-configuration.nix;
 
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = [
@@ -46,7 +48,7 @@
   fonts = {
     fontDir.enable = true;
     fonts = [
-      pkgs.jetbrains-mono
+      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
   };
 

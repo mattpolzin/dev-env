@@ -4,37 +4,37 @@ let directFileSources = {
     source = ./.bashrc;
   };
   ".zshrc" = {
-    surce = ./.zshrc;
+    source = ./.zshrc;
   };
   ".vimrc" = {
-    surce = ./.vimrc;
+    source = ./.vimrc;
   };
   ".ctags" = {
-    surce = ./.ctags;
+    source = ./.ctags;
   };
   ".config/nvim" = {
-    surce = ./.config/nvim;
+    source = ./.config/nvim;
     recursive = true;
   };
   ".config/kitty" = {
-    surce = ./.config/kitty;
+    source = ./.config/kitty;
     recursive = true;
   };
   ".config/k9s" = {
-    surce = ./.config/k9s;
+    source = ./.config/k9s;
     recursive = true;
   };
   ".config/ripgrep" = {
-    surce = ./.config/ripgrep;
+    source = ./.config/ripgrep;
     recursive = true;
   };
   ".config/nix" = {
-    surce = ./.config/nix;
+    source = ./.config/nix;
     recursive = true;
   };
 };
 in
-{ pkgs }: {
+{ pkgs, ... }: {
   editorconfig = {
     enable = true;
     settings = {
