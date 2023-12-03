@@ -1,6 +1,7 @@
 ##
 ## Additional initial setup prior to using nix-darwin on new computer:
-## 1. Secret decryption preparation:
+## 1. Install Nix
+## 2. Secret decryption preparation:
 ##   * On new computer:
 ##     - Create a new ssh key (`ssh-keygen`) on the new computer specifically for this, not the one used for GitHub
 ##     - Add the new key to ssh-agent (GitHub has a good writeup on this):
@@ -10,9 +11,12 @@
 ##     - Add the new user & host ssh public keys to the list in secrets/secrets.nix
 ##     - Rekey secret files (`nix run github:ryantm/agenix -- --rekey`)
 ##     - Commit changes to repo
-## 2. Install Homebrew (https://brew.sh)
-## 3. Install full Xcode from Apple (will also manage Swift install)
+## 3. Install Homebrew (https://brew.sh)
+##
+## Additional initial setup after using nix-darwin on new computer:
 ## 4. Install Docker for Mac (not available in app store, brew, or nixpkgs)
+## 5. Set up OpenVPN Connect (must set up through Ops portal and GUI app, best I can tell)
+## 6. Install R Studio
 ##
 
 { pkgs, inputs, config, ... }: {
@@ -60,9 +64,11 @@
     pkgs.terraform
     pkgs.tree-sitter
     pkgs.yq
+    pkgs.R
 
     # GUI
     pkgs.kitty
+    pkgs.vscode
     pkgs.zoom-us
 
     # Shell (Disabled)
