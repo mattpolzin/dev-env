@@ -22,28 +22,50 @@
 
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = [
+   # Shell
     inputs.agenix.packages.${pkgs.system}.agenix
     inputs.harmony.packages.${pkgs.system}.harmony
+    pkgs.azure-cli
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
     pkgs.circumflex
+    pkgs.cloc
+    pkgs.ctags
     pkgs.ddgr
     pkgs.diffutils
     pkgs.elixir
     pkgs.elmPackages.elm
     pkgs.fd
+    pkgs.ffmpeg
+    pkgs.gh
     pkgs.ghc
+    pkgs.git
+    pkgs.git-lfs
     pkgs.glow
+    pkgs.graphviz
     pkgs.idris2
     pkgs.jq
     pkgs.k9s
-    pkgs.kitty
+    pkgs.kind
     pkgs.kubectl
     pkgs.kubectl-tree
+    pkgs.kubernetes-helm
+    pkgs.kubeseal
+    pkgs.mutagen
     pkgs.neovim
     pkgs.nodejs
     pkgs.patch
     pkgs.ripgrep
+    pkgs.rlwrap
+    pkgs.terraform
+    pkgs.tree-sitter
     pkgs.yq
+
+    # GUI
+    pkgs.kitty
+    pkgs.zoom-us
+
+    # Shell (Disabled)
+    # pkgs.asdf-vm
   ];
 
   fonts = {
@@ -56,6 +78,21 @@
   homebrew = {
     enable = true;
     onActivation.cleanup = "zap";
+    taps = [
+      "garden-io/garden"
+    ];
+    brews = [
+      "garden-cli"
+    ];
+    masApps = {
+      "1Password 7 - Passwordd Manager" = 1333542190;
+      Keynote = 409183694;
+      Numbers = 409203825;
+      Pages = 409201541;
+      "Slack for Desktop" = 803453959;
+      Vimari = 1480933944;
+      Xcode = 497799835;
+    };
   };
 
   networking = {
@@ -124,7 +161,7 @@
   nixpkgs = {
     hostPlatform = "x86_64-darwin";
     config = {
-#      allowUnfree = true;
+      allowUnfree = true;
     };
     overlays = [ ];
   };
