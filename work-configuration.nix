@@ -12,6 +12,7 @@
 ##     - Commit changes to repo
 ## 2. Install Homebrew (https://brew.sh)
 ## 3. Install full Xcode from Apple (will also manage Swift install)
+## 4. Install Docker for Mac (not available in app store, brew, or nixpkgs)
 ##
 
 { pkgs, inputs, config, ... }: {
