@@ -19,6 +19,19 @@
 ## 6. Install R Studio
 ##
 
+
+##
+## TODO:
+## - get permission to add ovpn profiles & vpn username/password files to repo as age-encrypted secrets.
+##   If so, can do something like following to connect to vpn without installing OpenVPN Connect or redownloading
+##   the VPN profiles or configuring OpenVPN Connect to store VPN passwords.
+##      sudo openvpn --config "$(pwd)/openvpn/profiles/azure-dev.ovpn" \
+##                   --auth-user-pass "$(pwd)/openvpn/creds/azure-dev.creds" \
+##                   --auth-retry interact \
+##                   --up "$(pwd)/openvpn_up.sh" --down "$(pwd)/openvpn_down.sh" \
+##                   --script-security 2
+##
+
 { pkgs, inputs, config, ... }: {
   users.users.mattpolzin = { };
   home-manager.useGlobalPkgs = true;
@@ -30,6 +43,7 @@
    # Shell
     inputs.agenix.packages.${pkgs.system}.agenix
     inputs.harmony.packages.${pkgs.system}.harmony
+    pkgs.R
     pkgs.azure-cli
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
     pkgs.circumflex
@@ -58,13 +72,13 @@
     pkgs.mutagen
     pkgs.neovim
     pkgs.nodejs
+    pkgs.openvpn
     pkgs.patch
     pkgs.ripgrep
     pkgs.rlwrap
     pkgs.terraform
     pkgs.tree-sitter
     pkgs.yq
-    pkgs.R
 
     # GUI
     pkgs.kitty
