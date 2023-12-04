@@ -32,15 +32,19 @@
 ##                   --script-security 2
 ##
 
+let 
+  neovimFrom = pkgs: pkgs.neovim-unwrapped;
+in
 { pkgs, inputs, config, ... }: {
   users.users.mattpolzin = { };
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = { inherit pkgs; };
+  home-manager.extraSpecialArgs = { inherit pkgs; neovim = neovimFrom pkgs; };
   home-manager.users.mattpolzin = import ./work-user-configuration.nix;
 
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = [
    # Shell
+    (neovimFrom pkgs)
     inputs.agenix.packages.${pkgs.system}.agenix
     inputs.harmony.packages.${pkgs.system}.harmony
     pkgs.R
@@ -70,7 +74,6 @@
     pkgs.kubernetes-helm
     pkgs.kubeseal
     pkgs.mutagen
-    pkgs.neovim
     pkgs.nodejs
     pkgs.openvpn
     pkgs.patch
@@ -82,6 +85,7 @@
 
     # GUI
     pkgs.kitty
+    pkgs.slack
     pkgs.vscode
     pkgs.zoom-us
 
@@ -110,7 +114,6 @@
       Keynote = 409183694;
       Numbers = 409203825;
       Pages = 409201541;
-      "Slack for Desktop" = 803453959;
       Vimari = 1480933944;
       Xcode = 497799835;
     };

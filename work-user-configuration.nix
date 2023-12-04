@@ -34,7 +34,7 @@ let directFileSources = {
   };
 };
 in
-{ pkgs, ... }: {
+{ pkgs, neovim, ... }: {
   editorconfig = {
     enable = true;
     settings = {
@@ -48,7 +48,13 @@ in
   home.stateVersion = "23.11";
 
   # programs to manage configs for:
-  # programs.<...> = { };
+  programs.neovim = {
+    enable = true;
+    package = neovim;
+    plugins = with pkgs.vimPlugins; [
+      onedark-nvim
+    ];
+  };
 
   # additional configs to manage:
   home.file = directFileSources;
