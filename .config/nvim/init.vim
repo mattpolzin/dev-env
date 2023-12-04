@@ -31,7 +31,6 @@ else
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/cmp-vsnip'
-  Plug 'hrsh7th/cmp-vsnip'
   Plug 'petertriho/cmp-git'
   
   Plug 'hrsh7th/nvim-cmp'
@@ -44,7 +43,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 " Browsing/Finding
 Plug 'stevearc/oil.nvim'
-Plug 'BurntSushi/ripgrep'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'junegunn/fzf.vim' " <- faster file picker than telescope currently.
