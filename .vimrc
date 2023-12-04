@@ -1,6 +1,3 @@
-if !has('nvim')
-  execute pathogen#infect()
-endif
 syntax on
 filetype plugin indent on
 set nocompatible
@@ -42,11 +39,6 @@ command -bar Tags :execute ":silent :r !ctags -R >/dev/null"
 "
 " Idris
 "
-if !has('nvim')
-  " with nvim we are using the Idris 2 LSP
-  command! IdrisReload  let leader=get(g:,"mapleader","\\") | exec "normal " . (leader==' '?"1":leader)."r"
-  noremap <Leader>rr :Tags<ENTER> <bar> :IdrisReload<ENTER>
-endif
 au FileType idris2 set foldmethod=indent
 
 "
