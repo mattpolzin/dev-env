@@ -14,8 +14,6 @@ else
   Plug 'navarasu/onedark.nvim'
 endif
 
-Plug 'PeterRincker/vim-searchlight' "highlight search term cursor is over differently
-
 " Util
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
