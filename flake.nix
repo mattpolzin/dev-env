@@ -20,7 +20,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#MattPolzin-MacBook-Pro
-    darwinConfigurations."MattPolzin-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."MattPolzin-Work-Laptop" = nix-darwin.lib.darwinSystem {
       modules = [ 
         home-manager.darwinModules.default
         agenix.darwinModules.default
@@ -30,6 +30,6 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."MattPolzin-MacBook-Pro".pkgs;
+    darwinPackages = self.darwinConfigurations."MattPolzin-Work-Laptop".pkgs;
   };
 }

@@ -12,6 +12,7 @@
 ##     - Rekey secret files (`nix run github:ryantm/agenix -- --rekey`)
 ##     - Commit changes to repo
 ## 3. Install Homebrew (https://brew.sh)
+## 4. Set new laptop's hostname to 'MattPolzin-Work-Laptop'
 ##
 ## Additional initial setup after using nix-darwin on new computer:
 ## 4. Install Docker for Mac (not available in app store, brew, or nixpkgs)
@@ -21,15 +22,15 @@
 
 
 ##
-## TODO:
-## - get permission to add ovpn profiles & vpn username/password files to repo as age-encrypted secrets.
-##   If so, can do something like following to connect to vpn without installing OpenVPN Connect or redownloading
-##   the VPN profiles or configuring OpenVPN Connect to store VPN passwords.
-##      sudo openvpn --config "$(pwd)/openvpn/profiles/azure-dev.ovpn" \
-##                   --auth-user-pass "$(pwd)/openvpn/creds/azure-dev.creds" \
-##                   --auth-retry interact \
-##                   --up "$(pwd)/openvpn_up.sh" --down "$(pwd)/openvpn_down.sh" \
-##                   --script-security 2
+## NOTE:
+## can't store configs or creds in this repo (even encrypted). Still, maybe I will want to keep track of the following
+## rough openvpn command that could replace the OpenVPN connect UI.
+## 
+##    sudo openvpn --config "$(pwd)/openvpn/profiles/azure-dev.ovpn" \
+##                 --auth-user-pass "$(pwd)/openvpn/creds/azure-dev.creds" \
+##                 --auth-retry interact \
+##                 --up "$(pwd)/openvpn_up.sh" --down "$(pwd)/openvpn_down.sh" \
+##                 --script-security 2
 ##
 
 let 
@@ -124,9 +125,46 @@ in
     hostName = "MattPolzin-Work-Laptop";
   };
 
-  # TODO: read up on yabai and determine if I want to use it instead of Divvy
+  # TODO: determine if I want to use yabai instead of Divvy
   services.yabai = {
-    enable = false;
+    enable = true;
+  };
+
+  services.skhd = {
+    enable = true;
+    skhdConfig = ''
+      ##
+      ## Float commands (Divvy inspired)
+      ##
+
+      # left third
+      ctrl + alt + cmd + left : yabai -m window --grid 1:3:0:0:1:1
+
+      # middle third
+      ctrl + alt + cmd + down : yabai -m window --grid 1:3:1:0:1:1
+
+      # right third
+      ctrl + alt + cmd + right : yabai -m window --grid 1:3:2:0:1:1
+
+      # offset middle focus
+      ctrl + alt + cmd + up : yabai -m window --grid 1:6:1:0:3:1
+
+      # full-screen
+      ctrl + alt + cmd + m : yabai -m window --grid 1:1:0:0:1:1
+
+      ##
+      ## Tiled commands (Xmonad inspired)
+      ##
+
+      # toggle float/tiled for window
+      ctrl + alt + cmd + t : yabai -m window --toggle float
+
+      # swap focus with previous window
+      cmd + shift + j : yabai -m window --focus prev
+
+      # swap focus with next window
+      cmd + shift + k : yabai -m window --focus next
+    '';
   };
 
   # Auto upgrade nix package and the daemon service.
