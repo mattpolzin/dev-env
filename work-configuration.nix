@@ -156,14 +156,20 @@ in
       ## Tiled commands (Xmonad inspired)
       ##
 
+      # resize all windows to share tiled space
+      ctrl + alt + cmd + n : yabai -m space --balance
+
+      # toggle between vertical and horizontal split for window
+      ctrl + alt + cmd + space : yabai -m window --toggle split
+
       # toggle float/tiled for window
       ctrl + alt + cmd + t : yabai -m window --toggle float
 
       # swap focus with previous window
-      cmd + shift + j : yabai -m window --focus prev
+      cmd + shift + j : yabai -m window --swap prev
 
       # swap focus with next window
-      cmd + shift + k : yabai -m window --focus next
+      cmd + shift + k : yabai -m window --swap next
     '';
   };
 
