@@ -24,3 +24,6 @@ else
   export PS1="\u:\w \$(parse_git_branch)$ "
 fi
 
+# git auto-completion
+[[ -f ~/bin/git-completion.bash ]] && . $_
+

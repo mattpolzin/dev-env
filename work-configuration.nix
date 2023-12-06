@@ -1,6 +1,9 @@
 ##
 ## Additional initial setup prior to using nix-darwin on new computer:
 ## 1. Install Nix
+## 2. Profile migration (manual because of ENV vars with secrets in them):
+##   * On old computer:
+##     - Grab as much of ~/.zprofile as desirable and transfer to new computer.
 ## 2. Secret decryption preparation:
 ##   * On new computer:
 ##     - Create a new ssh key (`ssh-keygen`) on the new computer specifically for this, not the one used for GitHub
@@ -49,6 +52,7 @@ in
     inputs.agenix.packages.${pkgs.system}.agenix
     inputs.harmony.packages.${pkgs.system}.harmony
     pkgs.R
+    pkgs.asdf-vm # <- installed to aid in assisting co-workers using asdf
     pkgs.azure-cli
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
     pkgs.circumflex
@@ -91,7 +95,7 @@ in
     pkgs.zoom-us
 
     # Shell (Disabled)
-    # pkgs.asdf-vm
+    # -- Empty --
   ];
 
   fonts = {
