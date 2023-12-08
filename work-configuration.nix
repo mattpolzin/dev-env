@@ -47,7 +47,8 @@ in
 
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = [
-   # Shell
+
+    # Shell
     (neovimFrom pkgs)
     inputs.agenix.packages.${pkgs.system}.agenix
     inputs.harmony.packages.${pkgs.system}.harmony
@@ -60,6 +61,7 @@ in
     pkgs.ctags
     pkgs.ddgr
     pkgs.diffutils
+    pkgs.direnv
     pkgs.elixir
     pkgs.elmPackages.elm
     pkgs.fd
@@ -79,11 +81,13 @@ in
     pkgs.kubernetes-helm
     pkgs.kubeseal
     pkgs.mutagen
+    pkgs.nix-index
     pkgs.nodejs
     pkgs.openvpn
     pkgs.patch
     pkgs.ripgrep
     pkgs.rlwrap
+    pkgs.rnix-lsp
     pkgs.terraform
     pkgs.tree-sitter
     pkgs.yq
