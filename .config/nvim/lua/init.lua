@@ -12,11 +12,6 @@ vim.cmd.highlight('Normal       guibg=#16181d')
 vim.cmd.highlight('StatusLineNC guibg=#21252c')
 
 --
--- Search Highlight
---
-vim.cmd.highlight('link Searchlight WildMenu')
-
---
 -- FZF
 --
 vim.keymap.set('n', '<c-p>', function() vim.cmd('Files') end, { silent=true })
