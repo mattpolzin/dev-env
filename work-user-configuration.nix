@@ -35,18 +35,8 @@ let
     };
   };
 in
-{ pkgs, neovim, ... }: 
+{ pkgs, pkgs-edge, neovim, ... }: 
 let 
-  fileline-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "fileline-nvim";
-    version = "2023-08-30";
-    src = pkgs.fetchFromGitHub {
-      owner = "lewis6991";
-      repo = "fileline.nvim";
-      rev = "64fc4b24f559467ff7fdbf4b3d9eaf4724f331e4";
-      hash = "sha256-+1WbwbFXJut3uSYURLdOeArL08AEfU6XcOuPNs2vyGA=";
-    };
-  };
   fzf-vim-core = pkgs.vimUtils.buildVimPlugin rec {
     pname = "fzf-vim-core";
     version = "2023-12-02";
@@ -100,7 +90,7 @@ in {
       lua require('init')
     '';
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs-edge.vimPlugins; [
       # colorscheme
       onedark-nvim
 

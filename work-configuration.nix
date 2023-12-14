@@ -36,20 +36,22 @@
 ##                 --script-security 2
 ##
 
+{ pkgs, inputs, config, ... }:
 let 
-  neovimFrom = pkgs: pkgs.neovim-unwrapped;
+  neovim = pkgs.neovim-unwrapped;
+  pkgs-edge = inputs.nixpkgs-edge.legacyPackages.${pkgs.system};
 in
-{ pkgs, inputs, config, ... }: {
+{
   users.users.mattpolzin = { };
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = { inherit pkgs; neovim = neovimFrom pkgs; };
+  home-manager.extraSpecialArgs = { inherit pkgs neovim pkgs-edge; };
   home-manager.users.mattpolzin = import ./work-user-configuration.nix;
 
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = [
 
     # Shell
-    (neovimFrom pkgs)
+    neovim
     inputs.agenix.packages.${pkgs.system}.agenix
     inputs.harmony.packages.${pkgs.system}.harmony
     pkgs.R
@@ -136,10 +138,16 @@ in
   # TODO: determine if I want to use yabai instead of Divvy
   services.yabai = {
     enable = true;
+    # !! only using edge yabai because of build failure for x86_64-darwin
+    # on nixpkgs 23.11
+    package = pkgs-edge.yabai;
   };
 
   services.skhd = {
     enable = true;
+    # !! only using edge skhd because of build failure for x86_64-darwin
+    # on nixpkgs 23.11
+    package = pkgs-edge.skhd;
     skhdConfig = ''
       ##
       ## Float commands (Divvy inspired)
