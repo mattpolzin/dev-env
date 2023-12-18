@@ -16,9 +16,12 @@
 
     harmony.url = "github:mattpolzin/harmony";
     harmony.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-edge, nix-darwin, home-manager, agenix, harmony }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-edge, nix-darwin, home-manager, agenix, harmony, nix-index-database }:
   let
     workConfiguration = import ./work-configuration.nix;
   in
@@ -29,6 +32,7 @@
       modules = [ 
         home-manager.darwinModules.default
         agenix.darwinModules.default
+        nix-index-database.darwinModules.nix-index
         workConfiguration
       ];
       specialArgs = { inherit inputs; };

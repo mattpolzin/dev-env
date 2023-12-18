@@ -38,6 +38,8 @@
 
 { pkgs, inputs, config, ... }:
 let 
+  agenix =  inputs.agenix.packages.${pkgs.system}.agenix;
+  harmony = inputs.harmony.packages.${pkgs.system}.harmony;
   neovim = pkgs.neovim-unwrapped;
   pkgs-edge = inputs.nixpkgs-edge.legacyPackages.${pkgs.system};
 in
@@ -51,9 +53,9 @@ in
   environment.systemPackages = [
 
     # Shell
+    agenix
+    harmony
     neovim
-    inputs.agenix.packages.${pkgs.system}.agenix
-    inputs.harmony.packages.${pkgs.system}.harmony
     pkgs.R
     pkgs.asdf-vm # <- installed to aid in assisting co-workers using asdf
     pkgs.azure-cli
@@ -83,7 +85,6 @@ in
     pkgs.kubernetes-helm
     pkgs.kubeseal
     pkgs.mutagen
-    pkgs.nix-index
     pkgs.nodejs
     pkgs.openvpn
     pkgs.patch
