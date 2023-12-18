@@ -36,7 +36,7 @@
 ##                 --script-security 2
 ##
 
-{ pkgs, inputs, config, ... }:
+{ pkgs, system, inputs, config, ... }:
 let 
   agenix =  inputs.agenix.packages.${pkgs.system}.agenix;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
@@ -243,7 +243,7 @@ in
 
   # The platform the configuration will be used on.
   nixpkgs = {
-    hostPlatform = "x86_64-darwin";
+    hostPlatform = system;
     config = {
       allowUnfree = true;
     };

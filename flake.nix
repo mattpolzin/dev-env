@@ -24,21 +24,23 @@
   outputs = inputs@{ self, nixpkgs, nixpkgs-edge, nix-darwin, home-manager, agenix, harmony, nix-index-database }:
   let
     workConfiguration = import ./work-configuration.nix;
-  in
-  {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#MattPolzin-MacBook-Pro
-    darwinConfigurations."MattPolzin-Work-Laptop" = nix-darwin.lib.darwinSystem {
+    darwinConfig = system: config: nix-darwin.lib.darwinSystem {
       modules = [ 
         home-manager.darwinModules.default
         agenix.darwinModules.default
         nix-index-database.darwinModules.nix-index
-        workConfiguration
+        config
       ];
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit system inputs; };
     };
+  in
+  {
+    # Build darwin flake using:
+    # $ darwin-rebuild build --flake .
+    darwinConfigurations."MattPolzin-Work-Laptop-Old" = darwinConfig "x86_64-darwin" workConfiguration;
+    darwinConfigurations."MattPolzin-Work-Laptop" = darwinConfig "aarch64-darwin" workConfiguration;
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."MattPolzin-Work-Laptop".pkgs;
+    darwinPackages = self.darwinConfigurations."MattPolzin-Work-Laptop-Old".pkgs;
   };
 }
