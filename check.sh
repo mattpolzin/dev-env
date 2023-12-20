@@ -75,6 +75,7 @@ optionalProgramCheck 'jq' 'jq'
 optionalProgramCheck 'k9s'     'k9s'
 optionalProgramCheck 'kubectl' 'kubectl'
 optionalProgramCheck 'yq' 'yq'
+optionalProgramCheck 'tree' 'tree'
 
 if [ "$(command -v scheme)" = '' ] && [ "$(command -v chez)" = '' ]; then
   echo '  * ( ) scheme found in PATH.'

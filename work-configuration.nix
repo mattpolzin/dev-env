@@ -92,6 +92,7 @@ in
     pkgs.rlwrap
     pkgs.rnix-lsp
     pkgs.terraform
+    pkgs.tree
     pkgs.tree-sitter
     pkgs.yq
 
