@@ -16,6 +16,8 @@
 ##     - Commit changes to repo
 ## 3. Install Homebrew (https://brew.sh)
 ## 4. Set new laptop's hostname to 'MattPolzin-Work-Laptop'
+##    `sudo scutil --set HostName MattPolzin-Work-Laptop`
+##    `sudo scutil --set LocalHostName MattPolzin-Work-Laptop`
 ##
 ## Additional initial setup after using nix-darwin on new computer:
 ## 4. Install Docker for Mac (not available in app store, brew, or nixpkgs)
