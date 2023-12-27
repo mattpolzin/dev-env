@@ -13,8 +13,8 @@ let
     ".ctags" = {
       source = ./.ctags;
     };
-    ".config/nvim" = {
-      source = ./.config/nvim;
+    ".config/nvim/lua" = {
+      source = ./.config/nvim/lua;
       recursive = true;
     };
     ".config/kitty" = {
@@ -37,16 +37,6 @@ let
 in
 { pkgs, pkgs-edge, neovim, ... }: 
 let 
-  fzf-vim-core = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "fzf-vim-core";
-    version = "2023-12-02";
-    src = pkgs.fetchFromGitHub {
-      owner = "junegunn";
-      repo = "fzf";
-      rev = "d21d5c9510170d74a7f959309da720b6df72ca01";
-      hash = "sha256-gtouPj6wMrurlOj2BIfsn3yq2tVOldew5GNEw0LPIZU=";
-    };
-  };
   idris2-nvim = pkgs.vimUtils.buildVimPlugin rec {
     pname = "idris2-nvim";
     version = "2023-09-05";
@@ -56,6 +46,7 @@ let
       rev = "8bff02984a33264437e70fd9fff4359679d910da";
       hash = "sha256-guEmds98XEBKuJVdB+rQB01G+RmnQaG+RTjM6smccAI=";
     };
+    dependencies = with pkgs-edge.vimPlugins; [ nui-nvim plenary-nvim ];
   };
   autolist-nvim = pkgs.vimUtils.buildVimPlugin rec {
     pname = "autolist-nvim";
@@ -115,10 +106,8 @@ in {
       oil-nvim
       telescope-nvim
       telescope-fzf-native-nvim # <- might need a buildPhase override to run 'make'
-      { plugin = fzf-vim-core;
+      { plugin = fzf-vim; # <- faster than telescope for file finding.
         config = ''
-          fzf#install()
-
           let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.85 } }
           let g:fzf_action = {
             \ 'ctrl-t': 'tab split',
@@ -127,7 +116,6 @@ in {
           let g:fzf_history_dir = '~/.local/share/fzf-history'
         '';
       }
-      fzf-vim # <- faster than telescope for file finding.
 
       # LSP
       nvim-lspconfig
