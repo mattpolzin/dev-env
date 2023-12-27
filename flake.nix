@@ -42,5 +42,8 @@
 
     # Expose the package set, including overlays, for convenience.
     darwinPackages = self.darwinConfigurations."MattPolzin-Work-Laptop-Old".pkgs;
+
+    # Expose nix-darwin
+    packages = nix-darwin.packages;
   };
 }

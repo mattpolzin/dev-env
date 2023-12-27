@@ -46,7 +46,9 @@ let
   pkgs-edge = inputs.nixpkgs-edge.legacyPackages.${pkgs.system};
 in
 {
-  users.users.mattpolzin = { };
+  users.users.mattpolzin = {
+    home = "/Users/mattpolzin";
+  };
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = { inherit pkgs neovim pkgs-edge; };
   home-manager.users.mattpolzin = import ./work-user-configuration.nix;
@@ -207,7 +209,6 @@ in
 
   age.secrets.etcHosts.file = ./secrets/etc-hosts.age;
   environment.etc.hosts = {
-    copy = true;
     source = config.age.secrets.etcHosts.path;
   };
 
