@@ -199,7 +199,10 @@ in
   services.nix-daemon.enable = true;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    promptInit = ""; # I've got prompt stuff in my ~/.zshrc
+  };
 
   # Necessary for using flakes on this system.
   nix.settings = {
