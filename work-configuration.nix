@@ -26,6 +26,7 @@
 ## 7. Optionally create .envrc file in repos (e.g. "use nix")
 ## 8. Copy Documents/Downloads folders to new machine.
 ## 9. Copy ~/notes (Neorg files) to new machine.
+## 10. Snag Safari bookmarks as desired.
 ##
 
 
