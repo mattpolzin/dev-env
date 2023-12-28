@@ -218,6 +218,9 @@ in
 
       # make left split larger
       cmd + shift - right : yabai -m window --ratio rel:0.1
+
+      # zoom-parent
+      cmd + shift - up : yabai -m window --toggle zoom-parent
     '';
   };
 
