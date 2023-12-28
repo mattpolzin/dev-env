@@ -195,11 +195,23 @@ in
       # toggle float/tiled for window
       ctrl + alt + cmd - t : yabai -m window --toggle float
 
-      # swap focus with previous window
+      # focus previous window
+      cmd - j : yabai -m window --focus prev
+
+      # focus next window
+      cmd - k : yabai -m window --focus next
+
+      # swap position with previous window
       cmd + shift - j : yabai -m window --swap prev
 
-      # swap focus with next window
+      # swap position with next window
       cmd + shift - k : yabai -m window --swap next
+
+      # make right split larger
+      cmd + shift - left : yabai -m window --ratio rel:-0.1
+
+      # make left split larger
+      cmd + shift - right : yabai -m window --ratio rel:0.1
     '';
   };
 
