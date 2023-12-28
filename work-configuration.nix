@@ -21,18 +21,22 @@
 ##
 ## Additional initial setup after using nix-darwin on new computer:
 ## 4. Install Docker for Mac (not available in app store, brew, or nixpkgs)
-## 5. Set up OpenVPN Connect (must set up through Ops portal and GUI app, best I can tell)
-## 6. Install R Studio
+## 5. Install R Studio
+## 6. Snag ovpn files from old computer
+## 7. Optionally create .envrc file in repos (e.g. "use nix")
+## 8. Copy Documents/Downloads folders to new machine.
+## 9. Copy ~/notes (Neorg files) to new machine.
 ##
 
 
 ##
 ## NOTE:
-## can't store configs or creds in this repo (even encrypted). Still, maybe I will want to keep track of the following
-## rough openvpn command that could replace the OpenVPN connect UI.
+## can't store configs or creds in this repo (even encrypted).
+## still can use roughly the following to control VPN connection from shell,
+## just need to copy the ovpn files and snag the credentials from the old laptop.
 ## 
-##    sudo openvpn --config "$(pwd)/openvpn/profiles/azure-dev.ovpn" \
-##                 --auth-user-pass "$(pwd)/openvpn/creds/azure-dev.creds" \
+##    sudo openvpn --config "$(pwd)/openvpn/profiles/whatever.ovpn" \
+##                 --auth-user-pass "$(pwd)/openvpn/creds/whatever.creds" \
 ##                 --auth-retry interact \
 ##                 --up "$(pwd)/openvpn_up.sh" --down "$(pwd)/openvpn_down.sh" \
 ##                 --script-security 2
@@ -105,6 +109,7 @@ in
     pkgs.slack
     pkgs.vscode
     pkgs.zoom-us
+    pkgs.postman
 
     # Shell (Disabled)
     # -- Empty --
@@ -318,6 +323,9 @@ in
     config = {
       allowUnfree = true;
     };
-    overlays = [ ];
+    overlays = [
+      # Postman working version as of now:
+      (import ./nix/overlays/postman.nix)
+    ];
   };
 }
