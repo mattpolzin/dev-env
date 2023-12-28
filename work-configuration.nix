@@ -147,6 +147,14 @@ in
     # !! only using edge yabai because of build failure for x86_64-darwin
     # on nixpkgs 23.11
     package = pkgs-edge.yabai;
+    config = {
+      debug_output = "on";
+      layout = "bsp";
+    };
+
+    extraConfig = ''
+      yabai -m rule --add app='System Settings' manage=off
+    '';
   };
 
   services.skhd = {
@@ -160,38 +168,38 @@ in
       ##
 
       # left third
-      ctrl + alt + cmd + left : yabai -m window --grid 1:3:0:0:1:1
+      ctrl + alt + cmd - left : ([[ "$(yabai -m query --windows --window | jq '."is-floating"')" = 'true' ]] || yabai -m window --toggle float); yabai -m window --grid 1:3:0:0:1:1
 
       # middle third
-      ctrl + alt + cmd + down : yabai -m window --grid 1:3:1:0:1:1
+      ctrl + alt + cmd - down : ([[ "$(yabai -m query --windows --window | jq '."is-floating"')" = 'true' ]] || yabai -m window --toggle float); yabai -m window --grid 1:3:1:0:1:1
 
       # right third
-      ctrl + alt + cmd + right : yabai -m window --grid 1:3:2:0:1:1
+      ctrl + alt + cmd - right : ([[ "$(yabai -m query --windows --window | jq '."is-floating"')" = 'true' ]] || yabai -m window --toggle float); yabai -m window --grid 1:3:2:0:1:1
 
       # offset middle focus
-      ctrl + alt + cmd + up : yabai -m window --grid 1:6:1:0:3:1
+      ctrl + alt + cmd - up : ([[ "$(yabai -m query --windows --window | jq '."is-floating"')" = 'true' ]] || yabai -m window --toggle float); yabai -m window --grid 1:6:1:0:3:1
 
       # full-screen
-      ctrl + alt + cmd + m : yabai -m window --grid 1:1:0:0:1:1
+      ctrl + alt + cmd - m : ([[ "$(yabai -m query --windows --window | jq '."is-floating"')" = 'true' ]] || yabai -m window --toggle float); yabai -m window --grid 1:1:0:0:1:1
 
       ##
       ## Tiled commands (Xmonad inspired)
       ##
 
       # resize all windows to share tiled space
-      ctrl + alt + cmd + n : yabai -m space --balance
+      ctrl + alt + cmd - n : yabai -m space --balance
 
       # toggle between vertical and horizontal split for window
-      ctrl + alt + cmd + space : yabai -m window --toggle split
+      ctrl + alt + cmd - space : yabai -m window --toggle split
 
       # toggle float/tiled for window
-      ctrl + alt + cmd + t : yabai -m window --toggle float
+      ctrl + alt + cmd - t : yabai -m window --toggle float
 
       # swap focus with previous window
-      cmd + shift + j : yabai -m window --swap prev
+      cmd + shift - j : yabai -m window --swap prev
 
       # swap focus with next window
-      cmd + shift + k : yabai -m window --swap next
+      cmd + shift - k : yabai -m window --swap next
     '';
   };
 
