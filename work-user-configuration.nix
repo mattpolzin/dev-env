@@ -33,6 +33,10 @@ let
       source = ./.config/nix;
       recursive = true;
     };
+    ".config/nixpkgs" = {
+      source = ./.config/nixpkgs;
+      recursive = true;
+    };
   };
 in
 { pkgs, pkgs-edge, neovim, ... }: 

@@ -2,7 +2,8 @@
   description = "Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
+
     nixpkgs-edge.url = "github:NixOS/nixpkgs";
 
     nix-darwin.url = "github:LnL7/nix-darwin";
@@ -15,7 +16,7 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     harmony.url = "github:mattpolzin/harmony";
-    harmony.inputs.nixpkgs.follows = "nixpkgs";
+#    harmony.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
