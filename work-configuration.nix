@@ -123,11 +123,14 @@ in
     taps = [
       "garden-io/garden"
     ];
+    casks = [
+      "1password"
+      "1password-cli"
+    ];
     brews = [
       "garden-cli"
     ];
     masApps = {
-      "1Password 7 - Passwordd Manager" = 1333542190;
       Keynote = 409183694;
       Numbers = 409203825;
       Pages = 409201541;
@@ -154,6 +157,8 @@ in
 
     extraConfig = ''
       yabai -m rule --add app='System Settings' manage=off
+      yabai -m rule --add app='1Password 7' manage=off
+      yabai -m rule --add app='1Password' manage=off
     '';
   };
 
