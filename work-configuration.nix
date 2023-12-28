@@ -254,12 +254,17 @@ in
   # Issue: https://github.com/LnL7/nix-darwin/issues/139
   system.activationScripts.applications.text = ''
     echo "setting up ~/Applications..." >&2
-    applications="/Applications"
+    applications="${config.users.users.mattpolzin.home}/Applications"
     nix_apps="$applications/Nix Apps"
 
     # Delete the directory to remove old links
     rm -rf "$nix_apps"
+
+    # Needs to be writable so that nix-darwin can symlink into it
     mkdir -p "$nix_apps"
+    chown ${config.users.users.mattpolzin.name}: "$nix_apps"
+    chmod u+w "$nix_apps"
+
     find ${config.system.build.applications}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
         while read src; do
             # Spotlight does not recognize symlinks, it will ignore directory we link to the applications folder.
