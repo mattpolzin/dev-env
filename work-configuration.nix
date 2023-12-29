@@ -252,6 +252,8 @@ in
   };
 
   system.defaults = {
+    # automatically rearrange spaces based on recently used:
+    dock.mru-spaces = false;
     # auto-hide the dock:
     dock.autohide = true;
     # dock minimize/maximize effect:
@@ -295,6 +297,9 @@ in
     # Expand save panel by default:
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
+
+    # doesn't create the folder, just uses it if it is there:
+    screencapture.location = "~/Documents/screenshots";
   };
 
   time.timeZone = "America/Chicago";
