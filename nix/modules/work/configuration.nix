@@ -56,7 +56,7 @@ in
   };
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = { inherit pkgs neovim pkgs-edge; };
-  home-manager.users.mattpolzin = import ./work-user-configuration.nix;
+  home-manager.users.mattpolzin = import ./mattpolzin.nix;
 
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = [
@@ -246,7 +246,7 @@ in
     experimental-features = "nix-command flakes";
   };
 
-  age.secrets.etcHosts.file = ./secrets/etc-hosts.age;
+  age.secrets.etcHosts.file = ../../../secrets/etc-hosts.age;
   environment.etc.hosts = {
     source = config.age.secrets.etcHosts.path;
   };
@@ -353,7 +353,7 @@ in
     };
     overlays = [
       # Postman working version as of now:
-      (import ./nix/overlays/postman.nix)
+      (import ../../overlays/postman.nix)
     ];
   };
 }

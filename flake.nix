@@ -24,7 +24,7 @@
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-edge, nix-darwin, home-manager, agenix, harmony, nix-index-database }:
   let
-    workConfiguration = import ./work-configuration.nix;
+    workConfiguration = import ./nix/modules/work/configuration.nix;
     darwinConfig = system: config: nix-darwin.lib.darwinSystem {
       modules = [ 
         home-manager.darwinModules.default

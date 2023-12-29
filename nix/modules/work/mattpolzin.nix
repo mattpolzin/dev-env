@@ -2,39 +2,39 @@ let
   directFileSources = {
     # source these files directly:
     ".bashrc" = {
-      source = ./.bashrc;
+      source = ../../../.bashrc;
     };
     ".zshrc" = {
-      source = ./.zshrc;
+      source = ../../../.zshrc;
     };
     ".vimrc" = {
-      source = ./.vimrc;
+      source = ../../../.vimrc;
     };
     ".ctags" = {
-      source = ./.ctags;
+      source = ../../../.ctags;
     };
     ".config/nvim/lua" = {
-      source = ./.config/nvim/lua;
+      source = ../../../.config/nvim/lua;
       recursive = true;
     };
     ".config/kitty" = {
-      source = ./.config/kitty;
+      source = ../../../.config/kitty;
       recursive = true;
     };
     ".config/k9s" = {
-      source = ./.config/k9s;
+      source = ../../../.config/k9s;
       recursive = true;
     };
     ".config/ripgrep" = {
-      source = ./.config/ripgrep;
+      source = ../../../.config/ripgrep;
       recursive = true;
     };
     ".config/nix" = {
-      source = ./.config/nix;
+      source = ../../../.config/nix;
       recursive = true;
     };
     ".config/nixpkgs" = {
-      source = ./.config/nixpkgs;
+      source = ../../../.config/nixpkgs;
       recursive = true;
     };
   };
