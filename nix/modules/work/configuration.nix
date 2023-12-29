@@ -72,7 +72,7 @@ in
     pkgs.circumflex
     pkgs.cloc
     pkgs.ctags
-    pkgs.ddgr
+    pkgs-edge.ddgr
     pkgs.diffutils
     pkgs.direnv
     pkgs.elixir
