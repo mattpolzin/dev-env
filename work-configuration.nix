@@ -252,27 +252,49 @@ in
   };
 
   system.defaults = {
-    # tap-to-click:
-    NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
     # auto-hide the dock:
     dock.autohide = true;
     # dock minimize/maximize effect:
     dock.mineffect = "suck";
+    # show recent applications:
+    dock.show-recents = false;
+    # default size is 64:
+    dock.tilesize = 32;
+    # show icons on desktop:
+    finder.CreateDesktop = false;
+
+    # tap-to-click:
+    NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
+    # swipe to navigate forward/backward (e.g. in web browser):
+    NSGlobalDomain.AppleEnableMouseSwipeNavigateWithScrolls = false;
+    NSGlobalDomain.AppleEnableSwipeNavigateWithScrolls = false;
+
+    # "Dark" or unset for normal:
+    NSGlobalDomain.AppleInterfaceStyle = "Dark";
+    NSGlobalDomain.AppleInterfaceStyleSwitchesAutomatically = false;
 
     # always show hidden files:
     NSGlobalDomain.AppleShowAllFiles = true;
     # Show hidden files:
     finder.AppleShowAllFiles = true;
-
     # path breadcrumbs:
     finder.ShowPathbar = true;
     # status bar at bottom:
     finder.ShowStatusBar = true;
+    # warn when changing file extensions:
+    finder.FXEnableExtensionChangeWarning = false;
 
     loginwindow.GuestEnabled = false;
 
     # 0 = Show date
     menuExtraClock.ShowDate = 0;
+
+    # Save to iCloud by default:
+    NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
+
+    # Expand save panel by default:
+    NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
+    NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
   };
 
   time.timeZone = "America/Chicago";
