@@ -261,7 +261,7 @@ in
     # show recent applications:
     dock.show-recents = false;
     # default size is 64:
-    dock.tilesize = 32;
+    dock.tilesize = 50;
     # show icons on desktop:
     finder.CreateDesktop = false;
 
