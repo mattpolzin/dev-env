@@ -285,6 +285,8 @@ in
     finder.ShowStatusBar = true;
     # warn when changing file extensions:
     finder.FXEnableExtensionChangeWarning = false;
+    # prefer list view in Finder:
+    finder.FXPreferredViewStyle = "Nlsv";
 
     loginwindow.GuestEnabled = false;
 
