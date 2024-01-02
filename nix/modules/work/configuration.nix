@@ -48,7 +48,7 @@ let
   agenix =  inputs.agenix.packages.${pkgs.system}.agenix;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
   neovim = pkgs.neovim-unwrapped;
-  pkgs-edge = inputs.nixpkgs-edge.legacyPackages.${pkgs.system};
+  pkgs-edge = import inputs.nixpkgs-edge { inherit (pkgs) system config; };
 in
 {
   users.users.mattpolzin = {
@@ -107,9 +107,9 @@ in
 
     # GUI
     pkgs.kitty
-    pkgs.slack
+    pkgs-edge.slack
     pkgs.vscode
-    pkgs.zoom-us
+    pkgs-edge.zoom-us
     pkgs.postman
 
     # Shell (Disabled)
