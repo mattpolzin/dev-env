@@ -145,9 +145,10 @@ in
     };
   };
 
-  networking = {
-    computerName = "Matt Polzin Work Laptop";
-    hostName = "MattPolzin-Work-Laptop";
+  networking = rec {
+    computerName = "MattPolzin-Work-Laptop";
+    hostName = computerName;
+    localHostName = computerName;
   };
 
   # TODO: determine if I want to use yabai instead of Divvy
