@@ -167,6 +167,7 @@ in
       yabai -m rule --add app='1Password' manage=off
       yabai -m rule --add app='zoom.us' manage=off
       yabai -m rule --add title='Web Inspector' manage=off
+      yabai -m rule --add title='Trash' manage=off
     '';
   };
 
