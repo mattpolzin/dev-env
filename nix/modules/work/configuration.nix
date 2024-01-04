@@ -104,6 +104,7 @@ in
     pkgs.tree
     pkgs.tree-sitter
     pkgs.yq
+    pkgs.nix-output-monitor
 
     # GUI
     pkgs.kitty
