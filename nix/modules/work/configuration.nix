@@ -58,7 +58,7 @@ in
   home-manager.extraSpecialArgs = { inherit pkgs neovim pkgs-edge; };
   home-manager.users.mattpolzin = import ./mattpolzin.nix;
 
-  # List packages installed in system profile. To search by name, run:
+  # List packages installed in system profile.
   environment.systemPackages = [
 
     # Shell
@@ -66,7 +66,6 @@ in
     harmony
     neovim
     pkgs.R
-    pkgs.asdf-vm # <- installed to aid in assisting co-workers using asdf
     pkgs.azure-cli
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
     pkgs.circumflex
@@ -84,6 +83,7 @@ in
     pkgs.git
     pkgs.git-lfs
     pkgs.glow
+    pkgs.gnupg
     pkgs.graphviz
     pkgs.idris2
     pkgs.jq
@@ -94,6 +94,7 @@ in
     pkgs.kubernetes-helm
     pkgs.kubeseal
     pkgs.mutagen
+    pkgs.nix-output-monitor
     pkgs.nodejs
     pkgs.openvpn
     pkgs.patch
@@ -104,7 +105,6 @@ in
     pkgs.tree
     pkgs.tree-sitter
     pkgs.yq
-    pkgs.nix-output-monitor
 
     # GUI
     pkgs.kitty
