@@ -65,13 +65,14 @@ in
     agenix
     harmony
     neovim
+    pkgs-edge.ddgr
+    pkgs-edge.tree-sitter
     pkgs.R
     pkgs.azure-cli
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
     pkgs.circumflex
     pkgs.cloc
     pkgs.ctags
-    pkgs-edge.ddgr
     pkgs.diffutils
     pkgs.direnv
     pkgs.elixir
@@ -103,15 +104,14 @@ in
     pkgs.rnix-lsp
     pkgs.terraform
     pkgs.tree
-    pkgs.tree-sitter
     pkgs.yq
 
     # GUI
-    pkgs.kitty
     pkgs-edge.slack
-    pkgs.vscode
     pkgs-edge.zoom-us
+    pkgs.kitty
     pkgs.postman
+    pkgs.vscode
 
     # Shell (Disabled)
     # -- Empty --
@@ -153,7 +153,6 @@ in
     localHostName = computerName;
   };
 
-  # TODO: determine if I want to use yabai instead of Divvy
   services.yabai = {
     enable = true;
     # !! only using edge yabai because of build failure for x86_64-darwin

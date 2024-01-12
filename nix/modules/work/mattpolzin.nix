@@ -161,6 +161,7 @@ in {
           p.nix
           p.norg
           # p.norg_meta # <- not found
+          pkgs-edge.tree-sitter.builtGrammars.tree-sitter-norg-meta
           p.python
           p.query
           p.ruby
