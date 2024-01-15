@@ -18,11 +18,18 @@
     harmony.url = "github:mattpolzin/harmony";
 #    harmony.inputs.nixpkgs.follows = "nixpkgs";
 
+    idris.url = "github:idris-lang/Idris2";
+    idris.inputs.nixpkgs.follows = "nixpkgs-edge";
+
+    idris-lsp.url = "github:idris-community/idris2-lsp";
+    idris-lsp.inputs.nixpkgs.follows = "nixpkgs-edge";
+    idris-lsp.inputs.idris.follows = "idris";
+
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-edge, nix-darwin, home-manager, agenix, harmony, nix-index-database }:
+  outputs = inputs@{ self, nix-darwin, home-manager, agenix, nix-index-database, ... }:
   let
     workConfiguration = import ./nix/modules/work/configuration.nix;
     darwinConfig = system: config: nix-darwin.lib.darwinSystem {

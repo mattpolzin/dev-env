@@ -48,6 +48,8 @@ let
   agenix =  inputs.agenix.packages.${pkgs.system}.agenix;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
   neovim = pkgs.neovim-unwrapped;
+  idris2-lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2-lsp;
+  idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
   pkgs-edge = import inputs.nixpkgs-edge { inherit (pkgs) system config; };
 in
 {
@@ -64,6 +66,8 @@ in
     # Shell
     agenix
     harmony
+    idris2
+    idris2-lsp
     neovim
     pkgs-edge.ddgr
     pkgs-edge.tree-sitter
@@ -86,7 +90,6 @@ in
     pkgs.glow
     pkgs.gnupg
     pkgs.graphviz
-    pkgs.idris2
     pkgs.jq
     pkgs.k9s
     pkgs.kind
@@ -107,6 +110,7 @@ in
     pkgs.yq
 
     # GUI
+#    pkgs-edge.bruno # <- considering replacing Postman with this
     pkgs-edge.slack
     pkgs-edge.zoom-us
     pkgs.kitty
