@@ -35,21 +35,29 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, alejandra, nix-darwin, home-manager, agenix, nix-index-database, nixpkgs, ... }:
-  let
+  outputs = inputs @ {
+    self,
+    alejandra,
+    nix-darwin,
+    home-manager,
+    agenix,
+    nix-index-database,
+    nixpkgs,
+    ...
+  }: let
     lib = nixpkgs.lib;
     workConfiguration = import ./nix/modules/work/configuration.nix;
-    darwinConfig = system: config: nix-darwin.lib.darwinSystem {
-      modules = [ 
-        home-manager.darwinModules.default
-        agenix.darwinModules.default
-        nix-index-database.darwinModules.nix-index
-        config
-      ];
-      specialArgs = { inherit system inputs; };
-    };
-  in
-  {
+    darwinConfig = system: config:
+      nix-darwin.lib.darwinSystem {
+        modules = [
+          home-manager.darwinModules.default
+          agenix.darwinModules.default
+          nix-index-database.darwinModules.nix-index
+          config
+        ];
+        specialArgs = {inherit system inputs;};
+      };
+  in {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .
     darwinConfigurations."MattPolzin-Work-Laptop-Old" = darwinConfig "x86_64-darwin" workConfiguration;
@@ -61,6 +69,6 @@
     # Expose nix-darwin
     packages = nix-darwin.packages;
 
-    formatter = lib.genAttrs lib.systems.flakeExposed (system: alejandra.packages.${system});
+    formatter = lib.genAttrs lib.systems.flakeExposed (system: alejandra.packages.${system}.default);
   };
 }

@@ -28,41 +28,41 @@
 ## 9. Copy ~/notes (Neorg files) to new machine.
 ## 10. Snag Safari bookmarks as desired.
 ##
-
-
 ##
 ## NOTE:
 ## can't store configs or creds in this repo (even encrypted).
 ## still can use roughly the following to control VPN connection from shell,
 ## just need to copy the ovpn files and snag the credentials from the old laptop.
-## 
+##
 ##    sudo openvpn --config "$(pwd)/openvpn/profiles/whatever.ovpn" \
 ##                 --auth-user-pass "$(pwd)/openvpn/creds/whatever.creds" \
 ##                 --auth-retry interact \
 ##                 --up "$(pwd)/openvpn_up.sh" --down "$(pwd)/openvpn_down.sh" \
 ##                 --script-security 2
 ##
-
-{ pkgs, system, inputs, config, ... }:
-let 
-  agenix =  inputs.agenix.packages.${pkgs.system}.agenix;
+{
+  pkgs,
+  system,
+  inputs,
+  config,
+  ...
+}: let
+  agenix = inputs.agenix.packages.${pkgs.system}.agenix;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
   neovim = pkgs.neovim-unwrapped;
   idris2-lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2-lsp;
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
-  pkgs-edge = import inputs.nixpkgs-edge { inherit (pkgs) system config; };
-in
-{
+  pkgs-edge = import inputs.nixpkgs-edge {inherit (pkgs) system config;};
+in {
   users.users.mattpolzin = {
     home = "/Users/mattpolzin";
   };
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = { inherit pkgs neovim pkgs-edge; };
+  home-manager.extraSpecialArgs = {inherit pkgs neovim pkgs-edge;};
   home-manager.users.mattpolzin = import ./mattpolzin.nix;
 
   # List packages installed in system profile.
   environment.systemPackages = [
-
     # Shell
     agenix
     harmony
@@ -126,7 +126,7 @@ in
   fonts = {
     fontDir.enable = true;
     fonts = [
-      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
     ];
   };
 
@@ -345,7 +345,7 @@ in
             # It does understand MacOS aliases though, a unique filesystem feature. Sadly they cannot be created
             # from bash (as far as I know), so we use the oh-so-great Apple Script instead.
             /usr/bin/osascript -e "
-                set fileToAlias to POSIX file \"$src\" 
+                set fileToAlias to POSIX file \"$src\"
                 set applicationsFolder to POSIX file \"$nix_apps\"
                 tell application \"Finder\"
                     make alias file to fileToAlias at applicationsFolder

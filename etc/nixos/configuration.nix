@@ -1,33 +1,35 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
 {
-  nixpkgs.overlays = [ (import ./nixos-overlay/overlay.nix) ];
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./nixos-overlay/modules/wifi-fw-selection.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  nixpkgs.overlays = [(import ./nixos-overlay/overlay.nix)];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./nixos-overlay/modules/wifi-fw-selection.nix
+  ];
 
   # Disable builtin audio
-  boot.kernelParams = [ "intel_iommu=on" "apple_bce.aaudio_enabled=0" ];
+  boot.kernelParams = ["intel_iommu=on" "apple_bce.aaudio_enabled=0"];
 
   # Custom kernel
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux-mbp;
-  boot.extraModulePackages = with pkgs; [ apple-bce apple-ib-drv ];
+  boot.extraModulePackages = with pkgs; [apple-bce apple-ib-drv];
   #   boot.kernelModules = [
   #     "kvm-intel"
   #     # "applesmc" # <- won't start up...
   #   ];
 
   # Load Apple hardware modules early
-  boot.initrd.kernelModules = [ "apple_bce" "apple-ibridge" "apple-ib-tb" ];
+  boot.initrd.kernelModules = ["apple_bce" "apple-ibridge" "apple-ib-tb"];
 
   # Include wiki firmware
   hardware.appleWifiFirmware.model = "MacBookPro16,1";
-  hardware.firmware = [ (pkgs.apple-wifi-firmware.override { macModel = config.hardware.appleWifiFirmware.model; }) ];
+  hardware.firmware = [(pkgs.apple-wifi-firmware.override {macModel = config.hardware.appleWifiFirmware.model;})];
 
   # Binary cache for t2linux derivations
   nix = {
@@ -47,7 +49,7 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   # networking.hostName = "nixos"; # Define your hostname.
-  networking.wireless.enable = false;  # wireless support via wpa_supplicant.
+  networking.wireless.enable = false; # wireless support via wpa_supplicant.
   networking.wireless.iwd.enable = true;
   networking.networkmanager = {
     enable = true;
@@ -71,17 +73,17 @@
     dpi = 180;
     displayManager = {
       defaultSession = "none+xmonad";
-       lightdm = {
-         enable = true;
-         extraConfig = ''
-           logind-check-graphical = true
-         '';
-       };
+      lightdm = {
+        enable = true;
+        extraConfig = ''
+          logind-check-graphical = true
+        '';
+      };
     };
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      extraPackages = haskellPackages : [
+      extraPackages = haskellPackages: [
         haskellPackages.xmonad
         haskellPackages.xmonad-contrib
         haskellPackages.xmobar
@@ -111,19 +113,19 @@
   users.users.mattpolzin = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
   };
 
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-  let
-    unstable = import
+  environment.systemPackages = with pkgs; let
+    unstable =
+      import
       (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable)
       # reuse the current configuration
-      { config = config.nixpkgs.config; };
+      {config = config.nixpkgs.config;};
   in [
     # system
     dmenu
@@ -133,7 +135,7 @@
     # development
     gcc
     gnumake
-    
+
     # general utility
     which
     ripgrep
@@ -180,7 +182,7 @@
   ];
 
   # List services that you want to enable:
-  
+
   # suspend/resume is broken
   services.logind.lidSwitch = "ignore";
   services.logind.lidSwitchDocked = "ignore";
@@ -202,6 +204,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
-
 }
-
