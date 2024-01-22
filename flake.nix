@@ -6,6 +6,9 @@
 
     nixpkgs-edge.url = "github:NixOS/nixpkgs";
 
+    alejandra.url = "github:kamadorueda/alejandra";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -16,7 +19,9 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     harmony.url = "github:mattpolzin/harmony";
-#    harmony.inputs.nixpkgs.follows = "nixpkgs";
+    harmony.inputs.nixpkgs.follows = "nixpkgs-edge";
+    harmony.inputs.idris.follows = "idris";
+    harmony.inputs.alejandra.follows = "alejandra";
 
     idris.url = "github:idris-lang/Idris2";
     idris.inputs.nixpkgs.follows = "nixpkgs-edge";
@@ -24,13 +29,15 @@
     idris-lsp.url = "github:idris-community/idris2-lsp";
     idris-lsp.inputs.nixpkgs.follows = "nixpkgs-edge";
     idris-lsp.inputs.idris.follows = "idris";
+    idris-lsp.inputs.alejandra.follows = "alejandra";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, home-manager, agenix, nix-index-database, ... }:
+  outputs = inputs@{ self, alejandra, nix-darwin, home-manager, agenix, nix-index-database, nixpkgs, ... }:
   let
+    lib = nixpkgs.lib;
     workConfiguration = import ./nix/modules/work/configuration.nix;
     darwinConfig = system: config: nix-darwin.lib.darwinSystem {
       modules = [ 
@@ -53,5 +60,7 @@
 
     # Expose nix-darwin
     packages = nix-darwin.packages;
+
+    formatter = lib.genAttrs lib.systems.flakeExposed (system: alejandra.packages.${system});
   };
 }
