@@ -90,6 +90,8 @@ in
     pkgs.glow
     pkgs.gnupg
     pkgs.graphviz
+    pkgs.htop
+    pkgs.iftop
     pkgs.jq
     pkgs.k9s
     pkgs.kind
