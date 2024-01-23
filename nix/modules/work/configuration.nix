@@ -104,6 +104,7 @@ in {
     pkgs.nodejs
     pkgs.openvpn
     pkgs.patch
+    pkgs.postgresql
     pkgs.ripgrep
     pkgs.rlwrap
     pkgs.rnix-lsp
