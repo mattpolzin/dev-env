@@ -105,6 +105,7 @@ in {
     pkgs.openvpn
     pkgs.patch
     pkgs.postgresql
+    # pkgs-edge.presenterm # <- marked broken in nixpkgs.
     pkgs.ripgrep
     pkgs.rlwrap
     pkgs.rnix-lsp
