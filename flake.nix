@@ -46,6 +46,7 @@
     ...
   }: let
     lib = nixpkgs.lib;
+    commonConfiguration = import ./nix/modules/common/system.nix;
     workConfiguration = import ./nix/modules/work/system.nix;
     homeConfiguration = import ./nix/modules/home/system.nix;
     darwinConfig = system: config:
@@ -54,6 +55,7 @@
           home-manager.darwinModules.default
           agenix.darwinModules.default
           nix-index-database.darwinModules.nix-index
+          commonConfiguration
           config
         ];
         specialArgs = {inherit system inputs;};
