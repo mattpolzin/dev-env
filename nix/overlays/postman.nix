@@ -8,7 +8,7 @@
 
       x86_64-darwin = {
         arch = "64";
-        sha256 = ""; # will fix next time I build on non-aarch64
+        sha256 = "sha256-ZFziS0VPLsd3e73pS75+NuNfqHaThYT8LD8vbLm66Pk=";
       };
     }
     .${final.system}
