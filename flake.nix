@@ -46,7 +46,8 @@
     ...
   }: let
     lib = nixpkgs.lib;
-    workConfiguration = import ./nix/modules/work/configuration.nix;
+    workConfiguration = import ./nix/modules/work/system.nix;
+    homeConfiguration = import ./nix/modules/home/system.nix;
     darwinConfig = system: config:
       nix-darwin.lib.darwinSystem {
         modules = [
@@ -58,8 +59,8 @@
         specialArgs = {inherit system inputs;};
       };
   in {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .
+    darwinConfigurations."MattPolzin-Home" = darwinConfig "x86_64-darwin" homeConfiguration;
+
     darwinConfigurations."MattPolzin-Work-Laptop-Old" = darwinConfig "x86_64-darwin" workConfiguration;
     darwinConfigurations."MattPolzin-Work-Laptop" = darwinConfig "aarch64-darwin" workConfiguration;
 
