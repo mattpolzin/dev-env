@@ -77,7 +77,6 @@ in {
     pkgs.kind
     pkgs.kubectl
     pkgs.kubectl-tree
-    pkgs.mermaid-cli
     pkgs.nix-output-monitor
     pkgs.nodejs
     pkgs.patch
