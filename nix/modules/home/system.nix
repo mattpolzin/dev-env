@@ -15,13 +15,15 @@ in {
   # List packages installed in system profile.
   environment.systemPackages = [
     # Shell (only at home)
-    # ...
+    pkgs.colima
+    pkgs.docker
 
     # GUI (only at home)
-    # ...
+    pkgs.discord
+    pkgs.spotify
 
     # Shell (Disabled)
-    # -- Empty --
+    # ...
   ];
 
   homebrew.masApps = {
