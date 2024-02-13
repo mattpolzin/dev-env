@@ -18,6 +18,7 @@ in {
     # Shell (only at home)
     pkgs.colima
     pkgs.docker
+    pkgs.texliveSmall
 
     # GUI (only at home)
     pkgs.discord
