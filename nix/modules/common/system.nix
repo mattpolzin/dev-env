@@ -53,6 +53,7 @@ in {
     idris2Lsp
     neovim
     pkgs-edge.ddgr
+    pkgs-edge.presenterm
     pkgs-edge.tree-sitter
     pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
     pkgs.circumflex
@@ -76,11 +77,11 @@ in {
     pkgs.kind
     pkgs.kubectl
     pkgs.kubectl-tree
+    pkgs.mermaid-cli
     pkgs.nix-output-monitor
     pkgs.nodejs
     pkgs.patch
     pkgs.postgresql
-    pkgs-edge.presenterm
     pkgs.ripgrep
     pkgs.rlwrap
     pkgs.rnix-lsp
