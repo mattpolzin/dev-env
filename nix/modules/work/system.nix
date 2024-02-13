@@ -31,10 +31,8 @@
 }: let
   pkgs-edge = import inputs.nixpkgs-edge {inherit (pkgs) system config;};
 in {
-  users.users.mattpolzin = {
-    home = "/Users/mattpolzin";
-  };
-  home-manager.users.mattpolzin = import ./mattpolzin.nix;
+  users.primary = "mattpolzin";
+  home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
 
   # List packages installed in system profile.
   environment.systemPackages = [

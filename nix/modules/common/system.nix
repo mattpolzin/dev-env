@@ -33,8 +33,16 @@
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
   pkgs-edge = import inputs.nixpkgs-edge {inherit (pkgs) system config;};
 in {
+  imports = [
+    ./user-cfg.nix
+  ];
+
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = {inherit pkgs neovim pkgs-edge;};
+
+  users.users.${config.users.primary} = {
+    home = "/Users/${config.users.primary}";
+  };
 
   # List packages installed in system profile.
   environment.systemPackages = [
@@ -284,9 +292,9 @@ in {
   # in spotlight, and when launched through the dock they come with a terminal window. This is a workaround.
   # Upstream issue: https://github.com/LnL7/nix-darwin/issues/214
   # Issue: https://github.com/LnL7/nix-darwin/issues/139
-  system.activationScripts.applications.text = ''
+  system.activationScripts.applications.text = let uname = config.users.primary; in ''
     echo "setting up ~/Applications..." >&2
-    applications="${config.users.users.mattpolzin.home}/Applications"
+    applications="${config.users.users.${uname}.home}/Applications"
     nix_apps="$applications/Nix Apps"
 
     # Delete the directory to remove old links
@@ -294,7 +302,7 @@ in {
 
     # Needs to be writable so that nix-darwin can symlink into it
     mkdir -p "$nix_apps"
-    chown ${config.users.users.mattpolzin.name}: "$nix_apps"
+    chown ${uname}: "$nix_apps"
     chmod u+w "$nix_apps"
 
     find ${config.system.build.applications}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
