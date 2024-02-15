@@ -265,6 +265,13 @@ in {
 
     # doesn't create the folder, just uses it if it is there:
     screencapture.location = "~/Documents/screenshots";
+
+    CustomUserPreferences = {
+      # don't auto-update Slack
+      "com.tinyspeck.slackmacgap" = {
+        SlackNoAutoUpdates = true;
+      };
+    };
   };
 
   time.timeZone = "America/Chicago";
