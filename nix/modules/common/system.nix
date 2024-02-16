@@ -28,7 +28,7 @@
 }: let
   agenix = inputs.agenix.packages.${pkgs.system}.agenix;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
-  neovim = pkgs.neovim-unwrapped;
+  neovim = pkgs-edge.neovim-unwrapped;
   idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
   pkgs-edge = import inputs.nixpkgs-edge {inherit (pkgs) system config;};
