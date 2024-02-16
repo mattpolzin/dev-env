@@ -1,9 +1,9 @@
 " This file is only used when Nix did not install NeoVim.
 " For Nix installs, this file, which is entirely about 
 " configuring plugins (and loading .vimrc and init.lua)
-" is skipped over by an init.vim created by Nix that
+" is skipped over by an init.lua created by Nix that
 " configures all plugins and then also calls .vimrc and
-" init.lua.
+" lua/init.lua.
 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
