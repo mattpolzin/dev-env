@@ -53,7 +53,7 @@ require('telescope').setup({
         ["<c-s>"] = require('telescope.actions').select_horizontal,
         ["<c-Down>"] = require('telescope.actions').cycle_history_next,
         ["<c-Up>"] = require('telescope.actions').cycle_history_prev,
-        ["<c-p>"] = require('telescope.actions.layout').toggle_preview
+        ["<c-q>"] = require('telescope.actions.layout').toggle_preview
       }
     }
   },
