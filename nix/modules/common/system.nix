@@ -28,17 +28,17 @@
 }: let
   agenix = inputs.agenix.packages.${pkgs.system}.agenix;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
-  neovim = pkgs-edge.neovim-unwrapped;
   idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
   pkgs-edge = import inputs.nixpkgs-edge {inherit (pkgs) system config;};
+  neovimApp = import ../../apps/neovim.nix { pkgs = pkgs-edge; };
 in {
   imports = [
     ./user-cfg.nix
   ];
 
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = {inherit pkgs neovim pkgs-edge;};
+  home-manager.extraSpecialArgs = {inherit pkgs pkgs-edge neovimApp;};
 
   users.users.${config.users.primary} = {
     home = "/Users/${config.users.primary}";
@@ -51,7 +51,7 @@ in {
     harmony
     idris2
     idris2Lsp
-    neovim
+    neovimApp.package
     pkgs-edge.ddgr
     pkgs-edge.presenterm
     pkgs-edge.tree-sitter
