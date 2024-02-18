@@ -8,7 +8,7 @@
 
       x86_64-darwin = {
         arch = "64";
-        sha256 = "";
+        sha256 = "sha256-Pa2ikYFCHniyAC9kGEC77DbGaxxUlCYFXLpokrR9Wn4=";
       };
     }
     .${final.system}
