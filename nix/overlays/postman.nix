@@ -3,19 +3,19 @@
     {
       aarch64-darwin = {
         arch = "arm64";
-        sha256 = "sha256-+iXE0b9McyhDNhHC+MYw7PSj1EGoj38o0H5mnmCKo68=";
+        sha256 = "sha256-8fYnIOhIxaJkFcbrHG4GJ9FiRttPg92er8WMSatQTDk=";
       };
 
       x86_64-darwin = {
         arch = "64";
-        sha256 = "sha256-ZFziS0VPLsd3e73pS75+NuNfqHaThYT8LD8vbLm66Pk=";
+        sha256 = "";
       };
     }
     .${final.system}
     or (throw "Unsupported system: ${final.system}");
 in {
   postman = prev.postman.overrideAttrs {
-    version = "10.21.0";
+    version = "10.23.0";
     name = "${prev.postman.pname}-${final.postman.version}";
     src = final.fetchurl {
       url = "https://dl.pstmn.io/download/version/${final.postman.version}/osx_${dist.arch}";

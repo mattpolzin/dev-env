@@ -61,6 +61,8 @@ in {
     pkgs.ctags
     pkgs.diffutils
     pkgs.elixir
+    pkgs.elixir-ls
+    pkgs.erlang
     pkgs.elmPackages.elm
     pkgs.fd
     pkgs.gh
