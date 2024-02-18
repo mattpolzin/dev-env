@@ -64,6 +64,7 @@ in {
     pkgs.elixir-ls
     pkgs.erlang
     pkgs.elmPackages.elm
+    pkgs.elmPackages.elm-test
     pkgs.elmPackages.elm-language-server
     pkgs.fd
     pkgs.gh
