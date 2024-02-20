@@ -380,33 +380,30 @@ optionalLSPCheck 'rnix-lsp'
 optionalLSPCheck 'elm-language-server'
 optionalLSPCheck 'haskell-language-server-wrapper'
 
+NPM=''
 if [ "$(command -v npm)" = '' ]; then
-  echo '  * ( ) npm package vscode-langservers-extracted.'
-  echo '  * ( ) npm package typescript.'
-  echo '  * ( ) npm package typescript-language-server.'
-  echo '  * ( ) npm package diagnostic-languageserver.'
-else
   NPM="$(npm -g ls --parseable)"
-  if [ "$(echo "$NPM" | grep 'typescript$')" != '' ]; then
-    echo '  * (x) npm package typescript.'
-  else
-    echo '  * ( ) npm package typescript.'
-  fi
-  if [ "$(echo "$NPM" | grep 'typescript-language-server$')" != '' ]; then
-    echo '  * (x) npm package typescript-language-server.'
-  else
-    echo '  * ( ) npm package typescript-language-server.'
-  fi
-  if [ "$(echo "$NPM" | grep 'vscode-langservers-extracted')" != '' ]; then
-    echo '  * (x) npm package vscode-langservers-extracted.'
-  else
-    echo '  * ( ) npm package vscode-langservers-extracted.'
-  fi
-  if [ "$(echo "$NPM" | grep 'diagnostic-languageserver')" != '' ]; then
-    echo '  * (x) npm package diagnostic-languageserver.'
-  else
-    echo '  * ( ) npm package diagnostic-languageserver.'
-  fi
+fi
+
+if [ "$(command -v typescript)" != '' ] || [ "$(echo "$NPM" | grep 'typescript$')" != '' ]; then
+  echo '  * (x) npm package or standalone typescript.'
+else
+  echo '  * ( ) npm package or standalone typescript.'
+fi
+if [ "$(command -v typescript-language-server)" != '' ] || [ "$(echo "$NPM" | grep 'typescript-language-server$')" != '' ]; then
+  echo '  * (x) npm package or standalone typescript-language-server.'
+else
+  echo '  * ( ) npm package or standalone typescript-language-server.'
+fi
+if [ "$(command -v vscode-langservers-extracted)" != '' ] || [ "$(echo "$NPM" | grep 'vscode-langservers-extracted')" != '' ]; then
+  echo '  * (x) npm package or standalone vscode-langservers-extracted.'
+else
+  echo '  * ( ) npm package or standalone vscode-langservers-extracted.'
+fi
+if [ "$(command -v diagnostic-languageserver)" != '' ] || [ "$(echo "$NPM" | grep 'diagnostic-languageserver')" != '' ]; then
+  echo '  * (x) npm package or standalone diagnostic-languageserver.'
+else
+  echo '  * ( ) npm package or standalone diagnostic-languageserver.'
 fi
 
 echo -e "$DIFF_OUT"
