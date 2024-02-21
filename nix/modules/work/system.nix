@@ -30,6 +30,29 @@
   ...
 }: let
   pkgs-edge = import inputs.nixpkgs-edge {inherit (pkgs) system config;};
+  dbcooper = pkgs.rPackages.buildRPackage {
+        name = "dbcooper";
+        src = pkgs.fetchFromGitHub{
+          owner = "pipeline-tools";
+          repo = "dbcooper";
+          rev = "2ad5a005e0d8a1eb4d5a583c5d0a0699ba1a05d9";
+          sha256 = "sha256-Nhfa2XddxMj0yb/AZoPnfyLjn4f7OoHuSwDn+n7dABM=";
+        };
+        propagatedBuildInputs = with pkgs.rPackages; [
+          dplyr DBI purrr dbplyr snakecase
+        ];
+      };
+  opalr = pkgs.rPackages.buildRPackage {
+        name = "opalr";
+        src = builtins.fetchGit{
+          url = "ssh://git@github.com/opallabs/opalr.git";
+          rev = "0c0c01d2866d9f02f6593f9f437ac659ba8ba6ba";
+        };
+        propagatedBuildInputs = with pkgs.rPackages; [
+          dplyr ggplot2 DBI odbc dbcooper RPostgres magrittr stringr rlang
+        ];
+      };
+  rApp = import ../../apps/R.nix { inherit pkgs; additionalRPackages = [ dbcooper opalr ]; };
 in {
   users.primary = "mattpolzin";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
@@ -37,15 +60,16 @@ in {
   # List packages installed in system profile.
   environment.systemPackages = [
     # Shell (only at work)
-    pkgs.R
+    rApp.R
     pkgs.azure-cli
     pkgs.direnv
     pkgs.ffmpeg
     pkgs.kubernetes-helm
     pkgs.kubeseal
     pkgs.mutagen
-    pkgs.openvpn
+    pkgs-edge.openvpn
     pkgs.terraform
+    pkgs.unixODBC
 
     # GUI (only at work)
     pkgs.vscode
