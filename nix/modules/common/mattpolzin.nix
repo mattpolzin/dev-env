@@ -12,9 +12,6 @@
     ".zshrc" = {
       source = ../../../.zshrc;
     };
-    ".vimrc" = {
-      source = ../../../.vimrc;
-    };
     ".ctags" = {
       source = ../../../.ctags;
     };
@@ -55,7 +52,8 @@
     # programs to manage configs for:
     programs.neovim = {
       enable = true;
-      inherit (neovimApp) package extraConfig plugins;
+      inherit (neovimApp) package plugins;
+      extraConfig = neovimApp.homeManagerExtraConfig;
     };
 
     # additional configs to manage:

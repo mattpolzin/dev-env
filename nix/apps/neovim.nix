@@ -1,4 +1,5 @@
-{ pkgs }:
+# packages: other packages to load into shell (e.g. language servers)
+{ pkgs, packages ? [] }:
 let
   idris2-nvim = pkgs.vimUtils.buildVimPlugin rec {
     pname = "idris2-nvim";
@@ -21,16 +22,23 @@ let
       hash = "sha256-lavDbTFidmbYDOxYPumCExkd27sesZ5uFgwHc1xNuW0=";
     };
   };
-in
-{
+
+  vimrc = builtins.path {
+    path = ../../.vimrc;
+    name = "vimrc";
+  };
+  runtimepath = ../../.config/nvim;
+
   homeManagerConfigs = {
+    ".vimrc" = {
+      source = vimrc;
+    };
     ".config/nvim/lua" = {
-      source = ../../.config/nvim/lua;
+      source = runtimepath + "/lua";
       recursive = true;
     };
   };
-
-  extraConfig = ''
+  homeManagerExtraConfig = ''
     source ~/.vimrc
     lua require('init')
   '';
@@ -141,5 +149,29 @@ in
     }
   ];
 
+  buildInputs = [
+    pkgs.ripgrep
+  ] ++ packages;
+
   package = pkgs.neovim-unwrapped;
+
+  neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
+    inherit plugins;
+    customRC = ''
+      source ${vimrc}
+      set runtimepath=${runtimepath},$VIMRUNTIME
+      lua require('init')
+    '';
+  };
+  neovim = pkgs.wrapNeovimUnstable package neovimConfig;
+in
+{
+  inherit homeManagerConfigs homeManagerExtraConfig plugins;
+  inherit package neovim;
+
+  shell = pkgs.mkShell {
+    packages = [
+      neovim
+    ] ++ buildInputs;
+  };
 }
