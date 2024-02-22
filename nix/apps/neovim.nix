@@ -1,5 +1,7 @@
-# packages: other packages to load into shell (e.g. language servers)
-{ pkgs, packages ? [] }:
+# packages: function from pkgs to list of other packages to load into shell (e.g. language servers)
+{ pkgs ? (import <nixpkgs> {}).pkgs
+, packages ? (pkgs: [])
+}:
 let
   idris2-nvim = pkgs.vimUtils.buildVimPlugin rec {
     pname = "idris2-nvim";
@@ -151,7 +153,7 @@ let
 
   buildInputs = [
     pkgs.ripgrep
-  ] ++ packages;
+  ] ++ (packages pkgs);
 
   package = pkgs.neovim-unwrapped;
 
