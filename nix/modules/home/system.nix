@@ -3,9 +3,10 @@
   system,
   inputs,
   config,
+  nixpkgs-edge,
   ...
 }: let
-  pkgs-edge = import inputs.nixpkgs-edge {inherit (pkgs) system config;};
+  pkgs-edge = import nixpkgs-edge {inherit (pkgs) system config;};
 in {
   users.primary = "matt";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;

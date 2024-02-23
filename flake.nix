@@ -43,6 +43,7 @@
     agenix,
     nix-index-database,
     nixpkgs,
+    nixpkgs-edge,
     ...
   }: let
     lib = nixpkgs.lib;
@@ -50,6 +51,13 @@
     workConfiguration = import ./nix/modules/work/system.nix;
     homeConfiguration = import ./nix/modules/home/system.nix;
     darwinConfig = system: config:
+      let
+        nixpkgs-edge-patched = (import nixpkgs-edge { inherit system; }).applyPatches {
+          name = "nixpkgs-patched";
+          src = nixpkgs-edge;
+          patches = [ ./nix/patches/yabai-6_0_15.patch ];
+        };
+      in
       nix-darwin.lib.darwinSystem {
         modules = [
           home-manager.darwinModules.default
@@ -58,7 +66,7 @@
           commonConfiguration
           config
         ];
-        specialArgs = {inherit system inputs;};
+        specialArgs = {inherit system inputs; nixpkgs-edge = nixpkgs-edge-patched; };
       };
   in {
     darwinConfigurations."MattPolzin-Home" = darwinConfig "x86_64-darwin" homeConfiguration;

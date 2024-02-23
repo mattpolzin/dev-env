@@ -24,13 +24,14 @@
   system,
   inputs,
   config,
+  nixpkgs-edge,
   ...
 }: let
   agenix = inputs.agenix.packages.${pkgs.system}.agenix;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
   idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
-  pkgs-edge = import inputs.nixpkgs-edge {inherit (pkgs) system config;};
+  pkgs-edge = import nixpkgs-edge {inherit (pkgs) system config;};
   neovimApp = import ../../apps/neovim.nix { pkgs = pkgs-edge; };
 in {
   imports = [

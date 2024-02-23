@@ -27,9 +27,10 @@
   system,
   inputs,
   config,
+  nixpkgs-edge,
   ...
 }: let
-  pkgs-edge = import inputs.nixpkgs-edge {inherit (pkgs) system config;};
+  pkgs-edge = import nixpkgs-edge {inherit (pkgs) system config;};
   dbcooper = pkgs.rPackages.buildRPackage {
         name = "dbcooper";
         src = pkgs.fetchFromGitHub{
