@@ -55,7 +55,7 @@
         nixpkgs-edge-patched = (import nixpkgs-edge { inherit system; }).applyPatches {
           name = "nixpkgs-patched";
           src = nixpkgs-edge;
-          patches = [ ./nix/patches/yabai-6_0_15.patch ];
+          patches = [];
         };
       in
       nix-darwin.lib.darwinSystem {
