@@ -213,11 +213,15 @@ in {
     promptInit = ""; # I've got prompt stuff in my ~/.zshrc
   };
 
-  # Necessary for using flakes on this system.
   nix.settings = {
     auto-optimise-store = true;
+    # Necessary for using flakes on this system.
     experimental-features = "nix-command flakes";
   };
+
+  nix.nixPath = [
+    { nixpkgs = "$HOME/staging/nixpkgs"; }
+  ];
 
   system.defaults = {
     # automatically rearrange spaces based on recently used:
