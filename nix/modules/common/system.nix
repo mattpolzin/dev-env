@@ -134,6 +134,10 @@ in {
     };
 
     extraConfig = ''
+      # cmd + click and drag to move window
+      yabai -m config mouse_modifier cmd
+      yabai -m config mouse_action1 move
+
       yabai -m rule --add app='System Settings' manage=off
       yabai -m rule --add app='1Password 7' manage=off
       yabai -m rule --add app='1Password' manage=off
@@ -193,10 +197,10 @@ in {
       # swap position with next window
       cmd + shift - k : yabai -m window --swap next
 
-      # make right split larger
+      # make right split larger (cmd + shift - <)
       cmd + shift - 0x2B : yabai -m window --ratio rel:-0.1
 
-      # make left split larger
+      # make left split larger (cmd + shift - >)
       cmd + shift - 0x2F : yabai -m window --ratio rel:0.1
 
       # zoom-parent
