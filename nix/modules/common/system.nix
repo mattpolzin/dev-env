@@ -138,6 +138,7 @@ in {
       yabai -m config mouse_modifier cmd
       yabai -m config mouse_action1 move
 
+      yabai -m rule --add app='Activity Monitor' manage=off
       yabai -m rule --add app='System Settings' manage=off
       yabai -m rule --add app='1Password 7' manage=off
       yabai -m rule --add app='1Password' manage=off
