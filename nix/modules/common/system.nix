@@ -63,10 +63,10 @@ in {
     pkgs.diffutils
     pkgs.elixir
     pkgs.elixir-ls
-    pkgs.erlang
     pkgs.elmPackages.elm
-    pkgs.elmPackages.elm-test
     pkgs.elmPackages.elm-language-server
+    pkgs.elmPackages.elm-test
+    pkgs.erlang
     pkgs.fd
     pkgs.gh
     pkgs.ghc
@@ -90,6 +90,7 @@ in {
     pkgs.rlwrap
     pkgs.rnix-lsp
     pkgs.tree
+    pkgs.w3m
     pkgs.yq
 
     # GUI (all machines)

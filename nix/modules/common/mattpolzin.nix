@@ -15,6 +15,12 @@
     ".ctags" = {
       source = ../../../.ctags;
     };
+    ".w3m/config" = {
+      source = ../../../.w3m/config;
+    };
+    ".w3m/keymap" = {
+      source = ../../../.w3m/keymap;
+    };
     ".config/kitty" = {
       source = ../../../.config/kitty;
       recursive = true;
