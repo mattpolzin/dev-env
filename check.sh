@@ -241,6 +241,26 @@ if [ -d '/etc/nixos' ]; then
 fi
 
 #
+#
+# check ~/.w3m is the same
+if [ -d "$HOME/.w3m" ]; then
+  DIFF="$(diff -U3 --recursive "$HOME/.w3m" ./.w3m)"
+  RES="$?"
+  DIFF="$(echo "$DIFF" | grep --invert-match --regexp 'cookie')"
+  INVERSE_RES="$?"
+  if [ "$RES" = '1' ] && [ "$INVERSE_RES" = '0' ]; then
+    echo '  * [ ] ~/.w3m directory in sync.'
+    DIFF_OUT="$DIFF_OUT\n\n$DIFF\n"
+    EXIT_STATUS=1
+  else
+    echo '  * [x] ~/.w3m directory in sync.'
+  fi
+else
+  echo '  * [ ] ~/.w3m directory in sync.'
+  echo '        ! No .w3m directory found.'
+fi
+
+#
 # check ~/.config exists
 if [ -d "$HOME/.config" ]; then
   echo '  * [x] ~/.config directory exists.'
@@ -407,5 +427,9 @@ else
   echo '  * ( ) npm package or standalone diagnostic-languageserver.'
 fi
 
-echo -e "$DIFF_OUT"
+if [ "$MAC_OS" == 'true' ]; then
+  echo "$DIFF_OUT"
+else
+  echo -e "$DIFF_OUT"
+fi
 exit $EXIT_STATUS
