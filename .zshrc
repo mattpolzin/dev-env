@@ -1,4 +1,7 @@
 
+# Set XDG variables to stop some programs from using ~/Library/Preferences over ~/.config
+export XDG_CONFIG_HOME=~/.config
+
 # output ls and others in color
 export CLICOLOR=1
 export LSCOLORS=Cxfxcxdxbxegedabagacad

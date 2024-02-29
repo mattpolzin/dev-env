@@ -14,16 +14,6 @@ let
     };
     dependencies = with pkgs.vimPlugins; [nui-nvim plenary-nvim];
   };
-  autolist-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "autolist-nvim";
-    version = "2023-07-07";
-    src = pkgs.fetchFromGitHub {
-      owner = "gaoDean";
-      repo = "autolist.nvim";
-      rev = "5f70a5f99e96c8fe3069de042abd2a8ed2deb855";
-      hash = "sha256-lavDbTFidmbYDOxYPumCExkd27sesZ5uFgwHc1xNuW0=";
-    };
-  };
 
   vimrc = builtins.path {
     path = ../../.vimrc;
