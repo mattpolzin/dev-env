@@ -79,6 +79,8 @@ in {
     # -- Empty --
   ];
 
+  programs.direnv.enable = true;
+
   homebrew.taps = [
     "garden-io/garden"
   ];
