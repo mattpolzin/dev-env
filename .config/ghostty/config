@@ -6,6 +6,8 @@ foreground = b7cbff
 background = 000000
 background-opacity = 0.95
 
+window-decoration = false
+
 # default (macOS) keybinds, but here to document for myself:
 # keybind = super+d       = new_split:right
 # keybind = super+shift+d = new_split:down
