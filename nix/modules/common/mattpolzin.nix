@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   pkgs-edge,
   neovimApp,
@@ -60,6 +61,18 @@
       enable = true;
       inherit (neovimApp) package plugins;
       extraConfig = neovimApp.homeManagerExtraConfig;
+    };
+
+    programs.git = {
+      enable = true;
+      userName = "Mathew Polzin";
+      lfs.enable = lib.mkDefault true;
+
+      extraConfig = {
+        init = {
+          defaultBranch = "main";
+        };
+      };
     };
 
     # additional configs to manage:
