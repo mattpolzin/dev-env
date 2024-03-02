@@ -77,6 +77,7 @@ in {
     pkgs.graphviz
     pkgs.htop
     pkgs.iftop
+    pkgs.ijq
     pkgs.jq
     pkgs.k9s
     pkgs.kind
