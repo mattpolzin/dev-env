@@ -114,6 +114,9 @@ in {
 
   homebrew.enable = true;
   homebrew.onActivation.cleanup = "zap";
+  homebrew.taps = [
+    "homebrew/cask"
+  ];
   homebrew.casks = [
     "google-chrome"
   ];
