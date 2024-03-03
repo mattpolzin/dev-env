@@ -12,9 +12,9 @@ local function custom_lsp_attach(client)
 
 end
 
-local path_to_elixirls = vim.fn.expand("elixir-ls")
-
 local M = {}
+
+local path_to_elixirls = vim.fn.expand("elixir-ls")
 
 function M.setup()
   require('lspconfig').elixirls.setup({

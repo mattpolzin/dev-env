@@ -68,7 +68,7 @@ if !empty(glob('${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim
   if executable('idris2')
     Plug 'ShinKage/idris2-nvim'
   endif
-  if executable('elixir')
+  if executable('elixir') && !has('nvim')
     Plug 'elixir-editors/vim-elixir'
   endif
 

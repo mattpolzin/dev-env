@@ -75,7 +75,6 @@ let
     # LSP
     nvim-lspconfig
     idris2-nvim
-    vim-elixir
 
     # DAP
     nvim-dap
