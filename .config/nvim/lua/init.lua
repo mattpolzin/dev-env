@@ -66,8 +66,23 @@ require('telescope').setup({
 
 -- currently using FZF (above) for file finding:
 -- vim.cmd [[nnoremap <c-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>]] -- <Cmd>Telescope find_files<CR>]]
-vim.cmd.command("Tl :exec 'Telescope live_grep'")
-vim.cmd.command("Tg :exec 'Telescope grep_string'")
+local function telescope_livegrep(cmd)
+  require('telescope.builtin').live_grep({
+    default_text = (cmd.fargs[1] or '')
+  })
+end
+vim.api.nvim_create_user_command("Tl", telescope_livegrep, { nargs='?' })
+
+local function telescope_grepstring(cmd)
+  local search = cmd.fargs[1]
+  if search then
+    -- make sure we have search= exactly once whether it was passed in or not:
+    search = search:gsub('search=','')
+    search = 'search=' .. search
+  end
+  vim.cmd.exec("'Telescope grep_string " .. (search or '') .. "'")
+end
+vim.api.nvim_create_user_command("Tg", telescope_grepstring, { nargs='?' })
 
 -- Telescope extensions
 require('telescope').load_extension('fzf')
