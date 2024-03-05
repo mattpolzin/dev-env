@@ -108,6 +108,7 @@ let
         p.lua
         p.make
         p.markdown
+        p.mermaid
         p.nix
         p.norg
         # p.norg_meta # <- not found
