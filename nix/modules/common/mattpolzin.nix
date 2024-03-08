@@ -72,6 +72,7 @@
         init = {
           defaultBranch = "main";
         };
+        rerere.enabled = true;
       };
     };
 
