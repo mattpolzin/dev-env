@@ -22,7 +22,6 @@
 
     harmony.url = "github:mattpolzin/harmony";
     harmony.inputs.nixpkgs.follows = "nixpkgs-edge";
-    harmony.inputs.idris.follows = "idris";
     harmony.inputs.alejandra.follows = "alejandra";
 
     idris.url = "github:idris-lang/Idris2";

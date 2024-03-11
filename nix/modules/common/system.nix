@@ -224,6 +224,8 @@ in {
   };
 
   nix = { 
+    package = pkgs-edge.nixVersions.nix_2_20;
+
     gc.automatic = true;
     settings = {
       auto-optimise-store = true;
