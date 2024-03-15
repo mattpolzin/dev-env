@@ -53,6 +53,9 @@
     homeConfiguration = import ./nix/modules/home/system.nix;
     darwinConfig = system: config:
       let
+        nixpkgs-edge-overlays = [
+          (import ./nix/overlays/electron.nix)
+        ];
         nixpkgs-edge-patched = (import nixpkgs-edge { inherit system; }).applyPatches {
           name = "nixpkgs-patched";
           src = nixpkgs-edge;
@@ -67,7 +70,7 @@
           commonConfiguration
           config
         ];
-        specialArgs = {inherit system inputs; nixpkgs-edge = nixpkgs-edge-patched; };
+        specialArgs = {inherit system inputs nixpkgs-edge-overlays; nixpkgs-edge = nixpkgs-edge-patched; };
       };
   in {
     darwinConfigurations."MattPolzin-Home" = darwinConfig "x86_64-darwin" homeConfiguration;
