@@ -55,7 +55,7 @@ in {
     pkgs-edge.ddgr
     pkgs-edge.presenterm
     pkgs-edge.tree-sitter
-    pkgs.chez-racket # <- replace with chez once aarch64 support lands in Nix.
+    pkgs-edge.chez
     pkgs.circumflex
     pkgs.cloc
     pkgs.ctags
