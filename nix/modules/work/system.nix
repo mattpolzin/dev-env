@@ -24,14 +24,12 @@
 ##
 {
   pkgs,
+  pkgs-edge,
   system,
   inputs,
   config,
-  nixpkgs-edge,
-  nixpkgs-edge-overlays,
   ...
 }: let
-  pkgs-edge = import nixpkgs-edge {inherit (pkgs) system config; overlays = nixpkgs-edge-overlays; };
   dbcooper = pkgs.rPackages.buildRPackage {
         name = "dbcooper";
         src = pkgs.fetchFromGitHub{

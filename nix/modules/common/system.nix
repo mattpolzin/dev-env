@@ -21,18 +21,16 @@
 ## 10. Snag Safari bookmarks as desired.
 {
   pkgs,
+  pkgs-edge,
   system,
   inputs,
   config,
-  nixpkgs-edge,
-  nixpkgs-edge-overlays,
   ...
 }: let
   agenix = inputs.agenix.packages.${pkgs.system}.agenix;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
   idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
-  pkgs-edge = import nixpkgs-edge {inherit (pkgs) system config; overlays = nixpkgs-edge-overlays; };
   neovimApp = import ../../apps/neovim.nix { pkgs = pkgs-edge; };
 in {
   imports = [

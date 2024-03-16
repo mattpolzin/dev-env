@@ -3,12 +3,8 @@
   system,
   inputs,
   config,
-  nixpkgs-edge,
-  nixpkgs-edge-overlays,
   ...
-}: let
-  pkgs-edge = import nixpkgs-edge {inherit (pkgs) system config; overlays = nixpkgs-edge-overlays; };
-in {
+}: {
   users.primary = "matt";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
 
