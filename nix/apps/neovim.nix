@@ -1,20 +1,4 @@
-# packages: function from pkgs to list of other packages to load into shell (e.g. language servers)
-{ pkgs ? (import <nixpkgs> {}).pkgs
-, packages ? (pkgs: [])
-}:
 let
-  idris2-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "idris2-nvim";
-    version = "2023-09-05";
-    src = pkgs.fetchFromGitHub {
-      owner = "ShinKage";
-      repo = "idris2-nvim";
-      rev = "8bff02984a33264437e70fd9fff4359679d910da";
-      hash = "sha256-guEmds98XEBKuJVdB+rQB01G+RmnQaG+RTjM6smccAI=";
-    };
-    dependencies = with pkgs.vimPlugins; [nui-nvim plenary-nvim];
-  };
-
   vimrc = builtins.path {
     path = ../../.vimrc;
     name = "vimrc";
@@ -34,6 +18,23 @@ let
     source ~/.vimrc
     lua require('init')
   '';
+in
+# packages: function from pkgs to list of other packages to load into shell (e.g. language servers)
+{ pkgs ? (import <nixpkgs> {}).pkgs
+, packages ? (ps: [])
+}:
+let
+  idris2-nvim = pkgs.vimUtils.buildVimPlugin rec {
+    pname = "idris2-nvim";
+    version = "2023-09-05";
+    src = pkgs.fetchFromGitHub {
+      owner = "ShinKage";
+      repo = "idris2-nvim";
+      rev = "8bff02984a33264437e70fd9fff4359679d910da";
+      hash = "sha256-guEmds98XEBKuJVdB+rQB01G+RmnQaG+RTjM6smccAI=";
+    };
+    dependencies = with pkgs.vimPlugins; [nui-nvim plenary-nvim];
+  };
 
   plugins = with pkgs.vimPlugins; [
     # colorscheme
