@@ -28,9 +28,11 @@
   ...
 }: let
   agenix = inputs.agenix.packages.${pkgs.system}.agenix;
-  harmony = inputs.harmony.packages.${pkgs.system}.harmony;
-  idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
+  idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
+  buildIdris = inputs.idris.buildIdris.${pkgs.system};
+  harmony = inputs.harmony.packages.${pkgs.system}.harmony
+    .override { idris2Packages = { inherit buildIdris; }; };
   neovimApp = import ../../apps/neovim.nix { pkgs = pkgs-edge; };
 in {
   imports = [
