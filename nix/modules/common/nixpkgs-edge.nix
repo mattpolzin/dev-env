@@ -1,8 +1,6 @@
 let
   nixpkgs-edge-patches = [ ];
-  nixpkgs-edge-overlays = [
-    (import ../../overlays/electron.nix)
-  ];
+  nixpkgs-edge-overlays = [ ];
 in
 { nixpkgs-edge, system }:
 let
