@@ -54,10 +54,11 @@ in {
     idris2
     idris2Lsp
     neovimApp.package
+    pkgs-edge.chez
     pkgs-edge.ddgr
+    pkgs-edge.k9s
     pkgs-edge.presenterm
     pkgs-edge.tree-sitter
-    pkgs-edge.chez
     pkgs.circumflex
     pkgs.cloc
     pkgs.ctags
@@ -80,7 +81,6 @@ in {
     pkgs.iftop
     pkgs.ijq
     pkgs.jq
-    pkgs.k9s
     pkgs.kind
     pkgs.kubectl
     pkgs.kubectl-tree
@@ -101,9 +101,6 @@ in {
     pkgs-edge.zoom-us
     pkgs.kitty
     pkgs.postman
-
-    # Shell (Disabled)
-    # -- Empty --
   ];
 
   fonts = {

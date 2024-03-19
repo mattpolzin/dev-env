@@ -18,9 +18,6 @@
     # GUI (only at home)
     pkgs.discord
     pkgs.spotify
-
-    # Shell (Disabled)
-    # ...
   ];
 
   homebrew.masApps = {

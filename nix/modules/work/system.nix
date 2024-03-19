@@ -61,21 +61,18 @@ in {
   environment.systemPackages = [
     # Shell (only at work)
     rApp.R
+    pkgs-edge.openvpn
     pkgs.azure-cli
     pkgs.direnv
     pkgs.ffmpeg
     pkgs.kubernetes-helm
     pkgs.kubeseal
     pkgs.mutagen
-    pkgs-edge.openvpn
     pkgs.terraform
     pkgs.unixODBC
 
     # GUI (only at work)
     pkgs.vscode
-
-    # Shell (Disabled)
-    # -- Empty --
   ];
 
   programs.direnv.enable = true;
