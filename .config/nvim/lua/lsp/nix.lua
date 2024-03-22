@@ -11,7 +11,7 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig').rnix.setup({
+  require('lspconfig').nixd.setup({
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities
   })

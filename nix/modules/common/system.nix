@@ -57,6 +57,7 @@ in {
     pkgs-edge.chez
     pkgs-edge.ddgr
     pkgs-edge.k9s
+    pkgs-edge.nixd
     pkgs-edge.presenterm
     pkgs-edge.tree-sitter
     pkgs.circumflex
@@ -90,7 +91,6 @@ in {
     pkgs.postgresql
     pkgs.ripgrep
     pkgs.rlwrap
-    pkgs.rnix-lsp
     pkgs.tree
     pkgs.w3m
     pkgs.yq

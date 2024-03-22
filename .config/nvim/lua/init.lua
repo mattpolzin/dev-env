@@ -281,9 +281,7 @@ end
 --
 -- npm i -g elm elm-test elm-format @elm-tooling/elm-language-server
 --
--- nix profile install nixpkgs#rnix-lsp
--- -OR-
--- cargo install rnix-lsp
+-- nix profile install nixpkgs#nixd
 
 --
 -- Treesitter
