@@ -71,6 +71,7 @@ in {
     pkgs.elmPackages.elm-test
     pkgs.erlang
     pkgs.fd
+    pkgs.fzf
     pkgs.gh
     pkgs.ghc
     pkgs.git
