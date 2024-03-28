@@ -90,6 +90,17 @@ augroup Authzed
 augroup END
 
 "
+" Markdown
+"
+au FileType markdown set textwidth=80
+
+"
+" Neorg
+"
+au FileType norg set textwidth=120
+
+
+"
 " Shell
 "
 function! FoldShellPrompts()
