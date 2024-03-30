@@ -30,4 +30,10 @@
     hostName = computerName;
     localHostName = computerName;
   };
+
+  nix = { 
+    nixPath = [
+      { nixpkgs2 = "$HOME/staging/nixpkgs2"; }
+    ];
+  };
 }
