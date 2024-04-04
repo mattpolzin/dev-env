@@ -24,6 +24,9 @@ in
 , packages ? (ps: [])
 }:
 let
+
+  package = pkgs.neovim-unwrapped;
+
   idris2-nvim = pkgs.vimUtils.buildVimPlugin rec {
     pname = "idris2-nvim";
     version = "2023-09-05";
@@ -35,6 +38,45 @@ let
     };
     dependencies = with pkgs.vimPlugins; [nui-nvim plenary-nvim];
   };
+
+  lua = package.lua;
+  luaPackages = lua.pkgs;
+
+  pathlib-nvim = luaPackages.buildLuarocksPackage {
+    pname = "pathlib-nvim";
+    version = "2024-03-31";
+    knownRockspec = (pkgs.fetchurl {
+      url    = "mirror://luarocks/pathlib.nvim-2.2.0-1.rockspec";
+      sha256 = "sha256-9oTyGwcmf/5yTHvdi3mXhtF//PgnBLqRFwIZgJu+Q34=";
+    }).outPath;
+    src = pkgs.fetchFromGitHub {
+      owner = "pysan3";
+      repo = "pathlib.nvim";
+      rev = "852ea2f1c0037af693dfca25dcbe93fef2815a6f";
+      hash = "sha256-3KdP79wOeh+RIbhd2nFVf5AuO9rXi+lbGTln8YEf1Ns=";
+    };
+    propagatedBuildInputs = [ lua luaPackages.nvim-nio ];
+  };
+
+  neorg = pkgs.vimUtils.buildVimPlugin rec {
+    pname = "neorg";
+    version = "tmp";
+    src = pkgs.fetchFromGitHub {
+      owner = "nvim-neorg";
+      repo = "neorg";
+      rev = "89f9a79179e179e9e0d96d6adce14473bed896bc";
+      hash = "sha256-6peTrrJnw03Wuh+kSlro/Fga+wfoUwfLqPZapE0L2NU=";
+    };
+    dependencies = with pkgs.vimPlugins; [plenary-nvim nui-nvim];
+  };
+
+  extraLuaPackages = (ps:
+    [
+      ps.nvim-nio
+      ps.lua-utils-nvim
+      pathlib-nvim
+    ]
+  );
 
   plugins = with pkgs.vimPlugins; [
     # colorscheme
@@ -146,10 +188,8 @@ let
     pkgs.ripgrep
   ] ++ (packages pkgs);
 
-  package = pkgs.neovim-unwrapped;
-
   neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
-    inherit plugins;
+    inherit plugins extraLuaPackages;
     customRC = ''
       source ${vimrc}
       set runtimepath=${runtimepath},$VIMRUNTIME
@@ -159,7 +199,7 @@ let
   neovim = pkgs.wrapNeovimUnstable package neovimConfig;
 in
 {
-  inherit homeManagerConfigs homeManagerExtraConfig plugins;
+  inherit homeManagerConfigs homeManagerExtraConfig plugins extraLuaPackages;
   inherit package neovim;
 
   shell = pkgs.mkShell {

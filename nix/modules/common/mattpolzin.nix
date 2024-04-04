@@ -23,7 +23,7 @@
     # programs to manage configs for:
     programs.neovim = {
       enable = true;
-      inherit (neovimApp) package plugins;
+      inherit (neovimApp) package plugins extraLuaPackages;
       extraConfig = neovimApp.homeManagerExtraConfig;
     };
 
