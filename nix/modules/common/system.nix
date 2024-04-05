@@ -225,8 +225,19 @@ in {
     package = pkgs-edge.nixVersions.nix_2_20;
 
     gc.automatic = true;
+    gc.interval = {
+      Minute = 0;
+      Hour = 3;
+      Weekday = 6; # Saturday
+    };
+    optimise.automatic = true;
+    optimise.interval = {
+      Minute = 0;
+      Hour = 3;
+      Weekday = 2; # Tuesday
+    };
     settings = {
-      auto-optimise-store = true;
+      auto-optimise-store = false;
       # Necessary for using flakes on this system.
       experimental-features = "nix-command flakes";
     };
