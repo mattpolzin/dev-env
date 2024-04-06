@@ -50,10 +50,11 @@ require('telescope').setup({
     file_ignore_patterns = ignore_patterns,
     mappings = {
       i = {
-        ["<c-s>"] = require('telescope.actions').select_horizontal,
-        ["<c-Down>"] = require('telescope.actions').cycle_history_next,
-        ["<c-Up>"] = require('telescope.actions').cycle_history_prev,
-        ["<c-q>"] = require('telescope.actions.layout').toggle_preview
+        ["<C-s>"] = require('telescope.actions').select_horizontal,
+        ["<C-Down>"] = require('telescope.actions').cycle_history_next,
+        ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
+        ["<C-c>"] = require('telescope.actions').send_to_qflist + require('telescope.actions').open_qflist,
+        ["<C-q>"] = require('telescope.actions.layout').toggle_preview
       }
     }
   },
@@ -66,6 +67,7 @@ require('telescope').setup({
 
 -- currently using FZF (above) for file finding:
 -- vim.cmd [[nnoremap <c-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>]] -- <Cmd>Telescope find_files<CR>]]
+
 local function telescope_livegrep(cmd)
   require('telescope.builtin').live_grep({
     default_text = (cmd.fargs[1] or '')
