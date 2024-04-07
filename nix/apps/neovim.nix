@@ -44,12 +44,12 @@ let
 
   neorg = pkgs.vimUtils.buildVimPlugin rec {
     pname = "neorg";
-    version = "tmp";
+    version = "8.4.0";
     src = pkgs.fetchFromGitHub {
       owner = "nvim-neorg";
       repo = "neorg";
-      rev = "89f9a79179e179e9e0d96d6adce14473bed896bc";
-      hash = "sha256-6peTrrJnw03Wuh+kSlro/Fga+wfoUwfLqPZapE0L2NU=";
+      rev = "7c5464722a4e8240efd9ecd7bef85d38f94c1ab5";
+      hash = "sha256-7iAj4gGN5fslQ/RFX/M4/6ZwHp5QIaoEhOgb64g2Tu8=";
     };
     dependencies = with pkgs.vimPlugins; [plenary-nvim nui-nvim];
   };
