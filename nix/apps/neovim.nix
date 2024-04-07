@@ -42,22 +42,6 @@ let
   lua = package.lua;
   luaPackages = lua.pkgs;
 
-  pathlib-nvim = luaPackages.buildLuarocksPackage {
-    pname = "pathlib-nvim";
-    version = "2024-03-31";
-    knownRockspec = (pkgs.fetchurl {
-      url    = "mirror://luarocks/pathlib.nvim-2.2.0-1.rockspec";
-      sha256 = "sha256-9oTyGwcmf/5yTHvdi3mXhtF//PgnBLqRFwIZgJu+Q34=";
-    }).outPath;
-    src = pkgs.fetchFromGitHub {
-      owner = "pysan3";
-      repo = "pathlib.nvim";
-      rev = "852ea2f1c0037af693dfca25dcbe93fef2815a6f";
-      hash = "sha256-3KdP79wOeh+RIbhd2nFVf5AuO9rXi+lbGTln8YEf1Ns=";
-    };
-    propagatedBuildInputs = [ lua luaPackages.nvim-nio ];
-  };
-
   neorg = pkgs.vimUtils.buildVimPlugin rec {
     pname = "neorg";
     version = "tmp";
@@ -74,7 +58,7 @@ let
     [
       ps.nvim-nio
       ps.lua-utils-nvim
-      pathlib-nvim
+      ps.pathlib-nvim
     ]
   );
 
