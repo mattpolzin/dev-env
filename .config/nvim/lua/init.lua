@@ -68,6 +68,8 @@ require('telescope').setup({
 -- currently using FZF (above) for file finding:
 -- vim.cmd [[nnoremap <c-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>]] -- <Cmd>Telescope find_files<CR>]]
 
+vim.api.nvim_create_user_command("Tr", function() vim.cmd.exec("'Telescope resume'") end, {})
+
 local function telescope_livegrep(cmd)
   require('telescope.builtin').live_grep({
     default_text = (cmd.fargs[1] or '')
