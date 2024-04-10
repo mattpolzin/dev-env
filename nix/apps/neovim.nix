@@ -27,18 +27,6 @@ let
 
   package = pkgs.neovim-unwrapped;
 
-  idris2-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "idris2-nvim";
-    version = "2023-09-05";
-    src = pkgs.fetchFromGitHub {
-      owner = "ShinKage";
-      repo = "idris2-nvim";
-      rev = "8bff02984a33264437e70fd9fff4359679d910da";
-      hash = "sha256-guEmds98XEBKuJVdB+rQB01G+RmnQaG+RTjM6smccAI=";
-    };
-    dependencies = with pkgs.vimPlugins; [nui-nvim plenary-nvim];
-  };
-
   lua = package.lua;
   luaPackages = lua.pkgs;
 
