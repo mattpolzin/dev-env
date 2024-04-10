@@ -108,6 +108,7 @@ in {
     fontDir.enable = true;
     fonts = [
       (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+      pkgs-edge.pixel-code
     ];
   };
 
