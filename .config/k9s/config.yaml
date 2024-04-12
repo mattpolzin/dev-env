@@ -2,6 +2,6 @@
 k9s:
   refreshRate: 2 # in seconds
   logger:
-    tail: 300
-    buffer: 2000
+    tail: 500
+    buffer: 5000
 
