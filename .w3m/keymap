@@ -137,22 +137,25 @@ keymap ^ LINE_BEGIN
 keymap 0 LINE_BEGIN
 keymap G END
 keymap gg BEGIN
+keymap zz CENTER_V
 keymap ESC-g GOTO_LINE
 keymap w NEXT_WORD
 keymap b PREV_WORD
 keymap RET GOTO_LINK
+keymap gx GOTO_LINK
+keymap gf GOTO_LINK
 
 # NPage Navigation
 keymap j COMMAND "MOVE_DOWN1"
 keymap k COMMAND "MOVE_UP1"
+keymap C-d COMMAND "MOVE_DOWN15"
+keymap C-u COMMAND "MOVE_UP15"
+keymap C-f COMMAND "NEXT_PAGE"
+keymap C-b COMMAND "PREV_PAGE"
 
 # Undo
 keymap C-r REDO
 
-#keymap C-f NEXT_PAGE
-keymap C-f COMMAND "NEXT_PAGE"
-#keymap C-b PREV_PAGE
-keymap C-b COMMAND "PREV_PAGE"
 keymap H PREV
 keymap L NEXT
 keymap r RELOAD
@@ -178,4 +181,4 @@ keymap :q EXIT
 keymap :settings OPTIONS
 
 # copy url to clipboard
-keymap yy EXTERN 'printf %s | xclip -selection clipboard'
+keymap yy EXTERN 'printf %s | pbcopy'
