@@ -21,7 +21,7 @@ let
 in
 # packages: function from pkgs to list of other packages to load into shell (e.g. language servers)
 { pkgs ? (import <nixpkgs> {}).pkgs
-, packages ? (ps: [])
+, extraPackages ? (ps: [])
 }:
 let
 
@@ -32,12 +32,12 @@ let
 
   neorg = pkgs.vimUtils.buildVimPlugin rec {
     pname = "neorg";
-    version = "8.4.0";
+    version = "8.4.1";
     src = pkgs.fetchFromGitHub {
       owner = "nvim-neorg";
       repo = "neorg";
-      rev = "7c5464722a4e8240efd9ecd7bef85d38f94c1ab5";
-      hash = "sha256-7iAj4gGN5fslQ/RFX/M4/6ZwHp5QIaoEhOgb64g2Tu8=";
+      rev = "v${version}";
+      hash = "sha256-5jgCJZMG5V+2U/GWmaNWmdsEzIwLo+8hKE88YQZqHUU=";
     };
     dependencies = with pkgs.vimPlugins; [plenary-nvim nui-nvim];
   };
@@ -158,7 +158,7 @@ let
 
   buildInputs = [
     pkgs.ripgrep
-  ] ++ (packages pkgs);
+  ] ++ (extraPackages pkgs);
 
   neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
     inherit plugins extraLuaPackages;
