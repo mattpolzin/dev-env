@@ -109,6 +109,43 @@ in {
     fonts = [
       (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
       pkgs-edge.pixel-code
+      (pkgs-edge.iosevka.override {
+        privateBuildPlan = {
+          family = "Iosevka Custom";
+          spacing = "term";
+          serifs = "sans";
+          noCvSs = true;
+          exportGlyphNames = true;
+
+          # JetBrains Mono:
+          # variants.inherits = "ss14";
+
+          ligations = {
+            inherits = "dlig";
+            enables = [ "slasheq" ];
+          };
+
+          widths = {
+            Normal = {
+              shape = 600;
+              menu = 5;
+              css = "normal";
+            };
+          };
+
+          weights = let weight = n: { shape = n; menu = n; css = n; }; in {
+            Thin = weight 100;
+            ExtraLight = weight 200;
+            Light = weight 300;
+            Regular = weight 400;
+            Medium = weight 500;
+            SemiBold = weight 600;
+            Bold = weight 700;
+            ExtraBold = weight 800;
+          };
+        };
+        set = "Custom";
+      })
     ];
   };
 

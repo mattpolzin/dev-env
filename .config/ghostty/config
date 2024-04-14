@@ -1,4 +1,7 @@
-font-family = JetBrains Mono
+# font options:
+# Iosevka Custom
+# JetBrains Mono 
+font-family = Iosevka Custom
 font-size = 12
 font-thicken = true
 
