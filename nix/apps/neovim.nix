@@ -73,6 +73,7 @@ let
 
     # Browsing/Finding
     oil-nvim
+    nvim-web-devicons
     telescope-nvim
     telescope-fzf-native-nvim # <- might need a buildPhase override to run 'make'
     {
