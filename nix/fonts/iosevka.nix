@@ -20,7 +20,7 @@ rec {
 
           widths = {
             Normal = {
-              shape = 600;
+              shape = 548;
               menu = 5;
               css = "normal";
             };
