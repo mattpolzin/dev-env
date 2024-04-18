@@ -57,6 +57,7 @@ in {
     neovimApp.package
     pkgs-edge.chez
     pkgs-edge.ddgr
+    pkgs-edge.ijq
     pkgs-edge.k9s
     pkgs-edge.nixd
     pkgs-edge.presenterm
@@ -82,7 +83,6 @@ in {
     pkgs.graphviz
     pkgs.htop
     pkgs.iftop
-    pkgs.ijq
     pkgs.jq
     pkgs.kind
     pkgs.kubectl
