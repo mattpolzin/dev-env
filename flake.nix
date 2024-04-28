@@ -2,7 +2,7 @@
   description = "Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
 
     nixpkgs-edge.url = "github:NixOS/nixpkgs";
 
@@ -51,23 +51,23 @@
     commonConfiguration = import ./nix/modules/common/system.nix;
     workConfiguration = import ./nix/modules/work/system.nix;
     homeConfiguration = import ./nix/modules/home/system.nix;
-    darwinConfig = system: config:
-      let
-        pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix {
-          inherit system nixpkgs-edge;
-        };
-      in
-      nix-darwin.lib.darwinSystem {
-        modules = [
-          home-manager.darwinModules.default
-          agenix.darwinModules.default
-          nix-index-database.darwinModules.nix-index
-          commonConfiguration
-          config
-          pkgs-edge
-        ];
-        specialArgs = {inherit system inputs; };
+    buildConfig = system: config: let
+      pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix {
+        inherit system nixpkgs-edge;
       };
+    in {
+      modules = [
+        home-manager.darwinModules.default
+        agenix.darwinModules.default
+        nix-index-database.darwinModules.nix-index
+        commonConfiguration
+        config
+        pkgs-edge
+      ];
+      specialArgs = {inherit system inputs;};
+    };
+    darwinConfig = system: config:
+      nix-darwin.lib.darwinSystem (buildConfig system config);
   in {
     darwinConfigurations."MattPolzin-Home" = darwinConfig "x86_64-darwin" homeConfiguration;
 

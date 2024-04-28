@@ -31,10 +31,15 @@
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
   idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
   buildIdris = inputs.idris.buildIdris.${pkgs.system};
-  harmony = inputs.harmony.packages.${pkgs.system}.harmony
-    .override { idris2Packages = { inherit buildIdris; }; };
-  neovimApp = import ../../apps/neovim.nix { pkgs = pkgs-edge; };
-  iosevka = import ../../fonts/iosevka.nix { pkgs = pkgs-edge; };
+  harmony =
+    inputs
+    .harmony
+    .packages
+    .${pkgs.system}
+    .harmony
+    .override {idris2Packages = {inherit buildIdris;};};
+  neovimApp = import ../../apps/neovim.nix {pkgs = pkgs-edge;};
+  iosevka = import ../../fonts/iosevka.nix {pkgs = pkgs-edge;};
 in {
   imports = [
     ./user-cfg.nix
@@ -224,7 +229,7 @@ in {
     promptInit = ""; # I've got prompt stuff in my ~/.zshrc
   };
 
-  nix = { 
+  nix = {
     package = pkgs-edge.nixVersions.nix_2_20;
 
     gc.automatic = true;
@@ -246,7 +251,7 @@ in {
     };
 
     nixPath = [
-      { nixpkgs = "$HOME/staging/nixpkgs"; }
+      {nixpkgs = "$HOME/staging/nixpkgs";}
     ];
   };
 
@@ -335,7 +340,9 @@ in {
   # in spotlight, and when launched through the dock they come with a terminal window. This is a workaround.
   # Upstream issue: https://github.com/LnL7/nix-darwin/issues/214
   # Issue: https://github.com/LnL7/nix-darwin/issues/139
-  system.activationScripts.applications.text = let uname = config.users.primary; in ''
+  system.activationScripts.applications.text = let
+    uname = config.users.primary;
+  in ''
     echo "setting up ~/Applications..." >&2
     applications="${config.users.users.${uname}.home}/Applications"
     nix_apps="$applications/Nix Apps"
