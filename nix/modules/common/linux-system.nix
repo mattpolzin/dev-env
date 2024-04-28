@@ -146,10 +146,6 @@ in {
       # Necessary for using flakes on this system.
       experimental-features = "nix-command flakes";
     };
-
-    nixPath = [
-      "nixpkgs=$HOME/staging/nixpkgs"
-    ];
   };
 
   time.timeZone = "America/Chicago";
