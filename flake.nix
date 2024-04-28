@@ -48,37 +48,52 @@
     ...
   }: let
     lib = nixpkgs.lib;
+    extraModuleInputs = [
+      home-manager
+      agenix
+      nix-index-database
+    ];
+    defaultOrHead = dig: modules: modules.${dig}.default or (builtins.head (lib.attrValues modules.${dig}));
     commonConfiguration = import ./nix/modules/common/system.nix;
     workConfiguration = import ./nix/modules/work/system.nix;
     homeConfiguration = import ./nix/modules/home/system.nix;
-    buildConfig = system: config: let
+    buildConfig = system: config: extraModules: let
       pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix {
         inherit system nixpkgs-edge;
       };
     in {
-      modules = [
-        home-manager.darwinModules.default
-        agenix.darwinModules.default
-        nix-index-database.darwinModules.nix-index
-        commonConfiguration
-        config
-        pkgs-edge
-      ];
+      modules =
+        [
+          commonConfiguration
+          config
+          pkgs-edge
+        ]
+        ++ extraModules;
       specialArgs = {inherit system inputs;};
     };
     darwinConfig = system: config:
-      nix-darwin.lib.darwinSystem (buildConfig system config);
+      nix-darwin.lib.darwinSystem
+      (buildConfig system config (map (defaultOrHead "darwinModules") extraModuleInputs));
+    nixosConfig = system: config:
+      lib.nixosSystem
+      (buildConfig system config (map (defaultOrHead "nixosModules") extraModuleInputs));
   in {
-    darwinConfigurations."MattPolzin-Home" = darwinConfig "x86_64-darwin" homeConfiguration;
+    darwinConfigurations = {
+      "MattPolzin-Home" = darwinConfig "x86_64-darwin" homeConfiguration;
 
-    darwinConfigurations."MattPolzin-Work-Laptop-Old" = darwinConfig "x86_64-darwin" workConfiguration;
-    darwinConfigurations."MattPolzin-Work-Laptop" = darwinConfig "aarch64-darwin" workConfiguration;
+      "MattPolzin-Work-Laptop-Old" = darwinConfig "x86_64-darwin" workConfiguration;
+      "MattPolzin-Work-Laptop" = darwinConfig "aarch64-darwin" workConfiguration;
+    };
+
+    nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "x86_64-linux" homeConfiguration;
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."MattPolzin-Work-Laptop-Old".pkgs;
+    darwinWorkPackages = self.darwinConfigurations."MattPolzin-Work-Laptop".pkgs;
+    darwinHomePackages = self.darwinConfigurations."MattPolzin-Home-Laptop".pkgs;
+    nixosHomePackages = self.nixosConfigurations."MattPolzin-Scrappy".pkgs;
 
     # Expose nix-darwin
-    packages = nix-darwin.packages;
+    packages = lib.genAttrs lib.platforms.darwin (system: nix-darwin.packages.${system});
 
     formatter = lib.genAttrs lib.systems.flakeExposed (system: alejandra.packages.${system}.default);
   };

@@ -25,12 +25,6 @@
     "Affinity Publisher" = 881418622;
   };
 
-  networking = rec {
-    computerName = "MattPolzin-Home";
-    hostName = computerName;
-    localHostName = computerName;
-  };
-
   nix = {
     nixPath = [
       {nixpkgs2 = "$HOME/staging/nixpkgs2";}

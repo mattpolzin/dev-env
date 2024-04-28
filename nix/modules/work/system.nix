@@ -104,12 +104,6 @@ in {
     "garden-cli"
   ];
 
-  networking = rec {
-    computerName = "MattPolzin-Work-Laptop";
-    hostName = computerName;
-    localHostName = computerName;
-  };
-
   age.secrets.etcHosts.file = ../../../secrets/etc-hosts.age;
   environment.etc.hosts = {
     source = config.age.secrets.etcHosts.path;
