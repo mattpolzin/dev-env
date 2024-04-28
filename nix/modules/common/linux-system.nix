@@ -148,7 +148,7 @@ in {
     };
 
     nixPath = [
-      {nixpkgs = "$HOME/staging/nixpkgs";}
+      "nixpkgs=$HOME/staging/nixpkgs"
     ];
   };
 
@@ -166,9 +166,6 @@ in {
     config = {
       allowUnfree = true;
     };
-    overlays = [
-      # Postman working version as of now:
-      (import ../../overlays/postman.nix)
-    ];
+    overlays = [];
   };
 }

@@ -22,7 +22,7 @@
 
   nix = {
     nixPath = [
-      {nixpkgs2 = "$HOME/staging/nixpkgs2";}
+      "nixpkgs2=$HOME/staging/nixpkgs2"
     ];
   };
 }
