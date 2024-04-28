@@ -54,29 +54,34 @@
       nix-index-database
     ];
     defaultOrHead = dig: modules: modules.${dig}.default or (builtins.head (lib.attrValues modules.${dig}));
-    commonConfiguration = import ./nix/modules/common/system.nix;
-    workConfiguration = import ./nix/modules/work/system.nix;
-    homeConfiguration = import ./nix/modules/home/system.nix;
-    buildConfig = hostName: system: config: extraModules: let
+    commonConfiguration = {
+      darwin = import ./nix/modules/common/darwin-system.nix;
+      linux = import ./nix/modules/common/linux-system.nix;
+    };
+    workConfiguration = {
+      darwin = import ./nix/modules/work/darwin-system.nix;
+      linux = throw "no linux work machines to configure";
+    };
+    homeConfiguration = {
+      darwin = import ./nix/modules/home/darwin-system.nix;
+      linux = import ./nix/modules/home/linux-system.nix;
+    };
+    buildConfig = hostName: system: configs: let
       pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix {
         inherit system nixpkgs-edge;
       };
     in {
-      modules =
-        [
-          commonConfiguration
-          config
-          pkgs-edge
-        ]
-        ++ extraModules;
+      modules = configs ++ [ pkgs-edge ];
       specialArgs = {inherit hostName system inputs;};
     };
     darwinConfig = hostName: system: config:
       nix-darwin.lib.darwinSystem
-      (buildConfig hostName system config (map (defaultOrHead "darwinModules") extraModuleInputs));
+      (buildConfig hostName system ((map (c: c.darwin) [commonConfiguration config]) ++ (map (defaultOrHead "darwinModules") extraModuleInputs)));
     nixosConfig = hostName: system: config:
-      lib.nixosSystem
-      (buildConfig hostName system config (map (defaultOrHead "nixosModules") extraModuleInputs));
+      # I don't think I want to stay on edge, but I am currently
+      # using at least one nixos option not available in 23.11:
+      nixpkgs-edge.lib.nixosSystem
+      (buildConfig hostName system ((map (c: c.linux) [commonConfiguration config]) ++ (map (defaultOrHead "nixosModules") extraModuleInputs)));
   in {
     darwinConfigurations = {
       "MattPolzin-Home" = darwinConfig "MattPolzin-Home" "x86_64-darwin" homeConfiguration;
