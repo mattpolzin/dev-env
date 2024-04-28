@@ -20,7 +20,7 @@
 ## 9. Copy ~/notes (Neorg files) to new machine.
 ## 10. Snag Safari bookmarks as desired.
 {
-  name,
+  hostName,
   pkgs,
   pkgs-edge,
   system,
@@ -230,10 +230,10 @@ in {
     promptInit = ""; # I've got prompt stuff in my ~/.zshrc
   };
 
-  networking = rec {
-    computerName = name;
-    hostName = computerName;
-    localHostName = computerName;
+  networking = {
+    computerName = hostName;
+    hostName = hostName;
+    localHostName = hostName;
   };
 
   nix = {

@@ -57,7 +57,7 @@
     commonConfiguration = import ./nix/modules/common/system.nix;
     workConfiguration = import ./nix/modules/work/system.nix;
     homeConfiguration = import ./nix/modules/home/system.nix;
-    buildConfig = system: config: extraModules: let
+    buildConfig = hostName: system: config: extraModules: let
       pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix {
         inherit system nixpkgs-edge;
       };
@@ -69,23 +69,23 @@
           pkgs-edge
         ]
         ++ extraModules;
-      specialArgs = {inherit system inputs;};
+      specialArgs = {inherit hostName system inputs;};
     };
-    darwinConfig = system: config:
+    darwinConfig = hostName: system: config:
       nix-darwin.lib.darwinSystem
-      (buildConfig system config (map (defaultOrHead "darwinModules") extraModuleInputs));
-    nixosConfig = system: config:
+      (buildConfig hostName system config (map (defaultOrHead "darwinModules") extraModuleInputs));
+    nixosConfig = hostName: system: config:
       lib.nixosSystem
-      (buildConfig system config (map (defaultOrHead "nixosModules") extraModuleInputs));
+      (buildConfig hostName system config (map (defaultOrHead "nixosModules") extraModuleInputs));
   in {
     darwinConfigurations = {
-      "MattPolzin-Home" = darwinConfig "x86_64-darwin" homeConfiguration;
+      "MattPolzin-Home" = darwinConfig "MattPolzin-Home" "x86_64-darwin" homeConfiguration;
 
-      "MattPolzin-Work-Laptop-Old" = darwinConfig "x86_64-darwin" workConfiguration;
-      "MattPolzin-Work-Laptop" = darwinConfig "aarch64-darwin" workConfiguration;
+      "MattPolzin-Work-Laptop-Old" = darwinConfig "MattPolzin-Work-Laptop-Old" "x86_64-darwin" workConfiguration;
+      "MattPolzin-Work-Laptop" = darwinConfig "MattPolzin-Work-Laptop" "aarch64-darwin" workConfiguration;
     };
 
-    nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "x86_64-linux" homeConfiguration;
+    nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "MattPolzin-Scrappy" "x86_64-linux" homeConfiguration;
 
     # Expose the package set, including overlays, for convenience.
     darwinWorkPackages = self.darwinConfigurations."MattPolzin-Work-Laptop".pkgs;
