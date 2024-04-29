@@ -5,8 +5,10 @@
   neovimApp,
   ...
 }: let
-  directFileSources =
-    (import ../../home-files.nix) // neovimApp.homeManagerConfigs;
+  commonDirectFileSources =
+    (import ../../common-home-files.nix) // neovimApp.homeManagerConfigs;
+  directFileSources = commonDirectFileSources
+    // lib.optionalAttrs pkgs.stdenv.isLinux (import ../../linux-home-files.nix);
 in {
   editorconfig = {
     enable = true;

@@ -3,28 +3,22 @@
   ".bashrc" = {
     source = ../.bashrc;
   };
-  ".zshrc" = {
-    source = ../.zshrc;
-  };
   ".ctags" = {
     source = ../.ctags;
   };
-  ".w3m/config" = {
-    source = ../.w3m/config;
-  };
-  ".w3m/keymap" = {
-    source = ../.w3m/keymap;
-  };
-  ".config/kitty" = {
-    source = ../.config/kitty;
+  ".w3m" = {
+    source = ../.w3m;
     recursive = true;
+  };
+  ".zshrc" = {
+    source = ../.zshrc;
   };
   ".config/k9s" = {
     source = ../.config/k9s;
     recursive = true;
   };
-  ".config/ripgrep" = {
-    source = ../.config/ripgrep;
+  ".config/kitty" = {
+    source = ../.config/kitty;
     recursive = true;
   };
   ".config/nix" = {
@@ -33,6 +27,10 @@
   };
   ".config/nixpkgs" = {
     source = ../.config/nixpkgs;
+    recursive = true;
+  };
+  ".config/ripgrep" = {
+    source = ../.config/ripgrep;
     recursive = true;
   };
 }
