@@ -14,11 +14,10 @@
 ##     - Add the new user & host ssh public keys to the list in secrets/secrets.nix
 ##     - Rekey secret files (`nix run github:ryantm/agenix -- --rekey`)
 ##     - Commit changes to repo
-## 3. Install Homebrew (https://brew.sh)
 ## [...] (system-specific steps)
 ## 8. Copy Documents/Downloads folders to new machine.
 ## 9. Copy ~/notes (Neorg files) to new machine.
-## 10. Snag Safari bookmarks as desired.
+## 10. Snag Safari or qutebrowser bookmarks as desired.
 {
   hostName,
   pkgs,
@@ -40,21 +39,32 @@ in {
   home-manager.extraSpecialArgs = {inherit pkgs pkgs-edge neovimApp;};
 
   users.users.${config.users.primary} = {
-    home = "/Users/${config.users.primary}";
+    home = "/home/${config.users.primary}";
   };
 
   fonts = {
     fontDir.enable = true;
-    fonts = [
+    packages = [
       (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
       pkgs-edge.pixel-code
       iosevka.nerdFont
     ];
   };
 
-  # Auto upgrade nix package and the daemon service.
-#  services.nix-daemon.enable = true;
-# TODO: ^ is the above unavailable setting simply not relevant for nixos?
+  # Linux-specific packages; see common-system-packages.nix for the rest:
+  environment.systemPackages = [
+    # system
+    pkgs.dmenu
+    pkgs.xmobar # <- needed to get xmobar bin directory in PATH
+    pkgs.xclip
+
+    # development
+    pkgs.gcc
+    pkgs.gnumake
+
+    # network / internet
+    pkgs.qutebrowser
+  ];
 
   programs.postman.enable = false;
 
@@ -62,6 +72,43 @@ in {
   programs.zsh = {
     enable = true;
     promptInit = ""; # I've got prompt stuff in my ~/.zshrc
+  };
+
+  xdg.mime.defaultApplications = {
+    "text/html" = "org.qutebrowser.qutebrowser.desktop";
+    "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
+    "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
+    "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
+    "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
+  };
+
+  # Auto upgrade nix package and the daemon service.
+#  services.nix-daemon.enable = true;
+# TODO: ^ is the above unavailable setting simply not relevant for nixos?
+
+  services.xserver = {
+    enable = true;
+    dpi = 180;
+    displayManager = {
+      defaultSession = "none+xmonad";
+      lightdm = {
+        enable = true;
+        extraConfig = ''
+          logind-check-graphical = true
+        '';
+      };
+    };
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      extraPackages = haskellPackages: [
+        haskellPackages.xmonad
+        haskellPackages.xmonad-contrib
+        haskellPackages.xmobar
+      ];
+    };
+    displayManager.gdm.enable = false;
+    desktopManager.gnome.enable = false;
   };
 
   networking = {

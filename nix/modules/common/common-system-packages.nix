@@ -71,6 +71,8 @@ in
     pkgs.rlwrap
     pkgs.tree
     pkgs.w3m
+    pkgs.wget
+    pkgs.which
     pkgs.yq
 
     # GUI (all machines)
