@@ -14,4 +14,4 @@ else
   UPPER_BOUND="/nix/var/nix/profiles/system-${LAST_TWO_VERSIONS[1]}"
 fi
 
-nix run nixpkgs#nvd -- diff "${LOWER_BOUND}" "${UPPER_BOUND}"
+nvd diff "${LOWER_BOUND}" "${UPPER_BOUND}"
