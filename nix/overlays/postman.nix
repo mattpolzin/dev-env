@@ -3,7 +3,7 @@
     {
       aarch64-darwin = {
         arch = "arm64";
-        sha256 = "";
+        sha256 = "sha256-mhKSyoHoQB6BgMzWWYcfD9Ok3WAdGwANkC25A0K7aOs=";
       };
 
       x86_64-darwin = {
