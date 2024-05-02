@@ -1,5 +1,6 @@
 import XMonad
-import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
@@ -8,26 +9,32 @@ builtinDisplay = "eDP"
 dockedDisplay  = "DisplayPort-2"
 
 -- set Command/Super key as mod key
-myModMask = mod4Mask
+modMask = mod4Mask
 
-main = xmonad =<< xmobar myConfig
+main = xmonad $ xmobarProp config
 
-myConfig = def
+config = def
   { terminal = "kitty"
-  , modMask  = myModMask
-  , layoutHook  = myLayoutHook
-  , manageHook  = myManageHook
-  , startupHook = myStartupHook
+  , modMask  = modMask
+  , layoutHook  = layoutHook
+  , manageHook  = manageHook
+  , startupHook = startupHook
   }
-  `additionalKeys` myKeys
+  `additionalKeysP` bindings
 
 --
 -- key bindings
 --
-myKeys = [ ((myModMask, xK_q), kill)
-         , ((myModMask .|. shiftMask, xK_r), restartXMonad)
-         , ((myModMask .|. shiftMask, xK_m), switchPrimaryMonitor)
-         ]
+bindings cfg = [ ("M-q", kill)
+               , ("M-S-r", restartXMonad)
+               , ("M-S-m", switchPrimaryMonitor)
+               , ("M-<Space>", spawn "gmrun")
+               , ("M1-C-M-<Space>", sendMessage NextLayout) -- Ctrl+Option+Cmd+Space
+               , ("M-j", windows W.focusUp)
+               , ("M-k", windows W.focusDown)
+               , ("M-S-j", windows W.swapUp)
+               , ("M-S-k", windows W.swapDown)
+               ]
 
 --
 -- custom commands
@@ -38,8 +45,10 @@ switchPrimaryMonitor = spawn "xrandr --output \"$(xrandr --listactivemonitors | 
 --
 -- hooks
 --
-myManageHook = manageDocks <+> XMonad.manageHook defaultConfig
-myLayoutHook = avoidStruts $ XMonad.layoutHook defaultConfig
-myStartupHook = spawnOnce displaySetupCommand
+manageHook = manageDocks <+> XMonad.manageHook defaultConfig
+layoutHook = avoidStruts $ XMonad.layoutHook defaultConfig
+startupHook = do
+  checkKeymap config (bindings config)
+  spawnOnce displaySetupCommand
 
 displaySetupCommand = "xrandr --output " ++ builtinDisplay ++ " --brightness 0.5"
