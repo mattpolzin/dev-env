@@ -1,4 +1,4 @@
-Config { font = "JetBrains Mono Nerd Font 16"
+Config { font = "JetBrains Mono Nerd Font 15"
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
