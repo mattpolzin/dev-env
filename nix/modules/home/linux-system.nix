@@ -5,6 +5,10 @@
   config,
   ...
 }: {
+  imports = [
+    ./framework-hardware-configuration.nix
+  ];
+
   users.primary = "matt";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
 

@@ -45,5 +45,7 @@ in {
   # additional configs to manage:
   home.file = directFileSources;
 
-  targets.darwin.search = "DuckDuckGo";
+  targets = lib.optionalAttrs pkgs.stdenv.isDarwin {
+    darwin.search = "DuckDuckGo";
+  };
 }

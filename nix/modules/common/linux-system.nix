@@ -40,7 +40,10 @@ in {
 
   users.users.${config.users.primary} = {
     home = "/home/${config.users.primary}";
+    isNormalUser = true;
+    group = "matt";
   };
+  users.groups.matt = { };
 
   fonts = {
     fontDir.enable = true;
