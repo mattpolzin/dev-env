@@ -4,28 +4,34 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
+import qualified XMonad.StackSet as W
 
 builtinDisplay = "eDP"
 dockedDisplay  = "DisplayPort-2"
 
 -- set Command/Super key as mod key
-modMask = mod4Mask
+myModMask = mod4Mask
 
-main = xmonad $ xmobarProp config
+main = xmonad $ withSB myStatusBar myConfig
 
-config = def
+myConfig = def
   { terminal = "kitty"
-  , modMask  = modMask
-  , layoutHook  = layoutHook
-  , manageHook  = manageHook
-  , startupHook = startupHook
+  , modMask  = myModMask
+  , layoutHook  = myLayoutHook
+  , manageHook  = myManageHook
+  , startupHook = myStartupHook
   }
   `additionalKeysP` bindings
 
 --
+-- Status Bar
+--
+myStatusBar = statusBarProp "xmobar" (pure xmobarPP)
+
+--
 -- key bindings
 --
-bindings cfg = [ ("M-q", kill)
+bindings = [ ("M-q", kill)
                , ("M-S-r", restartXMonad)
                , ("M-S-m", switchPrimaryMonitor)
                , ("M-<Space>", spawn "gmrun")
@@ -45,10 +51,10 @@ switchPrimaryMonitor = spawn "xrandr --output \"$(xrandr --listactivemonitors | 
 --
 -- hooks
 --
-manageHook = manageDocks <+> XMonad.manageHook defaultConfig
-layoutHook = avoidStruts $ XMonad.layoutHook defaultConfig
-startupHook = do
-  checkKeymap config (bindings config)
+myManageHook = manageDocks <+> XMonad.manageHook def
+myLayoutHook = avoidStruts $ XMonad.layoutHook def
+myStartupHook = do
+  checkKeymap myConfig bindings
   spawnOnce displaySetupCommand
 
 displaySetupCommand = "xrandr --output " ++ builtinDisplay ++ " --brightness 0.5"

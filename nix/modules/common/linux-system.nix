@@ -61,8 +61,9 @@ in {
   environment.systemPackages = [
     # system
     pkgs.dmenu
-    pkgs.xmobar # <- needed to get xmobar bin directory in PATH
+    pkgs.gmrun
     pkgs.xclip
+    pkgs.xmobar # <- needed to get xmobar bin directory in PATH
 
     # development
     pkgs.gcc
@@ -122,8 +123,14 @@ in {
   # fingerprint reader
   services.fprintd.enable = true;
 
+  # trackpad
+  services.libinput.touchpad = {
+    naturalScrolling = true;
+  };
+
   networking = {
     wireless.enable = true;
+    wireless.userControlled.enable = true;
     hostName = hostName;
   };
 

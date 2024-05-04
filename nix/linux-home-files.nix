@@ -1,7 +1,7 @@
 {
   # source these files directly:
-  ".xmonad" = {
-    source = ../.xmonad;
+  ".config/xmonad" = {
+    source = ../.config/xmonad;
     recursive = true;
   };
   ".config/fontconfig" = {

@@ -18,9 +18,9 @@ Config { font = "xft:JetBrains Mono:pixelsize=24"
                                   , "--normal", "yellow"
                                   , "--low", "red"
                                   ] 30
-                    , Run StdinReader
+                    , Run XMonadLog
                     ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %enp9s0u1% }{<fc=#ee9a00>%date%</fc> | %battery% | %uname% "
+        , template = "%XMonadLog% | %cpu% | %memory% * %swap% | %enp9s0u1% }{<fc=#ee9a00>%date%</fc> | %battery% | %uname% "
         }
