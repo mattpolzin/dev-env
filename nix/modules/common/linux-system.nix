@@ -41,9 +41,9 @@ in {
   users.users.${config.users.primary} = {
     home = "/home/${config.users.primary}";
     isNormalUser = true;
-    group = "matt";
+    initialPassword = "nixos";
+    extraGroups = ["wheel" "networkmanager"];
   };
-  users.groups.matt = { };
 
   fonts = {
     fontDir.enable = true;
@@ -123,11 +123,17 @@ in {
   services.fprintd.enable = true;
 
   networking = {
+    wireless.enable = true;
     hostName = hostName;
   };
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.grub.enable = false;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   nix = {
     package = pkgs-edge.nixVersions.nix_2_20;
