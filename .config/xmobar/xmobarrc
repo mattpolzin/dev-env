@@ -1,4 +1,4 @@
-Config { font = "xft:JetBrains Mono:pixelsize=24"
+Config { font = "JetBrains Mono Nerd Font 16"
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"

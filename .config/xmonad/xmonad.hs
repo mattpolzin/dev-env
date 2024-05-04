@@ -12,7 +12,7 @@ dockedDisplay  = "DisplayPort-2"
 -- set Command/Super key as mod key
 myModMask = mod4Mask
 
-main = xmonad $ withSB myStatusBar myConfig
+main = xmonad . docks $ withSB myStatusBar $ myConfig
 
 myConfig = def
   { terminal = "kitty"
@@ -21,6 +21,7 @@ myConfig = def
   , manageHook  = myManageHook
   , startupHook = myStartupHook
   }
+  `removeKeysP` dupes
   `additionalKeysP` bindings
 
 --
@@ -41,6 +42,7 @@ bindings = [ ("M-q", kill)
                , ("M-S-j", windows W.swapUp)
                , ("M-S-k", windows W.swapDown)
                ]
+dupes = map fst bindings
 
 --
 -- custom commands
