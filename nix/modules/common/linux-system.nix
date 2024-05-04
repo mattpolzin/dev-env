@@ -51,6 +51,9 @@ in {
       (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
       pkgs-edge.pixel-code
       iosevka.nerdFont
+
+      # Common fonts
+      pkgs.vistafonts
     ];
   };
 
@@ -71,6 +74,9 @@ in {
 
   programs.postman.enable = false;
 
+  # I have nix-index-database handling command-not-found
+  programs.command-not-found.enable = false;
+
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh = {
     enable = true;
@@ -89,17 +95,16 @@ in {
 #  services.nix-daemon.enable = true;
 # TODO: ^ is the above unavailable setting simply not relevant for nixos?
 
+  services.displayManager.defaultSession = "none+xmonad";
+
   services.xserver = {
     enable = true;
     dpi = 180;
-    displayManager = {
-      defaultSession = "none+xmonad";
-      lightdm = {
-        enable = true;
-        extraConfig = ''
-          logind-check-graphical = true
-        '';
-      };
+    displayManager.lightdm = {
+      enable = true;
+      extraConfig = ''
+        logind-check-graphical = true
+      '';
     };
     windowManager.xmonad = {
       enable = true;
@@ -114,9 +119,15 @@ in {
     desktopManager.gnome.enable = false;
   };
 
+  # fingerprint reader
+  services.fprintd.enable = true;
+
   networking = {
     hostName = hostName;
   };
+
+  virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   nix = {
     package = pkgs-edge.nixVersions.nix_2_20;
