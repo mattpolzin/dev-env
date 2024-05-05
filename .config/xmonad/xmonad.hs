@@ -58,7 +58,7 @@ switchPrimaryMonitor = spawn "xrandr --output \"$(xrandr --listactivemonitors | 
 myManageHook = manageDocks <+> XMonad.manageHook def
 myLayoutHook = avoidStruts $ XMonad.layoutHook def
 myStartupHook = do
-  checkKeymap preKeymapConfig bindings
+--   checkKeymap preKeymapConfig bindings
   spawnOnce displaySetupCommand
 
 displaySetupCommand = "xrandr --output " ++ builtinDisplay ++ " --brightness 0.7"
