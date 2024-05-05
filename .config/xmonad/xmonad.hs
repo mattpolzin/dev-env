@@ -6,7 +6,7 @@ import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 
-builtinDisplay = "eDP"
+builtinDisplay = "eDP-1"
 dockedDisplay  = "DisplayPort-2"
 
 -- set Command/Super key as mod key
@@ -14,13 +14,15 @@ myModMask = mod4Mask
 
 main = xmonad . docks $ withSB myStatusBar $ myConfig
 
-myConfig = def
+preKeymapConfig = def
   { terminal = "kitty"
   , modMask  = myModMask
   , layoutHook  = myLayoutHook
   , manageHook  = myManageHook
   , startupHook = myStartupHook
   }
+
+myConfig = preKeymapConfig 
   `removeKeysP` dupes
   `additionalKeysP` bindings
 
@@ -56,7 +58,7 @@ switchPrimaryMonitor = spawn "xrandr --output \"$(xrandr --listactivemonitors | 
 myManageHook = manageDocks <+> XMonad.manageHook def
 myLayoutHook = avoidStruts $ XMonad.layoutHook def
 myStartupHook = do
-  checkKeymap myConfig bindings
+  checkKeymap preKeymapConfig bindings
   spawnOnce displaySetupCommand
 
-displaySetupCommand = "xrandr --output " ++ builtinDisplay ++ " --brightness 0.5"
+displaySetupCommand = "xrandr --output " ++ builtinDisplay ++ " --brightness 0.7"
