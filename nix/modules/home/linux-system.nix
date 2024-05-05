@@ -30,6 +30,8 @@
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
 
+  boot.initrd.luks.devices."luks-d99ad198-c36b-4aa6-97e3-7f970030e770".device = "/dev/disk/by-uuid/d99ad198-c36b-4aa6-97e3-7f970030e770";
+
   nix = {
     nixPath = [
       "nixpkgs2=$HOME/staging/nixpkgs2"
