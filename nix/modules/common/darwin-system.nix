@@ -245,6 +245,9 @@ in {
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
 
+    # always show file extensions
+    NSGlobalDomain.AppleShowAllExtensions = true;
+
     # doesn't create the folder, just uses it if it is there:
     screencapture.location = "~/Documents/screenshots";
 
