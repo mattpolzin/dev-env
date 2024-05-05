@@ -42,7 +42,7 @@ in {
     home = "/home/${config.users.primary}";
     isNormalUser = true;
     initialPassword = "nixos";
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = ["wheel" "network" "networkmanager"];
   };
 
   fonts = {
@@ -143,7 +143,8 @@ in {
   };
 
   networking = {
-    networkmanager.enable = true;
+    wireless.enable = true;
+    wireless.userControlled.enable = true;
     inherit hostName;
   };
 

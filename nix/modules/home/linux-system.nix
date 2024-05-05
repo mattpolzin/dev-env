@@ -35,6 +35,13 @@
   # fingerprint reader
   services.fprintd.enable = true;
 
+  age.secrets.wpaSupplicantConfig.file = ../../../secrets/wpa-supplicant-conf.age;
+
+  networking.supplicant."wlp1s0" = {
+    configFile.path = config.age.secrets.wpaSupplicantConfig.path;
+    userControlled.group = "network";
+  };
+
   nix = {
     nixPath = [
       "nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
