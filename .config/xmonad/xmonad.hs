@@ -23,7 +23,6 @@ preKeymapConfig = def
   }
 
 myConfig = preKeymapConfig 
-  `removeKeysP` dupes
   `additionalKeysP` bindings
 
 --
@@ -35,16 +34,16 @@ myStatusBar = statusBarProp "xmobar" (pure xmobarPP)
 -- key bindings
 --
 bindings = [ ("M-q", kill)
-               , ("M-S-r", restartXMonad)
-               , ("M-S-m", switchPrimaryMonitor)
-               , ("M-<Space>", spawn "gmrun")
-               , ("M1-C-M-<Space>", sendMessage NextLayout) -- Ctrl+Option+Cmd+Space
-               , ("M-j", windows W.focusUp)
-               , ("M-k", windows W.focusDown)
-               , ("M-S-j", windows W.swapUp)
-               , ("M-S-k", windows W.swapDown)
-               ]
-dupes = map fst bindings
+           , ("M-S-r", restartXMonad)
+           , ("M-S-m", switchPrimaryMonitor)
+           , ("M-<Space>", spawn "gmrun")
+           , ("M1-C-M-<Space>", sendMessage NextLayout) -- Ctrl+Option+Cmd+Space
+           , ("M1-C-M-n", setLayout $ XMonad.layoutHook myConf) -- Ctrl+Option+Cmd+n
+           , ("M-j", windows W.focusUp)
+           , ("M-k", windows W.focusDown)
+           , ("M-S-j", windows W.swapUp)
+           , ("M-S-k", windows W.swapDown)
+           ]
 
 --
 -- custom commands
