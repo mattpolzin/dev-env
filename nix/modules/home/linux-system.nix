@@ -32,9 +32,13 @@
 
   boot.initrd.luks.devices."luks-d99ad198-c36b-4aa6-97e3-7f970030e770".device = "/dev/disk/by-uuid/d99ad198-c36b-4aa6-97e3-7f970030e770";
 
+  # fingerprint reader
+  services.fprintd.enable = true;
+
   nix = {
     nixPath = [
-      "nixpkgs2=$HOME/staging/nixpkgs2"
+      "nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
+      "nixpkgs2=$HOME/staging/nixpkgs"
     ];
   };
 }

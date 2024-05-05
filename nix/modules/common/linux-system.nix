@@ -125,9 +125,6 @@ in {
 
   services.openssh.enable = true;
 
-  # fingerprint reader
-  services.fprintd.enable = true;
-
   # trackpad
   services.libinput.touchpad = {
     naturalScrolling = true;
@@ -147,7 +144,7 @@ in {
 
   networking = {
     networkmanager.enable = true;
-    hostName = hostName;
+    inherit hostName;
   };
 
   virtualisation.docker.enable = true;

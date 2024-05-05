@@ -165,9 +165,9 @@ in {
   };
 
   networking = {
-    computerName = hostName;
-    hostName = hostName;
+    inherit hostName;
     localHostName = hostName;
+    computerName = hostName;
   };
 
   nix = {
