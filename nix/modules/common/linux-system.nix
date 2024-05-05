@@ -120,6 +120,11 @@ in {
     desktopManager.gnome.enable = false;
   };
 
+  # ssh protection
+  services.fail2ban.enable = true;
+
+  services.openssh.enable = true;
+
   # fingerprint reader
   services.fprintd.enable = true;
 
