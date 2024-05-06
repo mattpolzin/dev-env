@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./framework-hardware-configuration.nix
+    ./framework-hardware-extra.nix
   ];
 
   users.primary = "matt";
@@ -25,17 +26,6 @@
   ];
 
 #  programs.googleChrome.enable = true;
-
-  environment.variables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
-    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-  };
-
-  boot.initrd.luks.devices."luks-d99ad198-c36b-4aa6-97e3-7f970030e770".device = "/dev/disk/by-uuid/d99ad198-c36b-4aa6-97e3-7f970030e770";
-
-  # fingerprint reader
-  services.fprintd.enable = true;
 
   age.secrets.wpaSupplicantConfig.file = ../../../secrets/wpa-supplicant-conf.age;
 
