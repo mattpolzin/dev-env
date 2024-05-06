@@ -147,9 +147,6 @@ in {
     wireless.enable = true;
     wireless.userControlled.enable = true;
 #    firewall.logRefusedPackets = true;
-    firewall.allowedTCPPorts = [ 8008 8009 ];
-    firewall.allowedUDPPorts = [ 53 10008 1900 ];
-    firewall.allowedUDPPortRanges = [ { from = 32768; to = 61000; } ];
   };
 
   virtualisation.docker.enable = true;

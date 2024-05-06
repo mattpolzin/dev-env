@@ -16,12 +16,26 @@ let
 in
 {
   options = {
-    programs.postman.enable = lib.mkOption {
-      type = lib.types.bool;
+    programs = { 
+      postman.enable = lib.mkOption {
+        type = lib.types.bool;
+      };
+      googleChrome.enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+      };
     };
   };
 
   config = {
+  networking = {
+    firewall = lib.optionalAttrs cfg.googleChrome.enable {
+      allowedTCPPorts = [ 8008 8009 ];
+      allowedUDPPorts = [ 53 10008 1900 ];
+      allowedUDPPortRanges = [ { from = 32768; to = 61000; } ];
+    };
+  };
+
   environment.systemPackages = 
 [
     # Shell (all machines)
@@ -82,6 +96,8 @@ in
     pkgs.kitty
   ] ++ lib.optionals cfg.postman.enable [
     pkgs.postman
+  ] ++ lib.optionals cfg.googleChrome.enable [
+    pkgs.google-chrome
   ];
   };
   }
