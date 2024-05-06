@@ -23,7 +23,7 @@
   boot.kernelModules = [ "cros_ec" "cros_ec_lpcs" ];
 
   # fix white screen & flicker when using integrated AMD graphics:
-  kernelParams = [
+  boot.kernelParams = [
     "amdgpu.sg_display=0"
   ];
 
