@@ -4,6 +4,7 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
+import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 
 builtinDisplay = "eDP-1"
@@ -38,7 +39,8 @@ bindings = [ ("M-q", kill)
            , ("M-S-m", switchPrimaryMonitor)
            , ("M-<Space>", spawn "gmrun")
            , ("M1-C-M-<Space>", sendMessage NextLayout) -- Ctrl+Option+Cmd+Space
-           , ("M1-C-M-n", setLayout $ XMonad.layoutHook myConf) -- Ctrl+Option+Cmd+n
+--            , ("M1-C-M-n", setLayout $ XMonad.layoutHook myConfig) -- Ctrl+Option+Cmd+n
+           , ("M1-C-M-t", withFocused toggleFloat) -- Ctrl+Option+Cmd+t
            , ("M-j", windows W.focusUp)
            , ("M-k", windows W.focusDown)
            , ("M-S-j", windows W.swapUp)
@@ -61,3 +63,18 @@ myStartupHook = do
   spawnOnce displaySetupCommand
 
 displaySetupCommand = "xrandr --output " ++ builtinDisplay ++ " --brightness 0.7"
+
+
+--
+-- Helpers
+--
+
+toggleFloat :: Window -> X ()
+toggleFloat w =
+  windows
+    ( \s ->
+        if M.member w (W.floating s)
+          then W.sink w s
+          else (W.float w (W.RationalRect (1 / 3) (1 / 4) (1 / 2) (1 / 2)) s)
+    )
+
