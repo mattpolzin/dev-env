@@ -28,13 +28,18 @@ in
   };
 
   config = {
-  networking = {
-    firewall = lib.optionalAttrs cfg.googleChrome.enable {
-      allowedTCPPorts = [ 8008 8009 ];
-      allowedUDPPorts = [ 53 10008 1900 ];
-      allowedUDPPortRanges = [ { from = 32768; to = 61000; } ];
+    assertions = [
+      { assertion = cfg.googleChrome.enable -> !pkgs.stdenv.isDarwin;
+        message = "Install Chrome via Homebrew (in nix configs) for Darwin systems"; }
+    ];
+
+    networking = lib.optionalAttrs pkgs.stdenv.isLinux {
+      firewall = lib.optionalAttrs cfg.googleChrome.enable {
+        allowedTCPPorts = [ 8008 8009 ];
+        allowedUDPPorts = [ 53 10008 1900 ];
+        allowedUDPPortRanges = [ { from = 32768; to = 61000; } ];
+      };
     };
-  };
 
   environment.systemPackages = 
 [
