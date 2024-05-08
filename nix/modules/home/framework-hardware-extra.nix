@@ -18,6 +18,7 @@
 
   # Needed for desktop environments to detect/manage display brightness
   hardware.sensor.iio.enable = true;
+  programs.light.enable = true;
 
   # support for reading more hardware state:
   boot.kernelModules = [ "cros_ec" "cros_ec_lpcs" ];

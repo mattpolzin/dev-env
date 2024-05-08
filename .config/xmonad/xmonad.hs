@@ -45,6 +45,8 @@ bindings = [ ("M-q", kill)
            , ("M-k", windows W.focusDown)
            , ("M-S-j", windows W.swapUp)
            , ("M-S-k", windows W.swapDown)
+           , ("<XF86MonBrightnessUp>", brightnessUp)
+           , ("<XF86MonBrightnessDown>", brightnessDown)
            ]
 
 --
@@ -52,6 +54,9 @@ bindings = [ ("M-q", kill)
 --
 restartXMonad = spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"
 switchPrimaryMonitor = spawn "xrandr --output \"$(xrandr --listactivemonitors | awk '{print $4}' | tail -n1)\" --primary"
+
+brightnessUp = spawn "/run/current-system/sw/bin/light -A 20"
+brightnessDown = spawn "/run/current-system/sw/bin/light -U 20"
 
 --
 -- hooks
@@ -62,7 +67,9 @@ myStartupHook = do
 --   checkKeymap preKeymapConfig bindings
   spawnOnce displaySetupCommand
 
-displaySetupCommand = "xrandr --output " ++ builtinDisplay ++ " --brightness 0.7"
+-- no need to turn brightness down in software for the framework
+-- laptop with the fn keys for brightness working:
+displaySetupCommand = "xrandr --output " ++ builtinDisplay ++ " --brightness 1.0"
 
 
 --
