@@ -6,6 +6,9 @@
   ".ctags" = {
     source = ../.ctags;
   };
+  ".inputrc" = {
+    source = ../.inputrc;
+  };
   ".w3m" = {
     source = ../.w3m;
     recursive = true;
