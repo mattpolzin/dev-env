@@ -47,6 +47,9 @@ bindings = [ ("M-q", kill)
            , ("M-S-k", windows W.swapDown)
            , ("<XF86MonBrightnessUp>", brightnessUp)
            , ("<XF86MonBrightnessDown>", brightnessDown)
+           , ("<XF86AudioRaiseVolume>", volumeUp)
+           , ("<XF86AudioLowerVolume>", volumeDown)
+           , ("<XF86AudioMute>", muteToggle)
            ]
 
 --
@@ -57,6 +60,10 @@ switchPrimaryMonitor = spawn "xrandr --output \"$(xrandr --listactivemonitors | 
 
 brightnessUp = spawn "/run/current-system/sw/bin/light -A 20"
 brightnessDown = spawn "/run/current-system/sw/bin/light -U 20"
+
+volumeUp = spawn "/run/current-system/sw/bin/wpctl set-volume 50 10%+"
+volumeDown = spawn "/run/current-system/sw/bin/wpctl set-volume 50 10%-"
+muteToggle = spawn "/run/current-system/sw/bin/wpctl set-mute 50 toggle"
 
 --
 -- hooks

@@ -42,7 +42,7 @@ in {
     home = "/home/${config.users.primary}";
     isNormalUser = true;
     initialPassword = "nixos";
-    extraGroups = ["wheel" "network" "networkmanager" "video"];
+    extraGroups = ["wheel" "network" "networkmanager" "video" "audio"];
   };
 
   fonts = {
