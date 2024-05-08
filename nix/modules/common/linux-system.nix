@@ -83,6 +83,7 @@ in {
     enable = true;
     promptInit = ""; # I've got prompt stuff in my ~/.zshrc
   };
+  users.defaultUserShell = pkgs.zsh;
 
   xdg.mime.defaultApplications = {
     "text/html" = "org.qutebrowser.qutebrowser.desktop";
