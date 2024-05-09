@@ -8,4 +8,5 @@ let
 in {
   "etc-hosts.age".publicKeys = [mattpolzin-work-laptop work-laptop mattpolzin-work-laptop2 work-laptop2];
   "wpa-supplicant-conf.age".publicKeys = [matt-scrappy-laptop scrappy-laptop];
+  "aerc-accounts.age".publicKeys = [matt-scrappy-laptop scrappy-laptop];
 }
