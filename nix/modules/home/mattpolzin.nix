@@ -1,9 +1,10 @@
 {
+  lib,
   pkgs,
   pkgs-edge,
   neovim,
   ...
-}: {
+}@attrs: {
   imports = [
     ../common/mattpolzin.nix
   ];
@@ -12,6 +13,12 @@
   home.file.".config/ghostty" = {
     source = ../../../.config/ghostty;
     recursive = true;
+  };
+  home.activation = lib.mkIf (attrs ? aercAccountsPath) {
+    createAercAccounts = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      $DRY_RUN_CMD ln -s $VERBOSE_ARG \
+        ${toString attrs.aercAccountsPath} $HOME/.config/aerc/accounts.conf
+    '';
   };
 
   programs.git = {

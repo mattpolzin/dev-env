@@ -12,6 +12,7 @@
 
   users.primary = "matt";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
+  home-manager.extraSpecialArgs = { aercAccountsPath = config.age.secrets.aercAccounts.path; };
 
   # List packages installed in system profile.
   environment.systemPackages = [
@@ -32,6 +33,11 @@
   networking.supplicant."wlp1s0" = {
     configFile.path = config.age.secrets.wpaSupplicantConfig.path;
     userControlled.group = "network";
+  };
+
+  age.secrets.aercAccounts = {
+    file = ../../../secrets/aerc-accounts.age;
+    owner = "${config.users.primary}";
   };
 
   nix = {

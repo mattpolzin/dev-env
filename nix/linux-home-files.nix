@@ -12,4 +12,8 @@
     source = ../.config/xmobar;
     recursive = true;
   };
+  ".config/aerc" = {
+    source = ../.config/aerc;
+    recursive = true;
+  };
 }
