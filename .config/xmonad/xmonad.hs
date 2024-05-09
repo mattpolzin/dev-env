@@ -61,9 +61,9 @@ switchPrimaryMonitor = spawn "xrandr --output \"$(xrandr --listactivemonitors | 
 brightnessUp = spawn "/run/current-system/sw/bin/light -A 20"
 brightnessDown = spawn "/run/current-system/sw/bin/light -U 20"
 
-volumeUp = spawn "/run/current-system/sw/bin/wpctl set-volume 50 10%+"
-volumeDown = spawn "/run/current-system/sw/bin/wpctl set-volume 50 10%-"
-muteToggle = spawn "/run/current-system/sw/bin/wpctl set-mute 50 toggle"
+volumeUp = spawn "/run/current-system/sw/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"
+volumeDown = spawn "/run/current-system/sw/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
+muteToggle = spawn "/run/current-system/sw/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
 --
 -- hooks
