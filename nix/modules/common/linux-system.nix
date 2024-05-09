@@ -71,6 +71,10 @@ in {
 
     # network / internet
     pkgs.qutebrowser
+
+    # email
+    pkgs.aerc
+    pkgs.dante
   ];
 
   programs.postman.enable = false;
