@@ -50,6 +50,9 @@ bindings = [ ("M-q", kill)
            , ("<XF86AudioRaiseVolume>", volumeUp)
            , ("<XF86AudioLowerVolume>", volumeDown)
            , ("<XF86AudioMute>", muteToggle)
+           , ("<XF86AudioPlay>", playPauseToggle)
+           , ("<XF86AudioPrev>", playPrev)
+           , ("<XF86AudioNext>", playNext)
            ]
 
 --
@@ -64,6 +67,9 @@ brightnessDown = spawn "/run/current-system/sw/bin/light -U 20"
 volumeUp = spawn "/run/current-system/sw/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+"
 volumeDown = spawn "/run/current-system/sw/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
 muteToggle = spawn "/run/current-system/sw/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+playPauseToggle = spawn "/run/current-system/sw/bin/playerctl play-pause"
+playNext = spawn "/run/current-system/sw/bin/playerctl next"
+playPrev = spawn "/run/current-system/sw/bin/playerctl previous"
 
 --
 -- hooks

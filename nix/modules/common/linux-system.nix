@@ -75,6 +75,9 @@ in {
     # email
     pkgs.aerc
     pkgs.dante
+
+    # playback control
+    pkgs.playerctl
   ];
 
   programs.postman.enable = false;

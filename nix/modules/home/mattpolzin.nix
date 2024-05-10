@@ -16,6 +16,8 @@
   };
   home.activation = lib.mkIf (attrs ? aercAccountsPath) {
     createAercAccounts = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      $DRY_RUN_CMD rm -f \
+        $HOME/.config/aerc/accounts.conf
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \
         ${toString attrs.aercAccountsPath} $HOME/.config/aerc/accounts.conf
     '';
