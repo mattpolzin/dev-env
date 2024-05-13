@@ -98,7 +98,6 @@ in {
   homebrew.casks = [
     "1password"
     "1password-cli"
-    "google-chrome"
   ];
   homebrew.brews = [
     "garden-cli"

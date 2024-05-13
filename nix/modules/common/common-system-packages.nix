@@ -1,4 +1,4 @@
-{lib, pkgs, pkgs-edge, inputs, config, ...}:
+{lib, pkgs, pkgs-edge, inputs, config, options, ...}:
 let
   cfg = config.programs;
   agenix = inputs.agenix.packages.${pkgs.system}.agenix;
@@ -29,8 +29,6 @@ in
 
   config = {
     assertions = [
-      { assertion = cfg.googleChrome.enable -> !pkgs.stdenv.isDarwin;
-        message = "Install Chrome via Homebrew (in nix configs) for Darwin systems"; }
     ];
 
     networking = lib.optionalAttrs pkgs.stdenv.isLinux {
@@ -101,8 +99,12 @@ in
     pkgs.kitty
   ] ++ lib.optionals cfg.postman.enable [
     pkgs.postman
-  ] ++ lib.optionals cfg.googleChrome.enable [
+  ] ++ lib.optionals (pkgs.stdenv.isLinux && cfg.googleChrome.enable) [
     pkgs.google-chrome
   ];
+  } // lib.optionalAttrs (options ? homebrew) {
+    homebrew.casks = lib.optionals cfg.googleChrome.enable [
+      "google-chrome"
+    ];
   };
   }

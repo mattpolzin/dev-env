@@ -54,11 +54,6 @@ in {
 
   homebrew.enable = true;
   homebrew.onActivation.cleanup = "zap";
-  # homebrew.taps = [
-  # ];
-  homebrew.casks = [
-    "google-chrome"
-  ];
   homebrew.masApps = {
     Keynote = 409183694;
     Numbers = 409203825;
@@ -66,6 +61,8 @@ in {
     Vimari = 1480933944;
     Xcode = 497799835;
   };
+  # chrome via Homebrew:
+  programs.googleChrome.enable = true;
 
   services.yabai = {
     enable = true;
