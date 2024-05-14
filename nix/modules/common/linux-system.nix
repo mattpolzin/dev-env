@@ -33,6 +33,7 @@ in {
   imports = [
     ./user-cfg.nix
     ./common-system-packages.nix
+    ./xmonad-system.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -63,7 +64,6 @@ in {
     pkgs.dmenu
     pkgs.gmrun
     pkgs.xclip
-    pkgs.xmobar # <- needed to get xmobar bin directory in PATH
 
     # development
     pkgs.gcc
@@ -98,34 +98,6 @@ in {
     "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
     "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
     "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
-  };
-
-  # Auto upgrade nix package and the daemon service.
-#  services.nix-daemon.enable = true;
-# TODO: ^ is the above unavailable setting simply not relevant for nixos?
-
-  services.displayManager.defaultSession = "none+xmonad";
-
-  services.xserver = {
-    enable = true;
-    dpi = 180;
-    displayManager.lightdm = {
-      enable = true;
-      extraConfig = ''
-        logind-check-graphical = true
-      '';
-    };
-    windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
-      extraPackages = haskellPackages: [
-        haskellPackages.xmonad
-        haskellPackages.xmonad-contrib
-        haskellPackages.xmobar
-      ];
-    };
-    displayManager.gdm.enable = false;
-    desktopManager.gnome.enable = false;
   };
 
   # ssh protection
