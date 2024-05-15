@@ -19,7 +19,6 @@
 ## 9. Copy ~/notes (Neorg files) to new machine.
 ## 10. Snag Safari or qutebrowser bookmarks as desired.
 {
-  lib,
   hostName,
   pkgs,
   pkgs-edge,
@@ -35,7 +34,8 @@ in {
     ./user-cfg.nix
     ./common-system-packages.nix
 #    ./xmonad-system.nix
-    ./sway-system.nix
+#    ./sway-system.nix
+    ./river-system.nix
   ];
 
   home-manager.useGlobalPkgs = true;

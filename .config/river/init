@@ -1,0 +1,37 @@
+#!/bin/sh
+
+##
+## Inputs
+##
+
+riverctl map normal Super+Shift Return spawn foot
+
+# close current window
+riverctl map normal Super Q close
+
+# exit river
+riverctl map normal Super+Shift E exit
+
+# select next/previous window
+riverctl map normal Super J focus-view next
+riverctl map normal Super K focus-view previous
+
+# move window up/down in stack
+riverctl map normal Super+Shift J swap next
+riverctl map normal Super+Shift K swap previous
+
+# move to top of stack
+riverctl map normal Super Return zoom
+
+# move with mouse
+riverctl map-pointer normal Super BTN_LEFT move-view
+
+##
+## Behavior
+##
+
+# natural scroll direction
+riverctl input '*_Touchpad' natural_scroll enabled
+
+riverctl default-layout rivertile
+rivertile -view-padding 2 -outerpadding 2 &

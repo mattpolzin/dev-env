@@ -20,4 +20,8 @@
     source = ../.config/sway;
     recursive = true;
   };
+  ".config/river" = {
+    source = ../.config/river;
+    recursive = true;
+  };
 }
