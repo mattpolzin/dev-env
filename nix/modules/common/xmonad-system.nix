@@ -26,5 +26,7 @@
 
   environment.systemPackages = [
     pkgs.xmobar # <- needed to get xmobar bin directory in PATH
+    pkgs.xclip
+    pkgs.dmenu
   ];
 }

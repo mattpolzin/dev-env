@@ -34,6 +34,7 @@ in {
     ./user-cfg.nix
     ./common-system-packages.nix
     ./xmonad-system.nix
+#    ./sway-system.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -61,9 +62,7 @@ in {
   # Linux-specific packages; see common-system-packages.nix for the rest:
   environment.systemPackages = [
     # system
-    pkgs.dmenu
     pkgs.gmrun
-    pkgs.xclip
 
     # development
     pkgs.gcc
