@@ -4,7 +4,7 @@
 ## Inputs
 ##
 
-riverctl map normal Super+Shift Return spawn foot
+riverctl map normal Super+Shift Return spawn kitty
 
 # close current window
 riverctl map normal Super Q close
