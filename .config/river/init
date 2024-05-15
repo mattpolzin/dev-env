@@ -5,7 +5,7 @@
 ##
 
 riverctl map normal Super+Shift Return spawn kitty
-riverctl map normal Super Space spawn tofi-drun
+riverctl map normal Super Space spawn "tofi-drun | xargs -0 riverctl spawn"
 
 # close current window
 riverctl map normal Super Q close
@@ -32,7 +32,7 @@ riverctl map-pointer normal Super BTN_LEFT move-view
 ##
 
 # natural scroll direction
-riverctl input '*_Touchpad' natural_scroll enabled
+riverctl input *_Touchpad natural-scroll enabled
 
 riverctl default-layout rivertile
 rivertile &
