@@ -34,4 +34,4 @@ riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl input '*_Touchpad' natural_scroll enabled
 
 riverctl default-layout rivertile
-rivertile -view-padding 2 -outerpadding 2 &
+rivertile &
