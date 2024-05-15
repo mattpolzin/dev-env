@@ -10,4 +10,8 @@
     ];
   };
   programs.waybar.enable = true;
+
+  environment.systemPackages = [
+    pkgs.foot
+  ];
 }
