@@ -16,4 +16,8 @@
     source = ../.config/aerc;
     recursive = true;
   };
+  ".config/sway" = {
+    source = ../.config/sway;
+    recursive = true;
+  };
 }
