@@ -5,6 +5,7 @@
 ##
 
 riverctl map normal Super+Shift Return spawn kitty
+riverctl map normal Super Space spawn tofi-drun
 
 # close current window
 riverctl map normal Super Q close

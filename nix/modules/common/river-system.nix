@@ -5,13 +5,9 @@
     extraPackages = with pkgs; [
 #      swaymonad
       wl-clipboard
-      wmenu
+      tofi
 #      wlgreet
     ];
   };
   programs.waybar.enable = true;
-
-  environment.systemPackages = [
-    pkgs.foot
-  ];
 }
