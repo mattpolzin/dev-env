@@ -21,11 +21,22 @@ riverctl map normal Super K focus-view previous
 riverctl map normal Super+Shift J swap next
 riverctl map normal Super+Shift K swap previous
 
+# adjust main ratio
+riverctl map normal Super+Shift H send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal Super+Shift L send-layout-cmd rivertile "main-ratio +0.05"
+
+# add/remove windows from main
+riverctl map normal Super Comma send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super Period send-layout-cmd rivertile "main-count -1"
+
 # move to top of stack
 riverctl map normal Super Return zoom
 
 # move with mouse
 riverctl map-pointer normal Super BTN_LEFT move-view
+
+# resize with mouse
+riverctl map-pointer normal Super+Shift BTN_LEFT resize-view
 
 ##
 ## Behavior
