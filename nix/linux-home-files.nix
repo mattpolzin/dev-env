@@ -24,4 +24,8 @@
     source = ../.config/river;
     recursive = true;
   };
+  ".config/waybar" = {
+    source = ../.config/waybar;
+    recursive = true;
+  };
 }

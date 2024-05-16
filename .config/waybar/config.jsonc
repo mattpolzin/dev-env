@@ -1,0 +1,27 @@
+{
+  "height": 50,
+  "modules-left": [
+    "river/tags"
+  ],
+  "modules-center": [
+    "river/window"
+  ],
+  "modules-right": [
+        "mpd",
+        "idle_inhibitor",
+        "pulseaudio",
+        "network",
+        "power-profiles-daemon",
+        "cpu",
+        "memory",
+        "temperature",
+        "keyboard-state",
+        "battery",
+        "clock",
+        "tray"
+    ],
+    "river/tags": {
+      "num-tags": 3,
+      "tag-labels": ["1", "2", "3"]
+    }
+}

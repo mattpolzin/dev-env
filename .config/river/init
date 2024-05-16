@@ -84,4 +84,10 @@ riverctl input *_Touchpad disable-while-typing enabled
 riverctl input *_Touchpad tap enabled
 
 riverctl default-layout rivertile
+
+##
+## Startup
+##
+
+waybar &
 rivertile &
