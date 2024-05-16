@@ -33,6 +33,8 @@ riverctl map-pointer normal Super BTN_LEFT move-view
 
 # natural scroll direction
 riverctl input *_Touchpad natural-scroll enabled
+riverctl input *_Touchpad disable-while-typing enabled
+riverctl input *_Touchpad tap enabled
 
 riverctl default-layout rivertile
 rivertile &
