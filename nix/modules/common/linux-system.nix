@@ -76,7 +76,8 @@ in {
     pkgs.aerc
     pkgs.dante
 
-    # playback control
+    # volume & playback control
+    pkgs.pamixer
     pkgs.playerctl
   ];
 
