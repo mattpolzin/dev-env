@@ -9,15 +9,20 @@
   "modules-right": [
     "pulseaudio",
     "network",
-    "power-profiles-daemon",
     "cpu",
     "memory",
     "temperature",
     "battery",
     "clock",
+    "power-profiles-daemon",
     "idle_inhibitor"
   ],
   "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "deactivated": "⏾",
+      "activated": "⍨"
+    }
   },
   "network": {
     "format": "{ifname}",

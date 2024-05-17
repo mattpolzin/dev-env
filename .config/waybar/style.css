@@ -30,7 +30,7 @@ window#waybar {
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #keyboard-state, #temperature, #power-profiles-daemon, #idle_inhibitor, #mpd {
     padding: 8px 16px;
-    margin: 0px 8px;
+    margin: 0px 4px;
     margin-top: 8px;
 
     border-radius: 26px;
