@@ -22,6 +22,7 @@
     extraPackages = with pkgs; [
       wl-clipboard
       tofi
+      swaybg
     ];
   };
   programs.waybar.enable = true;

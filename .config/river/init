@@ -89,5 +89,6 @@ riverctl default-layout rivertile
 ## Startup
 ##
 
+[ -f /home/matt/background.png ] && swaybg -i /home/matt/background.png -m fill &
 waybar &
 rivertile &
