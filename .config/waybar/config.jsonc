@@ -1,27 +1,48 @@
 {
   "height": 50,
   "modules-left": [
-    "river/tags"
-  ],
-  "modules-center": [
+    "river/tags",
     "river/window"
   ],
+  "modules-center": [
+  ],
   "modules-right": [
-        "mpd",
-        "idle_inhibitor",
-        "pulseaudio",
-        "network",
-        "power-profiles-daemon",
-        "cpu",
-        "memory",
-        "temperature",
-        "keyboard-state",
-        "battery",
-        "clock",
-        "tray"
-    ],
-    "river/tags": {
-      "num-tags": 3,
-      "tag-labels": ["1", "2", "3"]
+    "pulseaudio",
+    "network",
+    "power-profiles-daemon",
+    "cpu",
+    "memory",
+    "temperature",
+    "battery",
+    "clock",
+    "idle_inhibitor"
+  ],
+  "idle_inhibitor": {
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{essid} {signalStrength} | 🡣 {bandwidthDownBytes} / {bandwidthUpBytes} 🡩"
+  },
+  "river/tags": {
+    "num-tags": 3,
+    "tag-labels": ["1", "2", "3"]
+  },
+  "power-profiles-daemon": {
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "=",
+      "power-saver": ""
     }
+  },
+  "pulseaudio": {
+    "format": "🔈{volume}%",
+    "format-muted": "🔈---"
+  },
+  "battery": {
+    "format": "🔋{capacity}%"
+  },
+  "clock": {
+    "format": "{:%I:%M %p}"
+  }
 }
