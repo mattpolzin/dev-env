@@ -26,4 +26,10 @@
     ];
   };
   programs.waybar.enable = true;
+
+  environment.systemPackages = [
+    # screenshots
+    pkgs.grim
+    pkgs.slurp
+  ];
 }

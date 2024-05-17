@@ -62,8 +62,8 @@ in {
 
   # Linux-specific packages; see common-system-packages.nix for the rest:
   environment.systemPackages = [
-    # system
-    pkgs.gmrun
+    # image viewer
+    pkgs.feh
 
     # development
     pkgs.gcc
