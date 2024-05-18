@@ -12,7 +12,7 @@
     enable = true;
     settings = {
       background = {
-        path = "/home/matt/login-background.jpg";
+        path = ../../../images/login-background.jpg;
         fit = "Fill";
       };
       GTK = {
