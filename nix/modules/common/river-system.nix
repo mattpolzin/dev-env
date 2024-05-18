@@ -11,6 +11,10 @@
   programs.regreet = {
     enable = true;
     settings = {
+      background = {
+        path = "/home/matt/login-background.jpg";
+        fit = "Fill";
+      };
       GTK = {
         application_prefer_dark_theme = true;
       };
