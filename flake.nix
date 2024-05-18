@@ -74,23 +74,27 @@
       modules = configs ++ [ pkgs-edge ];
       specialArgs = {inherit hostName system inputs;};
     };
-    darwinConfig = hostName: system: config:
+    darwinConfig = hostName: system: config: extraModules:
       nix-darwin.lib.darwinSystem
-      (buildConfig hostName system ((map (c: c.darwin) [commonConfiguration config]) ++ (map (defaultOrHead "darwinModules") extraModuleInputs)));
-    nixosConfig = hostName: system: config:
+      (buildConfig hostName system 
+        ((map (c: c.darwin) [commonConfiguration config]) ++ (map (defaultOrHead "darwinModules") extraModuleInputs) ++ [extraModules]));
+    nixosConfig = hostName: system: config: extraModules:
       # I don't think I want to stay on edge, but I am currently
       # using at least one nixos option not available in 23.11:
       nixpkgs-edge.lib.nixosSystem
-      (buildConfig hostName system ((map (c: c.linux) [commonConfiguration config]) ++ (map (defaultOrHead "nixosModules") extraModuleInputs)));
+      (buildConfig hostName system 
+        ((map (c: c.linux) [commonConfiguration config]) ++ (map (defaultOrHead "nixosModules") extraModuleInputs) ++ [extraModules]));
   in {
     darwinConfigurations = {
-      "MattPolzin-Home" = darwinConfig "MattPolzin-Home" "x86_64-darwin" homeConfiguration;
+      "MattPolzin-Home" = darwinConfig "MattPolzin-Home" "x86_64-darwin" homeConfiguration {};
 
-      "MattPolzin-Work-Laptop-Old" = darwinConfig "MattPolzin-Work-Laptop-Old" "x86_64-darwin" workConfiguration;
-      "MattPolzin-Work-Laptop" = darwinConfig "MattPolzin-Work-Laptop" "aarch64-darwin" workConfiguration;
+      "MattPolzin-Work-Laptop-Old" = darwinConfig "MattPolzin-Work-Laptop-Old" "x86_64-darwin" workConfiguration {};
+      "MattPolzin-Work-Laptop" = darwinConfig "MattPolzin-Work-Laptop" "aarch64-darwin" workConfiguration {};
     };
 
-    nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "MattPolzin-Scrappy" "x86_64-linux" homeConfiguration;
+    nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "MattPolzin-Scrappy" "x86_64-linux" homeConfiguration {
+      programs.googleChrome.enable = true;
+    };
 
     # Expose the package set, including overlays, for convenience.
     darwinWorkPackages = self.darwinConfigurations."MattPolzin-Work-Laptop".pkgs;

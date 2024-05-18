@@ -26,8 +26,6 @@
     pkgs.spotify
   ];
 
-#  programs.googleChrome.enable = true;
-
   age.secrets.wpaSupplicantConfig.file = ../../../secrets/wpa-supplicant-conf.age;
 
   networking.supplicant."wlp1s0" = {
