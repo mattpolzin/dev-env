@@ -168,7 +168,7 @@ in {
   };
 
   nix = {
-    package = pkgs-edge.nixVersions.nix_2_20;
+    package = pkgs-edge.nixVersions.nix_2_21;
 
     gc.automatic = true;
     gc.interval = {

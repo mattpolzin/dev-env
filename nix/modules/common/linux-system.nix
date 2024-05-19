@@ -139,7 +139,7 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   nix = {
-    package = pkgs-edge.nixVersions.nix_2_20;
+    package = pkgs-edge.nixVersions.nix_2_21;
 
     gc.automatic = true;
     gc.dates = "Sat *-*-* 03:00:00";
