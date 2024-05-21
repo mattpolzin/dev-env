@@ -71,6 +71,8 @@ in {
 
     # network / internet
     pkgs.qutebrowser
+    pkgs.nbtscan
+    pkgs.nmap
 
     # email
     pkgs.aerc
