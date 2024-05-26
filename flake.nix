@@ -93,7 +93,8 @@
     };
 
     nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "MattPolzin-Scrappy" "x86_64-linux" homeConfiguration {
-      programs.googleChrome.enable = true;
+      personal.googleChrome.enable = true;
+      personal.kubernetes.enable = true;
     };
 
     # Expose the package set, including overlays, for convenience.

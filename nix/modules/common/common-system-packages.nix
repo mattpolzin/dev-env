@@ -1,6 +1,6 @@
-{lib, pkgs, pkgs-edge, inputs, config, options, ...}:
+{lib, pkgs, pkgs-edge, inputs, config, ...}:
 let
-  cfg = config.programs;
+  cfg = config.personal;
   agenix = inputs.agenix.packages.${pkgs.system}.agenix;
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
   idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
@@ -16,29 +16,20 @@ let
 in
 {
   options = {
-    programs = { 
+    personal = { 
       postman.enable = lib.mkOption {
-        type = lib.types.bool;
-      };
-      googleChrome.enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
       };
     };
   };
 
+  imports = [
+    ./kubernetes.nix
+    ./google-chrome.nix
+  ];
+
   config = {
-    assertions = [
-    ];
-
-    networking = lib.optionalAttrs pkgs.stdenv.isLinux {
-      firewall = lib.optionalAttrs cfg.googleChrome.enable {
-        allowedTCPPorts = [ 8008 8009 ];
-        allowedUDPPorts = [ 53 10008 1900 ];
-        allowedUDPPortRanges = [ { from = 32768; to = 61000; } ];
-      };
-    };
-
   environment.systemPackages = 
 [
     # Shell (all machines)
@@ -99,12 +90,6 @@ in
     pkgs.kitty
   ] ++ lib.optionals cfg.postman.enable [
     pkgs.postman
-  ] ++ lib.optionals (pkgs.stdenv.isLinux && cfg.googleChrome.enable) [
-    pkgs.google-chrome
   ];
-  } // lib.optionalAttrs (options ? homebrew) {
-    homebrew.casks = lib.optionals cfg.googleChrome.enable [
-      "google-chrome"
-    ];
   };
-  }
+}

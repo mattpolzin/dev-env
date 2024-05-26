@@ -83,8 +83,6 @@ in {
     pkgs.playerctl
   ];
 
-  programs.postman.enable = false;
-
   # I have nix-index-database handling command-not-found
   programs.command-not-found.enable = false;
 
