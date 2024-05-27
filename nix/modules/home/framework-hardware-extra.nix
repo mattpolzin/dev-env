@@ -1,6 +1,6 @@
 # unlike framework-hardware-configuration.nix, this file is
 # not auto-generated.
-{ config, lib, pkgs, modulesPath, ... }:
+{ ... }:
 {
   # fingerprint reader:
   services.fprintd.enable = true;
