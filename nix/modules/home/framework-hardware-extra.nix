@@ -1,6 +1,6 @@
 # unlike framework-hardware-configuration.nix, this file is
 # not auto-generated.
-{ ... }:
+{ pkgs, ... }:
 {
   # fingerprint reader:
   services.fprintd.enable = true;
@@ -22,6 +22,8 @@
 
   # support for reading more hardware state:
   boot.kernelModules = [ "cros_ec" "cros_ec_lpcs" ];
+
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
 
   # fix white screen & flicker when using integrated AMD graphics:
   boot.kernelParams = [
