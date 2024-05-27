@@ -25,13 +25,15 @@ in
       kubernetes
     ]);
 
+    environment.variables = {
+      KUBECONFIG = "/etc/${toString config.services.kubernetes.pki.etcClusterAdminKubeconfig}";
+    };
+
     services.kubernetes = lib.mkIf cfg.enable {
       roles = ["master" "node"];
       masterAddress = "localhost";
-      easyCerts = true;
 
-      # use coredns
-#      addons.dns.enable = true;
+      kubelet.hostname = lib.toLower config.networking.fqdnOrHostName;
 
       # needed if you use swap
       kubelet.extraOpts = "--fail-swap-on=false";
