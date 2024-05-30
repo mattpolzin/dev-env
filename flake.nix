@@ -91,7 +91,7 @@
     };
 
     nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "MattPolzin-Scrappy" "x86_64-linux" homeConfiguration {
-      personal.googleChrome.enable = true;
+      personal.googleChrome.enable = false;
       personal.kubernetes.enable = false;
     };
 
