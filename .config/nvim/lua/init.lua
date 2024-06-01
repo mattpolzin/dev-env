@@ -249,8 +249,10 @@ end
 if vim.fn.executable('idris2') == 1 then
   require('lsp.idris').setup()
 end
-if vim.fn.executable('node') == 1 then
-  require('lsp.node').setup()
+if vim.fn.executable('node') == 1 
+  and vim.fn.executable('tsserver') == 1
+  then
+    require('lsp.node').setup()
 end
 if vim.fn.executable('node') == 1 then
   require('lsp.json').setup()
