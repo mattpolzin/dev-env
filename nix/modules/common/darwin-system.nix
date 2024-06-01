@@ -62,7 +62,7 @@ in {
     Xcode = 497799835;
   };
   # chrome via Homebrew:
-  personal.googleChrome.enable = true;
+  customize.googleChrome.enable = true;
 
   services.yabai = {
     enable = true;
@@ -153,7 +153,7 @@ in {
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
-  personal.postman.enable = true;
+  customize.postman.enable = true;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh = {

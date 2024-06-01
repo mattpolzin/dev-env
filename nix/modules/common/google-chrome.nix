@@ -1,10 +1,10 @@
 {lib, pkgs, config, options, ...}:
 let
-  cfg = config.personal.googleChrome;
+  cfg = config.customize.googleChrome;
 in
 {
   options = {
-    personal = { 
+    customize = { 
       googleChrome.enable = lib.mkOption {
         type = lib.types.bool;
         default = false;

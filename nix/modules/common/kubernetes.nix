@@ -1,10 +1,10 @@
 { lib, config, pkgs, ... }:
 let
-  cfg = config.personal.kubernetes;
+  cfg = config.customize.kubernetes;
 in
 {
   options = {
-    personal = { 
+    customize = { 
       kubernetes.enable = lib.mkOption {
         type = lib.types.bool;
         default = false;

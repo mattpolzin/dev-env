@@ -1,7 +1,5 @@
 {
   pkgs,
-  system,
-  inputs,
   config,
   ...
 }: {

@@ -62,9 +62,9 @@
       darwin = import ./nix/modules/work/darwin-system.nix;
       linux = throw "no linux work machines to configure";
     };
-    homeConfiguration = {
-      darwin = import ./nix/modules/home/darwin-system.nix;
-      linux = import ./nix/modules/home/linux-system.nix;
+    personalConfiguration = {
+      darwin = import ./nix/modules/personal/darwin-system.nix;
+      linux = import ./nix/modules/personal/linux-system.nix;
     };
     buildConfig = hostName: system: configs: let
       pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix {
@@ -84,15 +84,15 @@
         ((map (c: c.linux) [commonConfiguration config]) ++ (map (defaultOrHead "nixosModules") extraModuleInputs) ++ [extraModules]));
   in {
     darwinConfigurations = {
-      "MattPolzin-Home" = darwinConfig "MattPolzin-Home" "x86_64-darwin" homeConfiguration {};
+      "MattPolzin-Home" = darwinConfig "MattPolzin-Home" "x86_64-darwin" personalConfiguration {};
 
       "MattPolzin-Work-Laptop-Old" = darwinConfig "MattPolzin-Work-Laptop-Old" "x86_64-darwin" workConfiguration {};
       "MattPolzin-Work-Laptop" = darwinConfig "MattPolzin-Work-Laptop" "aarch64-darwin" workConfiguration {};
     };
 
-    nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "MattPolzin-Scrappy" "x86_64-linux" homeConfiguration {
-      personal.googleChrome.enable = false;
-      personal.kubernetes.enable = false;
+    nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "MattPolzin-Scrappy" "x86_64-linux" personalConfiguration {
+      customize.googleChrome.enable = false;
+      customize.kubernetes.enable = false;
     };
 
     # Expose the package set, including overlays, for convenience.

@@ -1,8 +1,5 @@
 {
   lib,
-  pkgs,
-  pkgs-edge,
-  neovim,
   ...
 }@attrs: {
   imports = [

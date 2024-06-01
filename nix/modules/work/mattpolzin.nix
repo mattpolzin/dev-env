@@ -1,7 +1,4 @@
 {
-  pkgs,
-  pkgs-edge,
-  neovim,
   ...
 }: {
   imports = [

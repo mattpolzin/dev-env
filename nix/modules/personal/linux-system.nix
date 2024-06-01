@@ -4,8 +4,8 @@
   ...
 }: {
   imports = [
-    ./framework-hardware-configuration.nix
-    ./framework-hardware-extra.nix
+    ../hardware/framework-hardware-configuration.nix
+    ../hardware/framework-hardware-extra.nix
   ];
 
   users.primary = "matt";

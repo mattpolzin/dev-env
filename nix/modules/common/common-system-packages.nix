@@ -1,6 +1,6 @@
 {lib, pkgs, pkgs-edge, inputs, config, ...}:
 let
-  cfg = config.personal;
+  cfg = config.customize;
   agenix = inputs.agenix.packages.${pkgs.system}.agenix;
   idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
   idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
@@ -16,7 +16,7 @@ let
 in
 {
   options = {
-    personal = { 
+    customize = { 
       postman.enable = lib.mkOption {
         type = lib.types.bool;
         default = false;

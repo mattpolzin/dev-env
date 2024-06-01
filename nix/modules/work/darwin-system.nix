@@ -25,8 +25,6 @@
 {
   pkgs,
   pkgs-edge,
-  system,
-  inputs,
   config,
   ...
 }: let
