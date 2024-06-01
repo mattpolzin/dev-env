@@ -25,18 +25,20 @@ in
       kubernetes
     ]);
 
-    environment.variables = {
+    environment.variables = lib.optionalAttrs cfg.enable {
       KUBECONFIG = "/etc/${toString config.services.kubernetes.pki.etcClusterAdminKubeconfig}";
     };
 
-    services.kubernetes = lib.mkIf cfg.enable {
-      roles = ["master" "node"];
-      masterAddress = "localhost";
+    services = lib.optionalAttrs cfg.enable { 
+      kubernetes = {
+        roles = ["master" "node"];
+        masterAddress = "localhost";
 
-      kubelet.hostname = lib.toLower config.networking.fqdnOrHostName;
+        kubelet.hostname = lib.toLower config.networking.fqdnOrHostName;
 
-      # needed if you use swap
-      kubelet.extraOpts = "--fail-swap-on=false";
+        # needed if you use swap
+        kubelet.extraOpts = "--fail-swap-on=false";
+      };
     };
   };
 }
