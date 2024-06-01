@@ -128,16 +128,16 @@ in {
       ctrl + alt + cmd - t : yabai -m window --toggle float
 
       # focus previous window
-      cmd - j : yabai -m window --focus prev
+      cmd - k : yabai -m window --focus prev
 
       # focus next window
-      cmd - k : yabai -m window --focus next
+      cmd - j : yabai -m window --focus next
 
       # swap position with previous window
-      cmd + shift - j : yabai -m window --swap prev
+      cmd + shift - k : yabai -m window --swap prev
 
       # swap position with next window
-      cmd + shift - k : yabai -m window --swap next
+      cmd + shift - j : yabai -m window --swap next
 
       # make right split larger
       cmd + shift - h : yabai -m window --ratio rel:-0.1
