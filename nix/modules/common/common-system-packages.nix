@@ -51,9 +51,11 @@ in
     pkgs.diffutils
     pkgs.elixir
     pkgs.elixir-ls
-    pkgs.elmPackages.elm
-    pkgs.elmPackages.elm-language-server
-    pkgs.elmPackages.elm-test
+    # elm broken for OSX temporarily -- will re-enable in near future
+    # https://github.com/NixOS/nixpkgs/pull/315141
+#    pkgs.elmPackages.elm
+#    pkgs.elmPackages.elm-language-server
+#    pkgs.elmPackages.elm-test
     pkgs.erlang
     pkgs.fd
     pkgs.fzf

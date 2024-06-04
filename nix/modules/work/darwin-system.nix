@@ -75,7 +75,7 @@ in {
     # Shell (only at work)
     rApp.R
     pkgs-edge.openvpn
-#    pkgs.azure-cli <- marked broken because of Python dependency
+    pkgs.azure-cli
     pkgs.direnv
     pkgs.ffmpeg
     pkgs.kubernetes-helm
