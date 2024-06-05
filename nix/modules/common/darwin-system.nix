@@ -66,8 +66,6 @@ in {
 
   services.yabai = {
     enable = true;
-    # !! only using edge yabai because of build failure for x86_64-darwin
-    # on nixpkgs 23.11
     package = pkgs-edge.yabai;
     config = {
       debug_output = "on";
@@ -78,6 +76,12 @@ in {
       # cmd + click and drag to move window
       yabai -m config mouse_modifier cmd
       yabai -m config mouse_action1 move
+
+      yabai -m config top_padding 10
+      yabai -m config bottom_padding 10
+      yabai -m config left_padding 10
+      yabai -m config right_padding 10
+      yabai -m config window_gap 10
 
       yabai -m rule --add app='Activity Monitor' manage=off
       yabai -m rule --add app='System Settings' manage=off
