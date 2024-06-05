@@ -81,7 +81,7 @@ in {
       yabai -m config bottom_padding 10
       yabai -m config left_padding 10
       yabai -m config right_padding 10
-      yabai -m config window_gap 10
+      yabai -m config window_gap 8
 
       yabai -m rule --add app='Activity Monitor' manage=off
       yabai -m rule --add app='System Settings' manage=off
