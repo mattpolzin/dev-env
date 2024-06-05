@@ -1,10 +1,13 @@
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.customize.kubernetes;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.customize.kubernetes;
+in {
   options = {
-    customize = { 
+    customize = {
       kubernetes.enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -14,7 +17,8 @@ in
 
   config = {
     assertions = [
-      { assertion = cfg.enable -> !pkgs.stdenv.isDarwin;
+      {
+        assertion = cfg.enable -> !pkgs.stdenv.isDarwin;
         message = "kubernetes config only supports non-Darwin OSes";
       }
     ];
@@ -29,7 +33,7 @@ in
       KUBECONFIG = "/etc/${toString config.services.kubernetes.pki.etcClusterAdminKubeconfig}";
     };
 
-    services = lib.optionalAttrs cfg.enable { 
+    services = lib.optionalAttrs cfg.enable {
       kubernetes = {
         roles = ["master" "node"];
         masterAddress = "localhost";

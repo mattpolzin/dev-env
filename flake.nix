@@ -71,16 +71,16 @@
         inherit system nixpkgs-edge;
       };
     in {
-      modules = configs ++ [ pkgs-edge ];
+      modules = configs ++ [pkgs-edge];
       specialArgs = {inherit hostName system inputs;};
     };
     darwinConfig = hostName: system: config: extraModules:
       nix-darwin.lib.darwinSystem
-      (buildConfig hostName system 
+      (buildConfig hostName system
         ((map (c: c.darwin) [commonConfiguration config]) ++ (map (defaultOrHead "darwinModules") extraModuleInputs) ++ [extraModules]));
     nixosConfig = hostName: system: config: extraModules:
       nixpkgs.lib.nixosSystem
-      (buildConfig hostName system 
+      (buildConfig hostName system
         ((map (c: c.linux) [commonConfiguration config]) ++ (map (defaultOrHead "nixosModules") extraModuleInputs) ++ [extraModules]));
   in {
     darwinConfigurations = {

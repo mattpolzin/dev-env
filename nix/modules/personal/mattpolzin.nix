@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}@attrs: {
+{lib, ...} @ attrs: {
   imports = [
     ../common/mattpolzin.nix
   ];

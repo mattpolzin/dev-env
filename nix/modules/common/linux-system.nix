@@ -33,8 +33,8 @@ in {
   imports = [
     ./user-cfg.nix
     ./common-system.nix
-#    ../window-manager/xmonad-system.nix
-#    ../window-manager/sway-system.nix
+    #    ../window-manager/xmonad-system.nix
+    #    ../window-manager/sway-system.nix
     ../window-manager/river-system.nix
   ];
 
@@ -135,7 +135,7 @@ in {
     inherit hostName;
     wireless.enable = true;
     wireless.userControlled.enable = true;
-#    firewall.logRefusedPackets = true;
+    #    firewall.logRefusedPackets = true;
   };
 
   virtualisation.docker.enable = true;
@@ -150,7 +150,7 @@ in {
     gc.automatic = true;
     gc.dates = "Sat *-*-* 03:00:00";
     optimise.automatic = true;
-    optimise.dates = [ "Tue *-*-* 03:00:00" ];
+    optimise.dates = ["Tue *-*-* 03:00:00"];
     settings = {
       auto-optimise-store = false;
       # Necessary for using flakes on this system.

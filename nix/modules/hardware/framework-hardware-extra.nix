@@ -1,7 +1,6 @@
 # unlike framework-hardware-configuration.nix, this file is
 # not auto-generated.
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # fingerprint reader:
   services.fprintd.enable = true;
 
@@ -21,7 +20,7 @@
   programs.light.enable = true;
 
   # support for reading more hardware state:
-  boot.kernelModules = [ "cros_ec" "cros_ec_lpcs" ];
+  boot.kernelModules = ["cros_ec" "cros_ec_lpcs"];
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
 

@@ -10,7 +10,7 @@
 
   users.primary = "matt";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
-  home-manager.extraSpecialArgs = { aercAccountsPath = config.age.secrets.aercAccounts.path; };
+  home-manager.extraSpecialArgs = {aercAccountsPath = config.age.secrets.aercAccounts.path;};
 
   # List packages installed in system profile.
   environment.systemPackages = [

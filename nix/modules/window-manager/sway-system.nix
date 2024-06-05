@@ -1,12 +1,11 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [
-#      swaymonad
+      #      swaymonad
       wl-clipboard
       wmenu
-#      wlgreet
+      #      wlgreet
     ];
   };
   programs.waybar.enable = true;
