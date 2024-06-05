@@ -33,7 +33,7 @@
 in {
   imports = [
     ./user-cfg.nix
-    ./common-system-packages.nix
+    ./common-system.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -168,8 +168,6 @@ in {
   };
 
   nix = {
-    package = pkgs-edge.nixVersions.nix_2_21;
-
     gc.automatic = true;
     gc.interval = {
       Minute = 0;

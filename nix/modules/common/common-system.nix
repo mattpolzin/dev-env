@@ -25,12 +25,14 @@ in
   };
 
   imports = [
-    ./kubernetes.nix
-    ./google-chrome.nix
+    ../programs/kubernetes.nix
+    ../programs/google-chrome.nix
   ];
 
   config = {
-  environment.systemPackages = 
+    nix.package = pkgs-edge.nixVersions.nix_2_21;
+
+    environment.systemPackages = 
 [
     # Shell (all machines)
     agenix

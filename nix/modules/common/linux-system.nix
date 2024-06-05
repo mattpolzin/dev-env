@@ -32,7 +32,7 @@
 in {
   imports = [
     ./user-cfg.nix
-    ./common-system-packages.nix
+    ./common-system.nix
 #    ../window-manager/xmonad-system.nix
 #    ../window-manager/sway-system.nix
     ../window-manager/river-system.nix
@@ -147,8 +147,6 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   nix = {
-    package = pkgs-edge.nixVersions.nix_2_21;
-
     gc.automatic = true;
     gc.dates = "Sat *-*-* 03:00:00";
     optimise.automatic = true;
