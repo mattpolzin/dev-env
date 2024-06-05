@@ -273,10 +273,7 @@ in {
     config = {
       allowUnfree = true;
     };
-    overlays = [
-      # Postman working version as of now:
-      (import ../../overlays/postman.nix)
-    ];
+    overlays = [];
   };
 
   # Nix-darwin does not link installed applications to the user environment. This means apps will not show up
