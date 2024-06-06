@@ -50,17 +50,18 @@
       url = "ssh://git@github.com/opallabs/opalr.git";
       rev = "0c0c01d2866d9f02f6593f9f437ac659ba8ba6ba";
     };
-    propagatedBuildInputs = with pkgs.rPackages; [
-      dplyr
-      ggplot2
-      DBI
-      odbc
-      dbcooper
-      RPostgres
-      magrittr
-      stringr
-      rlang
-    ];
+    propagatedBuildInputs =
+      (with pkgs.rPackages; [
+        dplyr
+        ggplot2
+        DBI
+        odbc
+        RPostgres
+        magrittr
+        stringr
+        rlang
+      ])
+      ++ [dbcooper];
   };
   rApp = import ../../apps/R.nix {
     inherit pkgs;

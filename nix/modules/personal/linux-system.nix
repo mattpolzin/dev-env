@@ -21,8 +21,9 @@
 
     # GUI (only at home)
     pkgs.discord
-    pkgs.spotify
   ];
+
+  customize.spotify.gui.enable = true;
 
   age.secrets.wpaSupplicantConfig.file = ../../../secrets/wpa-supplicant-conf.age;
 

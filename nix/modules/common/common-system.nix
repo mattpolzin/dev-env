@@ -21,6 +21,7 @@ in {
     ../programs/google-chrome.nix
     ../programs/kubernetes.nix
     ../programs/postman.nix
+    ../programs/spotify.nix
   ];
 
   config = {

@@ -15,8 +15,9 @@
 
     # GUI (only at home)
     pkgs.discord
-#    pkgs.spotify <- broken b/c download link for derivation source fails to resolve
   ];
+
+  customize.spotify.gui.enable = true;
 
   homebrew.masApps = {
     "Pixelmator Pro" = 1289583905;
