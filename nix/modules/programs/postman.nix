@@ -17,7 +17,7 @@
 
       x86_64-darwin = {
         arch = "64";
-        sha256 = "";
+        sha256 = "sha256-l7J4Rrq+kUyk+0Chq5qo50K1VXC/7E3FC/hQ1DQ0PGA=";
         plat = "osx_";
         fmt = "zip";
       };

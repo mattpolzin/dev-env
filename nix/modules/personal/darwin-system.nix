@@ -15,7 +15,7 @@
 
     # GUI (only at home)
     pkgs.discord
-    pkgs.spotify
+#    pkgs.spotify <- broken b/c download link for derivation source fails to resolve
   ];
 
   homebrew.masApps = {
