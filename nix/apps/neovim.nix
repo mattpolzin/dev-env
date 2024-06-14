@@ -31,12 +31,12 @@ in
 
     neorg = pkgs.vimUtils.buildVimPlugin rec {
       pname = "neorg";
-      version = "8.4.1";
+      version = "8.7.1";
       src = pkgs.fetchFromGitHub {
         owner = "nvim-neorg";
         repo = "neorg";
         rev = "v${version}";
-        hash = "sha256-5jgCJZMG5V+2U/GWmaNWmdsEzIwLo+8hKE88YQZqHUU=";
+        hash = "sha256-vL/4bZIFlhiWrIiWrRpmMQyYuFKzRrDF1VoLghC3Ia8=";
       };
       dependencies = with pkgs.vimPlugins; [plenary-nvim nui-nvim];
     };
