@@ -29,7 +29,6 @@
   ...
 }: let
   neovimApp = import ../../apps/neovim.nix {pkgs = pkgs-edge;};
-  iosevka = import ../../fonts/iosevka.nix {pkgs = pkgs-edge;};
 in {
   imports = [
     ./user-cfg.nix
@@ -41,15 +40,6 @@ in {
 
   users.users.${config.users.primary} = {
     home = "/Users/${config.users.primary}";
-  };
-
-  fonts = {
-    fontDir.enable = true;
-    fonts = [
-      (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
-      pkgs-edge.pixel-code
-      iosevka.nerdFont
-    ];
   };
 
   homebrew.enable = true;

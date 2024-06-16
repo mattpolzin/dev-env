@@ -28,7 +28,6 @@
   ...
 }: let
   neovimApp = import ../../apps/neovim.nix {pkgs = pkgs-edge;};
-  iosevka = import ../../fonts/iosevka.nix {pkgs = pkgs-edge;};
 in {
   imports = [
     ./user-cfg.nix
@@ -59,10 +58,6 @@ in {
   fonts = {
     fontDir.enable = true;
     packages = [
-      (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
-      pkgs-edge.pixel-code
-      iosevka.nerdFont
-
       # Common fonts
       pkgs.vistafonts
     ];

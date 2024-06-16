@@ -16,6 +16,7 @@
     .harmony
     .override {idris2Packages = {inherit buildIdris;};};
   neovimApp = import ../../apps/neovim.nix {pkgs = pkgs-edge;};
+  iosevka = import ../../fonts/iosevka.nix {pkgs = pkgs-edge;};
 in {
   imports = [
     ../programs/google-chrome.nix
@@ -26,6 +27,14 @@ in {
 
   config = {
     nix.package = pkgs-edge.nixVersions.nix_2_21;
+
+    fonts = {
+      packages = [
+        (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+        pkgs-edge.pixel-code
+        iosevka.nerdFont
+      ];
+    };
 
     environment.systemPackages = [
       # Shell (all machines)
