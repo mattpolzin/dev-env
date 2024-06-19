@@ -44,8 +44,11 @@ au FileType idris2 set foldmethod=indent
 "
 " Elixir
 "
+augroup elixir_ft
+  autocmd!
+  au FileType elixir set foldmethod=syntax
+augroup END
 au FileType elixir set makeprg=mix
-au FileType elixir set foldmethod=syntax
 
 "
 " JSON

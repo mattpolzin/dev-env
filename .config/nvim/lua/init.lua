@@ -327,7 +327,16 @@ require('treesitter-context').setup {
 vim.api.nvim_create_augroup('ruby_ft', {})
 vim.api.nvim_create_autocmd("FileType", {
   group = 'ruby_ft',
-  pattern = "ruby",
+  pattern = 'ruby',
+  callback = function()
+    vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+  end
+})
+vim.api.nvim_create_augroup('elixir_ft', {})
+vim.api.nvim_create_autocmd("FileType", {
+  group = 'elixir_ft',
+  pattern = 'elixir',
   callback = function()
     vim.wo.foldmethod = 'expr'
     vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
@@ -336,14 +345,14 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_augroup('json_ft', {})
 vim.api.nvim_create_autocmd("FileType", {
   group = 'json_ft',
-  pattern = "json",
+  pattern = 'json',
   callback = function()
     vim.wo.foldmethod = 'expr'
     vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
   end
 })
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "swift",
+  pattern = 'swift',
   callback = function()
     vim.wo.foldmethod = 'expr'
     vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
