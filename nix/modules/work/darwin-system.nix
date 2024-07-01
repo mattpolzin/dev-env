@@ -77,6 +77,7 @@ in {
     rApp.R
     pkgs-edge.openvpn
     pkgs.azure-cli
+    pkgs.azure-storage-azcopy
     pkgs.direnv
     pkgs.ffmpeg
     pkgs.kubernetes-helm
