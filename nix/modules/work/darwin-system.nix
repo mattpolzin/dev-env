@@ -79,6 +79,7 @@ in {
     pkgs.azure-cli
     pkgs.azure-storage-azcopy
     pkgs.direnv
+    pkgs.drawio
     pkgs.ffmpeg
     pkgs.kubernetes-helm
     pkgs.kubeseal
