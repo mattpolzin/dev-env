@@ -33,7 +33,7 @@ riverctl map normal Super Period send-layout-cmd rivertile "main-count -1"
 riverctl map normal Super Return zoom
 
 # toggle full-screen for current window
-riverctl map normal Super+Control+Alt F toggle-fullscreen
+riverctl map normal Super+Control+Alt M toggle-fullscreen
 
 # toggle float for current window
 riverctl map normal Super+Control+Alt T toggle-float
