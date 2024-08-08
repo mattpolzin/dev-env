@@ -89,7 +89,7 @@ in {
       pkgs.yq
 
       # GUI (all machines)
-      pkgs-edge.bruno # <- considering replacing Postman with this
+      pkgs-edge.bruno
       pkgs-edge.slack
       pkgs-edge.zoom-us
       pkgs.kitty

@@ -104,9 +104,8 @@ in {
     "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
   };
 
-  # ssh protection
+  # ssh & ssh protection
   services.fail2ban.enable = true;
-
   services.openssh.enable = true;
 
   # trackpad
