@@ -22,7 +22,7 @@
   # support for reading more hardware state:
   boot.kernelModules = ["cros_ec" "cros_ec_lpcs"];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
 
   # fix white screen & flicker when using integrated AMD graphics:
   boot.kernelParams = [
