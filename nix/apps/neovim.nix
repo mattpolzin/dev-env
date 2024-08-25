@@ -26,9 +26,6 @@ in
   }: let
     package = pkgs.neovim-unwrapped;
 
-    lua = package.lua;
-    luaPackages = lua.pkgs;
-
     neorg = pkgs.vimUtils.buildVimPlugin rec {
       pname = "neorg";
       version = "8.7.1";
@@ -49,34 +46,36 @@ in
       ]
     );
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = let
+      p = pkgs.vimPlugins;
+    in [
       # colorscheme
-      onedark-nvim
+      p.onedark-nvim
 
       # Open files with line number annotation after colon
-      fileline-nvim
+      p.fileline-nvim
 
-      vim-vsnip
+      p.vim-vsnip
 
       # Tab completion
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      cmp-vsnip
-      cmp-git
-      nvim-cmp
+      p.cmp-nvim-lsp
+      p.cmp-buffer
+      p.cmp-path
+      p.cmp-cmdline
+      p.cmp-vsnip
+      p.cmp-git
+      p.nvim-cmp
 
       # Previewing documents
-      markdown-preview-nvim
+      p.markdown-preview-nvim
 
       # Browsing/Finding
-      oil-nvim
-      nvim-web-devicons
-      telescope-nvim
-      telescope-fzf-native-nvim # <- might need a buildPhase override to run 'make'
+      p.oil-nvim
+      p.nvim-web-devicons
+      p.telescope-nvim
+      p.telescope-fzf-native-nvim # <- might need a buildPhase override to run 'make'
       {
-        plugin = fzf-vim; # <- faster than telescope for file finding.
+        plugin = p.fzf-vim; # <- faster than telescope for file finding.
         config = ''
           let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.85 } }
           let g:fzf_action = {
@@ -88,14 +87,14 @@ in
       }
 
       # LSP
-      nvim-lspconfig
-      idris2-nvim
+      p.nvim-lspconfig
+      p.idris2-nvim
 
       # DAP
-      nvim-dap
+      p.nvim-dap
 
       # Treesitter
-      (nvim-treesitter.withPlugins (
+      (p.nvim-treesitter.withPlugins (
         p: [
           p.authzed
           p.bash
@@ -142,16 +141,16 @@ in
           p.yaml
         ]
       ))
-      nvim-treesitter-context
+      p.nvim-treesitter-context
 
       # Git
-      gitsigns-nvim
+      p.gitsigns-nvim
 
       # Note Taking
-      autolist-nvim
+      p.autolist-nvim
       neorg
       {
-        plugin = vim-table-mode;
+        plugin = p.vim-table-mode;
         config = "let g:table_mode_corner='|' "; # <- markdown compatible tables
       }
     ];
