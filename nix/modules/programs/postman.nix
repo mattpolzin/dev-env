@@ -10,7 +10,7 @@
     {
       aarch64-darwin = {
         arch = "arm64";
-        hash = "";
+        hash = "sha256-S8JCLE+XDG4kGh5GlwZdnwa72FrePnzouWJdhDyHj/k=";
         plat = "osx_";
         fmt = "zip";
       };
