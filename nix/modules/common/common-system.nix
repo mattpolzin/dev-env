@@ -75,14 +75,15 @@ in {
       pkgs.kind
       pkgs.kubectl
       pkgs.kubectl-tree
-      pkgs.nvd
       pkgs.nix-output-monitor
       pkgs.nodejs
+      pkgs.nvd
       pkgs.patch
       pkgs.postgresql
       pkgs.ripgrep
       pkgs.rlwrap
       pkgs.tree
+      pkgs.vscode-langservers-extracted
       pkgs.w3m
       pkgs.wget
       pkgs.which

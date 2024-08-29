@@ -254,8 +254,10 @@ if vim.fn.executable('node') == 1
   then
     require('lsp.node').setup()
 end
-if vim.fn.executable('node') == 1 then
-  require('lsp.json').setup()
+if vim.fn.executable('node') == 1
+  and vim.fn.executable('vscode-json-language-server') == 1
+  then
+    require('lsp.json').setup()
 end
 if vim.fn.executable('elm') == 1 then
   require('lsp.elm').setup()
