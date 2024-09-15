@@ -1,6 +1,7 @@
 # I never completed the Sway config because I like River more.
 # Leaving this here as a starting place if I ever want to explore again.
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [
@@ -11,7 +12,5 @@
   };
   programs.waybar.enable = true;
 
-  environment.systemPackages = [
-    pkgs.foot
-  ];
+  environment.systemPackages = [ pkgs.foot ];
 }

@@ -1,6 +1,10 @@
-{pkgs ? (import <nixpkgs> {}).pkgs}: let
+{
+  pkgs ? (import <nixpkgs> { }).pkgs,
+}:
+let
   inherit (pkgs) stdenv lib;
-in rec {
+in
+rec {
   custom = pkgs.iosevka.override {
     privateBuildPlan = {
       family = "Iosevka Custom";
@@ -14,7 +18,7 @@ in rec {
 
       ligations = {
         inherits = "dlig";
-        enables = ["slasheq"];
+        enables = [ "slasheq" ];
       };
 
       widths = {
@@ -25,22 +29,24 @@ in rec {
         };
       };
 
-      weights = let
-        weight = n: {
-          shape = n;
-          menu = n;
-          css = n;
+      weights =
+        let
+          weight = n: {
+            shape = n;
+            menu = n;
+            css = n;
+          };
+        in
+        {
+          Thin = weight 100;
+          ExtraLight = weight 200;
+          Light = weight 300;
+          Regular = weight 400;
+          Medium = weight 500;
+          SemiBold = weight 600;
+          Bold = weight 700;
+          ExtraBold = weight 800;
         };
-      in {
-        Thin = weight 100;
-        ExtraLight = weight 200;
-        Light = weight 300;
-        Regular = weight 400;
-        Medium = weight 500;
-        SemiBold = weight 600;
-        Bold = weight 700;
-        ExtraBold = weight 800;
-      };
     };
     set = "Custom";
   };

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.displayManager.defaultSession = "none+xmonad";
 
   services.xserver = {

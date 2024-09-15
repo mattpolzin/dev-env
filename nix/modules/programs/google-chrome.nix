@@ -4,9 +4,11 @@
   config,
   options,
   ...
-}: let
+}:
+let
   cfg = config.customize.googleChrome;
-in {
+in
+{
   options = {
     customize = {
       googleChrome.enable = lib.mkOption {
@@ -20,8 +22,15 @@ in {
     {
       networking = lib.optionalAttrs pkgs.stdenv.isLinux {
         firewall = lib.optionalAttrs cfg.enable {
-          allowedTCPPorts = [8008 8009];
-          allowedUDPPorts = [53 10008 1900];
+          allowedTCPPorts = [
+            8008
+            8009
+          ];
+          allowedUDPPorts = [
+            53
+            10008
+            1900
+          ];
           allowedUDPPortRanges = [
             {
               from = 32768;
@@ -36,8 +45,6 @@ in {
       ];
     }
     // lib.optionalAttrs (options ? homebrew) {
-      homebrew.casks = lib.optionals cfg.enable [
-        "google-chrome"
-      ];
+      homebrew.casks = lib.optionals cfg.enable [ "google-chrome" ];
     };
 }

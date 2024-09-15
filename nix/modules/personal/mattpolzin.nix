@@ -1,7 +1,6 @@
-{lib, ...} @ attrs: {
-  imports = [
-    ../common/mattpolzin.nix
-  ];
+{ lib, ... }@attrs:
+{
+  imports = [ ../common/mattpolzin.nix ];
 
   # additional configs to manage:
   home.file.".config/ghostty" = {
@@ -9,7 +8,7 @@
     recursive = true;
   };
   home.activation = lib.mkIf (attrs ? aercAccountsPath) {
-    createAercAccounts = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    createAercAccounts = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD rm -f \
         $HOME/.config/aerc/accounts.conf
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \

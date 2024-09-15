@@ -1,11 +1,13 @@
 {
   pkgs,
-  additionalRPackages ? [],
-}: {
+  additionalRPackages ? [ ],
+}:
+{
   R = pkgs.rWrapper.override {
-    packages = let
-      p = pkgs.rPackages;
-    in
+    packages =
+      let
+        p = pkgs.rPackages;
+      in
       [
         p.devtools
         p.usethis

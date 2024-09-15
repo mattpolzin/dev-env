@@ -3,13 +3,14 @@
   pkgs,
   neovimApp,
   ...
-}: let
-  commonDirectFileSources =
-    (import ../../common-home-files.nix) // neovimApp.homeManagerConfigs;
+}:
+let
+  commonDirectFileSources = (import ../../common-home-files.nix) // neovimApp.homeManagerConfigs;
   directFileSources =
     commonDirectFileSources
     // lib.optionalAttrs pkgs.stdenv.isLinux (import ../../linux-home-files.nix);
-in {
+in
+{
   editorconfig = {
     enable = true;
     settings = {
@@ -45,7 +46,5 @@ in {
   # additional configs to manage:
   home.file = directFileSources;
 
-  targets = lib.optionalAttrs pkgs.stdenv.isDarwin {
-    darwin.search = "DuckDuckGo";
-  };
+  targets = lib.optionalAttrs pkgs.stdenv.isDarwin { darwin.search = "DuckDuckGo"; };
 }

@@ -19,36 +19,42 @@ let
     lua require('init')
   '';
 in
-  # packages: function from pkgs to list of other packages to load into shell (e.g. language servers)
-  {
-    pkgs ? (import <nixpkgs> {}).pkgs,
-    extraPackages ? (ps: []),
-  }: let
-    package = pkgs.neovim-unwrapped;
+# packages: function from pkgs to list of other packages to load into shell (e.g. language servers)
+{
+  pkgs ? (import <nixpkgs> { }).pkgs,
+  extraPackages ? (ps: [ ]),
+}:
+let
+  package = pkgs.neovim-unwrapped;
 
-    neorg = pkgs.vimUtils.buildVimPlugin rec {
-      pname = "neorg";
-      version = "8.7.1";
-      src = pkgs.fetchFromGitHub {
-        owner = "nvim-neorg";
-        repo = "neorg";
-        rev = "v${version}";
-        hash = "sha256-vL/4bZIFlhiWrIiWrRpmMQyYuFKzRrDF1VoLghC3Ia8=";
-      };
-      dependencies = with pkgs.vimPlugins; [plenary-nvim nui-nvim];
+  neorg = pkgs.vimUtils.buildVimPlugin rec {
+    pname = "neorg";
+    version = "8.7.1";
+    src = pkgs.fetchFromGitHub {
+      owner = "nvim-neorg";
+      repo = "neorg";
+      rev = "v${version}";
+      hash = "sha256-vL/4bZIFlhiWrIiWrRpmMQyYuFKzRrDF1VoLghC3Ia8=";
     };
+    dependencies = with pkgs.vimPlugins; [
+      plenary-nvim
+      nui-nvim
+    ];
+  };
 
-    extraLuaPackages = (
-      ps: [
-        ps.nvim-nio
-        ps.lua-utils-nvim
-        ps.pathlib-nvim
-      ]
-    );
+  extraLuaPackages = (
+    ps: [
+      ps.nvim-nio
+      ps.lua-utils-nvim
+      ps.pathlib-nvim
+    ]
+  );
 
-    plugins = let
+  plugins =
+    let
       p = pkgs.vimPlugins;
-    in [
+    in
+    [
       # colorscheme
       p.onedark-nvim
 
@@ -94,53 +100,51 @@ in
       p.nvim-dap
 
       # Treesitter
-      (p.nvim-treesitter.withPlugins (
-        p: [
-          p.authzed
-          p.bash
-          p.c
-          p.cpp
-          p.css
-          p.csv
-          p.dhall
-          p.diff
-          p.dockerfile
-          p.dot
-          p.eex
-          p.elixir
-          p.elm
-          p.embedded_template
-          p.git_rebase
-          p.gitcommit
-          p.gitignore
-          p.glimmer
-          p.haskell
-          p.html
-          p.ini
-          p.javascript
-          p.json
-          p.lua
-          p.make
-          p.markdown
-          p.mermaid
-          p.nix
-          p.norg
-          # p.norg_meta # <- not found
-          pkgs.tree-sitter.builtGrammars.tree-sitter-norg-meta
-          p.python
-          p.query
-          p.ruby
-          p.scheme
-          p.scss
-          p.sql
-          p.swift
-          p.tsx
-          p.typescript
-          p.vim
-          p.vimdoc
-          p.yaml
-        ]
-      ))
+      (p.nvim-treesitter.withPlugins (p: [
+        p.authzed
+        p.bash
+        p.c
+        p.cpp
+        p.css
+        p.csv
+        p.dhall
+        p.diff
+        p.dockerfile
+        p.dot
+        p.eex
+        p.elixir
+        p.elm
+        p.embedded_template
+        p.git_rebase
+        p.gitcommit
+        p.gitignore
+        p.glimmer
+        p.haskell
+        p.html
+        p.ini
+        p.javascript
+        p.json
+        p.lua
+        p.make
+        p.markdown
+        p.mermaid
+        p.nix
+        p.norg
+        # p.norg_meta # <- not found
+        pkgs.tree-sitter.builtGrammars.tree-sitter-norg-meta
+        p.python
+        p.query
+        p.ruby
+        p.scheme
+        p.scss
+        p.sql
+        p.swift
+        p.tsx
+        p.typescript
+        p.vim
+        p.vimdoc
+        p.yaml
+      ]))
       p.nvim-treesitter-context
 
       # Git
@@ -155,30 +159,26 @@ in
       }
     ];
 
-    buildInputs =
-      [
-        pkgs.ripgrep
-      ]
-      ++ (extraPackages pkgs);
+  buildInputs = [ pkgs.ripgrep ] ++ (extraPackages pkgs);
 
-    neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
-      inherit plugins extraLuaPackages;
-      customRC = ''
-        source ${vimrc}
-        set runtimepath=${runtimepath},$VIMRUNTIME
-        lua require('init')
-      '';
-    };
-    neovim = pkgs.wrapNeovimUnstable package neovimConfig;
-  in {
-    inherit homeManagerConfigs homeManagerExtraConfig plugins extraLuaPackages;
-    inherit package neovim;
+  neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
+    inherit plugins extraLuaPackages;
+    customRC = ''
+      source ${vimrc}
+      set runtimepath=${runtimepath},$VIMRUNTIME
+      lua require('init')
+    '';
+  };
+  neovim = pkgs.wrapNeovimUnstable package neovimConfig;
+in
+{
+  inherit
+    homeManagerConfigs
+    homeManagerExtraConfig
+    plugins
+    extraLuaPackages
+    ;
+  inherit package neovim;
 
-    shell = pkgs.mkShell {
-      packages =
-        [
-          neovim
-        ]
-        ++ buildInputs;
-    };
-  }
+  shell = pkgs.mkShell { packages = [ neovim ] ++ buildInputs; };
+}

@@ -1,8 +1,5 @@
+{ pkgs, config, ... }:
 {
-  pkgs,
-  config,
-  ...
-}: {
   users.primary = "matt";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
 
@@ -25,9 +22,7 @@
   };
 
   nix = {
-    nixPath = [
-      {nixpkgs2 = "$HOME/staging/nixpkgs2";}
-    ];
+    nixPath = [ { nixpkgs2 = "$HOME/staging/nixpkgs2"; } ];
 
     settings = {
       substituters = [

@@ -3,9 +3,11 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.customize.spotify;
-in {
+in
+{
   options.customize.spotify = {
     gui.enable = lib.mkOption {
       type = lib.types.bool;

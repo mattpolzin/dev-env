@@ -3,9 +3,11 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.customize.kubernetes;
-in {
+in
+{
   options = {
     customize = {
       kubernetes.enable = lib.mkOption {
@@ -24,10 +26,13 @@ in {
     ];
 
     # packages for administration tasks
-    environment.systemPackages = lib.mkIf cfg.enable (with pkgs; [
-      kubectl
-      kubernetes
-    ]);
+    environment.systemPackages = lib.mkIf cfg.enable (
+      with pkgs;
+      [
+        kubectl
+        kubernetes
+      ]
+    );
 
     environment.variables = lib.optionalAttrs cfg.enable {
       KUBECONFIG = "/etc/${toString config.services.kubernetes.pki.etcClusterAdminKubeconfig}";
@@ -35,7 +40,10 @@ in {
 
     services = lib.optionalAttrs cfg.enable {
       kubernetes = {
-        roles = ["master" "node"];
+        roles = [
+          "master"
+          "node"
+        ];
         masterAddress = "localhost";
 
         kubelet.hostname = lib.toLower config.networking.fqdnOrHostName;

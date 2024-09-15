@@ -5,8 +5,20 @@ let
   work-laptop2 = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCXTWxIjQ2iuDPpJ172vd6yFzca8GrTjdd5BAnZ0W1PPcHtFJrCdnLlOaCIwu+hPa+HD3xJxQiRdMcLnPq/GPrbY82uVW8/F3obnpJQ/Kz3FUstxm5zGPEPxCCmOKKijQ4QZNLfM41cO6+2ctTKe4U6kG9AGeGkmhO337XomBZs8CMNrvguC1Gd9VpVpgk6iLJ2PcOslx2sKXU9WhNCoBMkFZVMOZDiF9zFy8/yQqNKUVJqVrEAgQO0JuqXBF3kae7QlpVTAdx0nouY96Ku3vut7F5lA7q6pWu+ADDGUTW1nLw+OCI8EXpeEDw+a8Ew7UrJcqgTBknsiSed2YZ4H6P6/bkAiHpI5UmwnfOCQZmQWefw4WAMXQSfjkTaBRs5Mvn4Ou1u9r37wP/vGS6wVi7ko58qFjflttZYvQ332OowpDSQmUOXQurlgJESQCGnCSN+zEIjh6weU1KaGUszmZEHLw4skggS2xWxbvbhFCr5VAAGZG664mghZ91mLE45nmc= ";
   matt-scrappy-laptop = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCcILbJ0yJFpCg5a5P9vojlZ7KwGUWsbdOkwxmxzFhnndrhgyhCwKV88xwk4SXr1t/2gcDYwG6Ko1NMIcypn2cIRueGThL6HWUcUZhMBxoepFPacJgMqpD0Xg/axVg/QWH0aToAhqQWw0S5oMFvsLt32eYTQUzoUrx2+jhXL6sub7L67O4ozak1TRbCO/E7U7rqQSGB0y4e+AEsrnMX/pEsswEM+DMX3SIIQ1KW8RiO0dDUYgd1ntKPSdJDHLRjADJRrayRvAzU4TQnM+mmnclVOkg5b8Dpj86ZsBXg3Y5znHf5JapVKpKzmxPrY9M89rK/8h+H/+rmKuvpXeFM8L5CbMSr6x8nW1LqHnA0ihOEs4icX6Ho9QeS2l2qx0iW5ym1gEtHMwjrIbLYlUYDRE5hSbY7BkUdC7PzKYJT6g7iWD1iUgWjfbtaVYEIfUEnzD213npB88lK5fDIRx5VUbtAHiB869ONqeqEjE2he7hcwBKWn5sWLaztYrxd+PJ/X7M= matt@MattPolzin-Scrappy";
   scrappy-laptop = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCyD4VHK6Y5VgkVWVBphymDUy8mm33JyYyt/xbYktJtUk08LbMVZZWF9HXXZO0YmIctTdGT3cZbIvONQErAkiuzbO1x2FpfBS1mEru9Dfj2lirRRImrI1Qcbi8mvHie0tdGPfzK50QJU4JS+UxJFyPAw3sWSQjpMQgMbY9V2RS6ZPLsZwplb7vY4r/g6lk3lY7W6CtpjCKyqypArcI0Jr3uKTGmKRWOI/pa/bV3fVMR1bSn4gexybs8yfhjKlitlNynt3TIP0naJysYXPcQP2MvDYoce1Sb8bqG9mm5VWF7y0PRly0B+SUPQNLSy5kl3UFrAJNF/iLIlFkWKpkXsHkvbG5vZOUecbdWIL4mALdQ2kZIG/zrcFuBamGsm0wkG6bN/d9YQStNw/BJzQlJK4UAYr6iNDfc8wF9l2S74QOPwh0lvSHvVVHdIJKYTPwCNzFjHK0Eezc1qOfBB07zApLPw5bKNRGaQzkVfNNoVdrzMw4h/PqbDKMXqwk8OZv9Vvy9U8blrLILZzJ9ap8URxMAPZsGuwRylcDK8qXvDWUcgPEATdJcYo3I3p6qOELtHceVTyTnMAqbMgTL3nyef5Q/svkXTY91oJDhxieQgdXOUjWEQzMKiSwXpr7jJiOyL9FqXd0oAsiUy2PQIfZuKS3299iZIZxZHjPBF6K0TYPDhw== root@MattPolzin-Scrappy";
-in {
-  "etc-hosts.age".publicKeys = [mattpolzin-work-laptop work-laptop mattpolzin-work-laptop2 work-laptop2];
-  "wpa-supplicant-conf.age".publicKeys = [matt-scrappy-laptop scrappy-laptop];
-  "aerc-accounts.age".publicKeys = [matt-scrappy-laptop scrappy-laptop];
+in
+{
+  "etc-hosts.age".publicKeys = [
+    mattpolzin-work-laptop
+    work-laptop
+    mattpolzin-work-laptop2
+    work-laptop2
+  ];
+  "wpa-supplicant-conf.age".publicKeys = [
+    matt-scrappy-laptop
+    scrappy-laptop
+  ];
+  "aerc-accounts.age".publicKeys = [
+    matt-scrappy-laptop
+    scrappy-laptop
+  ];
 }

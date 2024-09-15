@@ -26,9 +26,11 @@
   inputs,
   config,
   ...
-}: let
-  neovimApp = import ../../apps/neovim.nix {pkgs = pkgs-edge;};
-in {
+}:
+let
+  neovimApp = import ../../apps/neovim.nix { pkgs = pkgs-edge; };
+in
+{
   imports = [
     ./user-cfg.nix
     ./common-system.nix
@@ -38,7 +40,9 @@ in {
   ];
 
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = {inherit pkgs pkgs-edge neovimApp;};
+  home-manager.extraSpecialArgs = {
+    inherit pkgs pkgs-edge neovimApp;
+  };
 
   users.users.${config.users.primary} = {
     home = "/home/${config.users.primary}";
@@ -144,7 +148,7 @@ in {
     gc.automatic = true;
     gc.dates = "Sat *-*-* 03:00:00";
     optimise.automatic = true;
-    optimise.dates = ["Tue *-*-* 03:00:00"];
+    optimise.dates = [ "Tue *-*-* 03:00:00" ];
     settings = {
       auto-optimise-store = false;
       # Necessary for using flakes on this system.
@@ -178,6 +182,6 @@ in {
     config = {
       allowUnfree = true;
     };
-    overlays = [];
+    overlays = [ ];
   };
 }

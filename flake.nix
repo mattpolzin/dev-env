@@ -6,9 +6,6 @@
 
     nixpkgs-edge.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    alejandra.url = "github:kamadorueda/alejandra";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs";
-
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -25,7 +22,6 @@
 
     harmony.url = "github:mattpolzin/harmony";
     harmony.inputs.nixpkgs.follows = "nixpkgs-edge";
-    harmony.inputs.alejandra.follows = "alejandra";
 
     idris.url = "github:idris-lang/Idris2";
     idris.inputs.nixpkgs.follows = "nixpkgs-edge";
@@ -33,76 +29,105 @@
     idris-lsp.url = "github:idris-community/idris2-lsp";
     idris-lsp.inputs.nixpkgs.follows = "nixpkgs-edge";
     idris-lsp.inputs.idris.follows = "idris";
-    idris-lsp.inputs.alejandra.follows = "alejandra";
   };
 
-  outputs = inputs @ {
-    self,
-    alejandra,
-    nix-darwin,
-    home-manager,
-    agenix,
-    nix-index-database,
-    nixpkgs,
-    nixpkgs-edge,
-    ...
-  }: let
-    lib = nixpkgs.lib;
-    extraModuleInputs = [
-      home-manager
-      agenix
-      nix-index-database
-    ];
-    defaultOrHead = dig: modules: modules.${dig}.default or (builtins.head (lib.attrValues modules.${dig}));
-    commonConfiguration = {
-      darwin = import ./nix/modules/common/darwin-system.nix;
-      linux = import ./nix/modules/common/linux-system.nix;
-    };
-    workConfiguration = {
-      darwin = import ./nix/modules/work/darwin-system.nix;
-      linux = throw "no linux work machines to configure";
-    };
-    personalConfiguration = {
-      darwin = import ./nix/modules/personal/darwin-system.nix;
-      linux = import ./nix/modules/personal/linux-system.nix;
-    };
-    buildConfig = hostName: system: configs: let
-      pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix {
-        inherit system nixpkgs-edge;
+  outputs =
+    inputs@{
+      self,
+      nix-darwin,
+      home-manager,
+      agenix,
+      nix-index-database,
+      nixpkgs,
+      nixpkgs-edge,
+      ...
+    }:
+    let
+      lib = nixpkgs.lib;
+      extraModuleInputs = [
+        home-manager
+        agenix
+        nix-index-database
+      ];
+      defaultOrHead =
+        dig: modules: modules.${dig}.default or (builtins.head (lib.attrValues modules.${dig}));
+      commonConfiguration = {
+        darwin = import ./nix/modules/common/darwin-system.nix;
+        linux = import ./nix/modules/common/linux-system.nix;
       };
-    in {
-      modules = configs ++ [pkgs-edge];
-      specialArgs = {inherit hostName system inputs;};
+      workConfiguration = {
+        darwin = import ./nix/modules/work/darwin-system.nix;
+        linux = throw "no linux work machines to configure";
+      };
+      personalConfiguration = {
+        darwin = import ./nix/modules/personal/darwin-system.nix;
+        linux = import ./nix/modules/personal/linux-system.nix;
+      };
+      buildConfig =
+        hostName: system: configs:
+        let
+          pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix { inherit system nixpkgs-edge; };
+        in
+        {
+          modules = configs ++ [ pkgs-edge ];
+          specialArgs = {
+            inherit hostName system inputs;
+          };
+        };
+      darwinConfig =
+        hostName: system: config: extraModules:
+        nix-darwin.lib.darwinSystem (
+          buildConfig hostName system (
+            (map (c: c.darwin) [
+              commonConfiguration
+              config
+            ])
+            ++ (map (defaultOrHead "darwinModules") extraModuleInputs)
+            ++ [ extraModules ]
+          )
+        );
+      nixosConfig =
+        hostName: system: config: extraModules:
+        nixpkgs.lib.nixosSystem (
+          buildConfig hostName system (
+            (map (c: c.linux) [
+              commonConfiguration
+              config
+            ])
+            ++ (map (defaultOrHead "nixosModules") extraModuleInputs)
+            ++ [ extraModules ]
+          )
+        );
+
+      eachSystem = lib.genAttrs lib.systems.flakeExposed;
+    in
+    {
+      darwinConfigurations = {
+        "MattPolzin-Home" = darwinConfig "MattPolzin-Home" "x86_64-darwin" personalConfiguration { };
+
+        "MattPolzin-Work-Laptop-Old" =
+          darwinConfig "MattPolzin-Work-Laptop-Old" "x86_64-darwin" workConfiguration
+            { };
+        "MattPolzin-Work-Laptop" =
+          darwinConfig "MattPolzin-Work-Laptop" "aarch64-darwin" workConfiguration
+            { };
+      };
+
+      nixosConfigurations."MattPolzin-Scrappy" =
+        nixosConfig "MattPolzin-Scrappy" "x86_64-linux" personalConfiguration
+          {
+            customize.googleChrome.enable = false;
+            customize.kubernetes.enable = false;
+          };
+
+      # Expose the package set, including overlays, for convenience.
+      darwinWorkPackages = self.darwinConfigurations."MattPolzin-Work-Laptop".pkgs;
+      darwinHomePackages = self.darwinConfigurations."MattPolzin-Home-Laptop".pkgs;
+      nixosHomePackages = self.nixosConfigurations."MattPolzin-Scrappy".pkgs;
+
+      # Expose nix-darwin
+      packages = lib.genAttrs lib.platforms.darwin (system: nix-darwin.packages.${system});
+
+      formatter = eachSystem (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
     };
-    darwinConfig = hostName: system: config: extraModules:
-      nix-darwin.lib.darwinSystem
-      (buildConfig hostName system
-        ((map (c: c.darwin) [commonConfiguration config]) ++ (map (defaultOrHead "darwinModules") extraModuleInputs) ++ [extraModules]));
-    nixosConfig = hostName: system: config: extraModules:
-      nixpkgs.lib.nixosSystem
-      (buildConfig hostName system
-        ((map (c: c.linux) [commonConfiguration config]) ++ (map (defaultOrHead "nixosModules") extraModuleInputs) ++ [extraModules]));
-  in {
-    darwinConfigurations = {
-      "MattPolzin-Home" = darwinConfig "MattPolzin-Home" "x86_64-darwin" personalConfiguration {};
-
-      "MattPolzin-Work-Laptop-Old" = darwinConfig "MattPolzin-Work-Laptop-Old" "x86_64-darwin" workConfiguration {};
-      "MattPolzin-Work-Laptop" = darwinConfig "MattPolzin-Work-Laptop" "aarch64-darwin" workConfiguration {};
-    };
-
-    nixosConfigurations."MattPolzin-Scrappy" = nixosConfig "MattPolzin-Scrappy" "x86_64-linux" personalConfiguration {
-      customize.googleChrome.enable = false;
-      customize.kubernetes.enable = false;
-    };
-
-    # Expose the package set, including overlays, for convenience.
-    darwinWorkPackages = self.darwinConfigurations."MattPolzin-Work-Laptop".pkgs;
-    darwinHomePackages = self.darwinConfigurations."MattPolzin-Home-Laptop".pkgs;
-    nixosHomePackages = self.nixosConfigurations."MattPolzin-Scrappy".pkgs;
-
-    # Expose nix-darwin
-    packages = lib.genAttrs lib.platforms.darwin (system: nix-darwin.packages.${system});
-
-    formatter = lib.genAttrs lib.systems.flakeExposed (system: alejandra.packages.${system}.default);
-  };
 }

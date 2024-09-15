@@ -4,7 +4,8 @@
   config,
   system,
   ...
-}: let
+}:
+let
   cfg = config.customize.postman;
   dist =
     {
@@ -29,8 +30,7 @@
         fmt = "tar.gz";
       };
     }
-    .${system}
-    or (throw "Unsupported system: ${system}");
+    .${system} or (throw "Unsupported system: ${system}");
   postman = pkgs.postman;
   postman' = postman.overrideAttrs rec {
     version = "11.9.0";
@@ -41,7 +41,8 @@
       name = "${postman.pname}-${version}.${dist.fmt}";
     };
   };
-in {
+in
+{
   options = {
     customize = {
       postman.enable = lib.mkOption {
@@ -52,8 +53,6 @@ in {
   };
 
   config = {
-    environment.systemPackages = lib.optionals cfg.enable [
-      postman'
-    ];
+    environment.systemPackages = lib.optionals cfg.enable [ postman' ];
   };
 }

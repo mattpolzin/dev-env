@@ -27,7 +27,8 @@
   pkgs-edge,
   config,
   ...
-}: let
+}:
+let
   dbcooper = pkgs.rPackages.buildRPackage {
     name = "dbcooper";
     src = pkgs.fetchFromGitHub {
@@ -61,13 +62,17 @@
         stringr
         rlang
       ])
-      ++ [dbcooper];
+      ++ [ dbcooper ];
   };
   rApp = import ../../apps/R.nix {
     inherit pkgs;
-    additionalRPackages = [dbcooper opalr];
+    additionalRPackages = [
+      dbcooper
+      opalr
+    ];
   };
-in {
+in
+{
   users.primary = "mattpolzin";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
 
@@ -93,16 +98,12 @@ in {
 
   programs.direnv.enable = true;
 
-  homebrew.taps = [
-    "garden-io/garden"
-  ];
+  homebrew.taps = [ "garden-io/garden" ];
   homebrew.casks = [
     "1password"
     "1password-cli"
   ];
-  homebrew.brews = [
-    "garden-cli"
-  ];
+  homebrew.brews = [ "garden-cli" ];
 
   age.secrets.etcHosts.file = ../../../secrets/etc-hosts.age;
   environment.etc.hosts = {
