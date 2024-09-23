@@ -20,6 +20,8 @@
   hardware.sensor.iio.enable = true;
   programs.light.enable = true;
 
+  hardware.bluetooth.enable = true;
+
   # support for reading more hardware state:
   boot.kernelModules = [
     "cros_ec"
