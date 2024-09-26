@@ -18,7 +18,7 @@ let
 
       x86_64-darwin = {
         arch = "64";
-        hash = "";
+        hash = "sha256-8mv6QKTUJEQvn3VcFeUmbRDlETfGqWhD25JngoGBXAQ=";
         plat = "osx_";
         fmt = "zip";
       };
