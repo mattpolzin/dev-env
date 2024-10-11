@@ -270,7 +270,9 @@ if vim.fn.executable('ghc') == 1
   then
     require('lsp.haskell').setup()
 end
-if vim.fn.executable('ruby') == 1 then
+if vim.fn.executable('ruby') == 1
+  and vim.fn.executable('solargraph') == 1
+  then
     require('lsp.ruby').setup()
 end
 if vim.fn.executable('swift') == 1 then
