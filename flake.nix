@@ -26,7 +26,8 @@
     idris.url = "github:idris-lang/Idris2";
     idris.inputs.nixpkgs.follows = "nixpkgs-edge";
 
-    idris-lsp.url = "github:idris-community/idris2-lsp";
+#    idris-lsp.url = "github:idris-community/idris2-lsp";
+    idris-lsp.url = "github:mattpolzin/idris2-lsp/gen-next-def";
     idris-lsp.inputs.nixpkgs.follows = "nixpkgs-edge";
     idris-lsp.inputs.idris.follows = "idris";
   };

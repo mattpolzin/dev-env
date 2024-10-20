@@ -37,6 +37,9 @@ local function custom_lsp_attach(client)
 
   -- generate def
   nmap('<Leader>g', require('idris2.code_action').generate_def)
+  
+  -- generate next def
+  nmap('<Leader>gn', function() require('idris2.code_action').request_single('refactor.rewrite.GenerateDefNext') end)
 
   -- refine hole
   nmap('<Leader>f', require('idris2.code_action').refine_hole)
