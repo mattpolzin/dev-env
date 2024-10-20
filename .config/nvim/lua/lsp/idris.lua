@@ -49,6 +49,10 @@ local function custom_lsp_attach(client)
 end
 
 local function save_hook(action)
+  if not action or not action.title then
+    return
+  end
+
   local introspect = require('idris2.code_action').introspect_filter
   local filters = require('idris2.code_action').filters
 
