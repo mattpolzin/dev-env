@@ -141,7 +141,7 @@ function! Comment()
 		silent s:^:%:g
 	elseif ft == 'vim'
 		silent s:^:\":g
-	elseif ft == 'idris2' || ft == 'haskell' || ft == 'lua' || ft == 'sql' || ft == 'elm' || ft == 'dhall'
+	elseif ft == 'idris2' || ft == 'ipkg' || ft == 'haskell' || ft == 'lua' || ft == 'sql' || ft == 'elm' || ft == 'dhall'
 		silent s:^:-- :g
 	endif
 endfunction
@@ -156,7 +156,7 @@ function! Uncomment()
 		silent s:^%::g
 	elseif ft == 'vim'
 		silent s:^\"::g
-	elseif ft == 'idris2' || ft == 'haskell' || ft == 'lua' || ft == 'sql' || ft == 'elm' || ft == 'dhall'
+	elseif ft == 'idris2' || ft == 'ipkg' || ft == 'haskell' || ft == 'lua' || ft == 'sql' || ft == 'elm' || ft == 'dhall'
 		silent s:^-- ::g
 	endif
 endfunction
