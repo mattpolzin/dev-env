@@ -20,6 +20,9 @@
   hardware.sensor.iio.enable = true;
   programs.light.enable = true;
 
+  # Note: with Bluetooth enabled, need to use rfkill to block or unblock
+  # bluetooth before using bluetoothctl to power on, scan, pair, connect,
+  # trust.
   hardware.bluetooth.enable = true;
 
   # support for reading more hardware state:
