@@ -115,6 +115,11 @@ in
   # trackpad
   services.libinput.touchpad = {
     naturalScrolling = true;
+    # avoid default behavior of different areas of the trackpad behaving like
+    # left/middle/right click. use one, two, and three-finger tap instead.
+    middleEmulation = false;
+    tappingButtonMap = "lrm";
+    clickMethod = "clickfinger";
   };
 
   services.printing.enable = true;
