@@ -2,14 +2,14 @@
   description = "Nixos/Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     nixpkgs-edge.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
@@ -26,8 +26,7 @@
     idris.url = "github:idris-lang/Idris2";
     idris.inputs.nixpkgs.follows = "nixpkgs-edge";
 
-#    idris-lsp.url = "github:idris-community/idris2-lsp";
-    idris-lsp.url = "github:mattpolzin/idris2-lsp/gen-next-def";
+    idris-lsp.url = "github:idris-community/idris2-lsp";
     idris-lsp.inputs.nixpkgs.follows = "nixpkgs-edge";
     idris-lsp.inputs.idris.follows = "idris";
   };
