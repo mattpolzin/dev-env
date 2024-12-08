@@ -31,6 +31,9 @@
   };
   programs.waybar.enable = true;
 
+  # required for waybar:
+  xdg.portal.wlr.enable = true;
+
   environment.systemPackages = [
     # screenshots
     pkgs.grim
