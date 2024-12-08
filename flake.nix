@@ -20,15 +20,13 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
+    # don't follow anything for idris2-packages so we can take
+    # advantage of the Cachix cache.
+    idris2-packageset.url = "github:mattpolzin/nix-idris2-packages";
+
     harmony.url = "github:mattpolzin/harmony";
     harmony.inputs.nixpkgs.follows = "nixpkgs";
-
-    idris.url = "github:idris-lang/Idris2";
-    idris.inputs.nixpkgs.follows = "nixpkgs";
-
-    idris-lsp.url = "github:idris-community/idris2-lsp";
-    idris-lsp.inputs.nixpkgs.follows = "nixpkgs";
-    idris-lsp.inputs.idris.follows = "idris";
+    harmony.inputs.packageset.follows = "idris2-packageset";
   };
 
   outputs =

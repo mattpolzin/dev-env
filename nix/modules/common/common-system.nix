@@ -6,8 +6,8 @@
 }:
 let
   agenix = inputs.agenix.packages.${pkgs.system}.agenix;
-  idris2 = inputs.idris-lsp.packages.${pkgs.system}.idris2;
-  idris2Lsp = inputs.idris-lsp.packages.${pkgs.system}.idris2Lsp;
+  idris2 = inputs.idris2-packageset.packages.${pkgs.system}.idris2;
+  idris2Lsp = inputs.idris2-packageset.packages.${pkgs.system}.idris2Lsp;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
   neovimApp = import ../../apps/neovim.nix { pkgs = pkgs-edge; };
   iosevka = import ../../fonts/iosevka.nix { pkgs = pkgs-edge; };
