@@ -21,13 +21,13 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     harmony.url = "github:mattpolzin/harmony";
-    harmony.inputs.nixpkgs.follows = "nixpkgs-edge";
+    harmony.inputs.nixpkgs.follows = "nixpkgs";
 
     idris.url = "github:idris-lang/Idris2";
-    idris.inputs.nixpkgs.follows = "nixpkgs-edge";
+    idris.inputs.nixpkgs.follows = "nixpkgs";
 
     idris-lsp.url = "github:idris-community/idris2-lsp";
-    idris-lsp.inputs.nixpkgs.follows = "nixpkgs-edge";
+    idris-lsp.inputs.nixpkgs.follows = "nixpkgs";
     idris-lsp.inputs.idris.follows = "idris";
   };
 
