@@ -50,6 +50,7 @@ in
     initialPassword = "nixos";
     extraGroups = [
       "audio"
+      "docker"
       "input"
       "kubernetes"
       "network"
