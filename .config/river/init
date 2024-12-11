@@ -89,8 +89,10 @@ done
 
 # natural scroll direction
 riverctl input *_Touchpad natural-scroll enabled
+
 riverctl input *_Touchpad disable-while-typing enabled
 riverctl input *_Touchpad tap enabled
+riverctl input *_Touchpad click-method clickfinger
 
 riverctl default-layout rivertile
 
