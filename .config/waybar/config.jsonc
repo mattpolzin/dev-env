@@ -32,6 +32,9 @@
     "num-tags": 3,
     "tag-labels": ["1", "2", "3"]
   },
+  "river/window": {
+    "max-length": 100
+  },
   "power-profiles-daemon": {
     "format-icons": {
       "default": "",
