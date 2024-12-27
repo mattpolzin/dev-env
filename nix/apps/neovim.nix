@@ -27,26 +27,8 @@ in
 let
   package = pkgs.neovim-unwrapped;
 
-  neorg = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "neorg";
-    version = "8.7.1";
-    src = pkgs.fetchFromGitHub {
-      owner = "nvim-neorg";
-      repo = "neorg";
-      rev = "v${version}";
-      hash = "sha256-vL/4bZIFlhiWrIiWrRpmMQyYuFKzRrDF1VoLghC3Ia8=";
-    };
-    dependencies = with pkgs.vimPlugins; [
-      plenary-nvim
-      nui-nvim
-    ];
-  };
-
   extraLuaPackages = (
     ps: [
-      ps.nvim-nio
-      ps.lua-utils-nvim
-      ps.pathlib-nvim
     ]
   );
 
@@ -100,50 +82,50 @@ let
       p.nvim-dap
 
       # Treesitter
-      (p.nvim-treesitter.withPlugins (p: [
-        p.authzed
-        p.bash
-        p.c
-        p.cpp
-        p.css
-        p.csv
-        p.dhall
-        p.diff
-        p.dockerfile
-        p.dot
-        p.eex
-        p.elixir
-        p.elm
-        p.embedded_template
-        p.git_rebase
-        p.gitcommit
-        p.gitignore
-        p.glimmer
-        p.haskell
-        p.html
-        p.ini
-        p.javascript
-        p.json
-        p.lua
-        p.make
-        p.markdown
-        p.mermaid
-        p.nix
-        p.norg
-        # p.norg_meta # <- not found
+      (p.nvim-treesitter.withPlugins (ts: [
+        ts.authzed
+        ts.bash
+        ts.c
+        ts.cpp
+        ts.css
+        ts.csv
+        ts.dhall
+        ts.diff
+        ts.dockerfile
+        ts.dot
+        ts.eex
+        ts.elixir
+        ts.elm
+        ts.embedded_template
+        ts.git_rebase
+        ts.gitcommit
+        ts.gitignore
+        ts.glimmer
+        ts.haskell
+        ts.html
+        ts.ini
+        ts.javascript
+        ts.json
+        ts.lua
+        ts.make
+        ts.markdown
+        ts.mermaid
+        ts.nix
+        ts.norg
+        # ts.norg_meta # <- not found
         pkgs.tree-sitter.builtGrammars.tree-sitter-norg-meta
-        p.python
-        p.query
-        p.ruby
-        p.scheme
-        p.scss
-        p.sql
-        p.swift
-        p.tsx
-        p.typescript
-        p.vim
-        p.vimdoc
-        p.yaml
+        ts.python
+        ts.query
+        ts.ruby
+        ts.scheme
+        ts.scss
+        ts.sql
+        ts.swift
+        ts.tsx
+        ts.typescript
+        ts.vim
+        ts.vimdoc
+        ts.yaml
       ]))
       p.nvim-treesitter-context
 
@@ -152,7 +134,7 @@ let
 
       # Note Taking
       p.autolist-nvim
-      neorg
+      p.neorg
       {
         plugin = p.vim-table-mode;
         config = "let g:table_mode_corner='|' "; # <- markdown compatible tables
