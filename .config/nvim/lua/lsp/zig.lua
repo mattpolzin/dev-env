@@ -11,7 +11,7 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig').zig.setup({
+  require('lspconfig').zls.setup({
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities
   })
