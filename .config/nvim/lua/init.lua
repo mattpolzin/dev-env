@@ -278,6 +278,9 @@ end
 if vim.fn.executable('swift') == 1 then
     require('lsp.swift').setup()
 end
+if vim.fn.executable('zig') == 1 then
+    require('lsp.zig').setup()
+end
 
 -- LSP additional external setup:
 --

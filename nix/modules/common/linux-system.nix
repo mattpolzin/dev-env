@@ -159,6 +159,8 @@ in
       auto-optimise-store = false;
       # Necessary for using flakes on this system.
       experimental-features = "nix-command flakes";
+
+      trusted-users = [ "root" config.users.primary ];
     };
   };
 
