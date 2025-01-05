@@ -85,7 +85,7 @@ in
       pkgs.yq
 
       # GUI (all machines)
-      # pkgs-edge.bruno (broken)
+      pkgs-edge.bruno
       pkgs-edge.slack
       pkgs-edge.zoom-us
       pkgs.kitty
