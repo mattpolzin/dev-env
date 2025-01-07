@@ -79,7 +79,7 @@ in
   # List packages installed in system profile.
   environment.systemPackages = [
     # Shell (only at work)
-    rApp.R
+#    rApp.R # <- broken
     pkgs-edge.openvpn
     pkgs.azure-cli
     pkgs.azure-storage-azcopy
