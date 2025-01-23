@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, pkgs-edge, ... }:
 {
   services.greetd = {
     enable = true;
@@ -10,6 +10,7 @@
   };
   programs.regreet = {
     enable = true;
+    package = pkgs-edge.greetd.regreet;
     settings = {
       background = {
         path = ../../../images/login-background.jpg;
