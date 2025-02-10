@@ -71,3 +71,6 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 # ghp mattpolzin dev-env -> github.com/mattpolzin/dev-env
 # ghp mattpolzin ncurses -> github.com/mattpolzin/ncurses-idris
 command -v ddgr >/dev/null 2>&1 && alias ghp='ddgr -jw github.com'
+
+# secrets exported as environment variables.
+test -f ~/.zshsecrets && . ~/.zshsecrets
