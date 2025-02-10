@@ -27,6 +27,9 @@
     harmony.url = "github:mattpolzin/harmony";
     harmony.inputs.nixpkgs.follows = "nixpkgs";
     harmony.inputs.packageset.follows = "idris2-packageset";
+
+    neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+    neorg-overlay.inputs.nixpkgs.follows = "nixpkgs-edge";
   };
 
   outputs =
@@ -38,6 +41,7 @@
       nix-index-database,
       nixpkgs,
       nixpkgs-edge,
+      neorg-overlay,
       ...
     }:
     let
@@ -64,7 +68,7 @@
       buildConfig =
         hostName: system: configs:
         let
-          pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix { inherit system nixpkgs-edge; };
+          pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix { inherit system nixpkgs-edge; overlays = [ neorg-overlay.overlays.default ]; };
         in
         {
           modules = configs ++ [ pkgs-edge ];
@@ -101,7 +105,9 @@
     in
     {
       darwinConfigurations = {
-        "MattPolzin-Home" = darwinConfig "MattPolzin-Home" "x86_64-darwin" personalConfiguration { };
+        "MattPolzin-Home" =
+          darwinConfig "MattPolzin-Home" "x86_64-darwin" personalConfiguration
+            { };
 
         "MattPolzin-Work-Laptop-Old" =
           darwinConfig "MattPolzin-Work-Laptop-Old" "x86_64-darwin" workConfiguration

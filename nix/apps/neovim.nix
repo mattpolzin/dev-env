@@ -111,9 +111,8 @@ let
         ts.markdown
         ts.mermaid
         ts.nix
-        ts.norg
-        # ts.norg_meta # <- not found
-        pkgs.tree-sitter.builtGrammars.tree-sitter-norg-meta
+        # ts.norg # <- provided by neorg-overlay
+        # ts.norg_meta # <- provided by neorg-overlay
         ts.python
         ts.query
         ts.ruby

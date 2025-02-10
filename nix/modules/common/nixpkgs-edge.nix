@@ -1,20 +1,23 @@
 let
-  nixpkgs-edge-patches = [ ];
-  nixpkgs-edge-overlays = [ ];
+  extraNixpkgsEdgePatches = [ ];
+  extraNixpkgsEdgeOverlays = [ ];
 in
-{ nixpkgs-edge, system }:
+{ nixpkgs-edge, 
+  patches ? [],
+  overlays ? [],
+system }:
 let
-  nixpkgs-edge-patched = (import nixpkgs-edge { inherit system; }).applyPatches {
+  nixpkgsEdgePatched = (import nixpkgs-edge { inherit system; }).applyPatches {
     name = "nixpkgs-patched";
     src = nixpkgs-edge;
-    patches = nixpkgs-edge-patches;
+    patches = patches ++ extraNixpkgsEdgePatches;
   };
 in
 { pkgs, ... }:
 let
-  pkgs-edge = import nixpkgs-edge-patched {
+  pkgs-edge = import nixpkgsEdgePatched {
     inherit (pkgs) system config;
-    overlays = nixpkgs-edge-overlays;
+    overlays = overlays ++ extraNixpkgsEdgeOverlays;
   };
 in
 {
