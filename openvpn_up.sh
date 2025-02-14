@@ -24,4 +24,8 @@ for idx in ${idxs[@]}; do
   fi
   dns=''
 done
+echo "Resetting Wifi"
+/usr/sbin/networksetup -setnetworkserviceenabled Wi-Fi off && \
+  sleep 5 && \
+  /usr/sbin/networksetup -setnetworkserviceenabled Wi-Fi on
 echo 'Done running --up script'
