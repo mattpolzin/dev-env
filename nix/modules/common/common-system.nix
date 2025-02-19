@@ -53,7 +53,7 @@ in
       pkgs.elixir-ls
       pkgs-edge.elmPackages.elm
       pkgs-edge.elmPackages.elm-language-server
-#      pkgs-edge.elmPackages.elm-test <- broken
+      pkgs-edge.elmPackages.elm-test
       pkgs.erlang
       pkgs.fd
       pkgs.fzf
@@ -73,6 +73,7 @@ in
       pkgs.nix-output-monitor
       pkgs.nodejs
       pkgs.nvd
+      pkgs.parallel
       pkgs.patch
       pkgs.postgresql
       pkgs.ripgrep
