@@ -75,7 +75,7 @@ in
       pkgs.nvd
       pkgs.parallel
       pkgs.patch
-      pkgs.postgresql
+      pkgs-edge.postgresql
       pkgs.ripgrep
       pkgs.rlwrap
       pkgs.tree
