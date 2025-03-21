@@ -23,3 +23,7 @@ Use `wpa_cli` to manage wifi connections manually. `add_network`, `scan`,
 Use `nbtscan` to scan for other devices on network; e.g. `nbtscan
 192.168.1.50-60`
 
+## Images
+Use `feh` to view.
+
+Use `evince` for PDFs.

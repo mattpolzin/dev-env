@@ -73,6 +73,9 @@ in
     # image viewer
     pkgs.feh
 
+    # PDF
+    pkgs.evince
+
     # development
     pkgs.gcc
     pkgs.gnumake
