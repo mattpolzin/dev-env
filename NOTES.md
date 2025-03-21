@@ -18,7 +18,8 @@ Use `bluetoothctl` to `power on`, `scan on` or `discovery on`, `pair`,
 
 Use `wpa_cli` to manage wifi connections manually. `add_network`, `scan`,
 `set_network 0 ssid "sdfsdf"`, `enable_network 0`.
- - For unauthenticated network, `set_network 0 key_mgmt NONE`, visit `8.8.8.8` in browser get redirected to terms page.
+ - For unauthenticated networks, `set_network 0 key_mgmt NONE`, visit `8.8.8.8` in browser get redirected to terms page.
+ - For passphrase networks, `set_network 0 key_mgmt WPA-PSK`, `set_network 0 psk "asdf"`
 
 Use `nbtscan` to scan for other devices on network; e.g. `nbtscan
 192.168.1.50-60`
