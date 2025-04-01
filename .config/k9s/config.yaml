@@ -4,7 +4,7 @@ k9s:
   logger:
     tail: 500
     buffer: 5000
-    fullscreen: true
+    fullScreen: true
     textWrap: true
   ui:
     headless: true
