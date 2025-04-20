@@ -16,6 +16,16 @@ vim.cmd.highlight('StatusLineNC guibg=#21252c')
 --
 vim.keymap.set('n', '<c-p>', function() vim.cmd('Files') end, { silent=true })
 
+-- Workaround for the fact that :GitFiles is just an alias for :GFiles and it
+-- collides with :GitSigns in a way that is annoying for tab-completion of commands:
+vim.api.nvim_create_augroup('delete_GitFiles_plugin_cmd', {})
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = 'delete_GitFiles_plugin_cmd',
+  callback = function()
+    vim.cmd.delcommand("GitFiles")
+  end
+})
+
 --
 -- Telescope
 --
