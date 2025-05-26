@@ -28,4 +28,8 @@
     source = ../.config/waybar;
     recursive = true;
   };
+  ".config/qutebrowser" = {
+    source = ../.config/qutebrowser;
+    recursive = true;
+  };
 }
