@@ -81,7 +81,7 @@ in
     pkgs.gnumake
 
     # network / internet
-    pkgs.qutebrowser
+    (pkgs-edge.qutebrowser.override { enableWideVine = true; })
     pkgs.nbtscan
     pkgs.nmap
 
