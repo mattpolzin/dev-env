@@ -25,7 +25,7 @@ in
 
     fonts = {
       packages = [
-        (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+        pkgs.nerd-fonts.jetbrains-mono
         pkgs-edge.pixel-code
         iosevka.nerdFont
       ];
