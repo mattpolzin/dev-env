@@ -45,6 +45,7 @@ in
   users.users.${config.users.primary} = {
     home = "/Users/${config.users.primary}";
   };
+  system.primaryUser = config.users.primary;
 
   homebrew.enable = true;
   homebrew.onActivation.cleanup = "zap";
@@ -147,9 +148,6 @@ in
       cmd + shift - up : yabai -m window --toggle zoom-parent
     '';
   };
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
 
   customize.postman.enable = true;
 
