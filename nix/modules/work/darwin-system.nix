@@ -91,6 +91,8 @@ in
     pkgs.mutagen
     pkgs.terraform
     pkgs.unixODBC
+    pkgs._1password-gui
+    pkgs._1password-cli
 
     # GUI (only at work)
     pkgs.vscode
@@ -99,10 +101,7 @@ in
   programs.direnv.enable = true;
 
   homebrew.taps = [ "garden-io/garden" ];
-  homebrew.casks = [
-    "1password"
-    "1password-cli"
-  ];
+  homebrew.casks = [ ];
   homebrew.brews = [ "garden-cli" ];
 
   age.secrets.etcHosts.file = ../../../secrets/etc-hosts.age;
