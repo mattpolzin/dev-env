@@ -27,6 +27,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 --
+-- Misc Helpers
+--
+vim.keymap.set('n', 'gl', require('commands/open_web_uri').open_under_cursor)
+
+--
 -- Telescope
 --
 
