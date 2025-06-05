@@ -2,23 +2,28 @@
 local M = {}
 
 function M.open(uri)
-  local tmp_file = os.tmpname()
 
-  local suffix = ''
+  local fname_extension = vim.fn.fnamemodify(uri, ':e')
+
+  local tmp_file = os.tmpname()
+  if fname_extension ~= '' then
+    tmp_file = tmp_file .. '.' .. fname_extension
+  end
+
+  local uri_suffix = ''
   if string.find(uri, 'github.com') then
     if string.find(uri, '?') then
-      suffix = '&raw=true'
+      uri_suffix = '&raw=true'
     else
-      suffix = '?raw=true'
+      uri_suffix = '?raw=true'
     end
   end
 
-  uri = uri .. suffix
+  uri = uri .. uri_suffix
 
   vim.system({'curl', '-L', '-o', tmp_file, uri}, {text = true}):wait()
 
   vim.cmd.edit(tmp_file)
-  vim.bo.filetype = 'norg'
   os.remove(tmp_file)
 end
 
