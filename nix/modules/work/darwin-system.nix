@@ -81,6 +81,8 @@ in
     # Shell (only at work)
 #    rApp.R # <- broken
     pkgs-edge.openvpn
+    pkgs-edge.postgresql
+    pkgs-edge.spicedb
     pkgs.azure-cli
     pkgs.azure-storage-azcopy
     pkgs.direnv
