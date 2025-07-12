@@ -33,10 +33,10 @@ in
 {
   imports = [
     ./user-cfg.nix
-    ./common-system.nix
-    #    ../window-manager/xmonad-system.nix
-    #    ../window-manager/sway-system.nix
-    ../window-manager/river-system.nix
+    ./all-systems.nix
+    # ./window-manager/xmonad-system.nix
+    # ./window-manager/sway-system.nix
+    ./window-manager/river-system.nix
   ];
 
   home-manager.useGlobalPkgs = true;

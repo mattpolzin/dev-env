@@ -34,7 +34,7 @@ in
 {
   imports = [
     ./user-cfg.nix
-    ./common-system.nix
+    ./all-systems.nix
   ];
 
   home-manager.useGlobalPkgs = true;

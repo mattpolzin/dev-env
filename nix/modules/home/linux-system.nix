@@ -1,8 +1,8 @@
 { pkgs, config, ... }:
 {
   imports = [
-    ../hardware/framework-hardware-configuration.nix
-    ../hardware/framework-hardware-extra.nix
+    ../shared/hardware/framework-hardware-configuration.nix
+    ../shared/hardware/framework-hardware-extra.nix
   ];
 
   users.primary = "matt";

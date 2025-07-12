@@ -1,6 +1,6 @@
 { lib, ... }@attrs:
 {
-  imports = [ ../common/mattpolzin.nix ];
+  imports = [ ../shared/mattpolzin.nix ];
 
   # additional configs to manage:
   home.file.".config/ghostty" = {

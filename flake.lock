@@ -447,11 +447,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751810233,
-        "narHash": "sha256-kllkNbIqQi3VplgTMeGzuh1t8Gk8TauvkTRt93Km+tQ=",
+        "lastModified": 1752208517,
+        "narHash": "sha256-aRY1cYOdVdXdNjcL/Twpa27CknO7pVHxooPsBizDraE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9b0873b46c9f9e4b7aa01eb634952c206af53068",
+        "rev": "c6a01e54af81b381695db796a43360bf6db5702f",
         "type": "github"
       },
       "original": {
@@ -662,11 +662,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1752111620,
-        "narHash": "sha256-+l0QopIldRZa/g47jXEMLcxst4FrRcahmsJpy82gEfs=",
+        "lastModified": 1752284458,
+        "narHash": "sha256-WCZ8ffnGb/fZ1qyGC4X/+1EFIKhz63Uzb5EBnNM3x5k=",
         "owner": "mattpolzin",
         "repo": "nix-idris2-packages",
-        "rev": "14d9faf6cd5cebd94efece0c624f667740bbbcf3",
+        "rev": "ec7bf4b37e23ca11833a64369aecee04b81ec40c",
         "type": "github"
       },
       "original": {
@@ -991,11 +991,11 @@
     "idris2PackDbSrc": {
       "flake": false,
       "locked": {
-        "lastModified": 1752098574,
-        "narHash": "sha256-8woBcwpsacIl83M4fp8eQZiuGwZBbNPqPtZLNu2TJc0=",
+        "lastModified": 1752271403,
+        "narHash": "sha256-AkXlxLXIbEINr1IQa0iNo3F0jzvsFp/BG5n71bY1/Mk=",
         "owner": "stefan-hoeck",
         "repo": "idris2-pack-db",
-        "rev": "2344bd82ec1482cf81f42ef095601fd88c86b313",
+        "rev": "d53acfe25b3a5e1223c80d46aa7fed26a418964f",
         "type": "github"
       },
       "original": {
@@ -1746,11 +1746,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1751943650,
-        "narHash": "sha256-7orTnNqkGGru8Je6Un6mq1T8YVVU/O5kyW4+f9C1mZQ=",
+        "lastModified": 1752162966,
+        "narHash": "sha256-3MxxkU8ZXMHXcbFz7UE4M6qnIPTYGcE/7EMqlZNnVDE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "88983d4b665fb491861005137ce2b11a9f89f203",
+        "rev": "10e687235226880ed5e9f33f1ffa71fe60f2638a",
         "type": "github"
       },
       "original": {

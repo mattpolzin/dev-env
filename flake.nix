@@ -54,21 +54,21 @@
       defaultOrHead =
         dig: modules: modules.${dig}.default or (builtins.head (lib.attrValues modules.${dig}));
       commonConfiguration = {
-        darwin = import ./nix/modules/common/darwin-system.nix;
-        linux = import ./nix/modules/common/linux-system.nix;
+        darwin = import ./nix/modules/shared/darwin-system.nix;
+        linux = import ./nix/modules/shared/linux-system.nix;
       };
       workConfiguration = {
         darwin = import ./nix/modules/work/darwin-system.nix;
         linux = throw "no linux work machines to configure";
       };
       personalConfiguration = {
-        darwin = import ./nix/modules/personal/darwin-system.nix;
-        linux = import ./nix/modules/personal/linux-system.nix;
+        darwin = import ./nix/modules/home/darwin-system.nix;
+        linux = import ./nix/modules/home/linux-system.nix;
       };
       buildConfig =
         hostName: system: configs:
         let
-          pkgs-edge = import ./nix/modules/common/nixpkgs-edge.nix { inherit system nixpkgs-edge; overlays = [ neorg-overlay.overlays.default ]; };
+          pkgs-edge = import ./nix/modules/shared/nixpkgs-edge.nix { inherit system nixpkgs-edge; overlays = [ neorg-overlay.overlays.default ]; };
         in
         {
           modules = configs ++ [ pkgs-edge ];

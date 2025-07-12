@@ -13,7 +13,7 @@
     package = pkgs-edge.greetd.regreet;
     settings = {
       background = {
-        path = ../../../images/login-background.jpg;
+        path = ../../../../images/login-background.jpg;
         fit = "Fill";
       };
       GTK = {
