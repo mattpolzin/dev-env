@@ -488,3 +488,5 @@ vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
 -- vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")
 -- vim.keymap.set("n", "<<", "<<<cmd>AutolistRecalculate<cr>")
 
+require('csvview').setup()
+

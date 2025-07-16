@@ -58,6 +58,7 @@ let
 
       # Previewing documents
       p.markdown-preview-nvim
+      p.csvview-nvim
 
       # Browsing/Finding
       p.oil-nvim
