@@ -105,7 +105,7 @@ in
     "1password"
     "1password-cli"
   ];
-  homebrew.brews = [ "garden-cli" ];
+  homebrew.brews = [ "garden-cli@0.13" ];
 
   age.secrets.etcHosts.file = ../../../secrets/etc-hosts.age;
   environment.etc.hosts = {
