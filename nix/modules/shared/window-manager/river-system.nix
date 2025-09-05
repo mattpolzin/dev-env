@@ -10,7 +10,7 @@
   };
   programs.regreet = {
     enable = true;
-    package = pkgs-edge.greetd.regreet;
+    package = pkgs-edge.regreet;
     settings = {
       background = {
         path = ../../../../images/login-background.jpg;
