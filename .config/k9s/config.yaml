@@ -8,4 +8,7 @@ k9s:
     textWrap: true
   ui:
     headless: true
+    defaultsToFullScreen: true
+    # ^ documented on website as `logger.fullScreen` but in code shows up as
+    # `ui.defaultsToFullScreen`.
 
