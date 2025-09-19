@@ -88,6 +88,9 @@ if !empty(glob('${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim
   Plug 'dhruvasagar/vim-table-mode'
   let g:table_mode_corner='|' " <- markdown compatible tables
 
+  " CSV viewing
+  Plug 'hat0uma/csvview.nvim'
+
   call plug#end()
 endif
 
