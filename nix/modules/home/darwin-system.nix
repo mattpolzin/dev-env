@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, pkgs-edge, config, ... }:
 {
   users.primary = "matt";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
@@ -12,6 +12,7 @@
 
     # GUI (only at home)
     pkgs.discord
+    pkgs-edge.ghostty
   ];
 
   customize.spotify.gui.enable = true;
