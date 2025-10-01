@@ -352,7 +352,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = 'ruby',
   callback = function()
     vim.wo.foldmethod = 'expr'
-    vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+    vim.wo.foldexpr = vim.treesitter.foldexpr()
   end
 })
 vim.api.nvim_create_augroup('elixir_ft', {})
@@ -361,7 +361,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = 'elixir',
   callback = function()
     vim.wo.foldmethod = 'expr'
-    vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+    vim.wo.foldexpr = vim.treesitter.foldexpr()
   end
 })
 vim.api.nvim_create_augroup('json_ft', {})
@@ -370,14 +370,14 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = 'json',
   callback = function()
     vim.wo.foldmethod = 'expr'
-    vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+    vim.wo.foldexpr = vim.treesitter.foldexpr()
   end
 })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = 'swift',
   callback = function()
     vim.wo.foldmethod = 'expr'
-    vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+    vim.wo.foldexpr = vim.treesitter.foldexpr()
   end
 })
 
