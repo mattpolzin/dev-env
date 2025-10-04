@@ -11,10 +11,11 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig').zls.setup({
+  vim.lsp.config("zls", {
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities
   })
+  vim.lsp.enable("zls")
 end
 
 return M

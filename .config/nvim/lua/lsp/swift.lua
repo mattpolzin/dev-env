@@ -11,10 +11,11 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig').sourcekit.setup({
+  vim.lsp.config("sourcekit", {
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities
   })
+  vim.lsp.enable("sourcekit")
 end
 
 return M

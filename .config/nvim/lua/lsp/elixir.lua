@@ -17,7 +17,7 @@ local M = {}
 local path_to_elixirls = vim.fn.expand("elixir-ls")
 
 function M.setup()
-  require('lspconfig').elixirls.setup({
+  vim.lsp.config("elixirls", {
     cmd = {path_to_elixirls},
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities,
@@ -29,6 +29,7 @@ function M.setup()
       }
     }
   })
+  vim.lsp.enable("elixirls")
 end
 
 return M

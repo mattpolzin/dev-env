@@ -11,10 +11,11 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig').nixd.setup({
+  vim.lsp.config("nixd", {
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities
   })
+  vim.lsp.enable("nixd")
 end
 
 return M

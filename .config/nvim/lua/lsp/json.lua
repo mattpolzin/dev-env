@@ -11,10 +11,11 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig').jsonls.setup({
+  vim.lsp.config("jsonls", {
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities
   })
+  vim.lsp.enable("jsonls")
 end
 
 return M

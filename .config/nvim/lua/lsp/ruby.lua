@@ -11,10 +11,11 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig').solargraph.setup({
+  vim.lsp.config("solargraph", {
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities,
   })
+  vim.lsp.enable("solargraph")
 end
 
 return M

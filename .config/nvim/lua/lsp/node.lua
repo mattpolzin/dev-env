@@ -11,11 +11,12 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig').ts_ls.setup({
+  vim.lsp.config("ts_ls", {
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities
   })
-  require('lspconfig').diagnosticls.setup(
+  vim.lsp.enable("ts_ls")
+  vim.lsp.config("diagnosticls",
     {
       filetypes = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},
       init_options = {
@@ -58,6 +59,7 @@ function M.setup()
         }
       }
   })
+  vim.lsp.enable("diagnosticls")
 end
 
 return M

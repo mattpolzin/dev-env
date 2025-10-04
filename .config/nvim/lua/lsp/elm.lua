@@ -18,10 +18,11 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig').elmls.setup({
+  vim.lsp.config("elmls", {
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities
   })
+  vim.lsp.enable("elmls")
 end
 
 return M
