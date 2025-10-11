@@ -9,6 +9,9 @@
   # https://community.frame.work/t/responded-amd-7040-sleep-states/38101/13
   services.power-profiles-daemon.enable = true;
 
+  # BIOS updating
+  services.fwupd.enable = true;
+
   # text size on hidpi display for some programs:
   environment.variables = {
     GDK_SCALE = "2";
