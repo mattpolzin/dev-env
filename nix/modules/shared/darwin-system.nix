@@ -244,6 +244,7 @@ in
       # don't auto-update Slack
       "com.tinyspeck.slackmacgap" = {
         SlackNoAutoUpdates = true;
+        AutoUpdate = false;
       };
     };
   };
