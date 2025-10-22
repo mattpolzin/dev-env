@@ -12,7 +12,7 @@
 
     # GUI (only at home)
     pkgs.discord
-    pkgs-edge.ghostty
+    pkgs-edge.ghostty-bin
   ];
 
   customize.spotify.gui.enable = true;
