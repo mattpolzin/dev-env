@@ -245,6 +245,9 @@ in
       "com.tinyspeck.slackmacgap" = {
         SlackNoAutoUpdates = true;
         AutoUpdate = false;
+        Enforced = {
+          AutoUpdate = false;
+        };
       };
     };
   };
