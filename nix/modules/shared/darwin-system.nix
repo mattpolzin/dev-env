@@ -53,6 +53,7 @@ in
     Keynote = 409183694;
     Numbers = 409203825;
     Pages = 409201541;
+    "Slack for Desktop" = 803453959;
     Vimari = 1480933944;
     Xcode = 497799835;
   };

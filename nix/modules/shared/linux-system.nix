@@ -92,6 +92,9 @@ in
     # volume & playback control
     pkgs.pamixer
     pkgs.playerctl
+
+    # Communication
+    pkgs-edge.slack
   ];
 
   # I have nix-index-database handling command-not-found

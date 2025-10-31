@@ -87,9 +87,11 @@ in
 
       # GUI (all machines)
       pkgs-edge.bruno
-      pkgs-edge.slack
       pkgs-edge.zoom-us
       pkgs.kitty
+
+      #      pkgs-edge.slack
+      #      ^ POS demands to install an updater so I need to install it via Brew MAS (app store) on Darwin
     ];
   };
 }
