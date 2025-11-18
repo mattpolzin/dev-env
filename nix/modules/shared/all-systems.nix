@@ -53,6 +53,7 @@ in
       pkgs.elixir-ls
       pkgs-edge.elmPackages.elm
       pkgs-edge.elmPackages.elm-language-server
+      pkgs-edge.elmPackages.elm-format
       pkgs-edge.elmPackages.elm-test
       pkgs.erlang
       pkgs.fd
