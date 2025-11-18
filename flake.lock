@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763440215,
-        "narHash": "sha256-OBi63nzpScOaC4K+HsGqj4K3tb7OPKROZRnE1rdXxdM=",
+        "lastModified": 1763468646,
+        "narHash": "sha256-JGuFdD0JulpShqy2toXZulGOaMhPSHBJrnmbQPZaV1E=",
         "owner": "mattpolzin",
         "repo": "harmony",
-        "rev": "6b83680449773a5f715fe3cf7932566d4203ad1b",
+        "rev": "576f6dc7770062054a4dd355dc66c32b856fafd0",
         "type": "github"
       },
       "original": {
@@ -702,11 +702,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1763049705,
-        "narHash": "sha256-A5LS0AJZ1yDPTa2fHxufZN++n8MCmtgrJDtxFxrH4S8=",
+        "lastModified": 1763334038,
+        "narHash": "sha256-LBVOyaH6NFzQ3X/c6vfMZ9k4SV2ofhpxeL9YnhHNJQQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3acb677ea67d4c6218f33de0db0955f116b7588c",
+        "rev": "4c8cdd5b1a630e8f72c9dd9bf582b1afb3127d2c",
         "type": "github"
       },
       "original": {
