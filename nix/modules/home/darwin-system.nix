@@ -6,7 +6,7 @@
   # List packages installed in system profile.
   environment.systemPackages = [
     # Shell (only at home)
-    pkgs.colima
+    pkgs-edge.colima
     pkgs.docker
     pkgs.texliveSmall
 

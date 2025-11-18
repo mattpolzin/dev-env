@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, pkgs-edge, config, ... }:
 {
   imports = [
     ../shared/hardware/framework-hardware-configuration.nix
@@ -14,7 +14,7 @@
   # List packages installed in system profile.
   environment.systemPackages = [
     # Shell (only at home)
-    pkgs.colima
+    pkgs-edge.colima
     pkgs.docker
     pkgs.texliveSmall
 
