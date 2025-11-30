@@ -72,5 +72,7 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 # ghp mattpolzin ncurses -> github.com/mattpolzin/ncurses-idris
 command -v ddgr >/dev/null 2>&1 && alias ghp='ddgr -jw github.com'
 
+alias ssh-home='MATTPOLZIN_HOME=$(nbtscan -s " " 192.168.68.50-192.168.68.70 | grep MATTPOLZIN-HOME | cut -d " " -f 1) && ssh -l matt $MATTPOLZIN_HOME'
+
 # secrets exported as environment variables.
 test -f ~/.zshsecrets && . ~/.zshsecrets
