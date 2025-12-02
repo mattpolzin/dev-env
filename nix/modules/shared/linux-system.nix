@@ -64,7 +64,7 @@ in
     fontDir.enable = true;
     packages = [
       # Common fonts
-      pkgs.vistafonts
+      pkgs.vista-fonts
     ];
   };
 

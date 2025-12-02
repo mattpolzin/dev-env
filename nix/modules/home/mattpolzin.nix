@@ -17,9 +17,8 @@
   };
 
   programs.git = {
-    userEmail = "matt.polzin@gmail.com";
-
-    extraConfig = {
+    settings = {
+      user.email = "matt.polzin@gmail.com";
       sendemail = {
         smtpServer = "smtp.gmail.com";
         smtpServerPort = 587;

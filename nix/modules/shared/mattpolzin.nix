@@ -32,10 +32,10 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Mathew Polzin";
     lfs.enable = lib.mkDefault true;
 
-    extraConfig = {
+    settings = {
+      user.name = "Mathew Polzin";
       init = {
         defaultBranch = "main";
       };

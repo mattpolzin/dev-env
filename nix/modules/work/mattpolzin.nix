@@ -2,7 +2,7 @@
 {
   imports = [ ../shared/mattpolzin.nix ];
 
-  programs.git = {
-    userEmail = "mpolzin@workwithopal.com";
+  programs.git.settings.user = {
+    email = "mpolzin@workwithopal.com";
   };
 }
