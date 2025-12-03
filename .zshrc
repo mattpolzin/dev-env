@@ -60,9 +60,15 @@ if [ -z "$SSH_AUTH_SOCK" ] && [ "$(uname)" = 'Linux' ]; then
   ssh-add >/dev/null 2>&1 
 fi
 
+# launch lf and switch to the directory browsed to on quit
+lfcd () {
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    cd "$(command lf -print-last-dir "$@")"
+}
+
 # direnv integration
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
-#
+
 ##
 ## aliases
 ##
