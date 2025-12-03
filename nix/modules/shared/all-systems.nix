@@ -40,9 +40,14 @@ in
       neovimApp.package
       pkgs-edge.chez
       pkgs-edge.ddgr
+      pkgs-edge.elmPackages.elm
+      pkgs-edge.elmPackages.elm-format
+      pkgs-edge.elmPackages.elm-language-server
+      pkgs-edge.elmPackages.elm-test
       pkgs-edge.ijq
       pkgs-edge.k9s
       pkgs-edge.nixd
+      pkgs-edge.postgresql
       pkgs-edge.presenterm
       pkgs-edge.tree-sitter
       pkgs.circumflex
@@ -51,10 +56,6 @@ in
       pkgs.diffutils
       pkgs.elixir
       pkgs.elixir-ls
-      pkgs-edge.elmPackages.elm
-      pkgs-edge.elmPackages.elm-language-server
-      pkgs-edge.elmPackages.elm-format
-      pkgs-edge.elmPackages.elm-test
       pkgs.erlang
       pkgs.fd
       pkgs.fzf
@@ -71,12 +72,12 @@ in
       pkgs.kind
       pkgs.kubectl
       pkgs.kubectl-tree
+      pkgs.lf
       pkgs.nix-output-monitor
       pkgs.nodejs
       pkgs.nvd
       pkgs.parallel
       pkgs.patch
-      pkgs-edge.postgresql
       pkgs.ripgrep
       pkgs.rlwrap
       pkgs.tree
