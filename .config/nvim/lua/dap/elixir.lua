@@ -45,13 +45,21 @@ function M.setup()
       name = "phx.server",
       request = "launch",
       task = "phx.server",
-      projectDir = vim.fn.getcwd()
+      projectDir = vim.fn.getcwd(),
+      exitAfterTaskReturns = false
     },
     {
       type = "mix_task",
       name = "escript",
       request = "launch",
       task = "run_escript",
+      projectDir = vim.fn.getcwd()
+    },
+    {
+      type = "mix_task",
+      name = "run",
+      request = "launch",
+      task = "run",
       projectDir = vim.fn.getcwd()
     }
   }
