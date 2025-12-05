@@ -14,9 +14,9 @@
 
   # text size on hidpi display for some programs:
   environment.variables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
-    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+    GDK_SCALE = "1";
+    GDK_DPI_SCALE = "1.0";
+    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=1";
   };
 
   # Needed for desktop environments to detect/manage display brightness

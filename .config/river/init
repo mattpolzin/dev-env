@@ -79,8 +79,8 @@ do
   riverctl map $mode None XF86AudioPrev spawn 'playerctl previous'
   riverctl map $mode None XF86AudioNext spawn 'playerctl next'
 
-  riverctl map $mode None XF86MonBrightnessUp spawn 'light -A 20'
-  riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 20'
+  riverctl map $mode None XF86MonBrightnessUp spawn 'light -A 10'
+  riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 10'
 done
 
 ##
@@ -106,6 +106,7 @@ rivertile &
 
 # Import the WAYLAND_DISPLAY env var from sway into the systemd user session.
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+dbus-update-activation-environment --systemd GDK_DPI_SCALE GDK_SCALE
 
 # Stop any services that are running, so that they receive the new env var when they restart.
 systemctl --user stop pipewire xdg-desktop-portal xdg-desktop-portal-wlr
