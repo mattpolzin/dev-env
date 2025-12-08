@@ -44,21 +44,21 @@ zstyle ':vcs_info:git:*' formats '(%b) '
 
 setopt prompt_subst
 
-shlvl_prompt_prefix() {
+shlvl_prompt() {
   if [[ $SHLVL -gt 1 ]]; then
-    echo "${SHLVL}] "
+    echo "${SHLVL}"
   fi
 }
 
 ncolors=$(tput colors)
-shlvl="\$(shlvl_prompt_prefix)"
+shlvl="\$(shlvl_prompt)"
 if [ -n "$ncolors" ] && [ $ncolors -ge 8 ]; then
   normal="$(tput sgr0)"
   green="$(tput setaf 2)"
   yellow="$(tput setaf 3)"
-  PROMPT="${shlvl}%n: %{${green}%}%~ %{${yellow}%}\${vcs_info_msg_0_}%{${normal}%}$ "
+  PROMPT="%n: %{${green}%}%~ %{${yellow}%}\${vcs_info_msg_0_}%{${normal}%}${shlvl}$ "
 else
-  PROMPT="${shlvl}%n:%~ \${vcs_info_msg_0_}$ "
+  PROMPT="%n:%~ \${vcs_info_msg_0_}${shlvl}$ "
 fi
 
 # SSH agent for Linux

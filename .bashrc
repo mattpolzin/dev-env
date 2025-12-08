@@ -28,22 +28,22 @@ function parse_git_branch {
 }
 export -f parse_git_branch
 
-shlvl_prompt_prefix() {
+shlvl_prompt() {
   if [[ $SHLVL -gt 1 ]]; then
-    echo "${SHLVL}] "
+    echo "${SHLVL}"
   fi
 }
-export -f shlvl_prompt_prefix
+export -f shlvl_prompt
 
 ncolors=$(tput colors)
-shlvl="\$(shlvl_prompt_prefix)"
+shlvl="\$(shlvl_prompt)"
 if [ -n "$ncolors" ] && [ $ncolors -ge 8 ]; then
   normal="$(tput sgr0)"
   green="$(tput setaf 2)"
   yellow="$(tput setaf 3)"
-  export PS1="${shlvl}\u: \[${green}\]\w \[${yellow}\]\$(parse_git_branch)\[${normal}\]$ "
+  export PS1="\u: \[${green}\]\w \[${yellow}\]\$(parse_git_branch)\[${normal}\]${shlvl}$ "
 else
-  export PS1="${shlvl}\u:\w \$(parse_git_branch)$ "
+  export PS1="\u:\w \$(parse_git_branch)${shlvl}$ "
 fi
 
 # git auto-completion
