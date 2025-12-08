@@ -29,8 +29,8 @@
     "format-wifi": "{essid} {signalStrength} | 🡣 {bandwidthDownBytes} / {bandwidthUpBytes} 🡩"
   },
   "river/tags": {
-    "num-tags": 3,
-    "tag-labels": ["1", "2", "3"]
+    "num-tags": 4,
+    "tag-labels": ["1", "2", "3", "4"]
   },
   "river/window": {
     "max-length": 100

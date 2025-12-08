@@ -62,8 +62,8 @@ done
 ##
 ## Shortcuts
 ##
-riverctl map normal Super 4 spawn 'grim'
-riverctl map normal Super+Shift 4 spawn 'grim -g "$(slurp)"'
+riverctl map normal Super 0 spawn 'grim'
+riverctl map normal Super+Shift 0 spawn 'grim -g "$(slurp)"'
 
 ##
 ## Function Keys
