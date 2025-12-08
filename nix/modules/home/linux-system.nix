@@ -22,7 +22,7 @@
     pkgs.discord
   ];
 
-  customize.spotify.gui.enable = true;
+  customize.spotify.gui.enable = false;
 
   age.secrets.wpaSupplicantConfig.file = ../../../secrets/wpa-supplicant-conf.age;
 
