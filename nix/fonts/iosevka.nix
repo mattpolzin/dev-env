@@ -2,11 +2,9 @@
   pkgs ? (import <nixpkgs> { }).pkgs,
 }:
 let
-  inherit (pkgs) stdenv lib;
-in
-rec {
-  custom = pkgs.iosevka.override {
-    privateBuildPlan = {
+  inherit (pkgs) stdenv;
+
+  privateBuildPlan = {
       family = "Iosevka Custom";
       spacing = "term";
       serifs = "sans";
@@ -48,12 +46,22 @@ rec {
           ExtraBold = weight 800;
         };
     };
+in
+rec {
+  custom = pkgs.iosevka.override {
+    inherit privateBuildPlan;
     set = "Custom";
+  };
+
+  customFixedWidth = custom.override {
+    privateBuildPlan = privateBuildPlan // {
+      spacing = "fixed";
+    };
   };
 
   nerdFont = stdenv.mkDerivation {
     name = "iosevka-custom-nerd";
-    src = custom;
+    src = customFixedWidth;
     nativeBuildInputs = [
       pkgs.parallel
       pkgs.nerd-font-patcher
