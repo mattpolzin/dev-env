@@ -83,6 +83,12 @@ augroup END
 au FileType swift set makeprg=swift
 
 "
+" Typescript
+"
+au FileType typescriptreact set makeprg=tsc\ --noEmit\ \\\|\ sed\ 's/(\\(.*\\),\\(.*\\)):/:\\1:\\2:/'
+
+
+"
 " AuthZed
 "
 augroup Authzed
