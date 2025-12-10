@@ -53,6 +53,7 @@ rec {
     set = "Custom";
   };
 
+  # Iosevka Fixed Width cannot have ligations which is a bummer
   customFixedWidth = custom.override {
     privateBuildPlan = privateBuildPlan // {
       spacing = "fixed";
@@ -61,7 +62,7 @@ rec {
 
   nerdFont = stdenv.mkDerivation {
     name = "iosevka-custom-nerd";
-    src = customFixedWidth;
+    src = custom;
     nativeBuildInputs = [
       pkgs.parallel
       pkgs.nerd-font-patcher

@@ -3,7 +3,9 @@ auto-update = off
 # font options:
 # IosevkaCustom Nerd Font
 # JetBrains Mono 
-font-family = IosevkaCustom Nerd Font
+### IosevkaCustom is my preference but it can't have ligations as a fixed width
+### font so not good for terminals
+font-family = JetBrains Mono
 font-size = 12
 font-thicken = true
 adjust-cell-height = 15%
