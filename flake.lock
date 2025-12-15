@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765213085,
-        "narHash": "sha256-YOss0Or0GGXgZ4/4sQ8FUI+DbXhyL3GUIEQoHCUAgBo=",
+        "lastModified": 1765769111,
+        "narHash": "sha256-StZKmMWv1vkYxjRHSR78ovo4Bj+lkLxtxWzvz7y416U=",
         "owner": "mattpolzin",
         "repo": "harmony",
-        "rev": "f0d9bde9823cbbbe77f3e636df572b1c472277f4",
+        "rev": "74cedb6252bd4e0bc3d25aed88c817e142cee2a0",
         "type": "github"
       },
       "original": {
