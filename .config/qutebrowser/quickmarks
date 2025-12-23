@@ -1,4 +1,5 @@
 github https://github.com
-opallabs https://github.com/opallabs/cabochon/pulls
-nixpkgs https://github.com/nixos/nixpkgs
 nixos-search search.nixos.org
+nixpkgs https://github.com/nixos/nixpkgs
+opallabs https://github.com/opallabs/cabochon/pulls
+openapikit https://github.com/mattpolzin/OpenAPIKit
