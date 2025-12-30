@@ -54,11 +54,22 @@ ncolors=$(tput colors)
 shlvl="\$(shlvl_prompt)"
 if [ -n "$ncolors" ] && [ $ncolors -ge 8 ]; then
   normal="$(tput sgr0)"
+  red="$(tput setaf 1)"
   green="$(tput setaf 2)"
   yellow="$(tput setaf 3)"
-  PROMPT="%n: %{${green}%}%~ %{${yellow}%}\${vcs_info_msg_0_}%{${normal}%}${shlvl}$ "
+
+  exit_status_prompt() {
+    if [[ "$?" == '0' ]]; then
+      echo ""
+    else
+      echo " %{${red}%}$?"
+    fi
+  }
+
+  exit_status="\$(exit_status_prompt)"
+  PROMPT="%n:${exit_status} %{${green}%}%~ %{${yellow}%}\${vcs_info_msg_0_}%{${normal}%}${shlvl}$ "
 else
-  PROMPT="%n:%~ \${vcs_info_msg_0_}${shlvl}$ "
+  PROMPT="%n: $? %~ \${vcs_info_msg_0_}${shlvl}$ "
 fi
 
 # SSH agent for Linux
