@@ -9,7 +9,7 @@ let
   idris2 = inputs.idris2-packageset.packages.${pkgs.system}.idris2;
   idris2Lsp = inputs.idris2-packageset.packages.${pkgs.system}.idris2Lsp;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
-  neovimApp = import ../../apps/neovim.nix { pkgs = pkgs-edge; };
+  neovimApp = import ../../apps/neovim.nix { pkgs = pkgs; };
   iosevka = import ../../fonts/iosevka.nix { pkgs = pkgs-edge; };
 in
 {
