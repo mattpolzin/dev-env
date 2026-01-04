@@ -66,7 +66,7 @@ if [ -n "$ncolors" ] && [ $ncolors -ge 8 ]; then
   exit_status="\$(exit_status_prompt)"
   PROMPT="%n:${exit_status} %{${green}%}%~ %{${yellow}%}\${vcs_info_msg_0_}%{${normal}%}${shlvl}$ "
 else
-  PROMPT="%n: $? %~ \${vcs_info_msg_0_}${shlvl}$ "
+  PROMPT="%n: \$? %~ \${vcs_info_msg_0_}${shlvl}$ "
 fi
 
 # SSH agent for Linux
