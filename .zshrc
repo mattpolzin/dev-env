@@ -26,10 +26,10 @@ bindkey -v
 #support ctrl+r command history search
 bindkey "^R" history-incremental-pattern-search-backward
 
-# autocompletion
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-test -f ~/bin/git-completion.zsh && . ~/bin/git-completion.zsh
+## autocompletion
+# autoload -U +X compinit && compinit
+# autoload -U +X bashcompinit && bashcompinit
+## ^-- initialized including bash support by Nix
 
 # Load version control information
 autoload -Uz vcs_info
