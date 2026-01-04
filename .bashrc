@@ -39,11 +39,23 @@ ncolors=$(tput colors)
 shlvl="\$(shlvl_prompt)"
 if [ -n "$ncolors" ] && [ $ncolors -ge 8 ]; then
   normal="$(tput sgr0)"
+  red="$(tput setaf 1)"
   green="$(tput setaf 2)"
   yellow="$(tput setaf 3)"
-  export PS1="\u: \[${green}\]\w \[${yellow}\]\$(parse_git_branch)\[${normal}\]${shlvl}$ "
+
+  exit_status_prompt() {
+    if [[ "$?" == '0' ]]; then
+      echo ""
+    else
+      echo " $?"
+    fi
+  }
+  export -f exit_status_prompt
+
+  exit_status="\$(exit_status_prompt)"
+  export PS1="\u:\[${red}\]${exit_status} \[${green}\]\w \[${yellow}\]\$(parse_git_branch)\[${normal}\]${shlvl}$ "
 else
-  export PS1="\u:\w \$(parse_git_branch)${shlvl}$ "
+  export PS1="\u: \$? \w \$(parse_git_branch)${shlvl}$ "
 fi
 
 # git auto-completion
