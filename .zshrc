@@ -30,7 +30,6 @@ bindkey "^R" history-incremental-pattern-search-backward
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 test -f ~/bin/git-completion.zsh && . ~/bin/git-completion.zsh
-command -v harmony >/dev/null 2>&1 && eval "$(harmony --bash-completion-script)"
 # note location for adding completion handlers: /usr/local/etc/bash_completion.d
 test -r "/usr/local/etc/profile.d/bash_completion.sh" && . "/usr/local/etc/profile.d/bash_completion.sh"
 

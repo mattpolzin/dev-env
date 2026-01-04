@@ -155,6 +155,8 @@ in
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
+    enableBashCompletion = true;
     promptInit = ""; # I've got prompt stuff in my ~/.zshrc
   };
 
