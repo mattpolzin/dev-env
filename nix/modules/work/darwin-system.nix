@@ -83,7 +83,7 @@ in
     pkgs-edge.openvpn
     pkgs-edge.postgresql
     pkgs-edge.spicedb
-    pkgs.azure-cli
+#    pkgs.azure-cli # <- hanging while building a dependency
     pkgs.azure-storage-azcopy
     pkgs.direnv
     pkgs.drawio
@@ -106,6 +106,20 @@ in
     "1password-cli"
   ];
   homebrew.brews = [ "garden-cli@0.13" ];
+
+  nix = {
+    settings = {
+      substituters = [
+        "https://gh-harmony.cachix.org"
+        "https://gh-nix-idris2-packages.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "gh-harmony.cachix.org-1:KX5tTtEt3Y6an8pywe3Cy6jR9bUo+1Cl7hJmh+5eI4I="
+        "gh-nix-idris2-packages.cachix.org-1:iOqSB5DrESFT+3A1iNzErgB68IDG8BrHLbLkhztOXfo="
+      ];
+    };
+  };
 
   age.secrets.etcHosts.file = ../../../secrets/etc-hosts.age;
   environment.etc.hosts = {
