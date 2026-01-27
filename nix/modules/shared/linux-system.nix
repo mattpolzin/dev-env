@@ -131,7 +131,13 @@ in
     clickMethod = "clickfinger";
   };
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [
+      pkgs-edge.cnijfilter2
+      # ^ Canon Pixma (among others) -- Home printer
+    ];
+  };
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
