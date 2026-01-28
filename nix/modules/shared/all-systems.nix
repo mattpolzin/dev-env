@@ -9,7 +9,6 @@ let
   idris2 = inputs.idris2-packageset.packages.${pkgs.system}.idris2;
   idris2Lsp = inputs.idris2-packageset.packages.${pkgs.system}.idris2Lsp;
   harmony = inputs.harmony.packages.${pkgs.system}.harmony;
-  neovimApp = import ../../apps/neovim.nix { pkgs = pkgs; };
   iosevka = import ../../fonts/iosevka.nix { pkgs = pkgs-edge; };
 in
 {
@@ -37,7 +36,7 @@ in
       harmony
       idris2
       idris2Lsp
-      neovimApp.package
+#      neovim # <- configured with home files for user so installed within home-manager
       pkgs-edge.chez
       pkgs-edge.ddgr
       pkgs-edge.elmPackages.elm
