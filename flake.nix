@@ -68,10 +68,11 @@
       buildConfig =
         hostName: system: configs:
         let
-          pkgs-edge = import ./nix/modules/shared/nixpkgs-edge.nix { inherit system nixpkgs-edge; overlays = [ neorg-overlay.overlays.default ]; };
+          overlays = [ neorg-overlay.overlays.default ];
+          pkgs-edge = import ./nix/modules/shared/nixpkgs-edge.nix { inherit system nixpkgs-edge; inherit overlays; };
         in
         {
-          modules = configs ++ [ pkgs-edge ];
+          modules = configs ++ [ pkgs-edge {nixpkgs.overlays = overlays;} ];
           specialArgs = {
             inherit hostName system inputs;
           };
