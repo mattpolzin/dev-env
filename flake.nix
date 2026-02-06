@@ -123,6 +123,8 @@
           {
             customize.googleChrome.enable = false;
             customize.kubernetes.enable = false;
+            customize.avahi.enable = false;
+            # ^ printer discovery
           };
 
       # Expose the package set, including overlays, for convenience.

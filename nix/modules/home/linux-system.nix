@@ -22,6 +22,11 @@
     pkgs.discord
   ];
 
+  services.printing.drivers = [
+    pkgs-edge.cnijfilter_4_00
+    # ^ Canon Pixma (among others) -- Home printer
+  ];
+
   customize.spotify.gui.enable = false;
 
   age.secrets.wpaSupplicantConfig.file = ../../../secrets/wpa-supplicant-conf.age;

@@ -37,6 +37,7 @@ in
     # ./window-manager/xmonad-system.nix
     # ./window-manager/sway-system.nix
     ./window-manager/river-system.nix
+    ./programs/avahi.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -133,10 +134,6 @@ in
 
   services.printing = {
     enable = true;
-    drivers = [
-      pkgs-edge.cnijfilter2
-      # ^ Canon Pixma (among others) -- Home printer
-    ];
   };
 
   services.pulseaudio.enable = false;
