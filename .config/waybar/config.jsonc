@@ -36,7 +36,7 @@
   },
   "river/tags": {
     "num-tags": 5,
-    "tag-labels": ["00", "01", "10", "11", "++"]
+    "tag-labels": ["00", "01", "10", "11", "∞"]
   },
   "river/window": {
     "max-length": 100
