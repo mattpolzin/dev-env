@@ -25,6 +25,9 @@
       "activated": "⍨"
     }
   },
+  "temperature": {
+    "tooltip-format": "{temperatureF} °F"
+  },
   "network": {
     "format": "{ifname}",
     "format-wifi": "{essid} {signalStrength} | 🡣 {bandwidthDownBytes} / {bandwidthUpBytes} 🡩",
@@ -32,8 +35,8 @@
     "tooltip-format": "{ipaddr} - {frequency}GHz"
   },
   "river/tags": {
-    "num-tags": 4,
-    "tag-labels": ["1", "2", "3", "4"]
+    "num-tags": 5,
+    "tag-labels": ["00", "01", "10", "11", "++"]
   },
   "river/window": {
     "max-length": 100
@@ -48,7 +51,8 @@
   },
   "pulseaudio": {
     "format": "🔈{volume}%",
-    "format-muted": "🔈---"
+    "format-muted": "🔈---",
+    "on-click": "pamixer --toggle-mute"
   },
   "bluetooth": {
     "format-on": " on",
