@@ -28,7 +28,7 @@ window#waybar {
     border-top: 2px solid #c9545d;
 }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #keyboard-state, #temperature, #power-profiles-daemon, #idle_inhibitor, #mpd {
+#clock, #battery, #bluetooth, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #keyboard-state, #temperature, #power-profiles-daemon, #idle_inhibitor, #mpd {
     padding: 8px 16px;
     margin: 0px 4px;
     margin-top: 8px;
@@ -48,6 +48,9 @@ window#waybar {
 
 #clock {
     font-weight: bold;
+}
+
+#bluetooth {
 }
 
 #battery {

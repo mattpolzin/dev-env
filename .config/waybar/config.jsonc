@@ -8,14 +8,15 @@
   ],
   "modules-right": [
     "pulseaudio",
+    "bluetooth",
     "network",
     "cpu",
     "memory",
     "temperature",
     "battery",
     "clock",
-    "power-profiles-daemon",
-    "idle_inhibitor"
+    "power-profiles-daemon"
+    //"idle_inhibitor"
   ],
   "idle_inhibitor": {
     "format": "{icon}",
@@ -26,7 +27,9 @@
   },
   "network": {
     "format": "{ifname}",
-    "format-wifi": "{essid} {signalStrength} | 🡣 {bandwidthDownBytes} / {bandwidthUpBytes} 🡩"
+    "format-wifi": "{essid} {signalStrength} | 🡣 {bandwidthDownBytes} / {bandwidthUpBytes} 🡩",
+    "format-alt": "{essid} {signalStrength}",
+    "tooltip-format": "{ipaddr} - {frequency}GHz"
   },
   "river/tags": {
     "num-tags": 4,
@@ -47,10 +50,29 @@
     "format": "🔈{volume}%",
     "format-muted": "🔈---"
   },
+  "bluetooth": {
+    "format-on": " on",
+    "format-off": " ⚬⚬",
+    "format-disabled": " --",
+    "on-click": "rfkill toggle 0"
+  },
   "battery": {
     "format": "🔋{capacity}%"
   },
   "clock": {
-    "format": "{:%I:%M %p}"
+    "format": "{:%I:%M %p}",
+    "format-alt": "{:%a %b %e, %Y}",
+    "tooltip": true,
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "format": {
+        "months":     "<span color='#ffead3'><b>{}</b></span>",
+        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
   }
 }
