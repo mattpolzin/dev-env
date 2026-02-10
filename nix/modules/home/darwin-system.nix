@@ -9,6 +9,7 @@
     pkgs-edge.colima
     pkgs.docker
     pkgs.texliveSmall
+    pkgs.ghostty-bin
 
     # GUI (only at home)
     pkgs.discord
