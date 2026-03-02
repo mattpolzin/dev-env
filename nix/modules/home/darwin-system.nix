@@ -1,3 +1,11 @@
+## 1-4: See ../shared/darwin-system.nix
+## 5. Set new laptop's hostname to 'MattPolzin-Home'
+##    `sudo scutil --set HostName MattPolzin-Home`
+##    `sudo scutil --set LocalHostName MattPolzin-Home`
+##
+## Additional initial setup after using nix-darwin on new computer:
+## 6-11: Not needed for home setups
+## 12-14: See ../shared/darwin-system.nix
 { pkgs, pkgs-edge, config, ... }:
 {
   users.primary = "matt";

@@ -1,10 +1,10 @@
 ##
-## Additional initial setup prior to using nix-darwin on new computer:
+## Additional initial setup prior to using nix-darwin on new Darwni computer:
 ## 1. Install Nix
 ## 2. Profile migration (manual because of ENV vars with secrets in them):
 ##   * On old computer:
-##     - Grab as much of ~/.zprofile as desirable and transfer to new computer.
-## 2. Secret decryption preparation:
+##     - Grab as much of ~/.zprofile and ~/.zshsecrets as desirable and transfer to new computer.
+## 3. Secret decryption preparation:
 ##   * On new computer:
 ##     - Create a new ssh key (`ssh-keygen`) on the new computer specifically for this, not the one used for GitHub
 ##     - Add the new key to ssh-agent (GitHub has a good writeup on this):
@@ -14,11 +14,11 @@
 ##     - Add the new user & host ssh public keys to the list in secrets/secrets.nix
 ##     - Rekey secret files (`nix run github:ryantm/agenix -- --rekey`)
 ##     - Commit changes to repo
-## 3. Install Homebrew (https://brew.sh)
-## [...] (system-specific steps)
-## 8. Copy Documents/Downloads folders to new machine.
-## 9. Copy ~/notes (Neorg files) to new machine.
-## 10. Snag Safari bookmarks as desired.
+## 4. Install Homebrew (https://brew.sh)
+## 5-11: [...] (system-specific steps)
+## 12. Copy Documents/Downloads folders to new machine.
+## 13. Copy ~/notes (Neorg files) to new machine.
+## 14. Snag Safari bookmarks as desired.
 {
   hostName,
   pkgs,

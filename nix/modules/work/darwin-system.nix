@@ -1,14 +1,16 @@
-## 1-3: See ../common/system.nix
-## 4. Set new laptop's hostname to 'MattPolzin-Work-Laptop'
+## 1-3: See ../shared/darwin-system.nix
+## 5. Set new laptop's hostname to 'MattPolzin-Work-Laptop'
 ##    `sudo scutil --set HostName MattPolzin-Work-Laptop`
 ##    `sudo scutil --set LocalHostName MattPolzin-Work-Laptop`
 ##
 ## Additional initial setup after using nix-darwin on new computer:
-## 4. Install Docker for Mac (not available in app store, brew, or nixpkgs)
-## 5. Install R Studio
-## 6. Snag ovpn files from old computer
-## 7. Optionally create .envrc file in repos (e.g. "use nix")
-## 8-10: See ../common/system.nix
+## 6. Install Docker for Mac (not available in app store, brew, or nixpkgs)
+## 7. Install R Studio
+## 8. Install Slack via App Store or "SelfService++"
+## 9. Snag ovpn files from old computer
+## 10. Optionally create .envrc file in repos (e.g. "use nix")
+## 11. Optionally create .envrc file in repos (e.g. "use nix")
+## 12-14: See ../shared/darwin-system.nix
 ##
 ##
 ## NOTE:
