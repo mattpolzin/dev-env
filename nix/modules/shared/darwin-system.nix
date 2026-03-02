@@ -53,9 +53,10 @@ in
     Keynote = 409183694;
     Numbers = 409203825;
     Pages = 409201541;
-    "Slack for Desktop" = 803453959;
     Vimari = 1480933944;
     Xcode = 497799835;
+    # work needs Slack but I cannot install it via any Nix path including
+    # Homebrew MAS because of silly system restrictions
   };
   # chrome via Homebrew:
   customize.googleChrome.enable = true;
