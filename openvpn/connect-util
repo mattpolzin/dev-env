@@ -1,4 +1,8 @@
 # NOTE: This script is currently MacOS specific.
+#
+# You need the `openvpn` CLI utility for any of the following. To utilize
+# 1Password stuff you also need the `op` CLI utility and you need to set up
+# 1Password CLI integration from within the 1Password app.
 # 
 # Source this from `.profile` or `.zprofile` prior to defining aliases that
 # connect to different configured VPNs.
