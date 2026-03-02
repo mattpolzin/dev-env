@@ -1,0 +1,72 @@
+# NOTE: This script is currently MacOS specific.
+# 
+# Source this from `.profile` or `.zprofile` prior to defining aliases that
+# connect to different configured VPNs.
+#
+# For example, after sourcing this, you may have an alias like:
+# alias vpn-dev="one_pass_ovpn_connect 123456789.ovpn mpolzin abcd1234"
+#
+# IMPORTANT: You'll want to pay attention to the `one_pass_ovpn_connect()`
+#   up/down script requirements as documented for the `ovpn_connect()` function
+#   below. These scripts perform DNS setup and teardown based on the VPN being
+#   connected to and without them you won't be able to resolve internet
+#   domains. You can find these scripts in the same directory as this file.
+
+
+# ovpn_connect() expects an up-script at ${HOME}/staging/dev-env/openvpn/up.sh
+# and a down-script at .../down.sh
+# These default locations can be overridden by setting OPENVPN_UP_SCRIPT and
+# OPENVPN_DOWN_SCRIPT environment variables
+#
+# ARGS:
+#   - ovpn file (relative to ${HOME}/.openvpn/)
+#   - username
+#   - password
+export function ovpn_connect() {
+  profile="$1"
+  echo "connecting with ovpn profile '${profile}'"
+  username="$2"
+  password="$3"
+  creds="$username\n$password\n"
+  tmp_dir="${TMPDIR:-${TEMP:-${TMP:-/tmp}}}"
+  tmp_file="${tmp_dir}/ovpn_m.tmp"
+  touch "$tmp_file"
+  chmod ugo-r "$tmp_file"
+  # ^ make file inaccessible for most and write-only for current user; only can
+  #   be read via sudo
+  echo $creds > $tmp_file
+  trap "rm -f $tmp_file" EXIT
+  up_script="${OPENVPN_UP_SCRIPT:-${HOME}/staging/dev-env/openvpn/up.sh}"
+  down_script="${OPENVPN_DOWN_SCRIPT:-${HOME}/staging/dev-env/openvpn/down.sh}"
+  sudo openvpn --config "${HOME}/.openvpn/${profile}" \
+               --auth-user-pass "${tmp_file}" \
+               --auth-retry interact \
+               --up "${up_script}" --down "${down_script}" \
+               --script-security 2
+}
+
+# As its only argument, pass the name of the item for which you want the ID
+# (aka key)
+#
+# This function can also be emulated by copying a private link to the 1Password
+# item and piping it through `sed 's/^.*?.*i=//;s/&h.*$//g'` (i.e. extract the
+# `i` query paramter)
+export function op-extract-key() {
+  op item get "${1}" | sed -n 's/ID:[ ]*//p'
+}
+
+# 1Password password retrieval by key.
+# You can get this key for a particular vault-items name with:
+# `op-exrtract-key 'name'`
+export function op-pw() {
+  op read "op://Private/$1/password"
+}
+
+# ARGS:
+#   - ovpn file (relative to ${HOME}/.openvpn/)
+#   - username
+#   - one-pass key
+export function one_pass_ovpn_connect() {
+  ovpn_connect "$1" "$2" "$(op-pw "$3")"
+}
+

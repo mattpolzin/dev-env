@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# NOTE: This script is currently MacOS specific.
+
 echo 'Running --up script'
 idxs=("1" "2" "3" "4")
 dns=''

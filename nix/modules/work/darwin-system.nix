@@ -8,21 +8,20 @@
 ## 7. Install R Studio
 ## 8. Install Slack via App Store or "SelfService++"
 ## 9. Snag ovpn files from old computer
-## 10. Optionally create .envrc file in repos (e.g. "use nix")
+## 10. `source ${HOME}/staging/dev-env/openvpn/connect-util` from `.zprofile`
+##     or `.profile` and set up aliases like the following (may just be 
+##     copied from old computer):
+##       `alias vpn-dev="one_pass_ovpn_connect 123456789.ovpn mpolzin abcd1234"`
 ## 11. Optionally create .envrc file in repos (e.g. "use nix")
 ## 12-14: See ../shared/darwin-system.nix
 ##
 ##
 ## NOTE:
-## can't store configs or creds in this repo (even encrypted).
-## still can use roughly the following to control VPN connection from shell,
-## just need to copy the ovpn files and snag the credentials from the old laptop.
-##
-##    sudo openvpn --config "$(pwd)/openvpn/profiles/whatever.ovpn" \
-##                 --auth-user-pass "$(pwd)/openvpn/creds/whatever.creds" \
-##                 --auth-retry interact \
-##                 --up "$(pwd)/openvpn_up.sh" --down "$(pwd)/openvpn_down.sh" \
-##                 --script-security 2
+## We can't store open-vpn configs or creds in this repo (even encrypted)
+## because of company policy.
+## We still can use the helpers in .ovpn-connect to connect using open-vpn
+## having only copied the VPN profiles from an old laptop and grabbed dev-keys
+## for the 1Password entries related to each VPN.
 ##
 {
   pkgs,
