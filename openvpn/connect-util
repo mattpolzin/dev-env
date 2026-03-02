@@ -61,7 +61,7 @@ export function op-extract-key() {
 
 # 1Password password retrieval by key.
 # You can get this key for a particular vault-items name with:
-# `op-exrtract-key 'name'`
+# `op-extract-key 'name'`
 export function op-pw() {
   op read "op://Private/$1/password"
 }
