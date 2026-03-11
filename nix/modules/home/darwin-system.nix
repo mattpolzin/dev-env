@@ -32,6 +32,8 @@
     "Slack for Desktop" = 803453959;
   };
 
+  networking.wakeOnLan.enable = true;
+
   nix = {
     nixPath = [ { nixpkgs2 = "$HOME/staging/nixpkgs2"; } ];
 
