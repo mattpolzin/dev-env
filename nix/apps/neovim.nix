@@ -143,9 +143,10 @@ let
 
   buildInputs = [ pkgs.ripgrep ] ++ (extraPackages pkgs);
 
-  neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
-    inherit plugins extraLuaPackages;
-    customRC = ''
+  neovimConfig = {
+    autoconfigure = true;
+    inherit plugins;
+    neovimRcContent = ''
       source ${vimrc}
       set runtimepath=${runtimepath},$VIMRUNTIME
       lua require('init')

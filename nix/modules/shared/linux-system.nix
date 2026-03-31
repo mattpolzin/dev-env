@@ -28,7 +28,7 @@
   ...
 }:
 let
-  neovimApp = import ../../apps/neovim.nix { pkgs = pkgs; };
+  neovimApp = import ../../apps/neovim.nix { pkgs = pkgs-edge; };
 in
 {
   imports = [
