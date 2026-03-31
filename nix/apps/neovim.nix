@@ -25,9 +25,7 @@ in
   extraPackages ? (ps: [ ]),
 }:
 let
-  package = pkgs.neovim-unwrapped.overrideAttrs(old: {meta = old.meta // { maintainers = []; };});
-  # ^ temporary workaround so I can use edge nixpkgs for neovim. delete empty
-  # maintainers override when possible.
+  package = pkgs.neovim-unwrapped;
 
   extraLuaPackages = (
     ps: [
