@@ -71,7 +71,12 @@ local M = {}
 
 function M.setup()
   require('idris2').setup({
-    server = {on_attach = custom_lsp_attach},
+    server = {
+      on_attach = custom_lsp_attach,
+      init_options = {
+        briefCompletions = true
+      }
+    },
     code_action_post_hook = save_hook,
     capabilities = common.capabilities
   })
