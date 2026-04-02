@@ -20,7 +20,7 @@ in
   ];
 
   config = {
-    nix.package = pkgs-edge.nixVersions.nix_2_32;
+    nix.package = pkgs-edge.nixVersions.nix_2_34;
 
     fonts = {
       packages = [
