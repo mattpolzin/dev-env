@@ -1,5 +1,5 @@
 {
-  pkgs,
+  pkgs ? (import <nixpkgs> { }).pkgs,
   additionalRPackages ? [ ],
 }:
 {
