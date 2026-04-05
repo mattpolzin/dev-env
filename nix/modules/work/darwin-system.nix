@@ -48,7 +48,7 @@ let
   };
   opalr = pkgs.rPackages.buildRPackage {
     name = "opalr";
-    src = builtins.fetchGit {
+    src = fetchGit {
       url = "ssh://git@github.com/opallabs/opalr.git";
       rev = "0c0c01d2866d9f02f6593f9f437ac659ba8ba6ba";
     };
