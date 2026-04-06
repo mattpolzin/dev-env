@@ -73,7 +73,9 @@ end
 if vim.fn.executable('elm') == 1 then
   require('lsp.elm').setup()
 end
-if vim.fn.executable('nix') == 1 then
+if vim.fn.executable('nix') == 1
+  and vim.fn.executable('nixd') == 1
+  then
   require('lsp.nix').setup()
 end
 if vim.fn.executable('ghc') == 1
