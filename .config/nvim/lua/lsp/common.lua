@@ -45,7 +45,7 @@ function M.setup(options)
   vim.cmd [[command! REFS lua vim.lsp.buf.references()<CR>]]
 
   -- bring back the old nvim-lspconfig LspLog command
-  vim.cmd.command('LspLog tabnew | edit ' .. vim.lsp.get_log_path())
+  vim.cmd('command! LspLog tabnew | edit ' .. vim.lsp.log.get_filename())
 end
 
 return M
