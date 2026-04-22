@@ -69,7 +69,7 @@ in
     ];
   };
 
-  # Linux-specific packages; see common-system-packages.nix for the rest:
+  # Linux-specific packages; see all-systems.nix for the rest:
   environment.systemPackages = [
     # image viewer
     pkgs.feh

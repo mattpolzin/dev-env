@@ -20,6 +20,7 @@
 
     # GUI (only at home)
     pkgs.discord
+    pkgs.zulip
   ];
 
   services.printing.drivers = [
