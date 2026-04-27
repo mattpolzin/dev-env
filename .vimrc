@@ -81,6 +81,13 @@ augroup END
 " Swift
 "
 au FileType swift set makeprg=swift
+au FileType swift set errorformat=
+                \%E%f:%l:%c:\ %trror:\ %m,
+                \%W%f:%l:%c:\ %tarning:\ %m,
+                \%I%f:%l:%c:\ note:\ %m,
+                \%E%f:%l:\ %trror:\ %m,
+                \%W%f:%l:\ %tarning:\ %m,
+                \%I%f:%l:\ note:\ %m,
 
 "
 " Typescript
