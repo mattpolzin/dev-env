@@ -86,6 +86,7 @@ in
     pkgs-edge.spicedb
 #    pkgs.azure-cli # <- hanging while building a dependency
     pkgs.azure-storage-azcopy
+    pkgs.csvkit
     pkgs.direnv
     pkgs.drawio
     pkgs.ffmpeg
