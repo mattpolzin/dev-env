@@ -39,10 +39,6 @@ in
 #      neovim # <- configured with home files for user so installed within home-manager
       pkgs-edge.chez
       pkgs-edge.ddgr
-      pkgs-edge.elmPackages.elm
-      pkgs-edge.elmPackages.elm-format
-      pkgs-edge.elmPackages.elm-language-server
-      pkgs-edge.elmPackages.elm-test
       pkgs-edge.ijq
       pkgs-edge.k9s
       pkgs-edge.nixd
@@ -55,6 +51,10 @@ in
       pkgs.diffutils
       pkgs.elixir
       pkgs.elixir-ls
+      pkgs.elmPackages.elm
+      pkgs.elmPackages.elm-format
+      pkgs.elmPackages.elm-language-server
+      pkgs.elmPackages.elm-test
       pkgs.erlang
       pkgs.fd
       pkgs.fzf
