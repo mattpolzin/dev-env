@@ -81,6 +81,7 @@ augroup END
 " Swift
 "
 au FileType swift set makeprg=swift
+au FileType swift set textwidth=0
 au FileType swift set errorformat=
                 \%E%f:%l:%c:\ %trror:\ %m,
                 \%W%f:%l:%c:\ %tarning:\ %m,
