@@ -20,7 +20,8 @@
 
     # GUI (only at home)
     pkgs.discord
-    pkgs.zulip
+#    pkgs.zulip
+    # ^ pinned to EOL electron version as of 2026-06-05
   ];
 
   services.printing.drivers = [
