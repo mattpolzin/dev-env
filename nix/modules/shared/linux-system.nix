@@ -149,7 +149,7 @@ in
   networking = {
     inherit hostName;
     wireless.enable = true;
-    wireless.userControlled.enable = true;
+    wireless.userControlled = true;
     #    firewall.logRefusedPackets = true;
   };
 

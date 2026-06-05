@@ -21,7 +21,7 @@
 
   # Needed for desktop environments to detect/manage display brightness
   hardware.sensor.iio.enable = true;
-  programs.light.enable = true;
+  environment.systemPackages = [ pkgs.brightnessctl ];
 
   # Note: with Bluetooth enabled, need to use rfkill to block or unblock
   # bluetooth before using bluetoothctl to power on, scan, pair, connect,

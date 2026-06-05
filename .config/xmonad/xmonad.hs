@@ -61,8 +61,8 @@ bindings = [ ("M-q", kill)
 restartXMonad = spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"
 switchPrimaryMonitor = spawn "xrandr --output \"$(xrandr --listactivemonitors | awk '{print $4}' | tail -n1)\" --primary"
 
-brightnessUp = spawn "/run/current-system/sw/bin/light -A 20"
-brightnessDown = spawn "/run/current-system/sw/bin/light -U 20"
+brightnessUp = spawn "/run/current-system/sw/bin/brightnessctl set +20"
+brightnessDown = spawn "/run/current-system/sw/bin/brightnessctl set 20-"
 
 volumeUp = spawn "/run/current-system/sw/bin/pamixer -i 5"
 volumeDown = spawn "/run/current-system/sw/bin/pamixer -d 5"

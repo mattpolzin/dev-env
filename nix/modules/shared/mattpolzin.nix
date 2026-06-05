@@ -21,7 +21,7 @@ in
     };
   };
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "26.05";
 
   # programs to manage configs for:
   programs.neovim = {
