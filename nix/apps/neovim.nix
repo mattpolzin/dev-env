@@ -66,12 +66,12 @@ let
       {
         plugin = p.fzf-vim; # <- faster than telescope for file finding.
         config = ''
-          let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.85 } }
-          let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-s': 'split',
-            \ 'ctrl-v': 'vsplit' }
-          let g:fzf_history_dir = '~/.local/share/fzf-history'
+          vim.g.fzf_layout = { window = { width = 0.9, height = 0.85 } }
+          vim.g.fzf_action = {
+            ['ctrl-t'] = 'tab split',
+            ['ctrl-s'] = 'split',
+            ['ctrl-v'] = 'vsplit' }
+          vim.g.fzf_history_dir = '~/.local/share/fzf-history'
         '';
       }
 
@@ -137,7 +137,7 @@ let
       p.neorg
       {
         plugin = p.vim-table-mode;
-        config = "let g:table_mode_corner='|' "; # <- markdown compatible tables
+        config = "vim.g.table_mode_corner='|' "; # <- markdown compatible tables
       }
     ];
 
