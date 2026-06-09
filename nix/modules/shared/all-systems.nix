@@ -26,7 +26,7 @@ in
       packages = [
         pkgs.nerd-fonts.jetbrains-mono
         pkgs-edge.pixel-code
-        # iosevka.nerdFont
+        iosevka.nerdFont
       ];
     };
 

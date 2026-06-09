@@ -1,6 +1,6 @@
 * {
-  /*font-family: "IosevkaCustom Nerd Font";*/
-  font-family: "JetBrainsMono Nerd Font Mono";
+  font-family: "IosevkaCustom Nerd Font";
+  /*font-family: "JetBrainsMono Nerd Font Mono";*/
   font-size: 20px;
 
   border: none;
@@ -14,8 +14,8 @@ window#waybar {
 
 #window {
     font-weight: bold;
-    /*font-family: "IosevkaCustom Nerd Font";*/
-    font-family: "JetBrainsMono Nerd Font Mono";
+    font-family: "IosevkaCustom Nerd Font";
+    /*font-family: "JetBrainsMono Nerd Font Mono";*/
 }
 
 #workspaces button {
