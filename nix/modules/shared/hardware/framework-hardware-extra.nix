@@ -12,6 +12,11 @@
   # BIOS updating
   services.fwupd.enable = true;
 
+  # Ethernet expansion card support
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="8156", ATTR{power/autosuspend}="20"
+  '';
+
   # text size on hidpi display for some programs:
   environment.variables = {
     GDK_SCALE = "1";
@@ -28,16 +33,27 @@
   # trust.
   hardware.bluetooth.enable = true;
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  hardware.amdgpu.initrd.enable = true;
+
   # support for reading more hardware state:
   boot.kernelModules = [
     "cros_ec"
     "cros_ec_lpcs"
   ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
 
-  # fix white screen & flicker when using integrated AMD graphics:
-  boot.kernelParams = [ "amdgpu.sg_display=0" ];
+  # There seems to be an issue with panel self-refresh (PSR) that
+  # causes hangs for users.
+  #
+  # https://community.frame.work/t/fedora-kde-becomes-suddenly-slow/58459
+  # https://gitlab.freedesktop.org/drm/amd/-/issues/3647
+  boot.kernelParams = [ "amdgpu.dcdebugmask=0x10" "amd_pstate=active" ];
 
   # swap partition decryption:
   boot.initrd.luks.devices."luks-d99ad198-c36b-4aa6-97e3-7f970030e770".device = "/dev/disk/by-uuid/d99ad198-c36b-4aa6-97e3-7f970030e770";
