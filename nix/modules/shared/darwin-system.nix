@@ -92,9 +92,7 @@ in
 
   services.skhd = {
     enable = true;
-    # !! only using edge skhd because of build failure for x86_64-darwin
-    # on nixpkgs 23.11
-    package = pkgs-edge.skhd;
+    package = pkgs.skhd;
     skhdConfig = ''
       ##
       ## Float commands (Divvy inspired)

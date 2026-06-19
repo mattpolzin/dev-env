@@ -26,15 +26,6 @@
     source = ../.config/kitty;
     recursive = true;
   };
-  ".config/nix" = {
-    source = ../.config/nix;
-    recursive = true;
-  };
-  ".config/nixpkgs" = {
-    source = ../.config/nixpkgs;
-    #  ^ TODO: just move this into module settings for nixpkgs
-    recursive = true;
-  };
   ".config/ripgrep" = {
     source = ../.config/ripgrep;
     recursive = true;

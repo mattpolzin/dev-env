@@ -21,14 +21,15 @@ in
 
   config = {
     nix.package = pkgs-edge.nixVersions.nix_2_34;
-
-    fonts = {
-      packages = [
-        pkgs.nerd-fonts.jetbrains-mono
-        pkgs-edge.pixel-code
-        iosevka.nerdFont
-      ];
+    nix.settings = {
+      experimental-features = "nix-command flakes";
     };
+
+    fonts.packages = [
+      pkgs.nerd-fonts.jetbrains-mono
+      pkgs-edge.pixel-code
+      iosevka.nerdFont
+    ];
 
     environment.systemPackages = [
       # Shell (all machines)
