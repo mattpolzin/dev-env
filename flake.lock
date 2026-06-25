@@ -219,11 +219,11 @@
         "type-test-pkg": "type-test-pkg"
       },
       "locked": {
-        "lastModified": 1781984561,
-        "narHash": "sha256-o24bwm4Olkj3GTlkvQeV3PkFJIpsD4dqt5jyA88sXc4=",
+        "lastModified": 1782422444,
+        "narHash": "sha256-pYwOHk18ElZP6v0rPKqEJM4U1FUdXW4i4RSHY5zXDuM=",
         "owner": "mattpolzin",
         "repo": "harmony",
-        "rev": "62058ff965921055304439bbb6be870740b40284",
+        "rev": "c84be6680f6de907a1bc2dc2eca885b5265d8aa3",
         "type": "github"
       },
       "original": {
@@ -860,11 +860,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772760297,
-        "narHash": "sha256-toIJ8jH2iSsELFW7eEJD0bziKlEVMCZhfUjV9B3DG4M=",
+        "lastModified": 1782278099,
+        "narHash": "sha256-R9hPlpyOaUJjPoMe9/AOpCUGlQlRouGqnb7z6e3jsJI=",
         "owner": "mattpolzin",
         "repo": "idris2-type-test",
-        "rev": "15f9ea0ba2666b0981ad7909a7f42fef9bc8709e",
+        "rev": "3ec1c12d9872744bd32eda0c3afd409dd9da04b1",
         "type": "github"
       },
       "original": {
