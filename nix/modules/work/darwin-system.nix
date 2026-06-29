@@ -102,7 +102,7 @@ in
 
   programs.direnv.enable = true;
 
-  homebrew.taps = [ "garden-io/garden" ];
+  homebrew.taps = [ { name = "garden-io/garden"; trusted = true; } ];
   homebrew.casks = [
     "1password"
     "1password-cli"
