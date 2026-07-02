@@ -31,3 +31,7 @@ Use `nbtscan` to scan for other devices on network; e.g.
 Use `feh` to view.
 
 Use `evince` for PDFs.
+
+## Shortcuts
+Take screenshot: `Cmd+0`
+Drag to take screenshot: `Cmd+Shift+0`
