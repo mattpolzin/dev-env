@@ -55,8 +55,6 @@ in
     Pages = 409201541;
     Vimari = 1480933944;
     Xcode = 497799835;
-    # work needs Slack but I cannot install it via any Nix path including
-    # Homebrew MAS because of silly system restrictions
   };
   # chrome via Homebrew:
   customize.googleChrome.enable = true;

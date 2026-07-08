@@ -108,6 +108,10 @@ in
     "1password-cli"
   ];
   homebrew.brews = [ "garden-cli@0.13" ];
+  homebrew.masApps = {
+    Slack = 803453959;
+    "1Password for Safari" = 1569813296;
+  };
 
   nix = {
     settings = {
