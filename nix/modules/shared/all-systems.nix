@@ -50,7 +50,7 @@ in
       pkgs.cloc
       pkgs.ctags
       pkgs.diffutils
-      pkgs.elixir
+      pkgs.elixir_1_19
       pkgs.elixir-ls
       pkgs.elmPackages.elm
       pkgs.elmPackages.elm-format
