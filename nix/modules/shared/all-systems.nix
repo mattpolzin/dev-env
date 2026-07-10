@@ -50,8 +50,9 @@ in
       pkgs.cloc
       pkgs.ctags
       pkgs.diffutils
-      pkgs.elixir_1_19
-      pkgs.elixir-ls
+      pkgs.beam29Packages.elixir_1_20
+      pkgs.beam29Packages.elixir-ls
+      pkgs.beam29Packages.expert
       pkgs.elmPackages.elm
       pkgs.elmPackages.elm-format
       pkgs.elmPackages.elm-language-server
