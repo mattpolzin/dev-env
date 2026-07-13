@@ -219,11 +219,11 @@
         "type-test-pkg": "type-test-pkg"
       },
       "locked": {
-        "lastModified": 1783822165,
-        "narHash": "sha256-7QiA4aG23EuxTL9iKI41LRZGji6I+cZX8vFnEB5WYrg=",
+        "lastModified": 1783966177,
+        "narHash": "sha256-HmqWGMrjlKpF4GjZuRj+a40IfomnWVBoB2Zb5iU7lBQ=",
         "owner": "mattpolzin",
         "repo": "harmony",
-        "rev": "85d3985f372d4c0f3a0317ddd5a7d957a60a3fd1",
+        "rev": "e02a2cdf69b59508eead55b7e498095de674a895",
         "type": "github"
       },
       "original": {
@@ -567,11 +567,11 @@
         "norg-meta": "norg-meta"
       },
       "locked": {
-        "lastModified": 1783875405,
-        "narHash": "sha256-eqvwNGvxSk6I7oVt3hKIg40jIf+wSe8Q2W34Rs2Zi7Y=",
+        "lastModified": 1783965178,
+        "narHash": "sha256-xooyzgw270FrLcVW9mpdGCTyow1lnsG8DSeSJDDd3T4=",
         "owner": "nvim-neorg",
         "repo": "nixpkgs-neorg-overlay",
-        "rev": "2109250aa1d3826470d3e6e546f58882a6b898a3",
+        "rev": "5d98f942f4b38c827160959730b2ca59f1e1748e",
         "type": "github"
       },
       "original": {
@@ -655,11 +655,11 @@
     },
     "nixpkgs-edge": {
       "locked": {
-        "lastModified": 1783816212,
-        "narHash": "sha256-2aZisVTVGSFEk3MYcOiWQp3zvwyzbqpktB69Rcfp150=",
+        "lastModified": 1783850910,
+        "narHash": "sha256-iFzhjgVJSYjDVHURsChgxIQlnw4HCdol3ftw/5XoRFM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3b32825de172d0bc85664f495edb096b10862524",
+        "rev": "2db6e73b5d66ffd9d4c203f065d676f9a1eabbd2",
         "type": "github"
       },
       "original": {
