@@ -1,0 +1,31 @@
+From 0125c384a55ce6d6df59fd279edeaa787ff67bc6 Mon Sep 17 00:00:00 2001
+From: zowoq <59103226+zowoq@users.noreply.github.com>
+Date: Sun, 12 Jul 2026 17:19:46 +1000
+Subject: [PATCH] yabai: work around `ld64` hardening issue
+
+---
+ pkgs/by-name/ya/yabai/package.nix | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/pkgs/by-name/ya/yabai/package.nix b/pkgs/by-name/ya/yabai/package.nix
+index 13cf79193ff10..8837ae986b083 100644
+--- a/pkgs/by-name/ya/yabai/package.nix
++++ b/pkgs/by-name/ya/yabai/package.nix
+@@ -28,12 +28,17 @@ stdenv.mkDerivation (finalAttrs: {
+   nativeBuildInputs = [
+     installShellFiles
+     xxd
++    # TODO: Clean up on `staging`.
++    llvmPackages.lld
+   ];
+ 
+   buildInputs = [
+     apple-sdk_15
+   ];
+ 
++  # TODO: Clean up on `staging`.
++  env.NIX_CFLAGS_LINK = "-fuse-ld=lld";
++
+   # Upstream Makefile races clean-build against linking under parallel make.
+   enableParallelBuilding = false;
+ 
