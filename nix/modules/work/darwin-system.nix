@@ -94,7 +94,7 @@ in
     pkgs.kubeseal
     pkgs.mutagen
     pkgs.terraform
-    pkgs.unixODBC
+    pkgs.unixodbc
 
     # GUI (only at work)
     pkgs.vscode
