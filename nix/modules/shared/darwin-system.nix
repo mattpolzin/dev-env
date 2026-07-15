@@ -85,6 +85,7 @@ in
       yabai -m rule --add app='Zoom Workplace' manage=off
       yabai -m rule --add app='Zoom' manage=off
       yabai -m rule --add app='zoom.us' manage=off
+      yabai -m rule --add title='Font Book' manage=off
       yabai -m rule --add title='Trash' manage=off
       yabai -m rule --add title='Web Inspector' manage=off
     '';
