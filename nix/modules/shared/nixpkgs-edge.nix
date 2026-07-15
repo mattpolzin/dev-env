@@ -3,7 +3,7 @@ let
   extraNixpkgsEdgeOverlays = [ ];
 in
 { nixpkgs-edge, 
-  patches ? [ ../../patches/yabai-2026-07-12.patch ],
+  patches ? [],
   overlays ? [],
 system }:
 let
