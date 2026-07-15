@@ -61,7 +61,7 @@ in
 
   services.yabai = {
     enable = true;
-    package = pkgs-edge.yabai;
+    package = pkgs.yabai;
     config = {
       debug_output = "on";
       layout = "bsp";
@@ -78,13 +78,14 @@ in
       yabai -m config right_padding 10
       yabai -m config window_gap 8
 
-      yabai -m rule --add app='Activity Monitor' manage=off
-      yabai -m rule --add app='System Settings' manage=off
       yabai -m rule --add app='1Password 7' manage=off
       yabai -m rule --add app='1Password' manage=off
+      yabai -m rule --add app='Activity Monitor' manage=off
+      yabai -m rule --add app='System Settings' manage=off
+      yabai -m rule --add app='Zoom Workplace' manage=off
       yabai -m rule --add app='zoom.us' manage=off
-      yabai -m rule --add title='Web Inspector' manage=off
       yabai -m rule --add title='Trash' manage=off
+      yabai -m rule --add title='Web Inspector' manage=off
     '';
   };
 
