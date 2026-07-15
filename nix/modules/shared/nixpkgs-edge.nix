@@ -3,14 +3,17 @@ let
   extraNixpkgsEdgeOverlays = [ ];
 in
 { nixpkgs-edge, 
-  patches ? [],
+  patches ? [../../patches/iosevka-fix-2026-07-07.patch],
+  patchCommits ? [], # [{ fork = "mattpolzin"; commit = "97dd352dc415e846fb278b773ff476bb38a80afb"; hash = ""; }]
   overlays ? [],
 system }:
 let
-  nixpkgsEdgePatched = (import nixpkgs-edge { inherit system; }).applyPatches {
+  nixpkgs = import nixpkgs-edge { inherit system; };
+  commitPatches = map ({fork ? "nixos", commit, hash}: nixpkgs.fetchpatch2 {url = "https://github.com/${fork}/nixpkgs/commit/${commit}.patch"; inherit hash;}) patchCommits;
+  nixpkgsEdgePatched = nixpkgs.applyPatches {
     name = "nixpkgs-patched";
     src = nixpkgs-edge;
-    patches = patches ++ extraNixpkgsEdgePatches;
+    patches = patches ++ commitPatches ++ extraNixpkgsEdgePatches;
   };
 in
 { pkgs, ... }:

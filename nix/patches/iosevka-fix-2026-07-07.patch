@@ -1,0 +1,30 @@
+From 97dd352dc415e846fb278b773ff476bb38a80afb Mon Sep 17 00:00:00 2001
+From: dmkhitaryan <davtot111@icloud.com>
+Date: Tue, 7 Jul 2026 18:11:46 +0400
+Subject: [PATCH] iosevka: use nodejs_latest to fix Darwin build
+
+---
+ pkgs/by-name/io/iosevka/package.nix | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/pkgs/by-name/io/iosevka/package.nix b/pkgs/by-name/io/iosevka/package.nix
+index 1312abf903dce..326dc45ad92a7 100644
+--- a/pkgs/by-name/io/iosevka/package.nix
++++ b/pkgs/by-name/io/iosevka/package.nix
+@@ -6,6 +6,7 @@
+   cctools,
+   go-toml,
+   ttfautohint-nox,
++  nodejs_latest,
+   # Custom font set options.
+   # See https://typeof.net/Iosevka/customizer
+   # Can be a raw TOML string, or a Nix attrset.
+@@ -68,6 +69,7 @@ buildNpmPackage rec {
+   };
+ 
+   npmDepsHash = "sha256-tlBxO9K0itXO6Mac4jcygZ6+9kj1gTdmu+rtbL2qdcE=";
++  nodejs = nodejs_latest;
+ 
+   nativeBuildInputs = [
+     go-toml
+
