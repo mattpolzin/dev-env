@@ -3,7 +3,7 @@ let
   extraNixpkgsEdgeOverlays = [ ];
 in
 { nixpkgs-edge, 
-  patches ? [../../patches/iosevka-fix-2026-07-07.patch],
+  patches ? [],
   patchCommits ? [], # [{ fork = "mattpolzin"; commit = "97dd352dc415e846fb278b773ff476bb38a80afb"; hash = ""; }]
   overlays ? [],
 system }:
