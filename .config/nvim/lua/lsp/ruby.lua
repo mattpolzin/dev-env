@@ -20,10 +20,16 @@ end
 
 local path_to_ruby_lsp = vim.fn.expand("ruby-lsp")
 local function ruby_lsp()
-  vim.lsp.config("ruby-lsp", {
+  vim.lsp.config("ruby_lsp", {
     on_attach = custom_lsp_attach,
     capabilities = common.capabilities,
-    cmd = {path_to_ruby_lsp, "--use-launcher"},
+    cmd = function(dispatchers, config)
+      return vim.lsp.rpc.start(
+        {path_to_ruby_lsp, "--use-launcher"},
+        dispatchers,
+        config and config.root_dir and { cwd = config.cmd_cwd or config.root_dir }
+      )
+    end,
   })
   vim.lsp.enable("ruby-lsp")
 end
