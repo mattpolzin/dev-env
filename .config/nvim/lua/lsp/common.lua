@@ -43,9 +43,6 @@ function M.setup(options)
 
   -- all-caps to not collide with :Re as shorthand for :Rexplore
   vim.cmd [[command! REFS lua vim.lsp.buf.references()<CR>]]
-
-  -- bring back the old nvim-lspconfig LspLog command
-  vim.cmd('command! LspLog tabnew | edit ' .. vim.lsp.log.get_filename())
 end
 
 return M

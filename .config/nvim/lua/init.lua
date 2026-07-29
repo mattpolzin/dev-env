@@ -54,6 +54,9 @@ require('init.neorg')
 --
 -- LSP
 -- 
+-- bring back the old nvim-lspconfig LspLog command
+vim.cmd('command! LspLog tabnew | edit ' .. vim.lsp.log.get_filename())
+
 if vim.fn.executable('elixir') == 1 then
   require('lsp.elixir').setup()
 end
