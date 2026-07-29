@@ -29,7 +29,7 @@
   homebrew.masApps = {
     "Pixelmator Pro" = 1289583905;
     "Affinity Publisher" = 881418622;
-    "Slack for Desktop" = 803453959;
+    Slack = 803453959;
   };
 
   networking.wakeOnLan.enable = true;
