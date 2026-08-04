@@ -46,18 +46,19 @@ in
       pkgs-edge.postgresql
       pkgs-edge.presenterm
       pkgs-edge.tree-sitter
+      pkgs.beam29Packages.elixir-ls
+      pkgs.beam29Packages.elixir_1_20
+      pkgs.beam29Packages.erlang
+      pkgs.beam29Packages.expert
       pkgs.circumflex
       pkgs.cloc
       pkgs.ctags
+      pkgs.dict
       pkgs.diffutils
-      pkgs.beam29Packages.elixir_1_20
-      pkgs.beam29Packages.elixir-ls
-      pkgs.beam29Packages.expert
       pkgs.elmPackages.elm
       pkgs.elmPackages.elm-format
       pkgs.elmPackages.elm-language-server
       pkgs.elmPackages.elm-test
-      pkgs.erlang
       pkgs.fd
       pkgs.fzf
       pkgs.gh
