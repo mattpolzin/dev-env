@@ -132,8 +132,10 @@
       darwinHomePackages = self.darwinConfigurations."MattPolzin-Home-Laptop".pkgs;
       nixosHomePackages = self.nixosConfigurations."MattPolzin-Scrappy".pkgs;
 
-      # Expose nix-darwin
-      packages = lib.genAttrs lib.platforms.darwin (system: nix-darwin.packages.${system});
+      # Expose neovim
+      packages = lib.genAttrs lib.platforms.darwin (system: 
+        { neovim = (import ./nix/apps/neovim.nix { pkgs = nixpkgs-edge.legacyPackages.${system}; }).neovim; }
+      );
 
       formatter = eachSystem (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
     };

@@ -73,6 +73,7 @@ let
             ['ctrl-v'] = 'vsplit' }
           vim.g.fzf_history_dir = '~/.local/share/fzf-history'
         '';
+        type = "lua";
       }
 
       # LSP
@@ -103,6 +104,7 @@ let
         ts.gitignore
         ts.glimmer
         ts.haskell
+        ts.helm
         ts.html
         ts.ini
         ts.javascript
@@ -138,6 +140,7 @@ let
       {
         plugin = p.vim-table-mode;
         config = "vim.g.table_mode_corner='|' "; # <- markdown compatible tables
+        type = "lua";
       }
     ];
 
