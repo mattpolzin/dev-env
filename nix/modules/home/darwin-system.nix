@@ -24,8 +24,6 @@
     pkgs-edge.ghostty-bin
   ];
 
-  customize.spotify.gui.enable = false;
-
   homebrew.masApps = {
     "Pixelmator Pro" = 1289583905;
     "Affinity Publisher" = 881418622;

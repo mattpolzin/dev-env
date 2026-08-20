@@ -29,8 +29,6 @@
     # ^ Canon Pixma (among others) -- Home printer
   ];
 
-  customize.spotify.gui.enable = false;
-
   age.secrets.wpaSupplicantConfig.file = ../../../secrets/wpa-supplicant-conf.age;
 
   networking.supplicant."wlp1s0" = {

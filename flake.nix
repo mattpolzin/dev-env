@@ -121,10 +121,10 @@
       nixosConfigurations."MattPolzin-Scrappy" =
         nixosConfig "MattPolzin-Scrappy" "x86_64-linux" personalConfiguration
           {
+            customize.avahi.enable = false; # printer discovery
             customize.googleChrome.enable = false;
             customize.kubernetes.enable = false;
-            customize.avahi.enable = false;
-            # ^ printer discovery
+            customize.spotify.gui.enable = false;
           };
 
       # Expose the package set, including overlays, for convenience.
