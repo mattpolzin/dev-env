@@ -122,7 +122,7 @@
         nixosConfig "MattPolzin-Scrappy" "x86_64-linux" personalConfiguration
           {
             customize.avahi.enable = false; # printer discovery
-            customize.googleChrome.enable = false;
+            customize.googleChrome.enable = true;
             customize.kubernetes.enable = false;
             customize.spotify.gui.enable = false;
           };
