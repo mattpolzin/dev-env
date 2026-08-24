@@ -31,7 +31,7 @@ local function ruby_lsp()
       )
     end,
   })
-  vim.lsp.enable("ruby-lsp")
+  vim.lsp.enable("ruby_lsp")
 end
 
 function M.setup()
