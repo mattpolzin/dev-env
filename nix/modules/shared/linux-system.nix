@@ -52,6 +52,7 @@ in
     extraGroups = [
       "audio"
       "docker"
+      "fuse"
       "input"
       "kubernetes"
       "network"

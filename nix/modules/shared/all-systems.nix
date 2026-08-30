@@ -14,6 +14,7 @@ in
 {
   imports = [
     ./programs/google-chrome.nix
+    ./programs/ifuse.nix
     ./programs/kubernetes.nix
     ./programs/postman.nix
     ./programs/spotify.nix
