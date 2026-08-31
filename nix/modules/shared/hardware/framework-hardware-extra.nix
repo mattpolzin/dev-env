@@ -46,7 +46,7 @@
     "cros_ec_lpcs"
   ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
 
   # There seems to be an issue with panel self-refresh (PSR) that
   # causes hangs for users.
