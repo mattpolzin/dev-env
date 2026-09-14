@@ -76,6 +76,7 @@ in
       pkgs.kubectl
       pkgs.kubectl-tree
       pkgs.lf
+      pkgs.lsof
       pkgs.nix-output-monitor
       pkgs.nodejs
       pkgs.nvd
