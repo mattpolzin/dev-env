@@ -46,8 +46,6 @@ in
         ];
         masterAddress = "localhost";
 
-        kubelet.hostname = lib.toLower config.networking.fqdnOrHostName;
-
         # needed if you use swap
         kubelet.extraOpts = "--fail-swap-on=false";
       };
