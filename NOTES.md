@@ -32,6 +32,9 @@ Use `feh` to view.
 
 Use `evince` for PDFs.
 
+## Printing
+Access CUPS web interface (use system username/password): http://localhost:631
+
 ## Shortcuts
 Take screenshot: `Cmd+0`
 Drag to take screenshot: `Cmd+Shift+0`
