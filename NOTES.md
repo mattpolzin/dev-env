@@ -35,6 +35,9 @@ Use `evince` for PDFs.
 ## Printing
 Access CUPS web interface (use system username/password): http://localhost:631
 
+Check current jobs from CLI: `lpq -P {printer}`
+Cancel all jobs from CLI: `lprm -P {printer} -`
+
 ## Shortcuts
 Take screenshot: `Cmd+0`
 Drag to take screenshot: `Cmd+Shift+0`
