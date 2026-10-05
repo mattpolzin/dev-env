@@ -57,8 +57,12 @@
         darwin = import ./nix/modules/shared/darwin-system.nix;
         linux = import ./nix/modules/shared/linux-system.nix;
       };
-      workConfiguration = {
-        darwin = import ./nix/modules/work/darwin-system.nix;
+      opalConfiguration = {
+        darwin = import ./nix/modules/opal/darwin-system.nix;
+        linux = throw "no linux work machines to configure";
+      };
+      ziConfiguration = {
+        darwin = import ./nix/modules/zi/darwin-system.nix;
         linux = throw "no linux work machines to configure";
       };
       personalConfiguration = {
@@ -111,10 +115,13 @@
             { };
 
         "MattPolzin-Work-Laptop-Old" =
-          darwinConfig "MattPolzin-Work-Laptop-Old" "x86_64-darwin" workConfiguration
+          darwinConfig "MattPolzin-Work-Laptop-Old" "x86_64-darwin" opalConfiguration
             { };
         "MattPolzin-Work-Laptop" =
-          darwinConfig "MattPolzin-Work-Laptop" "aarch64-darwin" workConfiguration
+          darwinConfig "MattPolzin-Work-Laptop" "aarch64-darwin" opalConfiguration
+            { };
+        "MattPolzin-ZI" =
+          darwinConfig "MattPolzin-ZI" "aarch64-darwin" ziConfiguration
             { };
       };
 
@@ -131,7 +138,8 @@
           };
 
       # Expose the package set, including overlays, for convenience.
-      darwinWorkPackages = self.darwinConfigurations."MattPolzin-Work-Laptop".pkgs;
+      darwinOpalPackages = self.darwinConfigurations."MattPolzin-Work-Laptop".pkgs;
+      darwinZIPackages = self.darwinConfigurations."MattPolzin-ZI".pkgs;
       darwinHomePackages = self.darwinConfigurations."MattPolzin-Home-Laptop".pkgs;
       nixosHomePackages = self.nixosConfigurations."MattPolzin-Scrappy".pkgs;
 

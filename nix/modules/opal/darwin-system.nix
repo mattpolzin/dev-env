@@ -95,9 +95,20 @@ in
     pkgs.mutagen
     pkgs.terraform
     pkgs.unixodbc
+    pkgs-edge.chez
+    pkgs.beam29Packages.elixir-ls
+    pkgs.beam29Packages.elixir_1_20
+    pkgs.beam29Packages.erlang
+    pkgs.beam29Packages.expert
+    pkgs.elmPackages.elm
+    pkgs.elmPackages.elm-format
+    pkgs.elmPackages.elm-language-server
+    pkgs.elmPackages.elm-test
 
     # GUI (only at work)
     pkgs.vscode
+    pkgs-edge.bruno
+    pkgs-edge.zoom-us
   ];
 
   programs.direnv.enable = true;
@@ -109,9 +120,16 @@ in
   ];
   homebrew.brews = [ "garden-cli@0.13" ];
   homebrew.masApps = {
+    Xcode = 497799835;
+    Keynote = 409183694;
+    Numbers = 409203825;
+    Pages = 409201541;
+    Vimari = 1480933944;
     Slack = 803453959;
     "1Password for Safari" = 1569813296;
   };
+  # chrome via Homebrew:
+  customize.googleChrome.enable = true;
 
   nix = {
     settings = {
@@ -126,6 +144,8 @@ in
       ];
     };
   };
+
+  ids.gids.nixbld = 30000;
 
   age.secrets.etcHosts.file = ../../../secrets/etc-hosts.age;
   environment.etc.hosts = {

@@ -17,9 +17,21 @@
     pkgs-edge.colima
     pkgs.docker
     pkgs.texliveSmall
+    pkgs-edge.chez
+    pkgs.beam29Packages.elixir-ls
+    pkgs.beam29Packages.elixir_1_20
+    pkgs.beam29Packages.erlang
+    pkgs.beam29Packages.expert
+    pkgs.elmPackages.elm
+    pkgs.elmPackages.elm-format
+    pkgs.elmPackages.elm-language-server
+    pkgs.elmPackages.elm-test
+    pkgs.ghc
 
     # GUI (only at home)
     pkgs.discord
+    pkgs-edge.bruno
+    pkgs-edge.zoom-us
 #    pkgs.zulip
     # ^ pinned to EOL electron version as of 2026-06-05
   ];

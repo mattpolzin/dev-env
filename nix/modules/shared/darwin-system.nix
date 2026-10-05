@@ -50,14 +50,7 @@ in
   homebrew.enable = true;
   homebrew.onActivation.cleanup = "zap";
   homebrew.masApps = {
-    Keynote = 409183694;
-    Numbers = 409203825;
-    Pages = 409201541;
-    Vimari = 1480933944;
-    Xcode = 497799835;
   };
-  # chrome via Homebrew:
-  customize.googleChrome.enable = true;
 
   services.yabai = {
     enable = true;
@@ -264,7 +257,7 @@ in
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 4;
+  system.stateVersion = 5;
 
   # The platform the configuration will be used on.
   nixpkgs = {

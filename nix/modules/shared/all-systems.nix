@@ -39,7 +39,6 @@ in
       idris2
       idris2Lsp
 #      neovim # <- configured with home files for user so installed within home-manager
-      pkgs-edge.chez
       pkgs-edge.ddgr
       pkgs-edge.ijq
       pkgs-edge.k9s
@@ -47,23 +46,14 @@ in
       pkgs-edge.postgresql
       pkgs-edge.presenterm
       pkgs-edge.tree-sitter
-      pkgs.beam29Packages.elixir-ls
-      pkgs.beam29Packages.elixir_1_20
-      pkgs.beam29Packages.erlang
-      pkgs.beam29Packages.expert
       pkgs.circumflex
       pkgs.cloc
       pkgs.ctags
       pkgs.dict
       pkgs.diffutils
-      pkgs.elmPackages.elm
-      pkgs.elmPackages.elm-format
-      pkgs.elmPackages.elm-language-server
-      pkgs.elmPackages.elm-test
       pkgs.fd
       pkgs.fzf
       pkgs.gh
-      pkgs.ghc
       pkgs.git
       pkgs.git-lfs
       pkgs.glow
@@ -72,7 +62,6 @@ in
       pkgs.htop
       pkgs.iftop
       pkgs.jq
-      pkgs.kind
       pkgs.kubectl
       pkgs.kubectl-tree
       pkgs.lf
@@ -85,15 +74,13 @@ in
       pkgs.ripgrep
       pkgs.rlwrap
       pkgs.tree
-      pkgs.vscode-langservers-extracted
       pkgs.w3m
       pkgs.wget
       pkgs.which
       pkgs.yq
+      pkgs.vscode-langservers-extracted
 
       # GUI (all machines)
-      pkgs-edge.bruno
-      pkgs-edge.zoom-us
       pkgs.kitty
 
       #      pkgs-edge.slack

@@ -18,19 +18,41 @@
     pkgs.docker
     pkgs.texliveSmall
     pkgs.ghostty-bin
+    pkgs-edge.chez
+    pkgs.beam29Packages.elixir-ls
+    pkgs.beam29Packages.elixir_1_20
+    pkgs.beam29Packages.erlang
+    pkgs.beam29Packages.expert
+    pkgs.elmPackages.elm
+    pkgs.elmPackages.elm-format
+    pkgs.elmPackages.elm-language-server
+    pkgs.elmPackages.elm-test
+    pkgs.ghc
+    pkgs.kind
 
     # GUI (only at home)
     pkgs.discord
     pkgs-edge.ghostty-bin
+    pkgs-edge.bruno
+    pkgs-edge.zoom-us
   ];
 
   homebrew.masApps = {
+    Xcode = 497799835;
+    Keynote = 409183694;
+    Numbers = 409203825;
+    Pages = 409201541;
+    Vimari = 1480933944;
     "Pixelmator Pro" = 1289583905;
     "Affinity Publisher" = 881418622;
     Slack = 803453959;
   };
+  # chrome via Homebrew:
+  customize.googleChrome.enable = true;
 
   networking.wakeOnLan.enable = true;
+
+  ids.gids.nixbld = 30000;
 
   nix = {
     nixPath = [ { nixpkgs2 = "$HOME/staging/nixpkgs2"; } ];
