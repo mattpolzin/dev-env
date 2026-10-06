@@ -15,15 +15,25 @@
   config,
   ...
 }:
+let
+  gcloud = pkgs.google-cloud-sdk.withExtraComponents (with pkgs.google-cloud-sdk.components;
+  [
+    gke-gcloud-auth-plugin
+  ]);
+in
 {
   users.primary = "matt.polzin";
   home-manager.users.${config.users.primary} = import ./mattpolzin.nix;
 
   environment.systemPackages = [
     # Shell (only at work)
+    gcloud
+    pkgs.colima
     pkgs.csvkit
     pkgs.direnv
+    pkgs.docker
     pkgs.ffmpeg
+    pkgs.pre-commit
     pkgs.terraform
   ];
 
