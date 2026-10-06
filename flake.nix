@@ -129,7 +129,7 @@
             customize = {
               avahi.enable = false; # printer discovery
               googleChrome.enable = false;
-              kubernetes.enable = true;
+              kubernetes.enable = false;
               spotify.gui.enable = false;
               ifuse.enable = true; # iOS device browsing
             };
