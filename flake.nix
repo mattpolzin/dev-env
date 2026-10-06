@@ -121,6 +121,10 @@
         "MattPolzin-ZI" =
           darwinConfig "MattPolzin-ZI" "aarch64-darwin" ziConfiguration
             { };
+        "FYCNWXWJ31" =
+          darwinConfig "FYCNWXWJ31" "aarch64-darwin" ziConfiguration
+            { };
+        # ^ MattPolzin-ZI really wants to rename itself FYCNWXWJ31 :shrug:.
       };
 
       nixosConfigurations."MattPolzin-Scrappy" =
