@@ -144,6 +144,8 @@ keymap b PREV_WORD
 keymap RET GOTO_LINK
 keymap gx GOTO_LINK
 keymap gf GOTO_LINK
+keymap ] NEXT_LINK
+keymap [ PREV_LINK
 
 # NPage Navigation
 keymap j COMMAND "MOVE_DOWN1"
