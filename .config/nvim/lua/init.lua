@@ -92,10 +92,13 @@ if vim.fn.executable('ruby') == 1
     require('lsp.ruby').setup()
 end
 if vim.fn.executable('swift') == 1 then
-    require('lsp.swift').setup()
+  require('lsp.swift').setup()
 end
 if vim.fn.executable('zig') == 1 then
-    require('lsp.zig').setup()
+  require('lsp.zig').setup()
+end
+if vim.fn.executable('gopls') == 1 then
+  require('lsp.golang').setup()
 end
 
 -- LSP additional external setup:

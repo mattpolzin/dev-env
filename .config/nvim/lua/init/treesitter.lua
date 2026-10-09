@@ -49,6 +49,7 @@ local filetypes = {
   gitcommit = { highlight = true, fold = true },
   gitignore = { highlight = true, fold = true },
   glimmer = { highlight = true, fold = true },
+  go = { highlight = true, fold = true },
   haskell = { highlight = true, fold = true },
   html = { highlight = true, fold = true },
   ini = { highlight = true, fold = true },

@@ -28,12 +28,18 @@ in
   environment.systemPackages = [
     # Shell (only at work)
     gcloud
+    pkgs.claude-code
     pkgs.colima
     pkgs.csvkit
     pkgs.direnv
     pkgs.docker
     pkgs.ffmpeg
+    pkgs.go
+    pkgs.gofumpt
+    pkgs.golangci-lint
+    pkgs.gopls
     pkgs.pre-commit
+    pkgs.redocly
     pkgs.terraform
   ];
 

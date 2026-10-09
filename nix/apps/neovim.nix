@@ -103,6 +103,7 @@ let
         ts.gitcommit
         ts.gitignore
         ts.glimmer
+        ts.go
         ts.haskell
         ts.helm
         ts.html
