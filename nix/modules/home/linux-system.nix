@@ -43,6 +43,7 @@
 
   age.secrets.wpaSupplicantConfig.file = ../../../secrets/wpa-supplicant-conf.age;
 
+  users.groups.network = {};
   networking.supplicant."wlp1s0" = {
     configFile.path = config.age.secrets.wpaSupplicantConfig.path;
     userControlled.group = "network";
