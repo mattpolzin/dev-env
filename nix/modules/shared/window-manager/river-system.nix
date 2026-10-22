@@ -24,20 +24,14 @@
 
   programs.river-classic = {
     enable = true;
-    extraPackages = with pkgs; [
-      wl-clipboard
-      tofi
-      swaybg
+    extraPackages = [
+      pkgs.wl-clipboard
+      pkgs.tofi
+      pkgs.swaybg
     ];
   };
   programs.waybar.enable = true;
 
   # required for waybar:
   xdg.portal.wlr.enable = true;
-
-  environment.systemPackages = [
-    # screenshots
-    pkgs.grim
-    pkgs.slurp
-  ];
 }

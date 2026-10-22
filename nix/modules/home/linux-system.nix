@@ -43,15 +43,15 @@
 
   age.secrets.wpaSupplicantConfig.file = ../../../secrets/wpa-supplicant-conf.age;
 
+  age.secrets.aercAccounts = {
+    file = ../../../secrets/aerc-accounts.age;
+    owner = "${config.users.primary}";
+  };
+
   users.groups.network = {};
   networking.supplicant."wlp1s0" = {
     configFile.path = config.age.secrets.wpaSupplicantConfig.path;
     userControlled.group = "network";
-  };
-
-  age.secrets.aercAccounts = {
-    file = ../../../secrets/aerc-accounts.age;
-    owner = "${config.users.primary}";
   };
 
   nix = {

@@ -97,6 +97,10 @@ in
 
     # Communication
     pkgs-edge.slack
+
+    # screenshots
+    pkgs.grim
+    pkgs.slurp
   ];
 
   # I have nix-index-database handling command-not-found
