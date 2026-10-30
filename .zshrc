@@ -56,15 +56,15 @@ if [ -n "$ncolors" ] && [ $ncolors -ge 8 ]; then
   yellow="$(tput setaf 3)"
 
   exit_status_prompt() {
-    if [[ "$?" == '0' ]]; then
+    local code=$1
+    if [[ "$code" == '0' ]]; then
       echo ""
     else
-      echo " %{${red}%}$?"
+      echo " %{${red}%}${code}"
     fi
   }
 
-  exit_status="\$(exit_status_prompt)"
-  PROMPT="%n:${exit_status} %{${green}%}%~ %{${yellow}%}\${vcs_info_msg_0_}%{${normal}%}${shlvl}$ "
+  PROMPT="%n:"'$(exit_status_prompt $?)'" %{${green}%}%~ %{${yellow}%}\${vcs_info_msg_0_}%{${normal}%}${shlvl}$ "
 else
   PROMPT="%n: \$? %~ \${vcs_info_msg_0_}${shlvl}$ "
 fi
