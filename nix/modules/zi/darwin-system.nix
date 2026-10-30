@@ -28,6 +28,7 @@ in
   environment.systemPackages = [
     # Shell (only at work)
     gcloud
+    pkgs-edge.bruno
     pkgs-edge.claude-code
     pkgs.colima
     pkgs.csvkit
