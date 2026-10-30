@@ -28,7 +28,7 @@ in
   environment.systemPackages = [
     # Shell (only at work)
     gcloud
-    pkgs.claude-code
+    pkgs-edge.claude-code
     pkgs.colima
     pkgs.csvkit
     pkgs.direnv
