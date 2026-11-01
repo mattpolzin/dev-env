@@ -21,7 +21,7 @@ in
   ];
 
   config = {
-    nix.package = pkgs-edge.nixVersions.nix_2_34;
+    nix.package = pkgs-edge.nixVersions.nix_2_35;
     nix.settings = {
       experimental-features = "nix-command flakes";
     };
