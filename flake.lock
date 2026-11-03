@@ -212,11 +212,11 @@
         "type-test-pkg": "type-test-pkg"
       },
       "locked": {
-        "lastModified": 1793589903,
-        "narHash": "sha256-3Fo9z6osnj0n7pfxK+tzkcBcf9IJDK/8Ld0ClmoEmu0=",
+        "lastModified": 1793679058,
+        "narHash": "sha256-bgNbfEcEa+JXOd2nZv20MQCRz0JGvCLGiTSp28F0/2c=",
         "owner": "mattpolzin",
         "repo": "harmony",
-        "rev": "4bbfd243dc402c8b6116d2f81194e6a6637cfb24",
+        "rev": "aff6f7bff9b21b35c71c21262d33f9f39d6c8ec2",
         "type": "github"
       },
       "original": {
