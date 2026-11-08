@@ -12,6 +12,9 @@
   # BIOS updating
   services.fwupd.enable = true;
 
+  # don't shutdown on short press of power button
+  services.logind.settings.Login.HandlePowerKey = "ignore";
+
   # Ethernet expansion card support
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="8156", ATTR{power/autosuspend}="20"
