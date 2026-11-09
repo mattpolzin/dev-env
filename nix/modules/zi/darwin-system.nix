@@ -30,6 +30,7 @@ in
     gcloud
     pkgs-edge.bruno
     pkgs-edge.claude-code
+    pkgs.acli
     pkgs.colima
     pkgs.csvkit
     pkgs.direnv
