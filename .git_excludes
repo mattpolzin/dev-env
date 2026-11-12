@@ -1,0 +1,3 @@
+
+# global excludes rules (formatted like local .gitignore files)
+harmony.json

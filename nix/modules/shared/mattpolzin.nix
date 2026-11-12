@@ -2,6 +2,7 @@
   lib,
   pkgs,
   neovimApp,
+  config,
   ...
 }:
 let
@@ -40,6 +41,7 @@ in
         defaultBranch = "main";
       };
       rerere.enabled = true;
+      core.excludesFile = "${config.home.homeDirectory}/${config.home.file.".git_excludes".target}";
     };
   };
 

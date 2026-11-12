@@ -6,6 +6,10 @@
   ".ctags" = {
     source = ../.ctags;
   };
+  # not a standard file, set to --global core.excludesFile git configuration option
+  ".git_excludes" = {
+    source = ../.git_excludes;
+  };
   # configs that apply to any shell input 
   ".inputrc" = {
     source = ../.inputrc;
