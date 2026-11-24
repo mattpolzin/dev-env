@@ -35,6 +35,7 @@ in
     pkgs.csvkit
     pkgs.direnv
     pkgs.docker
+    pkgs.docker-credential-helpers
     pkgs.ffmpeg
     pkgs.go
     pkgs.gofumpt
