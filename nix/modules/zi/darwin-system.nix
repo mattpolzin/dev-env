@@ -40,9 +40,14 @@ in
     pkgs.gofumpt
     pkgs.golangci-lint
     pkgs.gopls
+    pkgs.kubernetes-helm
     pkgs.pre-commit
     pkgs.redocly
     pkgs.terraform
+  ];
+
+  homebrew.casks = [
+    "1password-cli"
   ];
 
   programs.direnv.enable = true;
